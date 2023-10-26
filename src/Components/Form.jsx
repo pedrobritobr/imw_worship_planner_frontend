@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Form.css'
 
 const firstActivity =  { hour: '18:55', activityTitle: 'Cronômetro', duration: 5, responsible: 'Rede Connect' }
 const lastActivity =  { hour: '21:00', activityTitle: 'Encerramento', duration: 0, responsible: '--' }

@@ -1,13 +1,13 @@
 import React from 'react';
-import Formulario from './Components/Form';
+import Planner from './Components/Planner';
 
-import './App.css'
+import './App.css';
 
 function App() {
   return (
     <div className="App">
       <h2>Cronograma do Culto</h2>
-      <Formulario />
+      <Planner />
     </div>
   );
 }

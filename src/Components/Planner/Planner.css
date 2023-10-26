@@ -8,42 +8,9 @@
   width: 26vw;
 }
 
-.planner-container input[type=time]::-webkit-outer-spin-button,
-.planner-container input[type=time]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  display:none;
-  background: none;
-  margin: 0;
-}
-
 .planner-container input[type=time]::-webkit-calendar-picker-indicator {
   background: none;
   display:none;
-}
-
-input[type=time]::-webkit-datetime-edit-hour-field {
-  display: none;
-  -webkit-appearance: none;
-}
-
-input[type=time]::-webkit-datetime-edit-minute-field {
-  display: none;
-  -webkit-appearance: none;
-}
-
-input[type=time]::-webkit-datetime-edit-ampm-field {
-  display: none;
-  -webkit-appearance: none;
-}
-
-input[type=time]::-webkit-clear-button {
-  display: none;
-  -webkit-appearance: none;
-}
-
-input[type=time]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  display: none;
 }
 
 .planner-container button {
@@ -80,7 +47,7 @@ input[type=time]::-webkit-inner-spin-button {
 
 .planner-activity-row > * {
   height: 16px;
-  width: 12vw;
+  width: 15vw;
 }
 
 .planner-activity-row {

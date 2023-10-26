@@ -8,8 +8,12 @@
   width: 26vw;
 }
 
-input[type=time]::-webkit-inner-spin-button {
+.planner-container input[type=time]::-webkit-outer-spin-button,
+.planner-container input[type=time]::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  display:none;
+  background: none;
+  margin: 0;
 }
 
 .planner-container input[type=time]::-webkit-calendar-picker-indicator {

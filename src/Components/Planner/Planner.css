@@ -51,7 +51,7 @@ input[type=time]::-webkit-inner-spin-button {
 
 .planner-activity-row > * {
   height: 16px;
-  width: 10vw;
+  width: 12vw;
 }
 
 .planner-activity-row {

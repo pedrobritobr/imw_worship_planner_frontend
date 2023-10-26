@@ -8,6 +8,11 @@
   width: 26vw;
 }
 
+.planner-container input[type=time]::-webkit-calendar-picker-indicator {
+  background: none;
+  display:none;
+}
+
 .planner-container button {
   border-radius: 8px;
   border: 1.5px solid #8f8f8f;
@@ -38,23 +43,23 @@
 
 .planner-headers h4 {
   margin: 2px 0px;
-  width: 20vw;
-  text-align: center;
+}
+
+.planner-activity-row > * {
+  height: 16px;
+  width: 10vw;
 }
 
 .planner-activity-row {
   display: flex;
   flex: 1;
-  gap: 3px;
+  gap: 5px;
   align-items: center;
-}
-
-.planner-activity-row > * {
-  height: 16px;
 }
 
 .duration-input {
   display: flex;
   align-items: center;
   flex-direction: row;
+  width: 55px;
 }

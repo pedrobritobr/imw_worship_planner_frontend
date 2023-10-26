@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Planner.css';
 import { getActualDate } from '../../helpers';
 
-import plusSvg from '../../assets/plus.svg'
+import plusSvg from '../../assets/plus.svg';
 
 const columnsHeader = ['Hora', 'Atividade', 'Duração', 'Responsável'];
 const firstActivity = {

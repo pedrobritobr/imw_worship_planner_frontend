@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import './Planner.css';
 import { getActualDate } from '../../helpers';
 
+import plusSvg from '../../assets/plus.svg'
+
+const columnsHeader = ['Hora', 'Atividade', 'Duração', 'Responsável'];
 const firstActivity = {
   hour: '18:55',
   activityTitle: 'Cronômetro',
@@ -36,10 +39,17 @@ function Planner() {
   };
 
   return (
-    <div>
-      {getActualDate()}
+    <div className="planner-container">
+      <h3>{getActualDate()}</h3>
+      <div className="planner-headers">
+        {columnsHeader.map((header) => (
+          <h4>
+            {header}
+          </h4>
+        ))}
+      </div>
       {entries.map((entry, index) => (
-        <div key={index}>
+        <div key={index} className="planner-activity-row">
           <input
             type="time"
             name="hour"
@@ -54,14 +64,19 @@ function Planner() {
             onChange={(e) => handleInputChange(index, e)}
             placeholder="Atividade"
           />
-          <input
-            type="number"
-            min={0}
-            name="duration"
-            value={entry.duration}
-            onChange={(e) => handleInputChange(index, e)}
-            placeholder="Duração"
-          />
+          <div className="duration-input">
+            <input
+              type="number"
+              min={0}
+              name="duration"
+              value={entry.duration}
+              onChange={(e) => handleInputChange(index, e)}
+              placeholder="Duração"
+            />
+            <p>
+              min
+            </p>
+          </div>
           <input
             type="text"
             name="responsible"
@@ -71,8 +86,10 @@ function Planner() {
           />
         </div>
       ))}
-      <button type="button" onClick={handleAddEntry}>+</button>
-      <div>
+      <button type="button" onClick={handleAddEntry}>
+        <img width={15} src={plusSvg} alt="Adiciona nova atividade" />
+      </button>
+      <div className="planner-activity-row">
         <input
           type="time"
           name="hour"

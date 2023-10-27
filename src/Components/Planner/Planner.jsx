@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './Planner.css';
 import { getActualDate } from '../../helpers';
 
+import './Planner.css';
 import plusSvg from '../../assets/plus.svg';
 
 const columnsHeader = ['Hora', 'Atividade', 'Duração', 'Responsável'];
@@ -86,7 +86,7 @@ function Planner() {
           />
         </div>
       ))}
-      <button type="button" onClick={handleAddEntry}>
+      <button type="button" className="ignore-on-print" onClick={handleAddEntry}>
         <img width={15} src={plusSvg} alt="Adiciona nova atividade" />
       </button>
       <div className="planner-activity-row">

@@ -1,22 +1,9 @@
-import React, { useState } from 'react';
-import { getActualDate } from '../../helpers';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Planner.css';
 import plusSvg from '../../assets/plus.svg';
 
-const columnsHeader = ['Hora', 'Atividade', 'Duração', 'Responsável'];
-const firstActivity = {
-  hour: '18:55',
-  activityTitle: 'Cronômetro',
-  duration: 5,
-  responsible: 'Rede Connect',
-};
-const lastActivity = {
-  hour: '21:00',
-  activityTitle: 'Encerramento',
-  duration: 0,
-  responsible: '--',
-};
 const emptyActivity = {
   hour: '',
   activityTitle: '',
@@ -24,23 +11,25 @@ const emptyActivity = {
   responsible: '',
 };
 
-function Planner() {
-  const [entries, setEntries] = useState([firstActivity]);
-
+function Planner({
+  activities,
+  setActivities,
+  columnsHeader,
+  lastActivity,
+}) {
   const handleInputChange = (index, e) => {
     const { name, value } = e.target;
-    const newEntries = [...entries];
+    const newEntries = [...activities];
     newEntries[index] = { ...newEntries[index], [name]: value };
-    setEntries(newEntries);
+    setActivities(newEntries);
   };
 
   const handleAddEntry = () => {
-    setEntries([...entries, { ...emptyActivity }]);
+    setActivities([...activities, { ...emptyActivity }]);
   };
 
   return (
     <div className="planner-container">
-      <h3>{getActualDate()}</h3>
       <div className="planner-headers">
         {columnsHeader.map((header) => (
           <h4>
@@ -48,7 +37,7 @@ function Planner() {
           </h4>
         ))}
       </div>
-      {entries.map((entry, index) => (
+      {activities.map((entry, index) => (
         <div key={index} className="planner-activity-row">
           <input
             type="time"
@@ -71,7 +60,7 @@ function Planner() {
               name="duration"
               value={entry.duration}
               onChange={(e) => handleInputChange(index, e)}
-              placeholder="Duração"
+              placeholder="1"
             />
             <p>
               min
@@ -123,5 +112,11 @@ function Planner() {
     </div>
   );
 }
+
+Planner.propTypes = {
+  columnsHeader: PropTypes.arrayOf(PropTypes.string),
+  activities: PropTypes.arrayOf(PropTypes.object),
+  setActivities: PropTypes.func,
+}.isRequired;
 
 export default Planner;

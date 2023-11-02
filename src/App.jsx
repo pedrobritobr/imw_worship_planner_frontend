@@ -1,37 +1,62 @@
-import React, { useCallback, useRef } from 'react';
-import { toPng } from 'html-to-image';
+import React, { useEffect, useRef, useState } from 'react';
+import { exportComponentAsPNG } from 'react-component-export-image';
+
 import Planner from './Components/Planner';
+import ScreenshotTable from './Components/ScreenshotTable';
+import { getActualDate, screenshotFilename } from './helpers';
 
 import './App.css';
 
+const columnsHeader = ['Hora', 'Atividade', 'Duração', 'Responsável'];
+
+const firstActivity = {
+  hour: '18:55',
+  activityTitle: 'Cronômetro',
+  duration: 5,
+  responsible: 'Rede Connect',
+};
+const lastActivity = {
+  hour: '21:00',
+  activityTitle: 'Encerramento',
+  duration: 0,
+  responsible: '--',
+};
+
 function App() {
   const ref = useRef(null);
-  const onButtonClick = useCallback(() => {
-    if (ref.current === null) {
-      return;
-    }
-    const myFilter = (node) => {
-      const exclusionClasses = ['ignore-on-print'];
-      return !exclusionClasses.some((classname) => node.classList?.contains(classname));
-    };
+  const [showScreeshotTable, setShowScreeshotTable] = useState(true);
+  const [activities, setActivities] = useState([firstActivity]);
+  const today = getActualDate();
 
-    toPng(ref.current, { cacheBust: true, filter: myFilter })
-      .then((dataUrl) => {
-        const link = document.createElement('a');
-        link.download = 'my-image-name.png';
-        link.href = dataUrl;
-        link.click();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [ref]);
+  useEffect(() => {
+    if (showScreeshotTable) {
+      exportComponentAsPNG(ref, { fileName: screenshotFilename() });
+      setShowScreeshotTable(false);
+    }
+  }, [showScreeshotTable]);
 
   return (
-    <div className="App" ref={ref}>
-      <h2>Cronograma do Culto</h2>
-      <Planner />
-      <button type="button" className="ignore-on-print" onClick={onButtonClick}>Click me</button>
+    <div className="App">
+      <div className="main">
+        <h2>Cronograma do Culto</h2>
+        <h3>{today}</h3>
+        <Planner
+          columnsHeader={columnsHeader}
+          activities={activities}
+          setActivities={setActivities}
+          lastActivity={lastActivity}
+        />
+      </div>
+      { showScreeshotTable && (
+        <div ref={ref}>
+          <ScreenshotTable
+            columnsHeader={columnsHeader}
+            today={today}
+            activities={[...activities, lastActivity]}
+          />
+        </div>
+      )}
+      <button type="button" onClick={() => setShowScreeshotTable(true)}>Click me</button>
     </div>
   );
 }

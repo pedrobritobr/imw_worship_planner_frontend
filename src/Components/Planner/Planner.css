@@ -8,11 +8,6 @@
   width: 26vw;
 }
 
-.planner-container input[type=time]::-webkit-calendar-picker-indicator {
-  background: none;
-  display:none;
-}
-
 .planner-container button {
   border-radius: 8px;
   border: 1.5px solid #8f8f8f;
@@ -47,7 +42,7 @@
 
 .planner-activity-row > * {
   height: 16px;
-  width: 16vw;
+  width: 17vw;
 }
 
 .planner-activity-row {

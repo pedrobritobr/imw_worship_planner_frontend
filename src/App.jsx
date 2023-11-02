@@ -24,7 +24,7 @@ const lastActivity = {
 
 function App() {
   const ref = useRef(null);
-  const [showScreeshotTable, setShowScreeshotTable] = useState(true);
+  const [showScreeshotTable, setShowScreeshotTable] = useState(false);
   const [activities, setActivities] = useState([firstActivity]);
   const today = getActualDate();
 

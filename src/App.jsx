@@ -56,7 +56,7 @@ const lastActivity = {
 function App() {
   const ref = useRef(null);
   const [showScreeshotTable, setShowScreeshotTable] = useState(false);
-  const [activities, setActivities] = useState([firstActivity]);
+  const [activities, setActivities] = useState([firstActivity, lastActivity]);
   const today = getActualDate();
 
   useEffect(() => {
@@ -75,7 +75,6 @@ function App() {
           columnsHeader={columnsHeader}
           activities={activities}
           setActivities={setActivities}
-          lastActivity={lastActivity}
         />
       </div>
       { showScreeshotTable && (

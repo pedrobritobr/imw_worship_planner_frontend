@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import addBtnSvg from '../../assets/add-square-svgrepo-com.svg';
 import minusBtnSvg from '../../assets/minus-square-svgrepo-com.svg';
 
-function Activity({ activity, handleInputChange, addNewActivity }) {
-  const removeActivity = () => {
-    console.log('Remove a atual atividade');
-  };
-
+function Activity({
+  activity,
+  handleInputChange,
+  addNewActivity,
+  removeActivity,
+}) {
   return (
     <div key={activity.id} className="planner-activity-row">
       <input
@@ -49,7 +50,7 @@ function Activity({ activity, handleInputChange, addNewActivity }) {
         <button type="button" className="button-activity" onClick={() => addNewActivity(activity)}>
           <img width={22} src={addBtnSvg} alt="Adiciona nova atividade" />
         </button>
-        <button type="button" className="button-activity" onClick={removeActivity}>
+        <button type="button" className="button-activity" onClick={() => removeActivity(activity)}>
           <img width={22} src={minusBtnSvg} alt="Remove a atual atividade" />
         </button>
       </div>

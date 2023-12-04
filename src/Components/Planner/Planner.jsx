@@ -17,7 +17,6 @@ function Planner({
   activities,
   setActivities,
   columnsHeader,
-  lastActivity,
 }) {
   const handleInputChange = (id, e) => {
     const { name, value } = e.target;
@@ -38,12 +37,23 @@ function Planner({
     };
     const previousActivityIndex = activities.findIndex((ac) => ac.id === prevActivity.id);
 
-    console.log(prevActivity);
-    console.log(previousActivityIndex);
-
     const activitiesCp = [...activities];
     activitiesCp.splice(previousActivityIndex + 1, 0, newActivity);
     setActivities(activitiesCp);
+  };
+
+  const removeActivity = (activity) => {
+    const activityIndex = activities.findIndex((a) => a.id === activity.id);
+
+    console.log(activity);
+
+    if (activityIndex === 0) {
+      window.alert('Não é possível remover a primeira atividade');
+      return;
+    }
+
+    const newActivities = activities.filter((a) => a.id !== activity.id);
+    setActivities(newActivities);
   };
 
   return (
@@ -61,12 +71,9 @@ function Planner({
           activity={activity}
           handleInputChange={handleInputChange}
           addNewActivity={addNewActivity}
+          removeActivity={removeActivity}
         />
       ))}
-      <Activity
-        activity={lastActivity}
-        handleInputChange={() => {}}
-      />
     </div>
   );
 }

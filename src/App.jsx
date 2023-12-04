@@ -32,12 +32,6 @@ const columnsHeader = [
       margin: '2px 20px 2px 10px',
     },
   },
-  {
-    text: 'xx',
-    style: {
-      visibility: 'hidden',
-    },
-  },
 ];
 
 const firstActivity = {
@@ -82,11 +76,11 @@ function App() {
           <ScreenshotTable
             columnsHeader={columnsHeader}
             today={today}
-            activities={[...activities, lastActivity]}
+            activities={activities}
           />
         </div>
       )}
-      <button type="button" onClick={() => setShowScreeshotTable(true)}>Click me</button>
+      <button type="button" className="download-button" onClick={() => setShowScreeshotTable(true)}>Baixar Cronograma</button>
     </div>
   );
 }

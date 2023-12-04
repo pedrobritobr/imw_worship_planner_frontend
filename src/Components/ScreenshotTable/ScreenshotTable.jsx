@@ -7,7 +7,7 @@ function ScreenshotTable({
   activities,
 }) {
   return (
-    <div className="main">
+    <div className="main" style={{ margin: '-5px', padding: '5px' }}>
       <h3 style={{ margin: 0 }}>Cronograma do Culto</h3>
       <h3 style={{ margin: 0 }}>IMW São Cristóvão</h3>
       <h4 style={{ margin: 0 }}>{today}</h4>

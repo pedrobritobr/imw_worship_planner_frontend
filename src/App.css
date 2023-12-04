@@ -31,4 +31,9 @@ th, td {
   flex-direction: column;
   align-items: center;
   background-color: #242424;
+  width: 92vw;
+}
+
+.download-button{
+  margin-top: 10px;
 }

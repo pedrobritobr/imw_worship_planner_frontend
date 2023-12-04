@@ -2,22 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 98vw;
 }
 
 .planner-container input[type=text] {
   width: 26vw;
 }
-
-/* .planner-container button {
-  border-radius: 8px;
-  border: 1.5px solid #8f8f8f;
-  padding: 0.5vh 2vw;
-  margin: 6px;
-  background-color: #1a1a1a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
 
 .planner-container .button-activity-container{
   display: flex;
@@ -75,6 +65,5 @@
 }
 
 .planner-activity-row {
-  /* faca uma regra para diminuir em 10% cada item dessa classe */
   transform: scale(0.9);
 }

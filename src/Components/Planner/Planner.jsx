@@ -18,6 +18,14 @@ function Planner({
   setActivities,
   columnsHeader,
 }) {
+  const invisibleColumn = {
+    text: 'xx',
+    style: {
+      visibility: 'hidden',
+    },
+  };
+  const columnsHeaderCp = [...columnsHeader, invisibleColumn];
+
   const handleInputChange = (id, e) => {
     const { name, value } = e.target;
     const newEntries = activities.map((activity) => {
@@ -48,7 +56,7 @@ function Planner({
     console.log(activity);
 
     if (activityIndex === 0) {
-      window.alert('Não é possível remover a primeira atividade');
+      window.alert('Não é possível remover a primeira e última atividade');
       return;
     }
 
@@ -59,7 +67,7 @@ function Planner({
   return (
     <div className="planner-container">
       <div className="planner-headers">
-        {columnsHeader.map((header) => (
+        {columnsHeaderCp.map((header) => (
           <h4 key={header.text} style={header.style}>
             {header.text}
           </h4>

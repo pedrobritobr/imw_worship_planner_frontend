@@ -25,8 +25,22 @@ const screenshotFilename = () => {
   return `imw_cronograma_${today.replaceAll('/', '_')}`;
 };
 
+const setHourForActivity = (horaBase, minutosASomar) => {
+  const partesHoraBase = horaBase.split(':');
+  const horasBase = +partesHoraBase[0];
+  const minutosBase = +partesHoraBase[1];
+
+  const totalMinutosBase = (horasBase * 60) + minutosBase + (+minutosASomar);
+
+  const novasHoras = Math.floor(totalMinutosBase / 60);
+  const novosMinutos = totalMinutosBase % 60;
+
+  return `${String(novasHoras).padStart(2, '0')}:${String(novosMinutos).padStart(2, '0')}`;
+};
+
 export {
   screenshotFilename,
   capitalizeFirstLetter,
   getActualDate,
+  setHourForActivity,
 };

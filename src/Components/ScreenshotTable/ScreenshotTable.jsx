@@ -14,7 +14,7 @@ function ScreenshotTable({
       <table>
         <thead>
           <tr>
-            {columnsHeader.map((h) => (<th key={`key-${h}`}>{h}</th>))}
+            {columnsHeader.map((h) => (<th key={`key-${h.text}`}>{h.text}</th>))}
           </tr>
         </thead>
         <tbody>

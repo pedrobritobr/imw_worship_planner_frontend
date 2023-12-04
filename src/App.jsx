@@ -7,7 +7,38 @@ import { getActualDate, screenshotFilename } from './helpers';
 
 import './App.css';
 
-const columnsHeader = ['Hora', 'Atividade', 'Duração', 'Responsável'];
+const columnsHeader = [
+  {
+    text: 'Hora',
+    style: {
+      margin: '2px 20px 2px 10px',
+    },
+  },
+  {
+    text: 'Atividade',
+    style: {
+      margin: '2px 20px 2px 10px',
+    },
+  },
+  {
+    text: 'Duração',
+    style: {
+      margin: '2px 0px',
+    },
+  },
+  {
+    text: 'Responsável',
+    style: {
+      margin: '2px 20px 2px 10px',
+    },
+  },
+  {
+    text: 'xx',
+    style: {
+      visibility: 'hidden',
+    },
+  },
+];
 
 const firstActivity = {
   hour: '18:55',

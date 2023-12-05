@@ -1,23 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './ScreenshotTable.css';
+
 function ScreenshotTable({
   columnsHeader,
   today,
   activities,
 }) {
-  const cssStyle = {
-    minWidth: '400px',
-    maxWidth: '400px',
-    margin: '-5px',
-    padding: '5px',
-  };
-
   return (
-    <div className="main" style={cssStyle}>
-      <h3 style={{ margin: 0 }}>Cronograma do Culto</h3>
-      <h3 style={{ margin: 0 }}>IMW São Cristóvão</h3>
-      <h4 style={{ margin: 0 }}>{today}</h4>
+    <div className="screenshot-table">
+      <h3>Cronograma IMW São Cristóvão</h3>
+      <h4>{today}</h4>
       <table>
         <thead>
           <tr>
@@ -27,7 +21,7 @@ function ScreenshotTable({
         <tbody>
           {activities.map((activity) => (
             <tr key={`${activity.activityTitle}-${activity.responsible}`}>
-              <td>{activity.hour}</td>
+              <td style={{ width: '1px' }}>{activity.hour}</td>
               <td>{activity.activityTitle}</td>
               <td>{`${String(activity.duration).padStart(2, '0')}min`}</td>
               <td>{activity.responsible}</td>

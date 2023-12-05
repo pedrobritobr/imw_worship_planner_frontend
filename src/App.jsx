@@ -13,6 +13,10 @@ const columnsHeader = [
     style: {
       margin: '2px 20px 2px 10px',
     },
+    screenShotStyle: {
+      width: '10px',
+      fontSize: '8px',
+    },
   },
   {
     text: 'Atividade',
@@ -56,8 +60,8 @@ function App() {
   const pngConfigs = {
     fileName: screenshotFilename(),
     html2CanvasOptions: {
-      width: 400,
-      scale: 2,
+      width: 350,
+      scale: 3,
     },
   };
 
@@ -79,16 +83,19 @@ function App() {
           setActivities={setActivities}
         />
       </div>
+      <button type="button" className="download-button" onClick={() => setShowScreeshotTable(true)}>Baixar Cronograma</button>
       { showScreeshotTable && (
-        <div ref={ref}>
+      <div>
+        <div className="banner" />
+        <div ref={ref} className="info">
           <ScreenshotTable
             columnsHeader={columnsHeader}
             today={today}
             activities={activities}
           />
         </div>
+      </div>
       )}
-      <button type="button" className="download-button" onClick={() => setShowScreeshotTable(true)}>Baixar Cronograma</button>
     </div>
   );
 }

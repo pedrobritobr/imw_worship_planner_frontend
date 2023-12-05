@@ -3,7 +3,6 @@ import { exportComponentAsPNG } from 'react-component-export-image';
 
 import Planner from './Components/Planner';
 import ScreenshotTable from './Components/ScreenshotTable';
-import TelaWidth from './TelaWidth';
 
 import { getActualDate, screenshotFilename } from './helpers';
 

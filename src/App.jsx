@@ -61,7 +61,7 @@ function App() {
     fileName: screenshotFilename(),
     html2CanvasOptions: {
       backgroundColor: '#242424',
-      width: 200,
+      width: 250,
       scale: 5,
     },
   };
@@ -87,27 +87,18 @@ function App() {
         />
       </div>
       <button type="button" className="download-button" onClick={() => setShowScreeshotTable(true)}>Baixar Cronograma</button>
-      {/* { showScreeshotTable && ( */}
-      <div>
-        <div className="banner" />
-        <div ref={ref}>
-          <ScreenshotTable
-            columnsHeader={columnsHeader}
-            today={today}
-            activities={activities}
-          />
+      { showScreeshotTable && (
+        <div>
+          <div className="banner" />
+          <div ref={ref}>
+            <ScreenshotTable
+              columnsHeader={columnsHeader}
+              today={today}
+              activities={activities}
+            />
+          </div>
         </div>
-      </div>
-      {/* )} */}
-      {/* { showScreeshotTable && (
-        <div ref={ref}>
-          <ScreenshotTable
-            columnsHeader={columnsHeader}
-            today={today}
-            activities={activities}
-          />
-        </div>
-      )} */}
+      )}
     </div>
   );
 }

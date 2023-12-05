@@ -21,7 +21,7 @@ function ScreenshotTable({
         <tbody>
           {activities.map((activity) => (
             <tr key={`${activity.activityTitle}-${activity.responsible}`}>
-              <td style={{ width: '1px' }}>{activity.hour}</td>
+              <td>{activity.hour}</td>
               <td>{activity.activityTitle}</td>
               <td>{`${String(activity.duration).padStart(2, '0')}min`}</td>
               <td>{activity.responsible}</td>

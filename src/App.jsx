@@ -15,10 +15,6 @@ const columnsHeader = [
     style: {
       margin: '2px 20px 2px 10px',
     },
-    screenShotStyle: {
-      width: '10px',
-      fontSize: '8px',
-    },
   },
   {
     text: 'Atividade',
@@ -43,26 +39,28 @@ const columnsHeader = [
 const firstActivity = {
   hour: '19:00',
   activityTitle: 'Cronômetro',
-  duration: 5,
+  duration: '5',
   responsible: 'Rede Connect',
 };
 const lastActivity = {
   hour: '21:00',
   activityTitle: 'Encerramento',
-  duration: 0,
+  duration: '0',
   responsible: '--',
 };
+const defaultActivities = [firstActivity, lastActivity];
 
 function App() {
   const ref = useRef(null);
   const [showScreeshotTable, setShowScreeshotTable] = useState(false);
-  const [activities, setActivities] = useState([firstActivity, lastActivity]);
+  const activitiesLocalStorage = JSON.parse(localStorage.getItem('activities'));
+  const [activities, setActivities] = useState(activitiesLocalStorage || defaultActivities);
   const today = getActualDate();
 
   const pngConfigs = {
     fileName: screenshotFilename(),
     html2CanvasOptions: {
-      width: 350,
+      width: 300,
       scale: 3,
     },
   };
@@ -72,7 +70,8 @@ function App() {
       exportComponentAsPNG(ref, pngConfigs);
       setShowScreeshotTable(false);
     }
-  }, [showScreeshotTable]);
+    localStorage.setItem('activities', JSON.stringify(activities));
+  }, [activities, showScreeshotTable]);
 
   return (
     <div className="App">
@@ -90,7 +89,7 @@ function App() {
       { showScreeshotTable && (
       <div>
         <div className="banner" />
-        <div ref={ref} className="info">
+        <div ref={ref}>
           <ScreenshotTable
             columnsHeader={columnsHeader}
             today={today}

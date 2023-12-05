@@ -4,8 +4,8 @@
   align-items: center;
   background-color: #242424;
   width: 92vw;
-  min-width: 350px;
-  max-width: 350px;
+  min-width: 300px;
+  max-width: 300px;
   margin: -5px;
   padding: 5px;
 }
@@ -23,7 +23,7 @@
 }
 
 .screenshot-table table, th, td {
-  border: 0.2px solid rgb(103, 103, 103);
+  border: 1px solid rgb(103, 103, 103);
   border-collapse: collapse;
 }
 

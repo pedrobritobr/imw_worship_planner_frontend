@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { columnsHeader } from '../../helpers';
+
 import './ScreenshotTable.css';
 
 function ScreenshotTable({
-  columnsHeader,
   today,
   activities,
 }) {

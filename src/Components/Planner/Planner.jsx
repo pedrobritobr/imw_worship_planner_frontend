@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import './Planner.css';
-import { setHourForActivity } from '../../helpers';
+import { setHourForActivity, columnsHeader } from '../../helpers';
 
 import Activity from './Activity';
 
@@ -16,7 +16,6 @@ const emptyActivity = {
 function Planner({
   activities,
   setActivities,
-  columnsHeader,
 }) {
   const invisibleColumn = {
     text: 'xx',

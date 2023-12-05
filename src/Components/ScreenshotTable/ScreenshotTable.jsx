@@ -6,8 +6,15 @@ function ScreenshotTable({
   today,
   activities,
 }) {
+  const cssStyle = {
+    minWidth: '400px',
+    maxWidth: '400px',
+    margin: '-5px',
+    padding: '5px',
+  };
+
   return (
-    <div className="main" style={{ margin: '-5px', padding: '5px' }}>
+    <div className="main" style={cssStyle}>
       <h3 style={{ margin: 0 }}>Cronograma do Culto</h3>
       <h3 style={{ margin: 0 }}>IMW São Cristóvão</h3>
       <h4 style={{ margin: 0 }}>{today}</h4>

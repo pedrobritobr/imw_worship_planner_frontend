@@ -53,9 +53,17 @@ function App() {
   const [activities, setActivities] = useState([firstActivity, lastActivity]);
   const today = getActualDate();
 
+  const pngConfigs = {
+    fileName: screenshotFilename(),
+    html2CanvasOptions: {
+      width: 400,
+      scale: 2,
+    },
+  };
+
   useEffect(() => {
     if (showScreeshotTable) {
-      exportComponentAsPNG(ref, { fileName: screenshotFilename() });
+      exportComponentAsPNG(ref, pngConfigs);
       setShowScreeshotTable(false);
     }
   }, [showScreeshotTable]);

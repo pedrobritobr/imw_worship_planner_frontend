@@ -67,3 +67,31 @@
 .planner-activity-row {
   transform: scale(0.9);
 }
+
+@media screen and (min-width: 700px) {
+  .planner-container {
+    width: 97vw;
+  }
+
+  .planner-headers {
+    width: 97vw;
+  }
+
+  .planner-activity-row {
+    transform: scale(1.1);
+    gap: 10px;
+    margin: 3px;
+  }
+
+  .planner-activity-row > * {
+    width: auto;
+  }
+
+  .duration-input {
+    width: auto;
+  }
+
+  .planner-container input[type=number] {
+    width: 2vw;
+  }
+}

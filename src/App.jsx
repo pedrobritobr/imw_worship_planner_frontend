@@ -76,7 +76,6 @@ function App() {
 
   return (
     <div className="App">
-      <TelaWidth />
       <div className="main">
         <h2>Cronograma do Culto</h2>
         <h3>{today}</h3>

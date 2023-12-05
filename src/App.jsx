@@ -3,6 +3,8 @@ import { exportComponentAsPNG } from 'react-component-export-image';
 
 import Planner from './Components/Planner';
 import ScreenshotTable from './Components/ScreenshotTable';
+import TelaWidth from './TelaWidth';
+
 import { getActualDate, screenshotFilename } from './helpers';
 
 import './App.css';
@@ -39,7 +41,7 @@ const columnsHeader = [
 ];
 
 const firstActivity = {
-  hour: '18:55',
+  hour: '19:00',
   activityTitle: 'Cronômetro',
   duration: 5,
   responsible: 'Rede Connect',
@@ -74,6 +76,7 @@ function App() {
 
   return (
     <div className="App">
+      <TelaWidth />
       <div className="main">
         <h2>Cronograma do Culto</h2>
         <h3>{today}</h3>

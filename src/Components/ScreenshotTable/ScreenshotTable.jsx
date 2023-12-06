@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { columnsHeader } from '../../helpers';
+import { getLongDateString, columnsHeader } from '../../helpers';
 
 import './ScreenshotTable.css';
 
 function ScreenshotTable({
-  today,
+  selectedDate,
   activities,
 }) {
   return (
     <div className="screenshot-table">
       <h3>Cronograma IMW São Cristóvão</h3>
-      <h4>{today}</h4>
+      <h4>{getLongDateString(selectedDate)}</h4>
       <table>
         <thead>
           <tr>

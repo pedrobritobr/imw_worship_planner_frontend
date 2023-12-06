@@ -1,10 +1,11 @@
+/* eslint-disable */
 import React, { useEffect, useRef, useState } from 'react';
 import { exportComponentAsPNG } from 'react-component-export-image';
 
 import Planner from './Components/Planner';
 import ScreenshotTable from './Components/ScreenshotTable';
 
-import { getActualDate, screenshotFilename, defaultActivities } from './helpers';
+import { getWeekDay, screenshotFilename, defaultActivities } from './helpers';
 
 import './App.css';
 
@@ -13,10 +14,16 @@ function App() {
   const [showScreeshotTable, setShowScreeshotTable] = useState(false);
   const activitiesLocalStorage = JSON.parse(localStorage.getItem('activities'));
   const [activities, setActivities] = useState(activitiesLocalStorage || defaultActivities);
-  const today = getActualDate();
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleDateChange = (event) => {
+    const newDate = new Date(event.target.value);
+    newDate.setHours(newDate.getHours() + 3);
+    setSelectedDate(newDate);
+  };
 
   const pngConfigs = {
-    fileName: screenshotFilename(),
+    fileName: screenshotFilename(selectedDate),
     html2CanvasOptions: {
       backgroundColor: '#242424',
       width: 250,
@@ -36,7 +43,17 @@ function App() {
     <div className="App">
       <div className="main">
         <h2>Cronograma do Culto</h2>
-        <h3>{today}</h3>
+
+        <label htmlFor="customDateInput">
+          <input
+            type="date"
+            id="customDateInput"
+            value={selectedDate.toISOString().split('T')[0]}
+            onChange={handleDateChange}
+            />
+            <h4> {getWeekDay(selectedDate)}</h4>
+        </label>
+
         <Planner
           activities={activities}
           setActivities={setActivities}
@@ -48,7 +65,7 @@ function App() {
           <div className="banner" />
           <div ref={ref}>
             <ScreenshotTable
-              today={today}
+              selectedDate={selectedDate}
               activities={activities}
             />
           </div>

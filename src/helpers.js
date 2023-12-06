@@ -9,19 +9,25 @@ const capitalizeFirstLetter = (str) => {
   return strArray.map(capitalized).join(' ');
 };
 
-const getActualDate = (options) => {
-  const today = new Date();
+const getLongDateString = (selectedDate) => {
   const optionsDef = {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   };
-  return capitalizeFirstLetter(today.toLocaleDateString('pt-BR', options || optionsDef));
+  return capitalizeFirstLetter(selectedDate.toLocaleDateString('pt-BR', optionsDef));
 };
 
-const screenshotFilename = () => {
-  const today = getActualDate({});
+const getWeekDay = (day) => {
+  const optionsDef = {
+    weekday: 'long',
+  };
+  return capitalizeFirstLetter(day.toLocaleDateString('pt-BR', optionsDef));
+};
+
+const screenshotFilename = (selectedDate) => {
+  const today = selectedDate.toLocaleDateString('pt-BR').split('T')[0];
   return `imw_cronograma_${today.replaceAll('/', '_')}`;
 };
 
@@ -82,7 +88,8 @@ const defaultActivities = [firstActivity, lastActivity];
 export {
   screenshotFilename,
   capitalizeFirstLetter,
-  getActualDate,
+  getLongDateString,
+  getWeekDay,
   setHourForActivity,
   columnsHeader,
   defaultActivities,

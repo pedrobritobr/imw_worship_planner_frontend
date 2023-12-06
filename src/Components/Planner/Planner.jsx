@@ -51,9 +51,6 @@ function Planner({
 
   const removeActivity = (activity) => {
     const activityIndex = activities.findIndex((a) => a.id === activity.id);
-
-    console.log(activity);
-
     if (activityIndex === 0) {
       window.alert('Não é possível remover a primeira e última atividade');
       return;

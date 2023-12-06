@@ -50,12 +50,10 @@ function Planner({
   };
 
   const removeActivity = (activity) => {
-    const activityIndex = activities.findIndex((a) => a.id === activity.id);
-    if (activityIndex === 0) {
+    if (activity.id === 'firstActivity' || activity.id === 'lastActivity') {
       window.alert('Não é possível remover a primeira e última atividade');
       return;
     }
-
     const newActivities = activities.filter((a) => a.id !== activity.id);
     setActivities(newActivities);
   };

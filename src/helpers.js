@@ -72,18 +72,28 @@ const columnsHeader = [
 ];
 
 const firstActivity = {
+  id: 'firstActivity',
   hour: '19:00',
   activityTitle: 'Cronômetro',
   duration: '5',
   responsible: 'Rede Connect',
 };
 const lastActivity = {
+  id: 'lastActivity',
   hour: '21:00',
   activityTitle: 'Encerramento',
   duration: '0',
   responsible: '--',
 };
 const defaultActivities = [firstActivity, lastActivity];
+
+const pngConfigs = {
+  html2CanvasOptions: {
+    backgroundColor: '#242424',
+    width: 250,
+    scale: 5,
+  },
+};
 
 export {
   screenshotFilename,
@@ -93,4 +103,5 @@ export {
   setHourForActivity,
   columnsHeader,
   defaultActivities,
+  pngConfigs,
 };

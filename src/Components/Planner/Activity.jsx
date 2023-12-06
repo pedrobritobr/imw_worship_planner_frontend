@@ -10,6 +10,9 @@ function Activity({
   addNewActivity,
   removeActivity,
 }) {
+  const addBtnVisibility = activity.id === 'lastActivity' ? 'hidden' : 'visible';
+  const lessBtnVisibility = ['firstActivity', 'lastActivity'].includes(activity.id) ? 'hidden' : 'visible';
+
   return (
     <div key={activity.id} className="planner-activity-row">
       <input
@@ -47,10 +50,10 @@ function Activity({
         placeholder="Responsável"
       />
       <div className="button-activity-container">
-        <button type="button" className="button-activity" onClick={() => addNewActivity(activity)}>
+        <button type="button" style={{ visibility: addBtnVisibility }} className="button-activity" onClick={() => addNewActivity(activity)}>
           <img width={22} src={addBtnSvg} alt="Adiciona nova atividade" />
         </button>
-        <button type="button" className="button-activity" onClick={() => removeActivity(activity)}>
+        <button type="button" style={{ visibility: lessBtnVisibility }} className="button-activity" onClick={() => removeActivity(activity)}>
           <img width={22} src={minusBtnSvg} alt="Remove a atual atividade" />
         </button>
       </div>

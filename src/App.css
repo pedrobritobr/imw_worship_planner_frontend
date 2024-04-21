@@ -7,7 +7,7 @@
 .App {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   width: 92vw;
 }
 
@@ -59,4 +59,10 @@
 
 label > h4 {
   margin: 0;
+}
+
+.cloud-button {
+  border: none;
+  background: none;
+  cursor: pointer;
 }

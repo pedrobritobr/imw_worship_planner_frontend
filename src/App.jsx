@@ -1,9 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { exportComponentAsPNG } from 'react-component-export-image';
+import axios from 'axios';
 
 import Planner from './Components/Planner';
 import ScreenshotTable from './Components/ScreenshotTable';
 import DeleteLocalStorageButton from './Components/DeleteLocalStorageButton';
+
+import downloadBtnSvg from './assets/download-square-svgrepo-com.svg';
+import uploadBtnSvg from './assets/upload-square-svgrepo-com.svg';
 
 import {
   getWeekDay,
@@ -35,6 +39,42 @@ function App() {
     setSelectedDate(newDate);
   };
 
+  const exportData = async () => {
+    const data = {
+      planner: {
+        selectedDate,
+        activities,
+        ministerSelected,
+      },
+    };
+
+    try {
+      const headers = { keyword: import.meta.env.VITE_PLANNER_KEYWORD };
+      const url = `${import.meta.env.VITE_PLANNER_URL}/planner`;
+
+      await axios.post(url, data, { headers });
+      const { alert } = window;
+      alert('Cronograma enviado com sucesso!');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const importData = async () => {
+    try {
+      const headers = { keyword: import.meta.env.VITE_PLANNER_KEYWORD };
+      const url = `${import.meta.env.VITE_PLANNER_URL}/last-planner`;
+
+      const response = await axios.get(url, { headers });
+      const { selectedDate: date, activities: acts, ministerSelected: minister } = response.data;
+      setSelectedDate(new Date(date));
+      setActivities(acts);
+      setMinisterSelected(minister);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     if (showScreeshotTable) {
       exportComponentAsPNG(ref, { fileName: screenshotFilename(selectedDate), ...pngConfigs });
@@ -51,6 +91,14 @@ function App() {
   return (
     <div className="App">
       <DeleteLocalStorageButton />
+      <div className="import-export">
+        <button type="button" className="cloud-button" onClick={exportData}>
+          <img width={40} src={uploadBtnSvg} alt="Enviar os dados para nuvem" />
+        </button>
+        <button type="button" className="cloud-button" onClick={importData}>
+          <img width={40} src={downloadBtnSvg} alt="Baixar os dados da nuvem" />
+        </button>
+      </div>
       <div className="main">
         <h2>Cronograma do Culto</h2>
         <label htmlFor="customDateInput">

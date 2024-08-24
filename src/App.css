@@ -66,3 +66,12 @@ label > h4 {
   background: none;
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .main label {
+    width: 80vw;
+  }
+  .main label input {
+    flex-grow: 0;
+  }
+}

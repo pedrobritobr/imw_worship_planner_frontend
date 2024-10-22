@@ -26,17 +26,23 @@ function App() {
     activities: activitiesLocalStorage,
     selectedDate: dateLocalStorage,
     ministerSelected: ministerLocalStorage,
+    worshipTitle: worshipTitleLocalStorage,
   } = imwWorshipPlannerStorage;
   const dateLocalStorageDefault = dateLocalStorage ? new Date(dateLocalStorage) : new Date();
 
   const [activities, setActivities] = useState(activitiesLocalStorage || defaultActivities);
   const [selectedDate, setSelectedDate] = useState(dateLocalStorageDefault);
   const [ministerSelected, setMinisterSelected] = useState(ministerLocalStorage || '');
+  const [worshipTitle, setWorshipTitle] = useState(worshipTitleLocalStorage || '');
 
   const handleDateChange = (event) => {
     const newDate = new Date(event.target.value);
     newDate.setHours(newDate.getHours() + 3);
     setSelectedDate(newDate);
+  };
+
+  const handleWorshipTitleChange = (event) => {
+    setWorshipTitle(event.target.value);
   };
 
   const exportData = async () => {
@@ -84,9 +90,10 @@ function App() {
       activities,
       selectedDate,
       ministerSelected,
+      worshipTitle,
     };
     localStorage.setItem('imwWorshipPlanner', JSON.stringify(imwWorshipPlanner));
-  }, [activities, selectedDate, ministerSelected, showScreeshotTable]);
+  }, [activities, selectedDate, ministerSelected, worshipTitle, showScreeshotTable]);
 
   return (
     <div className="App">
@@ -101,6 +108,14 @@ function App() {
       </div>
       <div className="main">
         <h2>Cronograma do Culto</h2>
+        <label htmlFor="worshipTitleInput">
+          <input
+            type="text"
+            id="worshipTitleInput"
+            value={worshipTitle}
+            onChange={handleWorshipTitleChange}
+          />
+        </label>
         <label htmlFor="customDateInput">
           <input
             type="date"
@@ -133,6 +148,7 @@ function App() {
               selectedDate={selectedDate}
               activities={activities}
               ministerSelected={ministerSelected}
+              worshipTitle={worshipTitle}
             />
           </div>
         </div>

@@ -5,11 +5,12 @@ import { getLongDateString, columnsHeader } from '../../helpers';
 
 import './ScreenshotTable.css';
 
-function ScreenshotTable({ selectedDate, activities, ministerSelected }) {
+function ScreenshotTable({ selectedDate, activities, ministerSelected, worshipTitle }) {
   return (
     <div className="screenshot-table">
       <h3>Cronograma IMW São Cristóvão</h3>
       <div className="subtitle">
+        <h4>{worshipTitle}</h4>
         <h5>{getLongDateString(selectedDate)}</h5>
         <h5>{`Ministro: ${ministerSelected}`}</h5>
       </div>

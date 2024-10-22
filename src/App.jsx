@@ -33,7 +33,7 @@ function App() {
   const [activities, setActivities] = useState(activitiesLocalStorage || defaultActivities);
   const [selectedDate, setSelectedDate] = useState(dateLocalStorageDefault);
   const [ministerSelected, setMinisterSelected] = useState(ministerLocalStorage || '');
-  const [worshipTitle, setWorshipTitle] = useState(worshipTitleLocalStorage || '');
+  const [worshipTitle, setWorshipTitle] = useState(worshipTitleLocalStorage || 'Culto de Celebração');
 
   const handleDateChange = (event) => {
     const newDate = new Date(event.target.value);
@@ -107,8 +107,8 @@ function App() {
         </button>
       </div>
       <div className="main">
-        <h2>Cronograma do Culto</h2>
         <label htmlFor="worshipTitleInput">
+          <h2>Cronograma</h2>
           <input
             type="text"
             id="worshipTitleInput"

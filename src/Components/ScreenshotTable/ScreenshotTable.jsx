@@ -14,8 +14,8 @@ function ScreenshotTable({
   return (
     <div className="screenshot-table">
       <h3>Cronograma IMW São Cristóvão</h3>
+      <h4>{worshipTitle}</h4>
       <div className="subtitle">
-        <h4>{worshipTitle}</h4>
         <h5>{getLongDateString(selectedDate)}</h5>
         <h5>{`Ministro: ${ministerSelected}`}</h5>
       </div>

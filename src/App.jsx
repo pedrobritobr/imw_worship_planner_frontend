@@ -109,6 +109,7 @@ function App() {
       <div className="main">
         <label htmlFor="worshipTitleInput">
           <h2>Cronograma</h2>
+          <br/>
           <input
             type="text"
             id="worshipTitleInput"

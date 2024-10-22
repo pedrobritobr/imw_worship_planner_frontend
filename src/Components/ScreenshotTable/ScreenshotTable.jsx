@@ -9,7 +9,7 @@ function ScreenshotTable({
   selectedDate,
   activities,
   ministerSelected,
-  worshipTitle
+  worshipTitle,
 }) {
   return (
     <div className="screenshot-table">

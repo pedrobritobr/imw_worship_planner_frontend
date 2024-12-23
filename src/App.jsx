@@ -95,10 +95,19 @@ function App() {
     localStorage.setItem('imwWorshipPlanner', JSON.stringify(imwWorshipPlanner));
   }, [activities, selectedDate, ministerSelected, worshipTitle, showScreeshotTable]);
 
+  const buttonStyle = {
+    position: 'fixed',
+    top: '10px',
+    left: '10px',
+    border: 'none',
+    background: 'none',
+    cursor: 'pointer',
+  };
+
   return (
     <div className="App">
       <DeleteLocalStorageButton />
-      <div className="import-export">
+      <div className="import-export" style={buttonStyle}>
         <button type="button" className="cloud-button" onClick={exportData}>
           <img width={40} src={uploadBtnSvg} alt="Enviar os dados para nuvem" />
         </button>
@@ -142,17 +151,17 @@ function App() {
       </div>
       <button type="button" className="download-button" onClick={() => setShowScreeshotTable(true)}>Baixar Cronograma</button>
       { showScreeshotTable && (
-        <div>
-          <div className="banner" />
-          <div ref={ref}>
-            <ScreenshotTable
-              selectedDate={selectedDate}
-              activities={activities}
-              ministerSelected={ministerSelected}
-              worshipTitle={worshipTitle}
-            />
-          </div>
+      <div>
+        <div className="banner" />
+        <div ref={ref}>
+          <ScreenshotTable
+            selectedDate={selectedDate}
+            activities={activities}
+            ministerSelected={ministerSelected}
+            worshipTitle={worshipTitle}
+          />
         </div>
+      </div>
       )}
     </div>
   );

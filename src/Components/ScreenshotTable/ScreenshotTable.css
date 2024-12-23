@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   background-color: #242424;
-  width: 250px;
+  width: 500px;
   margin: -5px;
   padding: 5px;
 }
@@ -11,26 +11,27 @@
 .screenshot-table h3,
 .screenshot-table h4,
 .screenshot-table h5 {
-  margin: 0;
+  margin: -1px;
 }
 
 .screenshot-table h3 {
   font-size: 9px;
 }
 .screenshot-table h4 {
-  font-size: 8px;
+  font-size: 15px;
 }
 .screenshot-table h5 {
-  font-size: 7px;
+  font-size: 11px;
 }
 
 .screenshot-table .subtitle {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 80%;
-  justify-content: space-between;
-  margin: 4px 0;
+  width: 93%;
+  justify-content: flex-start;
+  margin: 2px 0;
+  gap: 15%;
 }
 
 .screenshot-table table, th, td {
@@ -41,9 +42,26 @@
 .screenshot-table table {
   background: #242424;
   margin: 5px;
+  width: 95%; 
 }
 
 .screenshot-table th, td {
-  padding: 1px 3px;
-  font-size: 6.5px;
+  padding: 0px 10px;
+  font-size: 14px;
+  flex: 75vw;
+  display: flex;
+  align-items: center;
 }
+
+.screenshot-table tr {
+  display: flex;
+}
+
+.screenshot-table th:nth-child(1),
+.screenshot-table th:nth-child(3),
+.screenshot-table td:nth-child(1),
+.screenshot-table td:nth-child(3) {
+  flex: 15vw;
+  justify-content: center;
+}
+

@@ -1,23 +1,25 @@
-/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
+
 import './Planner.css';
-import { setHourForActivity, columnsHeader } from '../../helpers';
+
+import { setHourForActivity as setHourForNewActivity, columnsHeader, formatMinutes } from '../../helpers';
+import { updateHourFromActivity, getMinutesBetweenActivities, calculateDurationRemain } from './helpers';
 
 import Activity from './Activity';
-
-const emptyActivity = {
-  hour: '',
-  activityTitle: '',
-  duration: '',
-  responsible: '',
-};
 
 function Planner({
   activities,
   setActivities,
 }) {
+  const emptyActivity = {
+    hour: '',
+    activityTitle: '',
+    duration: '',
+    responsible: '',
+  };
+
   const invisibleColumn = {
     text: 'xx',
     style: {
@@ -28,42 +30,51 @@ function Planner({
 
   const handleInputChange = (id, e) => {
     const { name, value } = e.target;
-    const newEntries = activities.map((activity) => {
+    let activitiesUpdatedByHour = null;
+
+    const newEntries = activities.map((activity, index, originalArray) => {
       if (activity.id === id) {
-        return { ...activity, [name]: value };
+        const updatedActivity = { ...activity, [name]: value };
+
+        if (name === 'hour') {
+          const originalArrayCp = [...originalArray];
+
+          if (index !== 0) {
+            const minutes = getMinutesBetweenActivities(value, originalArrayCp[index - 1].hour);
+            originalArrayCp[index - 1].duration = formatMinutes(minutes);
+          }
+
+          activitiesUpdatedByHour = updateHourFromActivity(updatedActivity, originalArray, index);
+          return updatedActivity;
+        }
+
+        if (name === 'duration') {
+          activitiesUpdatedByHour = updateHourFromActivity(updatedActivity, originalArray, index);
+          return updatedActivity;
+        }
+
+        return updatedActivity;
       }
       return activity;
     });
-    setActivities(newEntries);
+
+    setActivities(activitiesUpdatedByHour || newEntries);
   };
 
-  const durationRemain = () => {
-    const lastActivityIndex = activities.findIndex(ac => ac.id === 'lastActivity');
-  
-    if (lastActivityIndex <= 0) return 0;
-    const penulActivity = activities[lastActivityIndex - 1];
-    const [lastHour, lastMinute] = activities[lastActivityIndex].hour.split(':').map(Number);
-    const [penultimateHour, penultimateMinute] = penulActivity.hour.split(':').map(Number);
-  
-    const lastActivityTotalMinutes = lastHour * 60 + lastMinute;
-    const penultimateActivityTotalMinutes = penultimateHour * 60 + penultimateMinute;
-  
-    const minutesRemain = lastActivityTotalMinutes - penultimateActivityTotalMinutes - penulActivity.duration;
-  
-    return Math.max(minutesRemain, 0);
-  };
+  const addNewActivity = (actualActivity) => {
+    const actualActivityIndex = activities.findIndex((ac) => ac.id === actualActivity.id);
+    const penultimateActivityIndex = activities.length - 2;
+    const shouldCalculateDuration = actualActivityIndex === penultimateActivityIndex;
 
-  const addNewActivity = (prevActivity) => {
     const newActivity = {
       ...emptyActivity,
       id: uuidv4(),
-      hour: setHourForActivity(prevActivity.hour, prevActivity.duration),
-      duration: durationRemain(),
+      hour: setHourForNewActivity(actualActivity.hour, actualActivity.duration),
+      duration: shouldCalculateDuration ? calculateDurationRemain(activities, true) : 0,
     };
-    const previousActivityIndex = activities.findIndex((ac) => ac.id === prevActivity.id);
 
     const activitiesCp = [...activities];
-    activitiesCp.splice(previousActivityIndex + 1, 0, newActivity);
+    activitiesCp.splice(actualActivityIndex + 1, 0, newActivity);
     setActivities(activitiesCp);
   };
 

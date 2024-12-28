@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import addBtnSvg from '../../assets/add-square-svgrepo-com.svg';
 import minusBtnSvg from '../../assets/minus-square-svgrepo-com.svg';
 
+import { formatMinutes } from '../../helpers';
+
 function Activity({
   activity,
   handleInputChange,
@@ -34,7 +36,7 @@ function Activity({
           type="number"
           min={0}
           name="duration"
-          value={activity.duration}
+          value={formatMinutes(activity.duration)}
           onChange={(e) => handleInputChange(activity.id, e)}
           placeholder="1"
         />

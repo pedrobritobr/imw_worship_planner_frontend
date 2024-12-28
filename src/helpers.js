@@ -44,6 +44,8 @@ const setHourForActivity = (horaBase, minutosASomar) => {
   return `${String(novasHoras).padStart(2, '0')}:${String(novosMinutos).padStart(2, '0')}`;
 };
 
+const formatMinutes = (minutes) => Math.max(minutes, 0).toString().padStart(2, '0');
+
 const columnsHeader = [
   {
     text: 'Hora',
@@ -101,6 +103,7 @@ export {
   getLongDateString,
   getWeekDay,
   setHourForActivity,
+  formatMinutes,
   columnsHeader,
   defaultActivities,
   pngConfigs,

@@ -48,7 +48,7 @@
 .screenshot-table th, td {
   padding: 0px 10px;
   font-size: 14px;
-  flex: 75vw;
+  flex: 7;
   display: flex;
   align-items: center;
 }
@@ -58,10 +58,21 @@
 }
 
 .screenshot-table th:nth-child(1),
-.screenshot-table th:nth-child(3),
-.screenshot-table td:nth-child(1),
-.screenshot-table td:nth-child(3) {
-  flex: 15vw;
+.screenshot-table td:nth-child(1) {
+  flex: 1;
   justify-content: center;
 }
 
+.screenshot-table th:nth-child(3),
+.screenshot-table td:nth-child(3) {
+  flex: 2;
+  justify-content: center;
+}
+
+.screenshot-table tbody tr:nth-child(odd) {
+  background-color: #333333;
+}
+
+.screenshot-table th:nth-child(3){
+  padding: 0px 5px;
+}

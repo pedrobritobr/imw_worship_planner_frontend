@@ -48,16 +48,17 @@ input {
   text-align: center;
   width: 10lvw;
   text-indent: 0;
+  display: -webkit-inline-box;
 }
 
 .planner-container input[type="time"]::-webkit-inner-spin-button,
 .planner-container input[type="time"]::-webkit-calendar-picker-indicator {
-  display: none !important;
-  -webkit-appearance: none !important;
-  background: none !important;
-  border: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
+  display: none;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
 }
 
 .planner-container input::-webkit-outer-spin-button,

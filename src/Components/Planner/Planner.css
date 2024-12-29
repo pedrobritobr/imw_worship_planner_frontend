@@ -49,19 +49,6 @@ input {
   width: 10lvw;
 }
 
-.planner-container input[type="time"]::-webkit-inner-spin-button,
-.planner-container input[type="time"]::-webkit-calendar-picker-indicator {
-  background: transparent;
-  bottom: 0;
-  color: transparent;
-  cursor: pointer;
-  height: auto;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width:auto
-}
 
 .planner-container input::-webkit-outer-spin-button,
 .planner-container input::-webkit-inner-spin-button {
@@ -113,6 +100,21 @@ input {
 .planner-activity-row {
   transform: scale(0.9);
 }
+
+.planner-container input[type="time"] {
+  background-color: red;
+}
+
+.planner-container input[type="time"]::-webkit-inner-spin-button,
+.planner-container input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  padding: none;
+  background-color: red;
+}
+
 
 @media screen and (min-width: 700px) {
   .planner-container {

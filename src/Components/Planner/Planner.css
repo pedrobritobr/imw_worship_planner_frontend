@@ -2,11 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 98vw;
-}
-
-.planner-container input[type=text] {
-  width: 26vw;
+  width: 98lvw;
 }
 
 .planner-container .button-activity-container{
@@ -24,11 +20,41 @@
   background: none;
 }
 
+input {
+  background-color: #00031e20;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #bebebe;
+  border-radius: 3px;
+  padding: 4px;
+}
+
 .planner-container input[type=number] {
-  width: 5vw;
+  width: 4vw;
   -moz-appearance: textfield;
   text-align: end;
 }
+
+.planner-container input[type=text] {
+  width: 30lvw;
+  flex: 4;
+}
+
+.planner-container input[type="time"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align: center;
+  width: 10lvw;
+}
+
+.planner-container input[type="time"]::-webkit-inner-spin-button,
+.planner-container input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
 .planner-container input::-webkit-outer-spin-button,
 .planner-container input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -37,23 +63,36 @@
 
 .planner-headers {
   display: flex;
-  justify-content: space-evenly;
-  width: auto;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  width: 90lvw;
+  font-size: 3lvw;
 }
 
 .planner-headers h4 {
   margin: 2px 0px;
+  flex: 6;
+  text-align: center;
+}
+
+.planner-headers h4:first-of-type,
+.planner-headers h4:nth-of-type(5) {
+  flex: 1;
+}
+.planner-headers h4:nth-of-type(3) {
+  flex: 2;
 }
 
 .planner-activity-row > * {
   height: 16px;
   width: 17vw;
+  flex: 1;
 }
 
 .planner-activity-row {
   display: flex;
-  flex: 1;
-  gap: 5px;
+  gap: 2px;
   align-items: center;
 }
 
@@ -61,7 +100,6 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-  width: 55px;
 }
 
 .planner-activity-row {

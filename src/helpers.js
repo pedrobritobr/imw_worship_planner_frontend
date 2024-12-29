@@ -50,25 +50,25 @@ const columnsHeader = [
   {
     text: 'Hora',
     style: {
-      margin: '2px 20px 2px 10px',
+      // margin: '2px 20px 2px 10px',
     },
   },
   {
     text: 'Atividade',
     style: {
-      margin: '2px 20px 2px 10px',
+      // margin: '2px 20px 2px 10px',
     },
   },
   {
     text: 'Duração',
     style: {
-      margin: '2px 0px',
+      // margin: '2px 0px',
     },
   },
   {
     text: 'Responsável',
     style: {
-      margin: '2px 20px 2px 10px',
+      // margin: '2px 20px 2px 10px',
     },
   },
 ];

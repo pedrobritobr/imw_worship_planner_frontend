@@ -47,6 +47,7 @@ input {
   appearance: none;
   text-align: center;
   width: 10lvw;
+  text-indent: 0;
 }
 
 .planner-container input[type="time"]::-webkit-inner-spin-button,

@@ -102,11 +102,7 @@
   border-radius: 2px;
 }
 
-.screenshot-table table tr *:nth-child(1){
-  width: 12%;
-  text-align: center;
-}
-
+.screenshot-table table tr *:nth-child(1),
 .screenshot-table table tr *:nth-child(3){
   width: 14%;
   text-align: center;

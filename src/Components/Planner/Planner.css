@@ -25,9 +25,8 @@ input {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border: 1px solid #bebebe;
-  border-radius: 3px;
-  padding: 4px;
+  padding: 2px;
+  border: none;
 }
 
 .planner-container input[type=number] {

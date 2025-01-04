@@ -27,19 +27,16 @@
   padding: 4px 10px;
 }
 
-.banner, .info {
-  position: absolute;
-}
-
-.banner{
-  width: 90vw;
-  height: 20vh;
-  background-color: #242424;
-  margin: -10px;
-}
-
 .info {
+  position: absolute;
   z-index: -1;
+}
+
+.hidden {
+  position: absolute;
+  top: 10px;
+  opacity: 0%;
+  border: none;
 }
 
 .main label {

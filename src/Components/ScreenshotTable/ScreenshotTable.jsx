@@ -11,13 +11,28 @@ function ScreenshotTable({
   ministerSelected,
   worshipTitle,
 }) {
+  const [weekDay, detailedDay] = getLongDateString(selectedDate).split(',');
+
   return (
     <div className="screenshot-table">
-      <h3>Cronograma IMW São Cristóvão</h3>
-      <h4>{worshipTitle}</h4>
-      <div className="subtitle">
-        <h5>{getLongDateString(selectedDate)}</h5>
-        <h5>{`Ministro: ${ministerSelected}`}</h5>
+      <div>
+        <header>
+          <div className="title">
+            <h3>Cronograma</h3>
+            <h3>IMW São Cristóvão</h3>
+          </div>
+          <h4>{worshipTitle}</h4>
+        </header>
+        <div className="details">
+          <div className="details-date">
+            <h5>{weekDay}</h5>
+            <h5>{detailedDay}</h5>
+          </div>
+          <div className="details-minister">
+            <h5>Ministro:</h5>
+            <h5>{ministerSelected}</h5>
+          </div>
+        </div>
       </div>
       <table>
         <thead>

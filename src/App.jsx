@@ -151,9 +151,8 @@ function App() {
       </div>
       <button type="button" className="download-button" onClick={() => setShowScreeshotTable(true)}>Baixar Cronograma</button>
       { showScreeshotTable && (
-      <div>
-        <div className="banner" />
-        <div ref={ref}>
+      <div className="hidden">
+        <div className="screenshot-table-container" ref={ref}>
           <ScreenshotTable
             selectedDate={selectedDate}
             activities={activities}

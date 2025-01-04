@@ -91,9 +91,8 @@ const defaultActivities = [firstActivity, lastActivity];
 
 const pngConfigs = {
   html2CanvasOptions: {
-    backgroundColor: '#242424',
-    width: 500,
-    scale: 5,
+    scale: 7,
+    backgroundColor: '#02041B',
   },
 };
 

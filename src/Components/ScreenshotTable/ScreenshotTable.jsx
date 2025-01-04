@@ -45,7 +45,7 @@ function ScreenshotTable({
             <tr key={`${activity.activityTitle}-${activity.responsible}`}>
               <td>{activity.hour || '00:00'}</td>
               <td>{activity.activityTitle || ''}</td>
-              <td>{`${String(activity.duration || 0).padStart(2, '0')}min`}</td>
+              <td>{`${String(Number(activity.duration || 0)).padStart(2, '0')}min`}</td>
               <td>{activity.responsible || ''}</td>
             </tr>
           ))}

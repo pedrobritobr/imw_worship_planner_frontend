@@ -90,7 +90,7 @@
 
 .screenshot-table table tr {
   display: flex;
-  padding: 0 1px;
+  padding: 0.5px 0px;
 }
 
 .screenshot-table table tbody tr > *{
@@ -98,13 +98,18 @@
 }
 
 .screenshot-table table tbody tr:nth-child(odd) {
-  background: linear-gradient(98deg, #e2e0f307 20%, #627f890f 100%);
-  border-radius: 2px;
+  background: linear-gradient(98deg, #9dc8c814 20%, #c3bfed20 80%, #c3bfed06 100%);
+  border-radius: 4px 0px 0px 4px;
 }
 
-.screenshot-table table tr *:nth-child(1),
-.screenshot-table table tr *:nth-child(3){
+.screenshot-table table tr *:nth-child(1){
   width: 14%;
+  text-align: center;
+  margin-left: -2px;
+}
+
+.screenshot-table table tr *:nth-child(3){
+  width: 16%;
   text-align: center;
 }
 

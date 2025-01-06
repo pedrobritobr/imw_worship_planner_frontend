@@ -21,11 +21,12 @@
 }
 
 input {
-  background-color: #00031e20;
+  background-color: #00031e36;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   padding: 2px;
+  border-radius: 5px;
   border: none;
 }
 
@@ -46,8 +47,10 @@ input {
   appearance: none;
   text-align: center;
   width: 10lvw;
-  text-indent: 0;
-  display: -webkit-inline-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 0px;
 }
 
 .planner-container input[type="time"]::-webkit-inner-spin-button,
@@ -99,12 +102,19 @@ input {
   display: flex;
   gap: 2px;
   align-items: center;
+  padding: 5px;
+}
+
+.planner-activity-row:nth-child(odd) {
+  background: linear-gradient(98deg, #9dc8c829 20%, #c3bfed30 80%, #c3bfed06 100%);
+  border-radius: 4px 0px 0px 4px;
 }
 
 .duration-input {
   display: flex;
   align-items: center;
   flex-direction: row;
+  justify-content: center;
 }
 
 .planner-activity-row {
@@ -124,6 +134,7 @@ input {
     transform: scale(1.1);
     gap: 10px;
     margin: 3px;
+    width: 92%;
   }
 
   .planner-activity-row > * {

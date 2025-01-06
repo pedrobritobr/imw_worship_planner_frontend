@@ -18,6 +18,25 @@ import {
 
 import './App.css';
 
+const sendLocationToAnalytics = async () => {
+  console.log('sendLocationToAnalytics...');
+
+  try {
+    const headers = {
+      keyword: import.meta.env.VITE_BRITO_VISITORS_ANALYTICS_KEYWORD,
+    };
+    const data = {
+      origin: window.location.href,
+    };
+    const url = import.meta.env.VITE_BRITO_VISITORS_ANALYTICS_URL;
+
+    const response = await axios.post(url, data, { headers });
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 function App() {
   const ref = useRef(null);
   const [showScreeshotTable, setShowScreeshotTable] = useState(false);
@@ -80,6 +99,10 @@ function App() {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    sendLocationToAnalytics();
+  }, []);
 
   useEffect(() => {
     if (showScreeshotTable) {

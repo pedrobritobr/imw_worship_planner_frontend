@@ -18,7 +18,6 @@ import {
 
 import './App.css';
 
-
 const sendLocationToAnalytics = async (pageTitle, location) => {
   try {
     const headers = {
@@ -26,7 +25,7 @@ const sendLocationToAnalytics = async (pageTitle, location) => {
     };
     const data = {
       origin: location,
-      pageTitle
+      pageTitle,
     };
     const url = import.meta.env.VITE_BRITO_VISITORS_ANALYTICS_URL;
 
@@ -100,6 +99,8 @@ function App() {
   };
 
   useEffect(() => {
+    console.log(document.title);
+
     sendLocationToAnalytics(document.title, window.location.href);
   }, []);
 

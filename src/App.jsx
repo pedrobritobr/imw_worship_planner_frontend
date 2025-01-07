@@ -18,20 +18,19 @@ import {
 
 import './App.css';
 
-const sendLocationToAnalytics = async () => {
-  console.log('sendLocationToAnalytics...');
 
+const sendLocationToAnalytics = async (pageTitle, location) => {
   try {
     const headers = {
       keyword: import.meta.env.VITE_BRITO_VISITORS_ANALYTICS_KEYWORD,
     };
     const data = {
-      origin: window.location.href,
+      origin: location,
+      pageTitle
     };
     const url = import.meta.env.VITE_BRITO_VISITORS_ANALYTICS_URL;
 
-    const response = await axios.post(url, data, { headers });
-    console.log(response);
+    await axios.post(url, data, { headers });
   } catch (error) {
     console.error(error);
   }
@@ -101,7 +100,7 @@ function App() {
   };
 
   useEffect(() => {
-    sendLocationToAnalytics();
+    sendLocationToAnalytics(document.title, window.location.href);
   }, []);
 
   useEffect(() => {

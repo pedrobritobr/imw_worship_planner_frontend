@@ -30,12 +30,6 @@ input {
   border: none;
 }
 
-.planner-container input[type=number] {
-  width: 4vw;
-  -moz-appearance: textfield;
-  text-align: end;
-}
-
 .planner-container input[type=text] {
   width: 30lvw;
   flex: 4;
@@ -67,6 +61,31 @@ input {
 .planner-container input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.duration-input {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+}
+
+.duration-input input[type=number] {
+  width: 4vw;
+  -moz-appearance: textfield;
+  text-align: end;
+  padding-right: 30px;
+}
+
+.duration-input::after {
+  content: "min";
+  position: absolute;
+  left: 47%;
+  top: 40%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  pointer-events: none;
 }
 
 .planner-headers {
@@ -108,13 +127,6 @@ input {
 .planner-activity-row:nth-child(odd) {
   background: linear-gradient(98deg, #9dc8c829 20%, #c3bfed30 80%, #c3bfed06 100%);
   border-radius: 4px 0px 0px 4px;
-}
-
-.duration-input {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: center;
 }
 
 .planner-activity-row {

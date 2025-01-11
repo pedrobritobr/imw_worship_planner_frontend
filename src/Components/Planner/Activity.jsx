@@ -40,9 +40,6 @@ function Activity({
           onChange={(e) => handleInputChange(activity.id, e)}
           placeholder="1"
         />
-        <p>
-          min
-        </p>
       </div>
       <input
         type="text"

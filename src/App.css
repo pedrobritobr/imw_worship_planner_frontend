@@ -22,9 +22,11 @@
 .download-button{
   margin-top: 30px;
   margin-bottom: 20px;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 4px 10px;
+  font-size: 16px;
+  padding: 7px 15px;
+  background: linear-gradient(128deg, #365387bd 0%, #1d3a5a 50%);
+  border-radius: 7px;
+  border: none;
 }
 
 .info {
@@ -43,7 +45,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   gap: 8px;
   width: 30vw;
   justify-content: space-evenly;
@@ -58,16 +60,26 @@ label > h4 {
   margin: 0;
 }
 
-.cloud-button {
-  border: none;
-  background: none;
-  cursor: pointer;
+#worship-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+#worship-title-container h3 {
+  margin: -2px;
+}
+
+#worship-title-container input {
+  text-align: center;
 }
 
 @media (max-width: 768px) {
   .main label {
     width: 80vw;
   }
+
   .main label input {
     flex-grow: 0;
   }

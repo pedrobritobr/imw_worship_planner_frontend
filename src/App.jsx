@@ -122,9 +122,9 @@ function App() {
         exportData={exportData}
       />
       <div className="main">
-        <label htmlFor="worshipTitleInput">
-          <h2>Cronograma</h2>
-          <br />
+        <label htmlFor="worshipTitleInput" id="worship-title-container">
+          <h3>Cronograma</h3>
+          <h3>IMW São Cristovão</h3>
           <input
             type="text"
             id="worshipTitleInput"

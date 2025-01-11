@@ -1,15 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 24.1.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 666.6 666.7" style="enable-background:new 0 0 666.6 666.7;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#4ADD2A;enable-background:new    ;}
-	.st1{fill:#1A5112;}
-</style>
-<path class="st0" d="M333.3,666.7c-157.1,0-235.7,0-284.5-48.8C0,569,0,490.5,0,333.3C0,176.2,0,97.6,48.8,48.8
-	C97.6,0,176.2,0,333.3,0C490.5,0,569,0,617.8,48.8c48.8,48.8,48.8,127.4,48.8,284.5c0,157.1,0,235.7-48.8,284.5
-	C569,666.7,490.5,666.7,333.3,666.7z"/>
-<path class="st1" d="M333.3,208.3c13.8,0,25,11.2,25,25v75h75c13.8,0,25,11.2,25,25c0,13.8-11.2,25-25,25h-75v75
-	c0,13.8-11.2,25-25,25c-13.8,0-25-11.2-25-25v-75h-75c-13.8,0-25-11.2-25-25c0-13.8,11.2-25,25-25h75v-75
-	C308.3,219.5,319.5,208.3,333.3,208.3z"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 666.6 666.7">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ebfbff;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: url(#Gradiente_sem_nome_136);
+      }
+    </style>
+    <linearGradient id="Gradiente_sem_nome_136" data-name="Gradiente sem nome 136" x1="124.2" y1="125.2" x2="596.7" y2="597.7" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#365387"/>
+      <stop offset=".6" stop-color="#294c73"/>
+    </linearGradient>
+  </defs>
+  <path class="cls-2" d="M616.8,48.8C568,0,489.5,0,332.3,0S96.6,0,47.8,48.8-1,176.2-1,333.3s0,235.7,48.8,284.6c48.8,48.8,127.4,48.8,284.5,48.8s235.7,0,284.5-48.9c48.8-48.8,48.8-127.4,48.8-284.5s0-235.7-48.8-284.5ZM453.5,362h-90.2v86c0,15.8-13.5,28.7-30.1,28.7s-30.1-12.8-30.1-28.7v-86h-90.2c-16.6,0-30.1-12.8-30.1-28.7s13.5-28.7,30.1-28.7h90.2v-86c0-15.8,13.5-28.7,30.1-28.7s30.1,12.8,30.1,28.7v86h90.2c16.6,0,30.1,12.8,30.1,28.7s-13.5,28.7-30.1,28.7Z"/>
+  <path class="cls-1" d="M453.5,362h-90.2v86c0,15.8-13.5,28.7-30.1,28.7s-30.1-12.8-30.1-28.7v-86h-90.2c-16.6,0-30.1-12.8-30.1-28.7s13.5-28.7,30.1-28.7h90.2v-86c0-15.8,13.5-28.7,30.1-28.7s30.1,12.8,30.1,28.7v86h90.2c16.6,0,30.1,12.8,30.1,28.7s-13.5,28.7-30.1,28.7Z"/>
 </svg>

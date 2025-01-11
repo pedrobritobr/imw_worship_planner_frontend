@@ -4,10 +4,7 @@ import axios from 'axios';
 
 import Planner from './Components/Planner';
 import ScreenshotTable from './Components/ScreenshotTable';
-import DeleteLocalStorageButton from './Components/DeleteLocalStorageButton';
-
-import downloadBtnSvg from './assets/download-square-svgrepo-com.svg';
-import uploadBtnSvg from './assets/upload-square-svgrepo-com.svg';
+import ActionsButton from './Components/ActionsButton';
 
 import {
   getWeekDay,
@@ -118,26 +115,12 @@ function App() {
     localStorage.setItem('imwWorshipPlanner', JSON.stringify(imwWorshipPlanner));
   }, [activities, selectedDate, ministerSelected, worshipTitle, showScreeshotTable]);
 
-  const buttonStyle = {
-    position: 'fixed',
-    top: '10px',
-    left: '10px',
-    border: 'none',
-    background: 'none',
-    cursor: 'pointer',
-  };
-
   return (
     <div className="App">
-      <DeleteLocalStorageButton />
-      <div className="import-export" style={buttonStyle}>
-        <button type="button" className="cloud-button" onClick={exportData}>
-          <img width={40} src={uploadBtnSvg} alt="Enviar os dados para nuvem" />
-        </button>
-        <button type="button" className="cloud-button" onClick={importData}>
-          <img width={40} src={downloadBtnSvg} alt="Baixar os dados da nuvem" />
-        </button>
-      </div>
+      <ActionsButton
+        importData={importData}
+        exportData={exportData}
+      />
       <div className="main">
         <label htmlFor="worshipTitleInput">
           <h2>Cronograma</h2>

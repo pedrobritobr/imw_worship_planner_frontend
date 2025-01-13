@@ -5,6 +5,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 10px 0px -25px;
+  z-index: 1;
 }
 
 .actions-button-container button {
@@ -21,5 +22,5 @@
 
 .actions-button-container .import-export {
   display: flex;
-  gap: 3px;
+  gap: 7px;
 }

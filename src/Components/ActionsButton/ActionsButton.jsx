@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import trashBtnSvg from '../../assets/trash-bin-2-svgrepo-com.svg';
-import downloadBtnSvg from '../../assets/download-square-svgrepo-com.svg';
-import uploadBtnSvg from '../../assets/upload-square-svgrepo-com.svg';
+import downloadBtnSvg from '../../assets/cloud-download-svgrepo-com.svg';
+import uploadBtnSvg from '../../assets/cloud-upload-svgrepo-com.svg';
 
 import './ActionsButton.css';
 

@@ -29,6 +29,7 @@ input {
   padding: 2px;
   border-radius: 5px;
   border: none;
+  font-size: 15px;
 }
 
 .planner-container input[type=text] {
@@ -46,7 +47,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2px 0px;
+  padding: 2px 4px;
 }
 
 .planner-container input[type="time"]::-webkit-inner-spin-button,
@@ -84,9 +85,9 @@ input {
   content: "min";
   position: absolute;
   left: 47%;
-  top: 40%;
+  top: 45%;
   transform: translateY(-50%);
-  font-size: 14px;
+  font-size: 13px;
   pointer-events: none;
 }
 

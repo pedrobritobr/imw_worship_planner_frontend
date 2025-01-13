@@ -114,7 +114,7 @@ function App() {
   }, [activities, selectedDate, ministerSelected, worshipTitle, showScreeshotTable]);
 
   return (
-    <div className="App">
+    <div className="App" id="top">
       <ActionsButton
         importData={importData}
         exportData={exportData}
@@ -154,7 +154,11 @@ function App() {
           setActivities={setActivities}
         />
       </div>
-      <button type="button" className="download-button" onClick={() => setShowScreeshotTable(true)}>Baixar Cronograma</button>
+      <button type="button" className="download-button" onClick={() => setShowScreeshotTable(true)}>
+        <a href="#top">
+          Baixar Cronograma
+        </a>
+      </button>
       { showScreeshotTable && (
       <div className="hidden">
         <div className="screenshot-table-container" ref={ref}>

@@ -96,8 +96,6 @@ function App() {
   };
 
   useEffect(() => {
-    console.log(document.title);
-
     sendLocationToAnalytics(document.title, window.location.href);
   }, []);
 
@@ -120,6 +118,7 @@ function App() {
       <ActionsButton
         importData={importData}
         exportData={exportData}
+        setShowScreeshotTable={setShowScreeshotTable}
       />
       <div className="main">
         <label htmlFor="worshipTitleInput" id="worship-title-container">

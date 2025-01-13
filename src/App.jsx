@@ -33,10 +33,7 @@ const sendLocationToAnalytics = async (pageTitle, location) => {
 };
 
 const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth', // Rola suavemente
-  });
+  window.scrollTo(0, 0);
 };
 
 function App() {

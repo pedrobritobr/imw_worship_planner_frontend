@@ -32,6 +32,13 @@ const sendLocationToAnalytics = async (pageTitle, location) => {
   }
 };
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth', // Rola suavemente
+  });
+};
+
 function App() {
   const ref = useRef(null);
   const [showScreeshotTable, setShowScreeshotTable] = useState(false);
@@ -101,6 +108,7 @@ function App() {
 
   useEffect(() => {
     if (showScreeshotTable) {
+      scrollToTop();
       exportComponentAsPNG(ref, { fileName: screenshotFilename(selectedDate), ...pngConfigs });
       setShowScreeshotTable(false);
     }
@@ -114,7 +122,7 @@ function App() {
   }, [activities, selectedDate, ministerSelected, worshipTitle, showScreeshotTable]);
 
   return (
-    <div className="App" id="top">
+    <div className="App">
       <ActionsButton
         importData={importData}
         exportData={exportData}
@@ -155,9 +163,7 @@ function App() {
         />
       </div>
       <button type="button" className="download-button" onClick={() => setShowScreeshotTable(true)}>
-        <a href="#top">
-          Baixar Cronograma
-        </a>
+        Baixar Cronograma
       </button>
       { showScreeshotTable && (
       <div className="hidden">

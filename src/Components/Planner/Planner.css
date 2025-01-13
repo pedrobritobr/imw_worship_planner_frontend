@@ -75,22 +75,24 @@ input {
 }
 
 .duration-input input[type=number] {
-  width: 4vw;
+  width: 13vw;
   -moz-appearance: textfield;
-  text-align: end;
-  padding-right: 30px;
+  text-align: right;
+  padding-right: 29px;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
 }
 
 .duration-input::after {
   content: "min";
   position: absolute;
-  left: 47%;
+  right: 5px;
   top: 45%;
   transform: translateY(-50%);
   font-size: 13px;
   pointer-events: none;
-  margin-left: -1px;
-  padding: 0px;
+  z-index: 0;
 }
 
 .planner-headers {

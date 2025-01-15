@@ -19,14 +19,23 @@
   width: 92vw;
 }
 
+button {
+  background: linear-gradient(128deg, #365387bd 0%, #1d3a5a 50%);
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+button:hover {
+  filter: brightness(1.2);
+}
+
 .download-button {
   margin-top: 30px;
   margin-bottom: 20px;
   font-size: 16px;
   padding: 7px 15px;
-  background: linear-gradient(128deg, #365387bd 0%, #1d3a5a 50%);
-  border-radius: 7px;
-  border: none;
 }
 
 .download-button a {

@@ -1,0 +1,47 @@
+.login-form {
+  max-width: 100%;
+  padding: 15px;
+  margin: 0;
+}
+
+.login-form header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.login-form header button {
+  margin: 0;
+  font-size: 12px;
+  padding: 5px 15px;
+}
+
+.login-form label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #00031e36;
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 2px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 5px;
+}
+
+.login-form label span {
+  font-size: 12px;
+  margin: 0 2px;
+  top: 10px
+}
+
+.login-form input {
+  background: none;
+  flex: 1;
+  width: 100%;
+  font-size: 14px;
+}

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useEffect, useRef, useState } from 'react';
 import { exportComponentAsPNG } from 'react-component-export-image';
 import axios from 'axios';
@@ -5,6 +7,7 @@ import axios from 'axios';
 import Planner from './Components/Planner';
 import ScreenshotTable from './Components/ScreenshotTable';
 import ActionsButton from './Components/ActionsButton';
+import UserActions from './Components/UserActions';
 
 import {
   getWeekDay,
@@ -120,11 +123,12 @@ function App() {
 
   return (
     <div className="App">
-      <ActionsButton
+      <UserActions />
+      {/* <ActionsButton
         importData={importData}
         exportData={exportData}
         setShowScreeshotTable={setShowScreeshotTable}
-      />
+      /> */}
       <div className="main">
         <label htmlFor="worshipTitleInput" id="worship-title-container">
           <h3>Cronograma</h3>

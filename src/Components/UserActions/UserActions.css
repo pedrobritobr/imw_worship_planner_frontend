@@ -1,0 +1,69 @@
+/* UserActions.css */
+.user-actions {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  display: inline-block;
+  z-index: 1000;
+}
+
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px;
+}
+
+.hamburger .line {
+  width: 25px;
+  height: 3px;
+  background-color: #e9eaf8;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #091d2dfa;
+  box-shadow: 0 4px 6px #0000001a;
+  border-radius: 5px;
+  opacity: 0;
+  transform-origin: top left;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  width: 55vw;
+}
+
+.menu.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu.close {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.menu-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s ease;
+}
+
+.menu-item h4 {
+  margin: 0 2px 7px;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item:hover {
+  background-color: #f0f0f00d;
+  border-radius: 5px;
+}

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -19,12 +20,12 @@ function ActionsButton({ importData, exportData, setShowScreeshotTable }) {
   return (
     <div className="actions-button-container">
       <div className="cloud-button">
-        <button type="button" className="cloud-button" onClick={exportData}>
+        {/* <button type="button" className="cloud-button" onClick={exportData}>
           <img src={uploadBtnSvg} alt="Enviar os dados para nuvem" />
         </button>
         <button type="button" className="cloud-button" onClick={importData}>
           <img src={downloadBtnSvg} alt="Baixar os dados da nuvem" />
-        </button>
+        </button> */}
       </div>
       <div className="local-button">
         <button type="button" className="download-button" onClick={() => setShowScreeshotTable(true)}>

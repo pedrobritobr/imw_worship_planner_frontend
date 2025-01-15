@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './UserActions.css';
 
 import Login from './Login';
+import Register from "./Register";
 
 const UserActions = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -34,7 +35,7 @@ const UserActions = () => {
       </button>
       <div className={`menu ${menuOpen ? 'open' : 'close'}`}>
         <Login className="menu-item"/>
-        <div className="menu-item">Registro</div>
+        <Register className="menu-item"/>
       </div>
     </div>
   );

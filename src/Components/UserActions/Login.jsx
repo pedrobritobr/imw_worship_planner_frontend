@@ -31,15 +31,14 @@ function Login({
         <h4>Login</h4>
         <button type="submit">Entrar</button>
       </header>
-      <label htmlFor="email" id="input-login-email">
+      <label htmlFor="login-email">
         <span>Email:</span>
-        <input type="email" id="email" required />
+        <input type="email" id="login-email" required />
       </label>
-      <label htmlFor="password">
+      <label htmlFor="login-password">
         <span>Senha:</span>
-        <input type="password" id="input-login-password" name="password" required />
+        <input type="password" id="login-password" name="password" required />
       </label>
-
     </form>
   );
 }

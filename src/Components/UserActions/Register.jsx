@@ -63,7 +63,10 @@ function Register({
         <input type="password" id="register-password" name="password" required />
       </label>
       <label htmlFor="register-check-password">
-        <span>Confirmar Senha:</span>
+        <span className="register-check-password">
+          <span class="small-text">Confirmar</span>
+          Senha:
+        </span>
         <input type="check-password" id="register-check-password" name="check-password" required />
       </label>
       <label htmlFor="register-church">

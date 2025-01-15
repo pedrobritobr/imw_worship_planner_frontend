@@ -1,12 +1,15 @@
+* {
+  color: #f6fcff;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  /* color-scheme: light dark; */
   color: #f6fcff;
-  background: #020024;
-  background: linear-gradient(310deg, #020118 0%, #042339 90%);
+  background: linear-gradient(310deg, #020118 0%, #042339 90%); /* Fundo */
+
   min-height: 100lvh;
   width: 100svw;
   font-synthesis: none;
@@ -17,9 +20,17 @@
 }
 
 body {
+  color: #f6fcff;
   margin: 0;
   display: flex;
   justify-content: center;
   width: 100%;
   min-height: 100%;
+}
+
+@supports (-webkit-touch-callout: none) {
+  :root {
+    color: #f6fcff;
+    background: linear-gradient(310deg, #020118 0%, #042339 90%); /* Fundo */
+  }
 }

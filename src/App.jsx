@@ -60,7 +60,8 @@ function App() {
   };
 
   const handleWorshipTitleChange = (event) => {
-    setWorshipTitle(event.target.value);
+    const { value } = event.target;
+    setWorshipTitle(value.length > 0 ? value : 'Culto de Celebração');
   };
 
   const exportData = async () => {

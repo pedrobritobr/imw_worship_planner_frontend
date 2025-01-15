@@ -6,18 +6,9 @@ import PropTypes from 'prop-types';
 import './Register.css';
 
 const churchAllowed = [
-  {
-    name: 'Selecione a igreja',
-    value: '',
-  },
-  {
-    name: 'IMW São Cristovão',
-    value: 'imwsccf',
-  },
-  {
-    name: 'IMW Central CF',
-    value: 'imwcentralcf',
-  }
+  'Selecione a igreja',
+  'IMW São Cristovão',
+  'IMW Central CF',
 ];
 
 const userData = {
@@ -35,12 +26,13 @@ function Register({
 
   const handleRegister = (event) => {
     event.preventDefault();
-    const { email, password } = event.target;
-    userData.email = email.value;
-    userData.password = password.value;
-    userData.church = selectedChurch.value;
+
+    userData.email = event.target["register-email"].value;
+    userData.password = event.target["register-password"].value;
+    userData.church = selectedChurch;
     console.log(userData);
     setUser(userData);
+    console.log(user);
   };
 
   const handleSelectChurch = (church) => {
@@ -67,7 +59,7 @@ function Register({
           <span class="small-text">Confirmar</span>
           Senha:
         </span>
-        <input type="check-password" id="register-check-password" name="check-password" required />
+        <input type="password" id="register-check-password" name="check-password" required />
       </label>
       <label htmlFor="register-church">
         <span>Igreja:</span>
@@ -75,16 +67,16 @@ function Register({
           className={`custom-select ${isDropdownOpen ? 'open' : ''}`}
           onClick={() => setDropdownOpen(!isDropdownOpen)}
         >
-          <div className="select-trigger">{selectedChurch.name}</div>
+          <div className="select-trigger">{selectedChurch}</div>
           {isDropdownOpen && (
             <ul className="options">
               {churchAllowed.map((church) => (
                 <li
-                  key={church.value}
+                  key={church}
                   className="option"
                   onClick={() => handleSelectChurch(church)}
                 >
-                  {church.name}
+                  {church}
                 </li>
               ))}
             </ul>

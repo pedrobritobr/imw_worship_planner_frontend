@@ -47,9 +47,6 @@ input {
   appearance: none;
   text-align: center;
   width: 10lvw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 2px 4px;
 }
 

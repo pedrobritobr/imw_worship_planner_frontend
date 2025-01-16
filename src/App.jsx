@@ -52,6 +52,7 @@ function App() {
   const [selectedDate, setSelectedDate] = useState(dateLocalStorageDefault);
   const [ministerSelected, setMinisterSelected] = useState(ministerLocalStorage || '');
   const [worshipTitle, setWorshipTitle] = useState(worshipTitleLocalStorage || 'Culto de Celebração');
+  const [churchName, setChurchName] = useState(worshipTitleLocalStorage || 'Igreja Metodista Wesleyana');
 
   const handleDateChange = (event) => {
     const newDate = new Date(event.target.value);
@@ -62,6 +63,11 @@ function App() {
   const handleWorshipTitleChange = (event) => {
     const { value } = event.target;
     setWorshipTitle(value.length > 0 ? value : 'Culto de Celebração');
+  };
+
+  const handleChurchNameChange = (event) => {
+    const { value } = event.target;
+    setChurchName(value.length > 0 ? value : 'Igreja Metodista Wesleyana');
   };
 
   const exportData = async () => {
@@ -129,12 +135,19 @@ function App() {
       <div className="main">
         <label htmlFor="worshipTitleInput" id="worship-title-container">
           <h3>Cronograma</h3>
-          <h3>IMW São Cristovão</h3>
+          <input
+            type="text"
+            id="churchNameInput"
+            value={churchName}
+            onChange={handleChurchNameChange}
+            placeholder="Nome da igreja"
+          />
           <input
             type="text"
             id="worshipTitleInput"
             value={worshipTitle}
             onChange={handleWorshipTitleChange}
+            placeholder="Título do culto"
           />
         </label>
         <label htmlFor="customDateInput">
@@ -171,6 +184,7 @@ function App() {
             activities={activities}
             ministerSelected={ministerSelected}
             worshipTitle={worshipTitle}
+            churchName={churchName}
           />
         </div>
       </div>

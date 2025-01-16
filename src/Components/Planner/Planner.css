@@ -43,6 +43,7 @@ input {
 .planner-container input[type="time"] {
   -webkit-appearance: none;
   -moz-appearance: none;
+  display: -webkit-inline-box;
   appearance: none;
   text-align: center;
   width: 10lvw;

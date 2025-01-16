@@ -45,8 +45,8 @@ input {
   -moz-appearance: none;
   display: -webkit-inline-box;
   appearance: none;
-  text-align: center;
   width: 10lvw;
+  line-height: 15px;
   padding: 2px 4px;
 }
 

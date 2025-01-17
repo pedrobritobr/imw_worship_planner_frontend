@@ -10,6 +10,7 @@ function ScreenshotTable({
   activities,
   ministerSelected,
   worshipTitle,
+  churchName,
 }) {
   const [weekDay, detailedDay] = getLongDateString(selectedDate).split(',');
 
@@ -19,7 +20,7 @@ function ScreenshotTable({
         <header>
           <div className="title">
             <h3>Cronograma</h3>
-            <h3>IMW São Cristóvão</h3>
+            <h3>{churchName}</h3>
           </div>
           <h4>{worshipTitle}</h4>
         </header>

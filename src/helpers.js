@@ -96,6 +96,16 @@ const pngConfigs = {
   },
 };
 
+const showErrorMessage = (element, message) => {
+  const errorMessage = document.querySelector(element);
+  errorMessage.textContent = message;
+};
+
+const showPassword = (elementId) => {
+  const passwordInput = document.getElementById(elementId);
+  passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+};
+
 export {
   screenshotFilename,
   capitalizeFirstLetter,
@@ -103,6 +113,8 @@ export {
   getWeekDay,
   setHourForActivity,
   formatMinutes,
+  showErrorMessage,
+  showPassword,
   columnsHeader,
   defaultActivities,
   pngConfigs,

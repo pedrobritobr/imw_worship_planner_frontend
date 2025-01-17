@@ -45,3 +45,12 @@
   width: 100%;
   font-size: 14px;
 }
+
+.login-error-message{
+  color: #e45757;
+  font-size: 10px;
+  display: block;
+  width: 100%;
+  height: 10px;
+  margin: -4px 0 -5px;
+}

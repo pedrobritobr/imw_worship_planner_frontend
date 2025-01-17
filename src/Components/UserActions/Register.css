@@ -33,6 +33,11 @@
   margin-bottom: 5px;
 }
 
+.register-form label[for="register-church"] {
+  align-items: flex-start;
+  height: 23px;
+}
+
 .register-form label span {
   font-size: 12px;
   margin: 0 2px;
@@ -57,50 +62,18 @@
   font-size: 14px;
 }
 
-.register-form .custom-select {
-  position: relative;
-  cursor: pointer;
-  color: white;
-  padding: 2px;
-  user-select: none;
-  width: 100%;
-  margin-left: 2px;
-}
-
-.register-form .select-trigger {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-}
-
-.register-form .options {
-  list-style: none;
+.register-form #register-church-select {
   margin: 0;
   padding: 3px;
   background-color: #091d2dfa;
+  border: none;
   border-radius: 5px;
-  position: absolute;
   width: 100%;
-  z-index: 10;
-  margin-left: -6px;
-}
-
-.register-form .option {
-  padding: 4px;
-  cursor: pointer;
-  color: white;
-  background-color: #00031e36;
-  transition: background-color 0.2s ease;
   font-size: 14px;
 }
 
-.register-form .option:hover {
-  background-color: #091d2dfa;
-}
-
-.register-error-message{
-  color: #ce4040;
+.register-error-message {
+  color: #e45757;
   font-size: 10px;
   display: block;
   width: 100%;

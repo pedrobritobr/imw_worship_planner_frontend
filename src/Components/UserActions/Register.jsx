@@ -7,15 +7,9 @@ import './Register.css';
 
 const churchAllowed = [
   'Selecione a igreja',
-  'IMW São Cristovão',
-  'IMW Central CF',
+  'Wesleyana São Cristovão',
+  'Wesleyana Central CF',
 ];
-
-const userData = {
-  email: '',
-  password: '',
-  church: '',
-}
 
 function Register({
   className,
@@ -24,11 +18,34 @@ function Register({
   const [selectedChurch, setSelectedChurch] = useState(churchAllowed[0]);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
+  const showPassword = (elementId) => {
+    const passwordInput = document.getElementById(elementId);
+    passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+  }
+
+  const showErrorMessage = (message) => {
+    const errorMessage = document.querySelector('.register-error-message');
+    errorMessage.textContent = message;
+  }
+
   const handleRegister = (event) => {
     event.preventDefault();
+    showErrorMessage('');
 
+    const password = event.target["register-password"].value;
+    const checkPassword = event.target["register-check-password"].value;
+
+    if (password !== checkPassword) {
+      showErrorMessage('As senhas não coincidem');
+      return;
+    }
+
+    const userData = {
+      email: '',
+      password: '',
+      church: '',
+    }
     userData.email = event.target["register-email"].value;
-    userData.password = event.target["register-password"].value;
     userData.church = selectedChurch;
     console.log(userData);
     setUser(userData);
@@ -52,14 +69,20 @@ function Register({
       </label>
       <label htmlFor="register-password">
         <span>Senha:</span>
-        <input type="password" id="register-password" name="password" required />
+        <input type="password" id="register-password" name="password" minLength={8} required />
+      <button type="button" onClick={() => showPassword("register-password")}>
+        Mostrar
+      </button>
       </label>
       <label htmlFor="register-check-password">
         <span className="register-check-password">
-          <span class="small-text">Confirmar</span>
+          <span className="small-text">Confirmar</span>
           Senha:
         </span>
-        <input type="password" id="register-check-password" name="check-password" required />
+        <input type="password" id="register-check-password" name="check-password" minLength={8} required />
+        <button type="button" onClick={() => showPassword("register-check-password")}>
+          Mostrar
+        </button>
       </label>
       <label htmlFor="register-church">
         <span>Igreja:</span>
@@ -83,6 +106,7 @@ function Register({
           )}
         </div>
       </label>
+      <p className="register-error-message" />
     </form>
   );
 }

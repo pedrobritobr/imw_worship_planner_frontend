@@ -1,14 +1,11 @@
 .actions-button-container {
   display: flex;
-  width: 105%;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  margin: 10px 0px -25px;
-  z-index: 1;
+  gap: 5px;
 }
 
 .actions-button-container button {
+  display: flex;
   border: none;
   background: none;
   cursor: pointer;
@@ -18,12 +15,6 @@
 
 .actions-button-container img {
   width: 32px;
-}
-
-.actions-button-container .cloud-button,
-.actions-button-container .local-button {
-  display: flex;
-  gap: 8px;
 }
 
 .confirmation-modal {
@@ -48,6 +39,7 @@
   text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   width: 80%;
+  margin-top: -100%;
 }
 
 .modal-content h3 {

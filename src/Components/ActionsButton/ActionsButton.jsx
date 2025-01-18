@@ -15,9 +15,8 @@ function ActionsButton({ setShowScreeshotTable }) {
   };
 
   return (
-    <div className="actions-button-container">
-      <div className="cloud-button" />
-      <div className="local-button">
+    <div className="ActionsButton">
+      <div className="actions-button-container">
         <button type="button" className="download-button" onClick={() => setShowScreeshotTable(true)}>
           <img src={saveImageBtnSvg} alt="Baixar Cronograma" />
         </button>

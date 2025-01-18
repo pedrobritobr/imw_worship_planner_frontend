@@ -7,24 +7,23 @@ const validateUser = (user) => {
   if (user.password !== userDb.password) return { errorMsg:'Senha inválida' };
 
   const { password, ...userData } = userDb;
-  return userData;
+  return { user: userData };
 }
 
 export function requestLogin(user) {
   try {
-    console.log(user);
     const response = validateUser(user);
     if (response.errorMsg) {
-      return response.errorMsg;
+      return response;
     }
 
     localStorage.setItem('user', JSON.stringify(response));
 
-    return null;
+    return response;
   } catch (error) {
     console.log(error);
 
-    return 'Erro ao pegar usuário no localStorage';
+    return { errorMsg: 'Erro ao pegar usuário no localStorage' };
   }
 }
 

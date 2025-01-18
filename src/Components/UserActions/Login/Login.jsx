@@ -1,41 +1,42 @@
-/* eslint-disable */
-
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { requestLogin } from '../../service';
-import { showErrorMessage, showPassword } from '../../helpers';
+import { UserContext } from '../../../Context/UserContext';
+
+import { requestLogin } from '../../../service';
+import { showErrorMessage, showPassword } from '../../../helpers';
 
 import './Login.css';
 
 const userDefault = {
   email: '',
   password: '',
-}
+};
 
 function Login({
   className,
 }) {
-  const [user, setUser] = useState(userDefault);
+  const { setUser } = useContext(UserContext);
+  const [userLocal, setUserLocal] = useState(userDefault);
 
   const handleUserChange = (event) => {
     const { name, value } = event.target;
-    setUser({ ...user, [name]: value });
-  }
+    setUserLocal({ ...userLocal, [name]: value });
+  };
 
   const handleLogin = (event) => {
     event.preventDefault();
     showErrorMessage('.login-error-message', '');
 
-    const message = requestLogin(user);
+    const response = requestLogin(userLocal);
 
-    if (message) {
-      showErrorMessage('.login-error-message', message);
+    if (response.errorMsg) {
+      showErrorMessage('.login-error-message', response.errorMsg);
     } else {
-      setUser(userDefault);
-      console.log('sucesso');
+      setUserLocal(userDefault);
+      setUser(userLocal);
     }
-  }
+  };
 
   return (
     <form className={`${className} login-form`} onSubmit={handleLogin}>
@@ -50,8 +51,9 @@ function Login({
           id="login-email"
           name="email"
           onChange={handleUserChange}
-          value={user.email}
-          required />
+          value={userLocal.email}
+          required
+        />
       </label>
       <label htmlFor="login-password">
         <span>Senha:</span>
@@ -61,10 +63,10 @@ function Login({
           name="password"
           minLength={8}
           onChange={handleUserChange}
-          value={user.password}
+          value={userLocal.password}
           required
         />
-        <button type="button" onClick={() => showPassword("login-password")}>
+        <button type="button" onClick={() => showPassword('login-password')}>
           Mostrar
         </button>
       </label>
@@ -72,5 +74,9 @@ function Login({
     </form>
   );
 }
+
+Login.propTypes = {
+  className: PropTypes.string,
+}.isRequired;
 
 export default Login;

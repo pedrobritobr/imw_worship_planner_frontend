@@ -1,11 +1,16 @@
-/*eslint-disable */
-import React, { useState, useEffect } from 'react';
+/* eslint-disable */
+import React, { useState, useEffect, useContext } from 'react';
 import './UserActions.css';
 
-import Login from './Login';
-import Register from "./Register";
+import { UserContext } from '../../Context/UserContext';
 
-const UserActions = () => {
+import Login from './Login';
+import Register from './Register';
+
+function UserActions() {
+  const { user } = useContext(UserContext);
+  const [isUserLogged, setIsUserValid] = useState(false);
+
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -20,6 +25,12 @@ const UserActions = () => {
   };
 
   useEffect(() => {
+    const isUserLogged = !!user.email && !!user.church;
+    setIsUserValid(isUserLogged);
+  }
+  , [user]);
+
+  useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -27,22 +38,27 @@ const UserActions = () => {
   }, []);
 
   return (
-    <div className="user-actions">
-      <button className="hamburger" onClick={toggleMenu}>
-        <span className="line"></span>
-        <span className="line"></span>
-        <span className="line"></span>
+    <div className="UserActions">
+      <button type="button" className="hamburger" aria-label="hamburguer-menu" onClick={toggleMenu}>
+        <span className="line" />
+        <span className="line" />
+        <span className="line" />
       </button>
       <div className={`menu ${menuOpen ? 'open' : 'close'}`}>
-        <Login className="menu-item"/>
-        <Register className="menu-item"/>
+        {!isUserLogged ? (
+          <>
+            <Login className="menu-item" />
+            <Register className="menu-item" />
+          </>
+        ) : (
+          <div className="menu-item">
+            <p>{user.email}</p>
+            <p>{user.church}</p>
+          </div>
+        )}
       </div>
     </div>
   );
-};
+}
 
 export default UserActions;
-
-
-
-

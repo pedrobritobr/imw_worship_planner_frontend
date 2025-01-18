@@ -12,6 +12,33 @@
   width: 92vw;
 }
 
+.App header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  background-color: #0207252d;
+  box-shadow: 0px 2px 8px 0px #0606168c;
+  padding: 2px 5px;
+  margin-bottom: 10px;
+}
+
+.App header h3 {
+  margin: 0;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.UserActions {
+  margin-left: 10px;
+}
+
+.ActionsButton {
+  margin-right: 10px;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -87,10 +114,6 @@ label > h4 {
   flex-direction: column;
   align-items: center;
   gap: 0;
-}
-
-#worship-title-container h3 {
-  margin: -2px;
 }
 
 #worship-title-container input {

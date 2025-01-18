@@ -1,10 +1,12 @@
 /* eslint-disable */
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { showErrorMessage, showPassword } from '../../helpers';
-import { requestLogin, requestRegisterUser } from '../../service';
+import { UserContext } from '../../../Context/UserContext';
+
+import { showErrorMessage, showPassword } from '../../../helpers';
+import { requestLogin, requestRegisterUser } from '../../../service';
 import './Register.css';
 
 const churchAllowed = [
@@ -23,11 +25,12 @@ const userDefault = {
 function Register({
   className,
 }) {
-  const [user, setUser] = useState(userDefault);
+  const { setUser } = useContext(UserContext);
+  const [userLocal, setUserLocal] = useState(userDefault);
 
   const handleUserChange = (event) => {
     const { name, value } = event.target;
-    setUser({ ...user, [name]: value });
+    setUserLocal({ ...userLocal, [name]: value });
   }
 
   const handleRegister = (event) => {
@@ -35,17 +38,18 @@ function Register({
     const errorClass = '.register-error-message';
     showErrorMessage(errorClass, '');
 
-    const { checkPassword, ...userWithoutCheckPassword } = user;
+    const { checkPassword, ...userWithoutCheckPassword } = userLocal;
 
-    if (user.password !== checkPassword) return showErrorMessage(errorClass, 'As senhas não coincidem');
-    if (user.church === 'Selecione a igreja') return showErrorMessage(errorClass, 'Selecione uma igreja');
+    if (userLocal.password !== checkPassword) return showErrorMessage(errorClass, 'As senhas não coincidem');
+    if (userLocal.church === 'Selecione a igreja') return showErrorMessage(errorClass, 'Selecione uma igreja');
     
     const message = requestRegisterUser(userWithoutCheckPassword);
     if (message) {
       showErrorMessage(errorClass, message);
     } else {
-      setUser(userDefault);
-      requestLogin(userWithoutCheckPassword);
+      setUserLocal(userDefault);
+      const response = requestLogin(userWithoutCheckPassword);
+      setUser(response);
       console.log('sucesso');
     }
   };
@@ -63,7 +67,7 @@ function Register({
           id="register-email"
           name="email"
           onChange={handleUserChange}
-          value={user.email}
+          value={userLocal.email}
           required 
         />
       </label>
@@ -75,7 +79,7 @@ function Register({
           name="password"
           minLength={8}
           onChange={handleUserChange}
-          value={user.password}
+          value={userLocal.password}
           required 
         />
       <button type="button" onClick={() => showPassword("register-password")}>
@@ -93,7 +97,7 @@ function Register({
           name="checkPassword"
           minLength={8}
           onChange={handleUserChange}
-          value={user.checkPassword}
+          value={userLocal.checkPassword}
           required 
         />
         <button type="button" onClick={() => showPassword("register-check-password")}>
@@ -106,7 +110,7 @@ function Register({
           id="register-church-select"
           name="church"
           onChange={handleUserChange}
-          value={user.church}
+          value={userLocal.church}
         >
           {churchAllowed.map((church) => (
             <option className="register-church-option" key={church} value={church}>

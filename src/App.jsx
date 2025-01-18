@@ -1,6 +1,7 @@
 /* eslint-disable */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
+
 import { exportComponentAsPNG } from 'react-component-export-image';
 import axios from 'axios';
 
@@ -8,6 +9,8 @@ import Planner from './Components/Planner';
 import ScreenshotTable from './Components/ScreenshotTable';
 import ActionsButton from './Components/ActionsButton';
 import UserActions from './Components/UserActions';
+
+import { UserProvider, UserContext } from './Context/UserContext';
 
 import {
   getWeekDay,
@@ -17,6 +20,7 @@ import {
 } from './helpers';
 
 import './App.css';
+import { use } from 'react';
 
 const sendLocationToAnalytics = async (pageTitle, location) => {
   try {
@@ -39,7 +43,14 @@ const scrollToTop = () => {
   window.scrollTo(0, 0);
 };
 
-function App() {
+function AppContent() {
+  const { setUser } = useContext(UserContext);
+
+  useEffect(() => {
+    const userLocalStorage = localStorage.getItem('user');
+    userLocalStorage && setUser(JSON.parse(userLocalStorage));
+  }, [setUser]);
+
   const ref = useRef(null);
   const [showScreeshotTable, setShowScreeshotTable] = useState(false);
   const imwWorshipPlannerStorage = JSON.parse(localStorage.getItem('imwWorshipPlanner')) || {};
@@ -48,6 +59,7 @@ function App() {
     selectedDate: dateLocalStorage,
     ministerSelected: ministerLocalStorage,
     worshipTitle: worshipTitleLocalStorage,
+    churchName: churchNameLocalStorage,
   } = imwWorshipPlannerStorage;
   const dateLocalStorageDefault = dateLocalStorage ? new Date(dateLocalStorage) : new Date();
 
@@ -55,7 +67,7 @@ function App() {
   const [selectedDate, setSelectedDate] = useState(dateLocalStorageDefault);
   const [ministerSelected, setMinisterSelected] = useState(ministerLocalStorage || '');
   const [worshipTitle, setWorshipTitle] = useState(worshipTitleLocalStorage || 'Culto de Celebração');
-  const [churchName, setChurchName] = useState(worshipTitleLocalStorage || 'Igreja Metodista Wesleyana');
+  const [churchName, setChurchName] = useState(churchNameLocalStorage || 'Igreja Metodista Wesleyana');
 
   const handleDateChange = (event) => {
     const newDate = new Date(event.target.value);
@@ -130,15 +142,13 @@ function App() {
 
   return (
     <div className="App">
-      <UserActions />
-      {/* <ActionsButton
-        importData={importData}
-        exportData={exportData}
-        setShowScreeshotTable={setShowScreeshotTable}
-      /> */}
+      <header>
+        <UserActions />
+        <h3>Roteiro de Culto</h3>
+        <ActionsButton setShowScreeshotTable={setShowScreeshotTable} />
+      </header>
       <div className="main">
         <label htmlFor="worshipTitleInput" id="worship-title-container">
-          <h3>Cronograma</h3>
           <input
             type="text"
             id="churchNameInput"
@@ -194,6 +204,14 @@ function App() {
       </div>
       )}
     </div>
+  );
+}
+
+function App() {
+  return (
+    <UserProvider>
+      <AppContent />
+    </UserProvider>
   );
 }
 

@@ -1,30 +1,29 @@
-/* UserActions.css */
-.user-actions {
-  position: fixed;
+.UserActions {
+  /* position: fixed;
   top: 10px;
   left: 10px;
   display: inline-block;
-  z-index: 1000;
+  z-index: 1000; */
 }
 
-.hamburger {
+.UserActions .hamburger {
   background: none;
   border: none;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 10px;
+  padding: 10px 5px;
 }
 
-.hamburger .line {
+.UserActions .hamburger .line {
   width: 25px;
   height: 3px;
   background-color: #e9eaf8;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.menu {
+.UserActions .menu {
   position: absolute;
   top: 0;
   left: 0;
@@ -38,32 +37,32 @@
   width: 70vw;
 }
 
-.menu.open {
+.UserActions .menu.open {
   opacity: 1;
   pointer-events: auto;
 }
 
-.menu.close {
+.UserActions .menu.close {
   opacity: 0;
   pointer-events: none;
 }
 
-.menu-item {
+.UserActions .menu-item {
   padding: 10px 15px;
   cursor: pointer;
   border-bottom: 1px solid #ddd;
   transition: background-color 0.3s ease;
 }
 
-.menu-item h4 {
+.UserActions .menu-item h4 {
   margin: 0 2px 7px;
 }
 
-.menu-item:last-child {
+.UserActions .menu-item:last-child {
   border-bottom: none;
 }
 
-.menu-item:hover {
+.UserActions .menu-item:hover {
   background-color: #f0f0f00d;
   border-radius: 5px;
 }

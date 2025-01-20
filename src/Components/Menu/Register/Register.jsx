@@ -16,6 +16,7 @@ const churchAllowed = [
 ];
 
 const userDefault = {
+  name: '',
   email: '',
   password: '',
   checkPassword: '',
@@ -50,7 +51,6 @@ function Register({
       setUserLocal(userDefault);
       const response = requestLogin(userWithoutCheckPassword);
       setUser(response);
-      console.log('sucesso');
     }
   };
 
@@ -60,6 +60,17 @@ function Register({
         <h4>Cadastro</h4>
         <button type="submit">Cadastrar</button>
       </header>
+      <label htmlFor="register-name" id="input-register-name">
+        <span>Nome:</span>
+        <input
+          type="text"
+          id="register-name"
+          name="name"
+          onChange={handleUserChange}
+          value={userLocal.name}
+          required
+        />
+      </label>
       <label htmlFor="register-email" id="input-register-email">
         <span>Email:</span>
         <input

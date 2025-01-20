@@ -1,0 +1,18 @@
+.CloudButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.CloudButtons button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.CloudButtons img {
+  width: 32px;
+}

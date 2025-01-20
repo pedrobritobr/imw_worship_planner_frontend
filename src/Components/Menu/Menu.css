@@ -1,0 +1,153 @@
+.Menu {
+  margin: 0;
+}
+
+.Menu .hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.7);
+  width: 0;
+}
+
+.Menu .menu-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #091d2df5;
+  box-shadow: 0 4px 6px #0000001a;
+  border-radius: 5px;
+  opacity: 0;
+  transform-origin: top left;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  width: 70vw;
+  z-index: 1;
+}
+
+.Menu .menu-container .open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.Menu .menu-container .close {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.Menu .menu-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s ease;
+}
+
+.Menu .menu-item h4 {
+  margin: 0 2px 7px;
+}
+
+.Menu .menu-item:last-child {
+  border-bottom: none;
+}
+
+.Menu .menu-item:hover {
+  background-color: #f0f0f00d;
+  border-radius: 5px;
+}
+
+.Menu svg {
+  height: 80px;
+  position: absolute;
+  width: 80px;
+}
+
+.Menu .plate {
+  height: 80px;
+  width: 80px;
+}
+
+.Menu .burger {
+  filter: url(#gooeyness);
+}
+
+.Menu .x {
+  transform: scale(0);
+  transition: transform 400ms;
+}
+
+.Menu .line {
+  fill: none;
+  stroke: #e8eaf3;
+  stroke-width: 6px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform-origin: 50%;
+  transition: stroke-dasharray 500ms 200ms, stroke-dashoffset 500ms 200ms, transform 500ms 200ms;
+}
+
+.Menu .x .line {
+  stroke-width: 5.5px;
+}
+
+.Menu .active .line {
+  transition: stroke-dasharray 500ms, stroke-dashoffset 500ms, transform 500ms;
+}
+
+.Menu .active .x {
+  transform: scale(1);
+  transition: transform 400ms 350ms;
+}
+
+.Menu .plate5 .line {
+  transition: stroke-dasharray 400ms 100ms, stroke-dashoffset 400ms 100ms, transform 400ms 100ms;
+}
+
+.Menu .plate5 .line1 {
+  stroke-dasharray: 40 40;
+}
+
+.Menu .plate5 .line2 {
+  stroke-dasharray: 21 39;
+}
+
+.Menu .plate5 .line3 {
+  stroke-dasharray: 21 39;
+}
+
+.Menu .plate5 .line4 {
+  stroke-dasharray: 40 40;
+}
+
+.Menu .plate5 .x {
+  transition: transform 400ms 50ms;
+}
+
+.Menu .active.plate5 .line {
+  transition: stroke-dasharray 400ms, stroke-dashoffset 400ms, transform 400ms;
+}
+
+.Menu .active.plate5 .line1 {
+  stroke-dasharray: 1 40;
+  stroke-dashoffset: -33px;
+}
+
+.Menu .active.plate5 .line2 {
+  stroke-dasharray: 5 39;
+  stroke-dashoffset: -37px;
+}
+
+.Menu .active.plate5 .line3 {
+  stroke-dasharray: 5 39;
+  stroke-dashoffset: -37px;
+}
+
+.Menu .active.plate5 .line4 {
+  stroke-dasharray: 1 40;
+  stroke-dashoffset: -33px;
+}
+
+.Menu .active.plate5 .x {
+  transition: transform 400ms 50ms;
+}

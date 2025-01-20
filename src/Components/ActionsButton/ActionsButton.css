@@ -58,6 +58,7 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 15px;
+  background: none;
 }
 
 .modal-content .modal-actions .confirm-button {

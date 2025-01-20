@@ -17,8 +17,7 @@ export function requestLogin(user) {
       return response;
     }
 
-    localStorage.setItem('user', JSON.stringify(response));
-
+    localStorage.setItem('user', JSON.stringify(response.user));
     return response;
   } catch (error) {
     console.log(error);
@@ -48,3 +47,35 @@ export function requestRegisterUser(user) {
     return 'Erro ao inserir usuário no localStorage';
   }
 }
+
+
+export async function exportData(data) {
+  try {
+    console.log('data>> ', data);
+    return;
+    const headers = { keyword: import.meta.env.VITE_PLANNER_KEYWORD };
+    const url = `${import.meta.env.VITE_PLANNER_URL}/planner`;
+
+    await axios.post(url, data, { headers });
+    const { alert } = window;
+    alert('Cronograma enviado com sucesso!');
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export async function importData() {
+  try {
+    const headers = { keyword: import.meta.env.VITE_PLANNER_KEYWORD };
+    const url = `${import.meta.env.VITE_PLANNER_URL}/last-planner`;
+
+    const response = await axios.get(url, { headers });
+    return response.data;
+    const { selectedDate: date, activities: acts, ministerSelected: minister } = response.data;
+    setSelectedDate(new Date(date));
+    setActivities(acts);
+    setMinisterSelected(minister);
+  } catch (error) {
+    console.error(error);
+  }
+};

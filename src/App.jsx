@@ -8,7 +8,7 @@ import axios from 'axios';
 import Planner from './Components/Planner';
 import ScreenshotTable from './Components/ScreenshotTable';
 import ActionsButton from './Components/ActionsButton';
-import UserActions from './Components/UserActions';
+import Menu from './Components/Menu';
 
 import { UserProvider, UserContext } from './Context/UserContext';
 
@@ -20,7 +20,6 @@ import {
 } from './helpers';
 
 import './App.css';
-import { use } from 'react';
 
 const sendLocationToAnalytics = async (pageTitle, location) => {
   try {
@@ -85,42 +84,6 @@ function AppContent() {
     setChurchName(value.length > 0 ? value : 'Igreja Metodista Wesleyana');
   };
 
-  const exportData = async () => {
-    const data = {
-      planner: {
-        selectedDate,
-        activities,
-        ministerSelected,
-      },
-    };
-
-    try {
-      const headers = { keyword: import.meta.env.VITE_PLANNER_KEYWORD };
-      const url = `${import.meta.env.VITE_PLANNER_URL}/planner`;
-
-      await axios.post(url, data, { headers });
-      const { alert } = window;
-      alert('Cronograma enviado com sucesso!');
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const importData = async () => {
-    try {
-      const headers = { keyword: import.meta.env.VITE_PLANNER_KEYWORD };
-      const url = `${import.meta.env.VITE_PLANNER_URL}/last-planner`;
-
-      const response = await axios.get(url, { headers });
-      const { selectedDate: date, activities: acts, ministerSelected: minister } = response.data;
-      setSelectedDate(new Date(date));
-      setActivities(acts);
-      setMinisterSelected(minister);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
     sendLocationToAnalytics(document.title, window.location.href);
   }, []);
@@ -143,7 +106,7 @@ function AppContent() {
   return (
     <div className="App">
       <header>
-        <UserActions />
+        <Menu />
         <h3>Roteiro de Culto</h3>
         <ActionsButton setShowScreeshotTable={setShowScreeshotTable} />
       </header>

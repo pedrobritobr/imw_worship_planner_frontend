@@ -34,7 +34,7 @@ function Login({
       showErrorMessage('.login-error-message', response.errorMsg);
     } else {
       setUserLocal(userDefault);
-      setUser(userLocal);
+      setUser(response.user);
     }
   };
 

@@ -12,9 +12,7 @@ import { exportData, importData } from '../../../service';
 import './CloudButtons.css';
 
 
-function CloudButtons({
-  className,
-}) {
+function CloudButtons() {
   const { user } = useContext(UserContext);
   // const [userLocal, setUserLocal] = useState(userDefault);
 
@@ -33,7 +31,7 @@ function CloudButtons({
   // };
 
   return (
-    <div className={`${className} CloudButtons`}>
+    <div className="CloudButtons">
       <button type="button" className="cloud-button" onClick={exportData}>
         <img src={UploadSVG} alt="Enviar os dados para nuvem" />
       </button>

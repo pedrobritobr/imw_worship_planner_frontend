@@ -6,7 +6,6 @@ import { UserContext } from '../../Context/UserContext';
 
 import Login from './Login';
 import Register from './Register';
-import CloudButtons from './CloudButtons';
 import UserInfo from './UserInfo';
 
 function Menu() {
@@ -73,10 +72,7 @@ function Menu() {
             <Register className="menu-item" />
           </div>
         ) : (
-          <div className="user-logged">
-            <UserInfo className="menu-item" />
-            <CloudButtons className="menu-item" />
-          </div>
+          <UserInfo menuOpen={menuOpen}/>
         )}
       </div>
     </div>

@@ -2,11 +2,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+}
+
+.UserInfo .user-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 45px;
+  background: linear-gradient(90deg, #031E36 0%, #02132A 90%, #02132a00 100%);
+  width: 100%;
 }
 
 .UserInfo button {
+  border: none;
   background: none;
+  cursor: pointer;
+  margin: 0;
   padding: 0;
 }
 
@@ -14,34 +25,24 @@
   width: 32px;
 }
 
-.UserInfo div > div {
-  margin-top: 10px;
+.UserInfo .user-info {
+  display: flex;
+  background: linear-gradient(90deg, #031E36 0%, #02132A 100%);
   padding: 15px;
-  width: 90%;
-  max-width: 400px;
-  border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #f9f9f9;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 0.3s ease-in-out;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+  margin-top: 5px;
 }
 
-/* Animação de exibição do modal */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.UserInfo .user-info.show {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-/* Parágrafos no modal */
-.UserInfo p {
-  margin: 5px 0;
-  color: #333;
-  font-size: 16px;
-  text-align: center;
+.UserInfo .user-info.hide {
+  opacity: 0;
+  pointer-events: none;
 }

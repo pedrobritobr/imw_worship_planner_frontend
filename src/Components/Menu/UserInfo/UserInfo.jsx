@@ -1,13 +1,24 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './UserInfo.css';
 
 import { UserContext } from '../../../Context/UserContext';
+
+import { exportData, importData } from '../../../service';
+
 import HideUserSVG from '../../../assets/hide-user-svgrepo-com.svg';
 import ShowUserSVG from '../../../assets/show-user-svgrepo-com.svg';
+import DownloadSVG from '../../../assets/cloud-download-svgrepo-com.svg';
+import UploadSVG from '../../../assets/cloud-upload-svgrepo-com.svg';
+import LogOutSVG from '../../../assets/logout-svgrepo-com.svg';
 
-function UserInfo() {
+function UserInfo({ menuOpen }) {
   const { user, logOut } = useContext(UserContext);
   const [showInfo, setShowInfo] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) setShowInfo(false);
+  }, [menuOpen]);
 
   const handleButtonClick = () => {
     setShowInfo(!showInfo);
@@ -15,23 +26,36 @@ function UserInfo() {
 
   return (
     <div className="UserInfo">
-      <button className="user" type="button" onClick={handleButtonClick}>
-        {
-          showInfo
-            ? <img src={HideUserSVG} alt="Ocultar informações do usuário" />
-            : <img src={ShowUserSVG} alt="Exibir informações do usuário" />
-        }
-      </button>
-      {showInfo && (
-        <div>
-          <button className="logOut" type="button" onClick={logOut}>Sair</button>
-          <p>{user.name}</p>
-          <p>{user.email}</p>
-          <p>{user.church}</p>
-        </div>
-      )}
+      <div className="user-buttons">
+        <button className="show-user-info" type="button" onClick={handleButtonClick}>
+          {
+            showInfo
+              ? <img src={HideUserSVG} alt="Ocultar informações do usuário" />
+              : <img src={ShowUserSVG} alt="Exibir informações do usuário" />
+          }
+        </button>
+        <button type="button" className="cloud-button" onClick={exportData}>
+          <img src={UploadSVG} alt="Enviar os dados para nuvem" />
+        </button>
+        <button type="button" className="cloud-button" onClick={importData}>
+          <img src={DownloadSVG} alt="Baixar os dados da nuvem" />
+        </button>
+      </div>
+
+      <div className={`user-info ${showInfo ? 'show' : 'hide'}`}>
+        <button type="button" className="logOut" onClick={logOut}>
+          <img src={LogOutSVG} alt="Encerra sessão" />
+        </button>
+        <p>{user.name}</p>
+        <p>{user.email}</p>
+        <p>{user.church}</p>
+      </div>
     </div>
   );
 }
+
+UserInfo.propTypes = {
+  menuOpen: PropTypes.bool,
+}.isRequired;
 
 export default UserInfo;

@@ -44,13 +44,13 @@ function Register({
     if (userLocal.password !== checkPassword) return showErrorMessage(errorClass, 'As senhas não coincidem');
     if (userLocal.church === 'Selecione a igreja') return showErrorMessage(errorClass, 'Selecione uma igreja');
     
-    const message = requestRegisterUser(userWithoutCheckPassword);
-    if (message) {
-      showErrorMessage(errorClass, message);
+    const response = requestRegisterUser(userWithoutCheckPassword);
+    if (response.errorMsg) {
+      showErrorMessage(errorClass, response);
     } else {
       setUserLocal(userDefault);
-      const response = requestLogin(userWithoutCheckPassword);
-      setUser(response);
+      const responseLogin = requestLogin(response.user);
+      setUser(responseLogin.user);
     }
   };
 

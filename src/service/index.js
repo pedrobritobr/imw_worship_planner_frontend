@@ -21,7 +21,6 @@ export function requestLogin(user) {
     return response;
   } catch (error) {
     console.log(error);
-
     return { errorMsg: 'Erro ao pegar usuário no localStorage' };
   }
 }
@@ -31,20 +30,18 @@ export function requestLogout() {
     localStorage.removeItem('user');
     return null;
   } catch (error) {
+    console.log(error);
     return 'Erro ao remover usuário do localStorage';
   }
 }
 
 export function requestRegisterUser(user) {
   try {
-    console.log(user);
-
-    console.log('salvando usuario no localStorage');
     localStorage.setItem('db_user', JSON.stringify(user));
-    console.log('usuario salvo no localStorage');
-    return null;
+    return { user };
   } catch (error) {
-    return 'Erro ao inserir usuário no localStorage';
+    console.log(error);
+    return { errorMsg: 'Erro ao inserir usuário no localStorage' }
   }
 }
 

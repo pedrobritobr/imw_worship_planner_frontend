@@ -5,28 +5,26 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  gap: 50px;
+  height: 45px;
 }
 
 .Menu .hamburger {
+  display: flex;
+  flex-direction: column;
   background: none;
   border: none;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  transform: scale(0.7);
   width: 0;
+  margin-right: 45px;
+  transform: scale(0.7);
 }
 
 .Menu .menu-container {
-  background-color: #091d2df5;
-  box-shadow: 0 4px 6px #0000001a;
-  border-radius: 5px;
+  width: 98%;
+  height: -webkit-fill-available;
   opacity: 0;
-  transform-origin: top left;
   transition: opacity 0.3s ease, transform 0.3s ease;
   pointer-events: none;
-  width: 70vw;
   z-index: 1;
 }
 
@@ -55,20 +53,10 @@
 }
 
 .Menu .user-not-logged {
-  width: 70vw;
-  position: absolute;
-  background-color: #091d2df5;
-  top: 0;
+  width: inherit;
   background-color: #091d2df5;
   box-shadow: 0 4px 6px #0000001f;
   border-radius: 5px;
-}
-
-.Menu .user-logged {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  height: 45px;
 }
 
 .Menu .menu-item h4 {

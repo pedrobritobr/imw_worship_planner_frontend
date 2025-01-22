@@ -46,9 +46,9 @@ function UserInfo({ menuOpen }) {
         <button type="button" className="logOut" onClick={logOut}>
           <img src={LogOutSVG} alt="Encerra sessão" />
         </button>
-        <p>{user.name}</p>
-        <p>{user.email}</p>
-        <p>{user.church}</p>
+        <p className="user_name">{user.name}</p>
+        <p className="user_email">{user.email}</p>
+        <p className="user_church">{user.church}</p>
       </div>
     </div>
   );

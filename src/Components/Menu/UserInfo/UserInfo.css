@@ -28,9 +28,18 @@
 }
 
 .UserInfo .user-info {
-  display: flex;
+  display: grid;
+  grid-template-columns: 0.5fr 2.5fr;
+  grid-template-rows: 0.2fr 0.2fr 0.2fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "logOut user_name"
+    "logOut user_email"
+    "logOut user_church";
+  align-items: center;
   background: linear-gradient(90deg, #031E36 0%, #02132A 100%);
-  padding: 15px;
+  padding: 5px 15px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -48,4 +57,33 @@
 .UserInfo .user-info.hide {
   opacity: 0;
   pointer-events: none;
+}
+
+.UserInfo p {
+  color: white;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+.UserInfo .logOut {
+  grid-area: logOut;
+}
+
+.UserInfo .user_name {
+  grid-area: user_name;
+  margin: 0;
+  padding: 0;
+}
+
+.UserInfo .user_email {
+  grid-area: user_email;
+  margin: 0;
+  padding: 0;
+}
+
+.UserInfo .user_church {
+  grid-area: user_church;
+  margin: 0;
+  padding: 0;
 }

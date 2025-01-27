@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 
@@ -16,7 +17,7 @@ const userDefault = {
 function Login({
   className,
 }) {
-  const { setUser } = useContext(UserContext);
+  const { logIn } = useContext(UserContext);
   const [userLocal, setUserLocal] = useState(userDefault);
 
   const handleUserChange = (event) => {
@@ -24,17 +25,16 @@ function Login({
     setUserLocal({ ...userLocal, [name]: value });
   };
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
     showErrorMessage('.login-error-message', '');
 
-    const response = requestLogin(userLocal);
-
+    const response = await requestLogin(userLocal);
     if (response.errorMsg) {
       showErrorMessage('.login-error-message', response.errorMsg);
     } else {
-      setUserLocal(userDefault);
-      setUser(response.user);
+      const { message } = response.data;
+      logIn(message);
     }
   };
 

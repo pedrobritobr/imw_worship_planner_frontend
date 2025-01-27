@@ -26,7 +26,7 @@ const userDefault = {
 function Register({
   className,
 }) {
-  const { setUser } = useContext(UserContext);
+  const { logIn } = useContext(UserContext);
   const [userLocal, setUserLocal] = useState(userDefault);
 
   const handleUserChange = (event) => {
@@ -34,7 +34,7 @@ function Register({
     setUserLocal({ ...userLocal, [name]: value });
   }
 
-  const handleRegister = (event) => {
+  const handleRegister = async (event) => {
     event.preventDefault();
     const errorClass = '.register-error-message';
     showErrorMessage(errorClass, '');
@@ -44,13 +44,12 @@ function Register({
     if (userLocal.password !== checkPassword) return showErrorMessage(errorClass, 'As senhas não coincidem');
     if (userLocal.church === 'Selecione a igreja') return showErrorMessage(errorClass, 'Selecione uma igreja');
     
-    const response = requestRegisterUser(userWithoutCheckPassword);
+    const response = await requestRegisterUser(userWithoutCheckPassword);
     if (response.errorMsg) {
-      showErrorMessage(errorClass, response);
+      showErrorMessage(errorClass, response.errorMsg);
     } else {
-      setUserLocal(userDefault);
-      const responseLogin = requestLogin(response.user);
-      setUser(responseLogin.user);
+      const { message } = response.data;
+      logIn(message);
     }
   };
 

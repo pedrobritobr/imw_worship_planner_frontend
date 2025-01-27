@@ -1,4 +1,5 @@
 import React, { createContext, useState, useMemo } from 'react';
+import { jwtDecode } from 'jwt-decode';
 
 import PropTypes from 'prop-types';
 
@@ -18,10 +19,18 @@ export function UserProvider({ children }) {
     setUser(userDefault);
   };
 
+  const logIn = (token) => {
+    const decodedToken = jwtDecode(token);
+    const { data } = decodedToken;
+
+    localStorage.setItem('user', JSON.stringify(data));
+    setUser(data);
+  };
+
   const variables = {
     user,
-    setUser,
     logOut,
+    logIn,
   };
 
   const value = useMemo(() => (variables), Object.values(variables));

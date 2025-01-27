@@ -4,7 +4,7 @@ import './UserInfo.css';
 
 import { UserContext } from '../../../Context/UserContext';
 
-import { exportData, importData } from '../../../service';
+import { uploadPlannerToCloud, downloadPlannerFromCloud } from '../../../service';
 
 import HideUserSVG from '../../../assets/hide-user-svgrepo-com.svg';
 import ShowUserSVG from '../../../assets/show-user-svgrepo-com.svg';
@@ -34,10 +34,10 @@ function UserInfo({ menuOpen }) {
               : <img src={ShowUserSVG} alt="Exibir informações do usuário" />
           }
         </button>
-        <button type="button" className="cloud-button" onClick={exportData}>
+        <button type="button" className="cloud-button" onClick={uploadPlannerToCloud}>
           <img src={UploadSVG} alt="Enviar os dados para nuvem" />
         </button>
-        <button type="button" className="cloud-button" onClick={importData}>
+        <button type="button" className="cloud-button" onClick={() => downloadPlannerFromCloud(user)}>
           <img src={DownloadSVG} alt="Baixar os dados da nuvem" />
         </button>
       </div>

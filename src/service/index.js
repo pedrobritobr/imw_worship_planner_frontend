@@ -1,4 +1,5 @@
 /* eslint-disable */
+import axios from 'axios';
 
 const validateUser = (user) => {
   const userDb = JSON.parse(localStorage.getItem('db_user'));
@@ -10,18 +11,17 @@ const validateUser = (user) => {
   return { user: userData };
 }
 
-export function requestLogin(user) {
+export async function requestLogin(user) {
   try {
-    const response = validateUser(user);
-    if (response.errorMsg) {
-      return response;
-    }
-
-    localStorage.setItem('user', JSON.stringify(response.user));
+    const headers = {
+      keyword: import.meta.env.VITE_PLANNER_KEYWORD,
+    };
+    const url = `${import.meta.env.VITE_PLANNER_URL}/user/login`;
+    const response = await axios.post(url, user, { headers });
     return response;
   } catch (error) {
-    console.log(error);
-    return { errorMsg: 'Erro ao pegar usuário no localStorage' };
+    const errorMsg = error?.response?.data?.error || "Ocorreu um erro inesperado. Tente novamente mais tarde.";
+    return { errorMsg };
   }
 }
 
@@ -35,25 +35,29 @@ export function requestLogout() {
   }
 }
 
-export function requestRegisterUser(user) {
+export async function requestRegisterUser(user) {
   try {
-    localStorage.setItem('db_user', JSON.stringify(user));
-    return { user };
+    const headers = {
+      keyword: import.meta.env.VITE_PLANNER_KEYWORD,
+    };
+    const url = `${import.meta.env.VITE_PLANNER_URL}/user/`;
+    const response = await axios.post(url, user, { headers });
+    return response;
   } catch (error) {
-    console.log(error);
-    return { errorMsg: 'Erro ao inserir usuário no localStorage' }
+    const errorMsg = error?.response?.data?.error || "Ocorreu um erro inesperado. Tente novamente mais tarde.";
+    return { errorMsg };
   }
 }
 
-
-export async function exportData(data) {
+export async function uploadPlannerToCloud() {
   try {
-    console.log('data>> ', data);
-    return;
+    const worshipPlanner = JSON.parse(localStorage.getItem('imwWorshipPlanner'));
+    console.log('worshipPlanner>> ', {data: worshipPlanner});
+
     const headers = { keyword: import.meta.env.VITE_PLANNER_KEYWORD };
     const url = `${import.meta.env.VITE_PLANNER_URL}/planner`;
 
-    await axios.post(url, data, { headers });
+    await axios.post(url, {data: worshipPlanner}, { headers });
     const { alert } = window;
     alert('Cronograma enviado com sucesso!');
   } catch (error) {
@@ -61,13 +65,17 @@ export async function exportData(data) {
   }
 };
 
-export async function importData() {
+export async function downloadPlannerFromCloud(user) {
   try {
     const headers = { keyword: import.meta.env.VITE_PLANNER_KEYWORD };
-    const url = `${import.meta.env.VITE_PLANNER_URL}/last-planner`;
+    const url = `${import.meta.env.VITE_PLANNER_URL}/planner`;
 
-    const response = await axios.get(url, { headers });
-    return response.data;
+    console.log('headers>> ', headers);
+
+    const response = await axios.get(url, {headers, data: {user_email: user.email}});
+    console.log('response>> ', response.data);
+
+    return;
     const { selectedDate: date, activities: acts, ministerSelected: minister } = response.data;
     setSelectedDate(new Date(date));
     setActivities(acts);

@@ -11,6 +11,7 @@ import ActionsButton from './Components/ActionsButton';
 import Menu from './Components/Menu';
 
 import { UserProvider, UserContext } from './Context/UserContext';
+import { PlannerProvider, PlannerContext } from './Context/PlannerContext';
 
 import {
   getWeekDay,
@@ -43,7 +44,7 @@ const scrollToTop = () => {
 };
 
 function AppContent() {
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     const userLocalStorage = localStorage.getItem('user');
@@ -53,13 +54,15 @@ function AppContent() {
   const ref = useRef(null);
   const [showScreeshotTable, setShowScreeshotTable] = useState(false);
   const imwWorshipPlannerStorage = JSON.parse(localStorage.getItem('imwWorshipPlanner')) || {};
+  const { planner } = imwWorshipPlannerStorage;
+
   const {
     activities: activitiesLocalStorage,
     selectedDate: dateLocalStorage,
     ministerSelected: ministerLocalStorage,
     worshipTitle: worshipTitleLocalStorage,
     churchName: churchNameLocalStorage,
-  } = imwWorshipPlannerStorage;
+  } = planner;
   const dateLocalStorageDefault = dateLocalStorage ? new Date(dateLocalStorage) : new Date();
 
   const [activities, setActivities] = useState(activitiesLocalStorage || defaultActivities);
@@ -95,13 +98,16 @@ function AppContent() {
       setShowScreeshotTable(false);
     }
     const imwWorshipPlanner = {
-      activities,
-      selectedDate,
-      ministerSelected,
-      worshipTitle,
+      user,
+      planner: {
+        activities,
+        selectedDate,
+        ministerSelected,
+        worshipTitle,
+      }
     };
     localStorage.setItem('imwWorshipPlanner', JSON.stringify(imwWorshipPlanner));
-  }, [activities, selectedDate, ministerSelected, worshipTitle, showScreeshotTable]);
+  }, [activities, selectedDate, ministerSelected, worshipTitle, showScreeshotTable, user]);
 
   return (
     <div className="App">
@@ -173,7 +179,9 @@ function AppContent() {
 function App() {
   return (
     <UserProvider>
-      <AppContent />
+      <PlannerProvider>
+        <AppContent />
+      </PlannerProvider>
     </UserProvider>
   );
 }

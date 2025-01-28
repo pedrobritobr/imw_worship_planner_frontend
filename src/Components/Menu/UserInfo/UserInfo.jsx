@@ -34,10 +34,10 @@ function UserInfo({ menuOpen }) {
               : <img src={ShowUserSVG} alt="Exibir informações do usuário" />
           }
         </button>
-        <button type="button" className="cloud-button" onClick={uploadPlannerToCloud}>
+        <button type="button" className="cloud-button" onClick={() => uploadPlannerToCloud(user.token)}>
           <img src={UploadSVG} alt="Enviar os dados para nuvem" />
         </button>
-        <button type="button" className="cloud-button" onClick={() => downloadPlannerFromCloud(user)}>
+        <button type="button" className="cloud-button" onClick={() => downloadPlannerFromCloud(user.token)}>
           <img src={DownloadSVG} alt="Baixar os dados da nuvem" />
         </button>
       </div>

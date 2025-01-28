@@ -44,25 +44,26 @@ const scrollToTop = () => {
 };
 
 function AppContent() {
-  const { user, setUser } = useContext(UserContext);
+  const { user, logIn } = useContext(UserContext);
 
-  useEffect(() => {
-    const userLocalStorage = localStorage.getItem('user');
-    userLocalStorage && setUser(JSON.parse(userLocalStorage));
-  }, [setUser]);
+  // useEffect(() => {
+  //   const userLocalStorage = localStorage.getItem('user');
+  //   userLocalStorage && logIn(JSON.parse(userLocalStorage));
+  // }, [logIn]);
 
   const ref = useRef(null);
   const [showScreeshotTable, setShowScreeshotTable] = useState(false);
   const imwWorshipPlannerStorage = JSON.parse(localStorage.getItem('imwWorshipPlanner')) || {};
   const { planner } = imwWorshipPlannerStorage;
-
+  console.log('planner>>', planner);
+  
   const {
     activities: activitiesLocalStorage,
     selectedDate: dateLocalStorage,
     ministerSelected: ministerLocalStorage,
     worshipTitle: worshipTitleLocalStorage,
     churchName: churchNameLocalStorage,
-  } = planner;
+  } = planner || {};
   const dateLocalStorageDefault = dateLocalStorage ? new Date(dateLocalStorage) : new Date();
 
   const [activities, setActivities] = useState(activitiesLocalStorage || defaultActivities);

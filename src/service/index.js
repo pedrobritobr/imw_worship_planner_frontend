@@ -1,16 +1,6 @@
 /* eslint-disable */
 import axios from 'axios';
 
-const validateUser = (user) => {
-  const userDb = JSON.parse(localStorage.getItem('db_user'));
-
-  if (user.email !== userDb.email) return { errorMsg: 'Email inválido' };
-  if (user.password !== userDb.password) return { errorMsg:'Senha inválida' };
-
-  const { password, ...userData } = userDb;
-  return { user: userData };
-}
-
 export async function requestLogin(user) {
   try {
     const headers = {
@@ -49,13 +39,14 @@ export async function requestRegisterUser(user) {
   }
 }
 
-export async function uploadPlannerToCloud() {
+export async function uploadPlannerToCloud(token) {
   try {
     const worshipPlanner = JSON.parse(localStorage.getItem('imwWorshipPlanner'));
-    console.log('worshipPlanner>> ', {data: worshipPlanner});
-
-    const headers = { keyword: import.meta.env.VITE_PLANNER_KEYWORD };
-    const url = `${import.meta.env.VITE_PLANNER_URL}/planner`;
+    const headers = {
+      keyword: import.meta.env.VITE_PLANNER_KEYWORD,
+      Authorization: token,
+    };
+    const url = `${import.meta.env.VITE_PLANNER_URL}/planner/`;
 
     await axios.post(url, {data: worshipPlanner}, { headers });
     const { alert } = window;
@@ -65,14 +56,17 @@ export async function uploadPlannerToCloud() {
   }
 };
 
-export async function downloadPlannerFromCloud(user) {
+export async function downloadPlannerFromCloud(token) {
   try {
-    const headers = { keyword: import.meta.env.VITE_PLANNER_KEYWORD };
-    const url = `${import.meta.env.VITE_PLANNER_URL}/planner`;
+    const headers = {
+      keyword: import.meta.env.VITE_PLANNER_KEYWORD,
+      Authorization: token,
+    };
+    const url = `${import.meta.env.VITE_PLANNER_URL}/planner/`;
 
     console.log('headers>> ', headers);
 
-    const response = await axios.get(url, {headers, data: {user_email: user.email}});
+    const response = await axios.get(url, {headers});
     console.log('response>> ', response.data);
 
     return;

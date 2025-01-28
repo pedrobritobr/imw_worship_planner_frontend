@@ -24,7 +24,7 @@ export function UserProvider({ children }) {
     const { data } = decodedToken;
 
     localStorage.setItem('user', JSON.stringify(data));
-    setUser(data);
+    setUser({ ...data, token });
   };
 
   const variables = {

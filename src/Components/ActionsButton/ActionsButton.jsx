@@ -11,7 +11,6 @@ function ActionsButton({ setShowScreeshotTable }) {
 
   const handleDeleteLocalStorage = () => {
     localStorage.removeItem('imwWorshipPlanner');
-    window.location.reload();
   };
 
   return (

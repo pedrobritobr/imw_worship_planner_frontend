@@ -48,6 +48,12 @@ export async function uploadPlannerToCloud(token) {
     };
     const url = `${import.meta.env.VITE_PLANNER_URL}/planner/`;
 
+    // console.log('worshipPlanner>> ', worshipPlanner.planner);
+    if (!worshipPlanner) {
+      const { alert } = window;
+      alert('Não há cronograma para ser enviado.');
+    }
+
     await axios.post(url, {data: worshipPlanner}, { headers });
     const { alert } = window;
     alert('Cronograma enviado com sucesso!');

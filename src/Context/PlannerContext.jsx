@@ -3,35 +3,29 @@ import React, { createContext, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 const defaultPlanner = {
-  user: {
-    name: '',
-    email: '',
-    church: '',
-  },
-  planner: {
-    activities: [
-      {
-        id: '',
-        hour: '',
-        activityTitle: '',
-        duration: '',
-        responsible: '',
-      },
-    ],
-    selectedDate: '',
-    ministerSelected: '',
-    worshipTitle: '',
-  },
+  activities: [
+    {
+      id: '',
+      hour: '',
+      activityTitle: '',
+      duration: '',
+      responsible: '',
+    },
+  ],
+  selectedDate: new Date(),
+  ministerSelected: '',
+  worshipTitle: '',
+  churchName: '',
 };
 
 export const PlannerContext = createContext();
 
 export function PlannerProvider({ children }) {
-  const [planner, setPanner] = useState(defaultPlanner);
+  const [planner, setPlanner] = useState(defaultPlanner);
 
   const variables = {
     planner,
-    setPanner,
+    setPlanner,
   };
 
   const value = useMemo(() => (variables), Object.values(variables));

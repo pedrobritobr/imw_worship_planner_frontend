@@ -2,9 +2,10 @@
 17-01 / DONE / Ao user logado, exibir botoes de nuvem e limpar no menu
 20-01 / DONE / 22-01 / Estilizar menu user logado
 
+23-01 / TODO / 23-01 WIP / Adicionar roteiro como estado global do app
 17-01 / TODO / Inserir animação slider menu hamburguer
 21-01 / TODO / Estilizar botao mostrar senha
 22-01 / TODO / refatorar css login/register | mudar para grid | login/register com ENTER
 23-01 / TODO / Estilizar transição menu user logado-nao logado
-23-01 / TODO / 23-01 WIP / Adicionar roteiro como estado global do app
 27-01 / TODO / Animar tempo de espera
+28-01 / TODO / Criar validação para o cronograma antes de enviar para o back

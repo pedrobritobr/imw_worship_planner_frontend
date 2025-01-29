@@ -45,6 +45,7 @@ const scrollToTop = () => {
 
 function AppContent() {
   const { user, logIn } = useContext(UserContext);
+  const { planner, setPlanner } = useContext(PlannerContext);
 
   // useEffect(() => {
   //   const userLocalStorage = localStorage.getItem('user');
@@ -54,16 +55,15 @@ function AppContent() {
   const ref = useRef(null);
   const [showScreeshotTable, setShowScreeshotTable] = useState(false);
   const imwWorshipPlannerStorage = JSON.parse(localStorage.getItem('imwWorshipPlanner')) || {};
-  const { planner } = imwWorshipPlannerStorage;
-  console.log('planner>>', planner);
-  
+  const { planner: plannerLS } = imwWorshipPlannerStorage;
+
   const {
     activities: activitiesLocalStorage,
     selectedDate: dateLocalStorage,
     ministerSelected: ministerLocalStorage,
     worshipTitle: worshipTitleLocalStorage,
     churchName: churchNameLocalStorage,
-  } = planner || {};
+  } = plannerLS || {};
   const dateLocalStorageDefault = dateLocalStorage ? new Date(dateLocalStorage) : new Date();
 
   const [activities, setActivities] = useState(activitiesLocalStorage || defaultActivities);
@@ -75,21 +75,27 @@ function AppContent() {
   const handleDateChange = (event) => {
     const newDate = new Date(event.target.value);
     newDate.setHours(newDate.getHours() + 3);
-    setSelectedDate(newDate);
+    setPlanner({ ...planner, selectedDate: newDate });
   };
 
   const handleWorshipTitleChange = (event) => {
     const { value } = event.target;
-    setWorshipTitle(value.length > 0 ? value : 'Culto de Celebração');
+    setPlanner({ ...planner, worshipTitle: value });
   };
 
   const handleChurchNameChange = (event) => {
     const { value } = event.target;
-    setChurchName(value.length > 0 ? value : 'Igreja Metodista Wesleyana');
+    setPlanner({ ...planner, churchName: value });
   };
 
+  const formatDate = (date) => {
+    console.log('date>', date);
+    
+    return date.toISOString().split('T')[0];
+  }
+
   useEffect(() => {
-    sendLocationToAnalytics(document.title, window.location.href);
+    // sendLocationToAnalytics(document.title, window.location.href);
   }, []);
 
   useEffect(() => {
@@ -122,14 +128,16 @@ function AppContent() {
           <input
             type="text"
             id="churchNameInput"
-            value={churchName}
+            name="churchName"
+            value={planner.churchName}
             onChange={handleChurchNameChange}
             placeholder="Nome da igreja"
           />
           <input
             type="text"
             id="worshipTitleInput"
-            value={worshipTitle}
+            name="worshipTitle"
+            value={planner.worshipTitle}
             onChange={handleWorshipTitleChange}
             placeholder="Título do culto"
           />
@@ -138,10 +146,10 @@ function AppContent() {
           <input
             type="date"
             id="customDateInput"
-            value={selectedDate.toISOString().split('T')[0]}
+            value={formatDate(planner.selectedDate)}
             onChange={handleDateChange}
           />
-          <h4>{getWeekDay(selectedDate)}</h4>
+          <h4>{getWeekDay(planner.selectedDate)}</h4>
         </label>
         <label htmlFor="ministerInput">
           <h4> Ministro:</h4>

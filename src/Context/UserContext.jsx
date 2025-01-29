@@ -23,8 +23,9 @@ export function UserProvider({ children }) {
     const decodedToken = jwtDecode(token);
     const { data } = decodedToken;
 
-    localStorage.setItem('user', JSON.stringify(data));
-    setUser({ ...data, token });
+    const userData = { ...data, token };
+    localStorage.setItem('user', JSON.stringify(userData));
+    setUser(userData);
   };
 
   const variables = {

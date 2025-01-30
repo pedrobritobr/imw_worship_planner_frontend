@@ -1,18 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { v4 as uuidv4 } from 'uuid';
+/* eslint-disable */
+import React, { useContext } from 'react';
 
 import './Planner.css';
+
+import { PlannerContext } from '../../Context/PlannerContext';
 
 import { setHourForActivity as setHourForNewActivity, columnsHeader, formatMinutes } from '../../helpers';
 import { updateHourFromActivity, getMinutesBetweenActivities, calculateDurationRemain } from './helpers';
 
 import Activity from './Activity';
 
-function Planner({
-  activities,
-  setActivities,
-}) {
+function Planner() {
+  const { planner, setPlanner } = useContext(PlannerContext);
+  const { activities } = planner;
+
   const emptyActivity = {
     hour: '',
     activityTitle: '',
@@ -58,7 +59,8 @@ function Planner({
       return activity;
     });
 
-    setActivities(activitiesUpdatedByHour || newEntries);
+    const newEntrie = activitiesUpdatedByHour || newEntries;
+    setPlanner({...planner, activities: newEntrie})
   };
 
   const addNewActivity = (actualActivity) => {
@@ -68,14 +70,14 @@ function Planner({
 
     const newActivity = {
       ...emptyActivity,
-      id: uuidv4(),
+      id: `activity${activities.length}`,
       hour: setHourForNewActivity(actualActivity.hour, actualActivity.duration),
       duration: shouldCalculateDuration ? calculateDurationRemain(activities, true) : 0,
     };
 
     const activitiesCp = [...activities];
     activitiesCp.splice(actualActivityIndex + 1, 0, newActivity);
-    setActivities(activitiesCp);
+    setPlanner({...planner, activities: activitiesCp})
   };
 
   const removeActivity = (activity) => {
@@ -84,7 +86,7 @@ function Planner({
       return;
     }
     const newActivities = activities.filter((a) => a.id !== activity.id);
-    setActivities(newActivities);
+    setPlanner({...planner, activities: newActivities})
   };
 
   return (
@@ -108,12 +110,5 @@ function Planner({
     </div>
   );
 }
-
-Planner.propTypes = {
-  columnsHeader: PropTypes.arrayOf(PropTypes.string),
-  activities: PropTypes.arrayOf(PropTypes.object),
-  setActivities: PropTypes.func,
-  lastActivity: PropTypes.object,
-}.isRequired;
 
 export default Planner;

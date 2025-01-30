@@ -1,6 +1,24 @@
 /* eslint-disable */
 import axios from 'axios';
 
+export async function sendLocationToAnalytics(pageTitle, location) {
+  try {
+    const headers = {
+      keyword: import.meta.env.VITE_BRITO_VISITORS_ANALYTICS_KEYWORD,
+    };
+    const data = {
+      origin: location,
+      pageTitle,
+    };
+    const url = import.meta.env.VITE_BRITO_VISITORS_ANALYTICS_URL;
+
+    await axios.post(url, data, { headers });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
 export async function requestLogin(user) {
   try {
     const headers = {
@@ -48,7 +66,6 @@ export async function uploadPlannerToCloud(token) {
     };
     const url = `${import.meta.env.VITE_PLANNER_URL}/planner/`;
 
-    // console.log('worshipPlanner>> ', worshipPlanner.planner);
     if (!worshipPlanner) {
       const { alert } = window;
       alert('Não há cronograma para ser enviado.');
@@ -70,16 +87,9 @@ export async function downloadPlannerFromCloud(token) {
     };
     const url = `${import.meta.env.VITE_PLANNER_URL}/planner/`;
 
-    console.log('headers>> ', headers);
-
     const response = await axios.get(url, {headers});
-    console.log('response>> ', response.data);
 
-    return;
-    const { selectedDate: date, activities: acts, ministerSelected: minister } = response.data;
-    setSelectedDate(new Date(date));
-    setActivities(acts);
-    setMinisterSelected(minister);
+    return response.data;
   } catch (error) {
     console.error(error);
   }

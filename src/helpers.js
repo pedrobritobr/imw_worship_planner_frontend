@@ -47,47 +47,11 @@ const setHourForActivity = (horaBase, minutosASomar) => {
 const formatMinutes = (minutes) => Math.max(minutes, 0).toString().padStart(2, '0');
 
 const columnsHeader = [
-  {
-    text: 'Hora',
-    style: {
-      // margin: '2px 20px 2px 10px',
-    },
-  },
-  {
-    text: 'Atividade',
-    style: {
-      // margin: '2px 20px 2px 10px',
-    },
-  },
-  {
-    text: 'Duração',
-    style: {
-      // margin: '2px 0px',
-    },
-  },
-  {
-    text: 'Responsável',
-    style: {
-      // margin: '2px 20px 2px 10px',
-    },
-  },
+  { text: 'Hora' },
+  { text: 'Atividade' },
+  { text: 'Duração' },
+  { text: 'Responsável' },
 ];
-
-const firstActivity = {
-  id: 'firstActivity',
-  hour: '19:00',
-  activityTitle: 'Cronômetro',
-  duration: '5',
-  responsible: 'Rede Connect',
-};
-const lastActivity = {
-  id: 'lastActivity',
-  hour: '21:00',
-  activityTitle: 'Encerramento',
-  duration: '0',
-  responsible: '--',
-};
-const defaultActivities = [firstActivity, lastActivity];
 
 const pngConfigs = {
   html2CanvasOptions: {
@@ -106,6 +70,10 @@ const showPassword = (elementId) => {
   passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
 };
 
+const scrollToTop = () => {
+  window.scrollTo(0, 0);
+};
+
 export {
   screenshotFilename,
   capitalizeFirstLetter,
@@ -115,7 +83,7 @@ export {
   formatMinutes,
   showErrorMessage,
   showPassword,
+  scrollToTop,
   columnsHeader,
-  defaultActivities,
   pngConfigs,
 };

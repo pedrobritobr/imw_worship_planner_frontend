@@ -3,7 +3,7 @@ import { jwtDecode } from 'jwt-decode';
 
 import PropTypes from 'prop-types';
 
-const userDefault = {
+export const userDefault = {
   name: '',
   email: '',
   church: '',

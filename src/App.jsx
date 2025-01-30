@@ -3,7 +3,6 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
 
 import { exportComponentAsPNG } from 'react-component-export-image';
-import axios from 'axios';
 
 import Planner from './Components/Planner';
 import ScreenshotTable from './Components/ScreenshotTable';
@@ -13,35 +12,16 @@ import Menu from './Components/Menu';
 import { UserProvider, UserContext } from './Context/UserContext';
 import { PlannerProvider, PlannerContext } from './Context/PlannerContext';
 
+import { sendLocationToAnalytics } from './service'
+
 import {
   getWeekDay,
   screenshotFilename,
   pngConfigs,
-  defaultActivities,
+  scrollToTop,
 } from './helpers';
 
 import './App.css';
-
-const sendLocationToAnalytics = async (pageTitle, location) => {
-  try {
-    const headers = {
-      keyword: import.meta.env.VITE_BRITO_VISITORS_ANALYTICS_KEYWORD,
-    };
-    const data = {
-      origin: location,
-      pageTitle,
-    };
-    const url = import.meta.env.VITE_BRITO_VISITORS_ANALYTICS_URL;
-
-    await axios.post(url, data, { headers });
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const scrollToTop = () => {
-  window.scrollTo(0, 0);
-};
 
 function AppContent() {
   const { user, logIn } = useContext(UserContext);
@@ -54,23 +34,11 @@ function AppContent() {
 
   const ref = useRef(null);
   const [showScreeshotTable, setShowScreeshotTable] = useState(false);
-  const imwWorshipPlannerStorage = JSON.parse(localStorage.getItem('imwWorshipPlanner')) || {};
-  const { planner: plannerLS } = imwWorshipPlannerStorage;
 
-  const {
-    activities: activitiesLocalStorage,
-    selectedDate: dateLocalStorage,
-    ministerSelected: ministerLocalStorage,
-    worshipTitle: worshipTitleLocalStorage,
-    churchName: churchNameLocalStorage,
-  } = plannerLS || {};
-  const dateLocalStorageDefault = dateLocalStorage ? new Date(dateLocalStorage) : new Date();
-
-  const [activities, setActivities] = useState(activitiesLocalStorage || defaultActivities);
-  const [selectedDate, setSelectedDate] = useState(dateLocalStorageDefault);
-  const [ministerSelected, setMinisterSelected] = useState(ministerLocalStorage || '');
-  const [worshipTitle, setWorshipTitle] = useState(worshipTitleLocalStorage || 'Culto de Celebração');
-  const [churchName, setChurchName] = useState(churchNameLocalStorage || 'Igreja Metodista Wesleyana');
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setPlanner({ ...planner, [name]: value });
+  }
 
   const handleDateChange = (event) => {
     const newDate = new Date(event.target.value);
@@ -78,43 +46,18 @@ function AppContent() {
     setPlanner({ ...planner, selectedDate: newDate });
   };
 
-  const handleWorshipTitleChange = (event) => {
-    const { value } = event.target;
-    setPlanner({ ...planner, worshipTitle: value });
-  };
-
-  const handleChurchNameChange = (event) => {
-    const { value } = event.target;
-    setPlanner({ ...planner, churchName: value });
-  };
-
-  const formatDate = (date) => {
-    console.log('date>', date);
-    
-    return date.toISOString().split('T')[0];
-  }
+  const formatDate = (date) => date.toISOString().split('T')[0];
 
   useEffect(() => {
     // sendLocationToAnalytics(document.title, window.location.href);
   }, []);
 
-  useEffect(() => {
-    if (showScreeshotTable) {
-      scrollToTop();
-      exportComponentAsPNG(ref, { fileName: screenshotFilename(selectedDate), ...pngConfigs });
-      setShowScreeshotTable(false);
-    }
-    const imwWorshipPlanner = {
-      user,
-      planner: {
-        activities,
-        selectedDate,
-        ministerSelected,
-        worshipTitle,
-      }
-    };
-    localStorage.setItem('imwWorshipPlanner', JSON.stringify(imwWorshipPlanner));
-  }, [activities, selectedDate, ministerSelected, worshipTitle, showScreeshotTable, user]);
+  const downloadPlanner = () => {
+    setShowScreeshotTable(true);
+    scrollToTop();
+    exportComponentAsPNG(ref, { fileName: screenshotFilename(selectedDate), ...pngConfigs });
+    setShowScreeshotTable(false);
+  };
 
   return (
     <div className="App">
@@ -130,7 +73,7 @@ function AppContent() {
             id="churchNameInput"
             name="churchName"
             value={planner.churchName}
-            onChange={handleChurchNameChange}
+            onChange={handleInputChange}
             placeholder="Nome da igreja"
           />
           <input
@@ -138,7 +81,7 @@ function AppContent() {
             id="worshipTitleInput"
             name="worshipTitle"
             value={planner.worshipTitle}
-            onChange={handleWorshipTitleChange}
+            onChange={handleInputChange}
             placeholder="Título do culto"
           />
         </label>
@@ -146,6 +89,7 @@ function AppContent() {
           <input
             type="date"
             id="customDateInput"
+            name="selectedDate"
             value={formatDate(planner.selectedDate)}
             onChange={handleDateChange}
           />
@@ -156,28 +100,21 @@ function AppContent() {
           <input
             type="text"
             id="ministerInput"
-            value={ministerSelected}
-            onChange={(e) => setMinisterSelected(e.target.value)}
+            name="ministerSelected"
+            value={planner.ministerSelected}
+            onChange={handleInputChange}
+            placeholder="Nome do ministro"
           />
         </label>
-        <Planner
-          activities={activities}
-          setActivities={setActivities}
-        />
+        <Planner />
       </div>
-      <button type="button" className="download-button" onClick={() => setShowScreeshotTable(true)}>
+      <button type="button" className="download-button" onClick={downloadPlanner}>
         Baixar Cronograma
       </button>
       { showScreeshotTable && (
       <div className="hidden">
         <div className="screenshot-table-container" ref={ref}>
-          <ScreenshotTable
-            selectedDate={selectedDate}
-            activities={activities}
-            ministerSelected={ministerSelected}
-            worshipTitle={worshipTitle}
-            churchName={churchName}
-          />
+          <ScreenshotTable />
         </div>
       </div>
       )}

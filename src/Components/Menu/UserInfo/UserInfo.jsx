@@ -1,8 +1,10 @@
+/* eslint-disable */
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './UserInfo.css';
 
 import { UserContext } from '../../../Context/UserContext';
+import { PlannerContext } from '../../../Context/PlannerContext';
 
 import { uploadPlannerToCloud, downloadPlannerFromCloud } from '../../../service';
 
@@ -14,6 +16,7 @@ import LogOutSVG from '../../../assets/logout-svgrepo-com.svg';
 
 function UserInfo({ menuOpen }) {
   const { user, logOut } = useContext(UserContext);
+  const { setPlanner } = useContext(PlannerContext);
   const [showInfo, setShowInfo] = useState(false);
 
   useEffect(() => {
@@ -22,6 +25,12 @@ function UserInfo({ menuOpen }) {
 
   const handleButtonClick = () => {
     setShowInfo(!showInfo);
+  };
+
+  const getPlanner = async () => {
+    const planner = await downloadPlannerFromCloud(user.token);
+    planner.selectedDate = new Date(planner.selectedDate);
+    setPlanner(planner);
   };
 
   return (
@@ -37,7 +46,7 @@ function UserInfo({ menuOpen }) {
         <button type="button" className="cloud-button" onClick={() => uploadPlannerToCloud(user.token)}>
           <img src={UploadSVG} alt="Enviar os dados para nuvem" />
         </button>
-        <button type="button" className="cloud-button" onClick={() => downloadPlannerFromCloud(user.token)}>
+        <button type="button" className="cloud-button" onClick={getPlanner}>
           <img src={DownloadSVG} alt="Baixar os dados da nuvem" />
         </button>
       </div>

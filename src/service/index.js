@@ -57,21 +57,20 @@ export async function requestRegisterUser(user) {
   }
 }
 
-export async function uploadPlannerToCloud(token) {
+export async function uploadPlannerToCloud(planner, token) {
   try {
-    const worshipPlanner = JSON.parse(localStorage.getItem('imwWorshipPlanner'));
     const headers = {
       keyword: import.meta.env.VITE_PLANNER_KEYWORD,
       Authorization: token,
     };
     const url = `${import.meta.env.VITE_PLANNER_URL}/planner/`;
 
-    if (!worshipPlanner) {
+    if (!planner) {
       const { alert } = window;
       alert('Não há cronograma para ser enviado.');
     }
 
-    await axios.post(url, {data: worshipPlanner}, { headers });
+    await axios.post(url, {data: planner}, { headers });
     const { alert } = window;
     alert('Cronograma enviado com sucesso!');
   } catch (error) {

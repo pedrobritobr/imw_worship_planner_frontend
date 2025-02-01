@@ -32,9 +32,15 @@ export const PlannerContext = createContext();
 export function PlannerProvider({ children }) {
   const [planner, setPlanner] = useState(defaultPlanner);
 
+  const storePlanner = (newPlanner) => {
+    const updatedPlanner = Object.keys(newPlanner).length === 0 ? defaultPlanner : newPlanner;
+    setPlanner(updatedPlanner);
+    localStorage.setItem('imwWorshipPlanner', JSON.stringify(updatedPlanner));
+  };
+
   const variables = {
     planner,
-    setPlanner,
+    setPlanner: storePlanner,
   };
 
   const value = useMemo(() => (variables), Object.values(variables));

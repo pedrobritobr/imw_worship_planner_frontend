@@ -16,7 +16,7 @@ import LogOutSVG from '../../../assets/logout-svgrepo-com.svg';
 
 function UserInfo({ menuOpen }) {
   const { user, logOut } = useContext(UserContext);
-  const { setPlanner } = useContext(PlannerContext);
+  const { planner, setPlanner } = useContext(PlannerContext);
   const [showInfo, setShowInfo] = useState(false);
 
   useEffect(() => {
@@ -25,6 +25,11 @@ function UserInfo({ menuOpen }) {
 
   const handleButtonClick = () => {
     setShowInfo(!showInfo);
+  };
+
+  const uploadPlanner = async () => {
+    const { creator, ...plannerWithoutCreator } = planner;
+    await uploadPlannerToCloud(plannerWithoutCreator, user.token);
   };
 
   const getPlanner = async () => {
@@ -43,7 +48,7 @@ function UserInfo({ menuOpen }) {
               : <img src={ShowUserSVG} alt="Exibir informações do usuário" />
           }
         </button>
-        <button type="button" className="cloud-button" onClick={() => uploadPlannerToCloud(user.token)}>
+        <button type="button" className="cloud-button" onClick={uploadPlanner}>
           <img src={UploadSVG} alt="Enviar os dados para nuvem" />
         </button>
         <button type="button" className="cloud-button" onClick={getPlanner}>

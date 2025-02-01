@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import trashBtnSvg from '../../assets/trash-bin-2-svgrepo-com.svg';
 import saveImageBtnSvg from '../../assets/image-svgrepo-com.svg';
 
+import { PlannerContext } from '../../Context/PlannerContext';
+
 import './ActionsButton.css';
 
 function ActionsButton({ setShowScreeshotTable }) {
+  const { setPlanner } = useContext(PlannerContext);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
-  const handleDeleteLocalStorage = () => {
-    localStorage.removeItem('imwWorshipPlanner');
-  };
+  const deletePlanner = () => setPlanner({});
 
   return (
     <div className="ActionsButton">
@@ -34,7 +35,7 @@ function ActionsButton({ setShowScreeshotTable }) {
                 type="button"
                 className="confirm-button"
                 onClick={() => {
-                  handleDeleteLocalStorage();
+                  deletePlanner();
                   setShowConfirmationModal(false);
                 }}
               >

@@ -27,10 +27,14 @@ function AppContent() {
   const { user, logIn } = useContext(UserContext);
   const { planner, setPlanner } = useContext(PlannerContext);
 
-  // useEffect(() => {
-  //   const userLocalStorage = localStorage.getItem('user');
-  //   userLocalStorage && logIn(JSON.parse(userLocalStorage));
-  // }, [logIn]);
+  useEffect(() => {
+    const userLocalStorage = localStorage.getItem('user');
+
+    if (!user.email && userLocalStorage) {
+      const userData = JSON.parse(userLocalStorage);
+      logIn(userData.token);
+    }
+  }, [user, logIn]);
 
   const ref = useRef(null);
   const [showScreeshotTable, setShowScreeshotTable] = useState(false);
@@ -53,10 +57,14 @@ function AppContent() {
   }, []);
 
   const downloadPlanner = () => {
-    setShowScreeshotTable(true);
+    // setShowScreeshotTable(true);
     scrollToTop();
-    exportComponentAsPNG(ref, { fileName: screenshotFilename(selectedDate), ...pngConfigs });
-    setShowScreeshotTable(false);
+    const { churchName, selectedDate } = planner;
+    exportComponentAsPNG(ref, {
+      fileName: screenshotFilename(churchName, selectedDate),
+      ...pngConfigs
+    });
+    // setShowScreeshotTable(false);
   };
 
   return (
@@ -64,7 +72,7 @@ function AppContent() {
       <header>
         <Menu />
         <h3>Roteiro de Culto</h3>
-        <ActionsButton setShowScreeshotTable={setShowScreeshotTable} />
+        <ActionsButton downloadPlanner={downloadPlanner} />
       </header>
       <div className="main">
         <label htmlFor="worshipTitleInput" id="worship-title-container">
@@ -111,13 +119,11 @@ function AppContent() {
       <button type="button" className="download-button" onClick={downloadPlanner}>
         Baixar Cronograma
       </button>
-      { showScreeshotTable && (
       <div className="hidden">
         <div className="screenshot-table-container" ref={ref}>
           <ScreenshotTable />
         </div>
       </div>
-      )}
     </div>
   );
 }

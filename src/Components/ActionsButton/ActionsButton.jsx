@@ -8,7 +8,7 @@ import { PlannerContext } from '../../Context/PlannerContext';
 
 import './ActionsButton.css';
 
-function ActionsButton({ setShowScreeshotTable }) {
+function ActionsButton({ downloadPlanner }) {
   const { setPlanner } = useContext(PlannerContext);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
@@ -17,7 +17,7 @@ function ActionsButton({ setShowScreeshotTable }) {
   return (
     <div className="ActionsButton">
       <div className="actions-button-container">
-        <button type="button" className="download-button" onClick={() => setShowScreeshotTable(true)}>
+        <button type="button" className="download-button" onClick={downloadPlanner}>
           <img src={saveImageBtnSvg} alt="Baixar Cronograma" />
         </button>
         <button type="button" onClick={() => setShowConfirmationModal(true)}>
@@ -57,9 +57,7 @@ function ActionsButton({ setShowScreeshotTable }) {
 }
 
 ActionsButton.propTypes = {
-  importData: PropTypes.func,
-  exportData: PropTypes.func,
-  setShowScreeshotTable: PropTypes.func,
+  downloadPlanner: PropTypes.func,
 }.isRequired;
 
 export default ActionsButton;

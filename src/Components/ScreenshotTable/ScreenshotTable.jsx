@@ -1,17 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+/* eslint-disable */
+import React, { useContext } from 'react';
+
+import { PlannerContext } from '../../Context/PlannerContext';
 
 import { getLongDateString, columnsHeader } from '../../helpers';
 
 import './ScreenshotTable.css';
 
-function ScreenshotTable({
-  selectedDate,
-  activities,
-  ministerSelected,
-  worshipTitle,
-  churchName,
-}) {
+function ScreenshotTable() {
+  const { planner } = useContext(PlannerContext);
+  const {
+    churchName,
+    worshipTitle,
+    ministerSelected,
+    selectedDate,
+    activities,
+  } = planner;
+
   const [weekDay, detailedDay] = getLongDateString(selectedDate).split(',');
 
   return (
@@ -55,10 +60,5 @@ function ScreenshotTable({
     </div>
   );
 }
-
-ScreenshotTable.propTypes = {
-  columnsHeader: PropTypes.arrayOf(PropTypes.string),
-  activities: PropTypes.arrayOf(PropTypes.object),
-}.isRequired;
 
 export default ScreenshotTable;

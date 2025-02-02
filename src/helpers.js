@@ -26,9 +26,14 @@ const getWeekDay = (day) => {
   return capitalizeFirstLetter(day.toLocaleDateString('pt-BR', optionsDef));
 };
 
-const screenshotFilename = (selectedDate) => {
+const screenshotFilename = (churchName, selectedDate) => {
+  console.log('churchName>> ', churchName);
+  console.log('selectedDate>> ', selectedDate);
+
   const today = selectedDate.toLocaleDateString('pt-BR').split('T')[0];
-  return `imw_cronograma_${today.replaceAll('/', '_')}`;
+  const todayFormatted = today.replaceAll('/', '_');
+  const churchNameFormatted = churchName.replace(/ /g, '_').toLowerCase();
+  return `roteiro_${churchNameFormatted}_${todayFormatted}`;
 };
 
 const setHourForActivity = (horaBase, minutosASomar) => {

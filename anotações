@@ -2,10 +2,11 @@
 17-01 / DONE / Ao user logado, exibir botoes de nuvem e limpar no menu
 20-01 / DONE / 22-01 / Estilizar menu user logado
 23-01 TODO / 23-01 WIP / 31-01 DONE / Adicionar roteiro como estado global do app
-02-02 TODO / 02-02 WIP / 02-02 DONE Corrigir download cronograma
+02-02 TODO / 02-02 WIP / 02-02 DONE / Corrigir download cronograma
+02-02 TODO / 02-02 WIP / 02-02 DONE / Auto login pelo localstorage
+02-02 TODO / 03-02 WIP / 03-02 DONE / Carregar cronograma do localstorage
 
 28-01 TODO / Criar validação para o cronograma antes de enviar para o back
-02-02 TODO / Auto login pelo localstorage
 17-01 TODO / Inserir animação slider menu hamburguer
 21-01 TODO / Estilizar botao mostrar senha
 22-01 TODO / refatorar css login/register | mudar para grid | login/register com ENTER

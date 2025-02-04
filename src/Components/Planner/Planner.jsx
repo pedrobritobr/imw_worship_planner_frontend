@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React, { useContext } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import './Planner.css';
 
@@ -70,7 +71,7 @@ function Planner() {
 
     const newActivity = {
       ...emptyActivity,
-      id: `activity${activities.length}`,
+      id: uuidv4(),
       hour: setHourForNewActivity(actualActivity.hour, actualActivity.duration),
       duration: shouldCalculateDuration ? calculateDurationRemain(activities, true) : 0,
     };

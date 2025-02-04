@@ -35,7 +35,7 @@ export function PlannerProvider({ children }) {
   const storePlanner = (newPlanner) => {
     const updatedPlanner = Object.keys(newPlanner).length === 0 ? defaultPlanner : newPlanner;
     setPlanner(updatedPlanner);
-    localStorage.setItem('imwWorshipPlanner', JSON.stringify(updatedPlanner));
+    localStorage.setItem('planner', JSON.stringify(updatedPlanner));
   };
 
   const variables = {

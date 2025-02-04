@@ -26,18 +26,34 @@ import './App.css';
 function AppContent() {
   const { user, logIn } = useContext(UserContext);
   const { planner, setPlanner } = useContext(PlannerContext);
+  const ref = useRef(null);
 
   useEffect(() => {
-    const userLocalStorage = localStorage.getItem('user');
-
-    if (!user.email && userLocalStorage) {
-      const userData = JSON.parse(userLocalStorage);
+    const storedUser = localStorage.getItem('user');
+    
+    if (!user.email && storedUser) {
+      const userData = JSON.parse(storedUser);
       logIn(userData.token);
     }
   }, [user, logIn]);
 
-  const ref = useRef(null);
-  const [showScreeshotTable, setShowScreeshotTable] = useState(false);
+  useEffect(() => {
+    const storedPlanner = JSON.parse(localStorage.getItem('planner'));
+
+    if (!storedPlanner?.activities?.length) return;
+
+    const storedActivityId  = storedPlanner?.activities[1]?.id;
+    const currentActivityId = planner?.activities[1]?.id;
+
+    if (storedActivityId !== currentActivityId) {
+      storedPlanner.selectedDate = new Date(storedPlanner.selectedDate);
+      setPlanner(storedPlanner);
+    }
+  }, [planner, setPlanner]);
+
+  useEffect(() => {
+    // sendLocationToAnalytics(document.title, window.location.href);
+  }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -52,19 +68,13 @@ function AppContent() {
 
   const formatDate = (date) => date.toISOString().split('T')[0];
 
-  useEffect(() => {
-    // sendLocationToAnalytics(document.title, window.location.href);
-  }, []);
-
   const downloadPlanner = () => {
-    // setShowScreeshotTable(true);
     scrollToTop();
     const { churchName, selectedDate } = planner;
     exportComponentAsPNG(ref, {
       fileName: screenshotFilename(churchName, selectedDate),
       ...pngConfigs
     });
-    // setShowScreeshotTable(false);
   };
 
   return (

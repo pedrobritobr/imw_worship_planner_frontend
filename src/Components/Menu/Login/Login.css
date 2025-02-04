@@ -54,3 +54,11 @@
   height: 10px;
   margin: -4px 0 -5px;
 }
+
+.login-form label button {
+  background: none;
+}
+
+.login-form img {
+  width: 26px;
+}

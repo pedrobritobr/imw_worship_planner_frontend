@@ -5,7 +5,10 @@ import PropTypes from 'prop-types';
 import { UserContext } from '../../../Context/UserContext';
 
 import { requestLogin } from '../../../service';
-import { showErrorMessage, showPassword } from '../../../helpers';
+import { showErrorMessage } from '../../../helpers';
+
+import ShowPassSVG from '../../../assets/eye-show-svgrepo-com.svg';
+import HidePassSVG from '../../../assets/eye-hide-svgrepo-com.svg';
 
 import './Login.css';
 
@@ -19,6 +22,7 @@ function Login({
 }) {
   const { logIn } = useContext(UserContext);
   const [userLocal, setUserLocal] = useState(userDefault);
+  const [showPass, setShowPass] = useState(false);
 
   const handleUserChange = (event) => {
     const { name, value } = event.target;
@@ -58,7 +62,7 @@ function Login({
       <label htmlFor="login-password">
         <span>Senha:</span>
         <input
-          type="password"
+          type={ showPass ? "text" : "password"}
           id="login-password"
           name="password"
           minLength={8}
@@ -66,8 +70,12 @@ function Login({
           value={userLocal.password}
           required
         />
-        <button type="button" onClick={() => showPassword('login-password')}>
-          Mostrar
+        <button type="button" onClick={() => setShowPass(!showPass)}>
+          <img
+            src={showPass ? HidePassSVG : ShowPassSVG}
+            className={`password-icon-button ${showPass ? 'hide' : 'show'}`}
+            alt="Ocultar senha"
+          />
         </button>
       </label>
       <p className="login-error-message" />

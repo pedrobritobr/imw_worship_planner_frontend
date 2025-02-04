@@ -5,10 +5,10 @@
 02-02 TODO / 02-02 WIP / 02-02 DONE / Corrigir download cronograma
 02-02 TODO / 02-02 WIP / 02-02 DONE / Auto login pelo localstorage
 02-02 TODO / 03-02 WIP / 03-02 DONE / Carregar cronograma do localstorage
+21-01 TODO / 03-02 WIP / 03-02 DONE / Estilizar botao mostrar senha
 
 28-01 TODO / Criar validação para o cronograma antes de enviar para o back
 17-01 TODO / Inserir animação slider menu hamburguer
-21-01 TODO / Estilizar botao mostrar senha
 22-01 TODO / refatorar css login/register | mudar para grid | login/register com ENTER
 23-01 TODO / Estilizar transição menu user logado-nao logado
 27-01 TODO / Animar tempo de espera

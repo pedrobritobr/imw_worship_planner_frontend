@@ -6,8 +6,8 @@
 02-02 TODO / 02-02 WIP / 02-02 DONE / Auto login pelo localstorage
 02-02 TODO / 03-02 WIP / 03-02 DONE / Carregar cronograma do localstorage
 21-01 TODO / 03-02 WIP / 03-02 DONE / Estilizar botao mostrar senha
+22-01 TODO / 02-02 WIP / 03-02 DONE / refatorar css login/register | mudar para grid | login/register com ENTER
 
-22-01 TODO / refatorar css login/register | mudar para grid | login/register com ENTER
 27-01 TODO / Animar tempo de espera
 04-02 TODO / Animar transição de botoes senha
 28-01 TODO / Criar validação para o cronograma antes de enviar para o back

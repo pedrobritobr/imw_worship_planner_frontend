@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 
@@ -7,6 +6,10 @@ import { UserContext } from '../../../Context/UserContext';
 
 import { showErrorMessage, showPassword } from '../../../helpers';
 import { requestRegisterUser } from '../../../service';
+
+import ShowPassSVG from '../../../assets/eye-show-svgrepo-com.svg';
+import HidePassSVG from '../../../assets/eye-hide-svgrepo-com.svg';
+
 import './Register.css';
 
 const churchAllowed = [
@@ -28,6 +31,8 @@ function Register({
 }) {
   const { logIn } = useContext(UserContext);
   const [userLocal, setUserLocal] = useState(userDefault);
+  const [showPass, setShowPass] = useState(false);
+  const [showCheckPass, setShowCheckPass] = useState(false);
 
   const handleUserChange = (event) => {
     const { name, value } = event.target;
@@ -81,7 +86,7 @@ function Register({
       <label id="RegisterPassword" htmlFor="register-password">
         <span>Senha:</span>
         <input
-          type="password"
+          type={ showPass ? "text" : "password"}
           id="register-password"
           name="password"
           minLength={8}
@@ -89,8 +94,12 @@ function Register({
           value={userLocal.password}
           required 
         />
-      <button type="button" onClick={() => showPassword("register-password")}>
-        Mostrar
+      <button type="button" onClick={() => setShowPass(!showPass)}>
+        <img
+          src={showPass ? HidePassSVG : ShowPassSVG}
+          className={`password-icon-button ${showPass ? 'hide' : 'show'}`}
+          alt="Ocultar senha"
+        />
       </button>
       </label>
       <label id="RegisterCheckPassword" htmlFor="register-check-password">
@@ -99,7 +108,7 @@ function Register({
           Senha:
         </span>
         <input
-          type="password"
+          type={ showCheckPass ? "text" : "password"}
           id="register-check-password"
           name="checkPassword"
           minLength={8}
@@ -107,9 +116,13 @@ function Register({
           value={userLocal.checkPassword}
           required 
         />
-        <button type="button" onClick={() => showPassword("register-check-password")}>
-          Mostrar
-        </button>
+      <button type="button" onClick={() => setShowCheckPass(!showCheckPass)}>
+        <img
+          src={showCheckPass ? HidePassSVG : ShowPassSVG}
+          className={`password-icon-button ${showCheckPass ? 'hide' : 'show'}`}
+          alt="Ocultar senha"
+        />
+      </button>
       </label>
       <label id="RegisterChurch" htmlFor="register-church">
         <span>Igreja:</span>

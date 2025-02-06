@@ -1,24 +1,35 @@
-.login-form {
+.Login {
   max-width: 100%;
   padding: 15px;
   margin: 0;
+
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 0.1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "LoginTitle button"
+    "LoginEmail LoginEmail"
+    "LoginPassword LoginPassword"
+    "LoginErrorMessage LoginErrorMessage";
 }
 
-.login-form header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-}
+.Login #LoginTitle { grid-area: LoginTitle; }
 
-.login-form header button {
+.Login #LoginEmail { grid-area: LoginEmail; }
+
+.Login #LoginPassword { grid-area: LoginPassword; }
+
+.Login #LoginSubmit {
+  grid-area: button;
   margin: 0;
   font-size: 12px;
   padding: 5px 15px;
+  height: 70%;
 }
 
-.login-form label {
+.Login label {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -33,20 +44,21 @@
   margin-bottom: 5px;
 }
 
-.login-form label span {
+.Login label span {
   font-size: 12px;
   margin: 0 2px;
   top: 10px
 }
 
-.login-form input {
+.Login input {
   background: none;
   flex: 1;
   width: 100%;
   font-size: 14px;
 }
 
-.login-error-message{
+.Login #LoginErrorMessage {
+  grid-area: LoginErrorMessage;
   color: #e45757;
   font-size: 10px;
   display: block;
@@ -55,10 +67,10 @@
   margin: -4px 0 -5px;
 }
 
-.login-form label button {
+.Login label button {
   background: none;
 }
 
-.login-form img {
+.Login img {
   width: 26px;
 }

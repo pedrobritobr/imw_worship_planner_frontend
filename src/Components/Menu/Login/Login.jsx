@@ -31,11 +31,11 @@ function Login({
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    showErrorMessage('.login-error-message', '');
+    showErrorMessage('#LoginErrorMessage', '');
 
     const response = await requestLogin(userLocal);
     if (response.errorMsg) {
-      showErrorMessage('.login-error-message', response.errorMsg);
+      showErrorMessage('#LoginErrorMessage', response.errorMsg);
     } else {
       const { message } = response.data;
       logIn(message);
@@ -43,12 +43,9 @@ function Login({
   };
 
   return (
-    <form className={`${className} login-form`} onSubmit={handleLogin}>
-      <header>
-        <h4>Login</h4>
-        <button type="submit">Entrar</button>
-      </header>
-      <label htmlFor="login-email">
+    <form className={`${className} Login`} onSubmit={handleLogin}>
+      <h4 id="LoginTitle">Login</h4>
+      <label id="LoginEmail" htmlFor="login-email">
         <span>Email:</span>
         <input
           type="email"
@@ -59,7 +56,7 @@ function Login({
           required
         />
       </label>
-      <label htmlFor="login-password">
+      <label id="LoginPassword" htmlFor="login-password">
         <span>Senha:</span>
         <input
           type={ showPass ? "text" : "password"}
@@ -78,7 +75,8 @@ function Login({
           />
         </button>
       </label>
-      <p className="login-error-message" />
+      <button id="LoginSubmit" type="submit">Entrar</button>
+      <p id="LoginErrorMessage" />
     </form>
   );
 }

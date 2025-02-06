@@ -27,6 +27,9 @@
   font-size: 12px;
   padding: 5px 15px;
   height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Login label {
@@ -73,4 +76,9 @@
 
 .Login img {
   width: 26px;
+}
+
+.Login .loader {
+  width: 15px;
+  height: 15px;
 }

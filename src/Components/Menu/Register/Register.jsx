@@ -33,6 +33,7 @@ function Register({
   const [userLocal, setUserLocal] = useState(userDefault);
   const [showPass, setShowPass] = useState(false);
   const [showCheckPass, setShowCheckPass] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
 
   const handleUserChange = (event) => {
     const { name, value } = event.target;
@@ -41,6 +42,8 @@ function Register({
 
   const handleRegister = async (event) => {
     event.preventDefault();
+    setIsRegistering(true);
+
     const errorTagId = '#RegisterErrorMessage';
     showErrorMessage(errorTagId, '');
 
@@ -56,6 +59,7 @@ function Register({
       const { message } = response.data;
       logIn(message);
     }
+    setIsRegistering(false);
   };
 
   return (
@@ -139,7 +143,13 @@ function Register({
           ))}
         </select>
       </label>
-      <button id="RegisterSubmit" type="submit">Cadastrar</button>
+      <button id="RegisterSubmit" type="submit">
+        { isRegistering ? 
+          <span class="loader"></span>
+          :
+          <span>Cadastrar</span>
+        }
+      </button>
       <p id="RegisterErrorMessage" />
     </form>
   );

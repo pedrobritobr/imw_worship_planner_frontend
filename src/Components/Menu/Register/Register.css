@@ -121,3 +121,8 @@
 .Register img {
   width: 26px;
 }
+
+.Register .loader {
+  width: 15px;
+  height: 15px;
+}

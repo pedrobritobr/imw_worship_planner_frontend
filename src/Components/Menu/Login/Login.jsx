@@ -23,6 +23,7 @@ function Login({
   const { logIn } = useContext(UserContext);
   const [userLocal, setUserLocal] = useState(userDefault);
   const [showPass, setShowPass] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
 
   const handleUserChange = (event) => {
     const { name, value } = event.target;
@@ -31,6 +32,7 @@ function Login({
 
   const handleLogin = async (event) => {
     event.preventDefault();
+    setIsLogin(true);
     showErrorMessage('#LoginErrorMessage', '');
 
     const response = await requestLogin(userLocal);
@@ -40,6 +42,7 @@ function Login({
       const { message } = response.data;
       logIn(message);
     }
+    setIsLogin(false);
   };
 
   return (
@@ -75,7 +78,13 @@ function Login({
           />
         </button>
       </label>
-      <button id="LoginSubmit" type="submit">Entrar</button>
+      <button id="LoginSubmit" type="submit">
+        { isLogin ? 
+          <span class="loader"></span>
+          :
+          <span>Entrar</span>
+        }
+      </button>
       <p id="LoginErrorMessage" />
     </form>
   );

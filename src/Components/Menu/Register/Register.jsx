@@ -6,13 +6,13 @@ import PropTypes from 'prop-types';
 import { UserContext } from '../../../Context/UserContext';
 
 import { showErrorMessage, showPassword } from '../../../helpers';
-import { requestLogin, requestRegisterUser } from '../../../service';
+import { requestRegisterUser } from '../../../service';
 import './Register.css';
 
 const churchAllowed = [
   'Selecione a igreja',
   'Wesleyana São Cristovão',
-  'Wesleyana Central CF',
+  'Wesleyana Três Rios',
 ];
 
 const userDefault = {
@@ -36,17 +36,17 @@ function Register({
 
   const handleRegister = async (event) => {
     event.preventDefault();
-    const errorClass = '.register-error-message';
-    showErrorMessage(errorClass, '');
+    const errorTagId = '#RegisterErrorMessage';
+    showErrorMessage(errorTagId, '');
 
     const { checkPassword, ...userWithoutCheckPassword } = userLocal;
 
-    if (userLocal.password !== checkPassword) return showErrorMessage(errorClass, 'As senhas não coincidem');
-    if (userLocal.church === 'Selecione a igreja') return showErrorMessage(errorClass, 'Selecione uma igreja');
+    if (userLocal.password !== checkPassword) return showErrorMessage(errorTagId, 'As senhas não coincidem');
+    if (userLocal.church === 'Selecione a igreja') return showErrorMessage(errorTagId, 'Selecione uma igreja');
     
     const response = await requestRegisterUser(userWithoutCheckPassword);
     if (response.errorMsg) {
-      showErrorMessage(errorClass, response.errorMsg);
+      showErrorMessage(errorTagId, response.errorMsg);
     } else {
       const { message } = response.data;
       logIn(message);
@@ -54,12 +54,9 @@ function Register({
   };
 
   return (
-    <form className={`${className} register-form`} onSubmit={handleRegister}>
-      <header>
-        <h4>Cadastro</h4>
-        <button type="submit">Cadastrar</button>
-      </header>
-      <label htmlFor="register-name" id="input-register-name">
+    <form className={`${className} Register`} onSubmit={handleRegister}>
+      <h4>Cadastro</h4>
+      <label id="RegisterName" htmlFor="register-name">
         <span>Nome:</span>
         <input
           type="text"
@@ -70,7 +67,7 @@ function Register({
           required
         />
       </label>
-      <label htmlFor="register-email" id="input-register-email">
+      <label id="RegisterEmail" htmlFor="register-email">
         <span>Email:</span>
         <input
           type="email"
@@ -81,7 +78,7 @@ function Register({
           required 
         />
       </label>
-      <label htmlFor="register-password">
+      <label id="RegisterPassword" htmlFor="register-password">
         <span>Senha:</span>
         <input
           type="password"
@@ -96,8 +93,8 @@ function Register({
         Mostrar
       </button>
       </label>
-      <label htmlFor="register-check-password">
-        <span className="register-check-password">
+      <label id="RegisterCheckPassword" htmlFor="register-check-password">
+        <span className="register-check-password-span">
           <span className="small-text">Confirmar</span>
           Senha:
         </span>
@@ -114,10 +111,10 @@ function Register({
           Mostrar
         </button>
       </label>
-      <label htmlFor="register-church">
+      <label id="RegisterChurch" htmlFor="register-church">
         <span>Igreja:</span>
         <select
-          id="register-church-select"
+          id="RegisterChurchSelect"
           name="church"
           onChange={handleUserChange}
           value={userLocal.church}
@@ -129,7 +126,8 @@ function Register({
           ))}
         </select>
       </label>
-      <p className="register-error-message" />
+      <button id="RegisterSubmit" type="submit">Cadastrar</button>
+      <p id="RegisterErrorMessage" />
     </form>
   );
 }

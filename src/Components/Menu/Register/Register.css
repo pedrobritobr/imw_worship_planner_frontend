@@ -1,24 +1,61 @@
-.register-form {
+.Register {
   max-width: 100%;
   padding: 15px;
   margin: 0;
+
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: repeat(6, 1fr) 0.1fr;
+  gap: 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "RegisterTitle RegisterSubmit"
+    "RegisterName RegisterName"
+    "RegisterEmail RegisterEmail"
+    "RegisterPassword RegisterPassword"
+    "RegisterCheckPassword RegisterCheckPassword"
+    "RegisterChurch RegisterChurch"
+    "RegisterErrorMessage RegisterErrorMessage";
 }
 
-.register-form header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.Register #RegisterTitle {
+  grid-area: RegisterTitle;
+}
+
+.Register #RegisterName {
+  grid-area: RegisterName;
+}
+
+.Register #RegisterEmail {
+  grid-area: RegisterEmail;
+}
+
+.Register #RegisterPassword {
+  grid-area: RegisterPassword;
+}
+
+.Register #RegisterCheckPassword {
+  grid-area: RegisterCheckPassword;
+}
+
+.Register #RegisterChurch {
+  grid-area: RegisterChurch;
   align-items: flex-start;
-  width: 100%;
+  height: 23px;
 }
 
-.register-form header button {
+.Register #RegisterSubmit {
+  grid-area: RegisterSubmit;
   margin: 0;
   font-size: 12px;
   padding: 5px 15px;
 }
 
-.register-form label {
+.Register #RegisterErrorMessage {
+  grid-area: RegisterErrorMessage;
+}
+
+.Register label {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -33,36 +70,31 @@
   margin-bottom: 5px;
 }
 
-.register-form label[for="register-church"] {
-  align-items: flex-start;
-  height: 23px;
-}
-
-.register-form label span {
+.Register label span {
   font-size: 12px;
   margin: 0 2px;
 }
 
-.register-form label .register-check-password {
+.Register #RegisterCheckPassword .register-check-password-span {
   display: flex;
   flex-direction: column;
   margin: 0 3px;
 }
 
-.register-form label span .small-text {
+.Register #RegisterCheckPassword .register-check-password-span .small-text {
   font-size: 8px;
   margin: 0;
   margin-bottom: -7px;
 }
 
-.register-form input {
+.Register input {
   background: none;
   flex: 1;
   width: 100%;
   font-size: 14px;
 }
 
-.register-form #register-church-select {
+.Register #RegisterChurch #RegisterChurchSelect {
   margin: 0;
   padding: 3px;
   background-color: #091d2dfa;
@@ -72,7 +104,7 @@
   font-size: 14px;
 }
 
-.register-error-message {
+.Register #RegisterErrorMessage {
   color: #e45757;
   font-size: 10px;
   display: block;

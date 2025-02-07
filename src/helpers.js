@@ -79,6 +79,13 @@ const scrollToTop = () => {
   window.scrollTo(0, 0);
 };
 
+const formatSelectedDateToUTC = (selectedDate) => {
+  const selectedDateUTC = new Date(selectedDate);
+  const minutesTimezoneOffset = selectedDateUTC.getTimezoneOffset();
+  selectedDateUTC.setMinutes(selectedDateUTC.getMinutes() + minutesTimezoneOffset);
+  return selectedDateUTC;
+};
+
 export {
   screenshotFilename,
   capitalizeFirstLetter,
@@ -89,6 +96,7 @@ export {
   showErrorMessage,
   showPassword,
   scrollToTop,
+  formatSelectedDateToUTC,
   columnsHeader,
   pngConfigs,
 };

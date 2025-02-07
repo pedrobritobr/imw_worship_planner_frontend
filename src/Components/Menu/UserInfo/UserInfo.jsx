@@ -7,6 +7,7 @@ import { UserContext } from '../../../Context/UserContext';
 import { PlannerContext } from '../../../Context/PlannerContext';
 
 import { uploadPlannerToCloud, downloadPlannerFromCloud } from '../../../service';
+import { formatSelectedDateToUTC } from '../../../helpers';
 
 import HideUserSVG from '../../../assets/hide-user-svgrepo-com.svg';
 import ShowUserSVG from '../../../assets/show-user-svgrepo-com.svg';
@@ -40,10 +41,13 @@ function UserInfo({ menuOpen }) {
 
   const getPlanner = async () => {
     setIsDownloading(true);
+
     const planner = await downloadPlannerFromCloud(user.token);
+    planner.selectedDate = formatSelectedDateToUTC(planner.selectedDate);
+
     setIsDownloading(false);
-    planner.selectedDate = new Date(planner.selectedDate);
     setPlanner(planner);
+    setDownloadedPlanner(planner);
   };
 
   return (

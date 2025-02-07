@@ -145,7 +145,7 @@ function Register({
       </label>
       <button id="RegisterSubmit" type="submit">
         { isRegistering ? 
-          <span class="loader"></span>
+          <span className="loader"></span>
           :
           <span>Cadastrar</span>
         }

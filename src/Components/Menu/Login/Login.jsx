@@ -80,7 +80,7 @@ function Login({
       </label>
       <button id="LoginSubmit" type="submit">
         { isLogin ? 
-          <span class="loader"></span>
+          <span className="loader"></span>
           :
           <span>Entrar</span>
         }

@@ -31,16 +31,26 @@ export const PlannerContext = createContext();
 
 export function PlannerProvider({ children }) {
   const [planner, setPlanner] = useState(defaultPlanner);
+  const [downloadedPlanner, setDownloadedPlanner] = useState(defaultPlanner);
+
+  const getPlanner = (p) => (Object.keys(p).length === 0 ? defaultPlanner : p);
 
   const storePlanner = (newPlanner) => {
-    const updatedPlanner = Object.keys(newPlanner).length === 0 ? defaultPlanner : newPlanner;
+    const updatedPlanner = getPlanner(newPlanner);
     setPlanner(updatedPlanner);
     localStorage.setItem('planner', JSON.stringify(updatedPlanner));
+  };
+
+  const storeDownloadedPlanner = (newPlanner) => {
+    const updatedPlanner = getPlanner(newPlanner);
+    setDownloadedPlanner(updatedPlanner);
   };
 
   const variables = {
     planner,
     setPlanner: storePlanner,
+    downloadedPlanner,
+    setDownloadedPlanner: storeDownloadedPlanner,
   };
 
   const value = useMemo(() => (variables), Object.values(variables));

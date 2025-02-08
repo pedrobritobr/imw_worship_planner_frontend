@@ -9,9 +9,11 @@
 22-01 TODO / 02-02 WIP / 03-02 DONE / refatorar css login/register | mudar para grid | login/register com ENTER
 27-01 TODO / 06-02 WIP / 06-02 DONE / Animar tempo de espera
 07-02 TODO / 07-02 WIP / 07-02 DONE / Corrigir bug de timezone quando baixa cronograma
+28-01 TODO / 07-02 WIP / 07-02 DONE / Criar validação para o cronograma antes de enviar para o back
 
-28-01 TODO / 07-02 WIP / Criar validação para o cronograma antes de enviar para o back
+
 
 04-02 TODO / Animar transição de botoes senha
 17-01 TODO / Inserir animação slider menu hamburguer
 23-01 TODO / Estilizar transição menu user logado-nao logado
+07-02 TODO / Investigar necessidade da soma de 3 hora no dia selecionado

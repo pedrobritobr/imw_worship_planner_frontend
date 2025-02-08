@@ -1,10 +1,10 @@
 /* eslint-disable */
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './UserInfo.css';
+import _ from "lodash";
 
 import { UserContext } from '../../../Context/UserContext';
-import { PlannerContext } from '../../../Context/PlannerContext';
+import { PlannerContext, defaultPlanner } from '../../../Context/PlannerContext';
 
 import { uploadPlannerToCloud, downloadPlannerFromCloud } from '../../../service';
 import { formatSelectedDateToUTC } from '../../../helpers';
@@ -17,9 +17,11 @@ import UploadBackgroundSVG from '../../../assets/cloud-upload-background-svgrepo
 import DownloadBackgroundSVG from '../../../assets/cloud-download-background-svgrepo-com.svg';
 import LogOutSVG from '../../../assets/logout-svgrepo-com.svg';
 
+import './UserInfo.css';
+
 function UserInfo({ menuOpen }) {
   const { user, logOut } = useContext(UserContext);
-  const { planner, setPlanner } = useContext(PlannerContext);
+  const { planner, setPlanner, downloadedPlanner, setDownloadedPlanner } = useContext(PlannerContext);
   const [showInfo, setShowInfo] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
@@ -32,11 +34,40 @@ function UserInfo({ menuOpen }) {
     setShowInfo(!showInfo);
   };
 
+  const validatePlanner = () => {
+    const translatedFields = {
+      activities: 'Atividades',
+      ministerSelected: 'Ministro',
+      worshipTitle: 'Título do Culto',
+      churchName: 'Nome da Igreja'
+    };
+  
+    const missingFields = Object.entries(translatedFields)
+      .filter(([field]) => _.isEqual(planner[field], defaultPlanner[field]))
+      .map(([, label]) => label);
+  
+    if (missingFields.length) 
+      return `Os seguintes campos não foram preenchidos:\n- ${missingFields.join('\n- ')}`;
+  
+    if (_.isEqual(planner, downloadedPlanner)) 
+      return 'Não houve mudanças entre o cronograma baixado/enviado e o cronograma atual';
+
+    return null;
+  };
+  
   const uploadPlanner = async () => {
+    const { alert } = window;
+    const isValidPlanner = validatePlanner();
+    if (isValidPlanner) return alert(isValidPlanner);
+
     setIsUploading(true);
+
     const { creator, ...plannerWithoutCreator } = planner;
     await uploadPlannerToCloud(plannerWithoutCreator, user.token);
+    alert('Cronograma enviado com sucesso!');
+
     setIsUploading(false);
+    setDownloadedPlanner(planner);
   };
 
   const getPlanner = async () => {

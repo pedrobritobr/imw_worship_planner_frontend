@@ -18,7 +18,7 @@ const lastActivity = {
   responsible: '--',
 };
 
-const defaultPlanner = {
+export const defaultPlanner = {
   activities: [firstActivity, lastActivity],
   selectedDate: new Date(),
   ministerSelected: '',

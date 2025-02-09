@@ -9,14 +9,30 @@
 }
 
 .Menu .hamburger {
+  position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   background: none;
   border: none;
   cursor: pointer;
-  width: 0;
-  margin-right: 45px;
   transform: scale(0.7);
+}
+
+.Menu .hamburger svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.Menu #hamburger-button {
+  position: relative;
+  z-index: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .Menu .menu-container {

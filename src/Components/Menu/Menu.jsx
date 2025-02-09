@@ -50,7 +50,7 @@ function Menu() {
             </filter>
           </defs>
         </svg>
-        <button type="button" id="hamburger" className="plate plate5" onClick={toggleMenu} aria-label="Abrir/Fechar menu">
+        <button type="button" id="hamburger-button" className="plate plate5" onClick={toggleMenu} aria-label="Abrir/Fechar menu">
           <svg className="burger" version="1.1" height="45" width="45" viewBox="0 0 100 100">
             <path className="line line1" d="M 30,35 H 70 " />
             <path className="line line2" d="M 50,50 H 30 L 34,32" />

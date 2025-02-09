@@ -11,7 +11,10 @@
 07-02 TODO / 07-02 WIP / 07-02 DONE / Corrigir bug de timezone quando baixa cronograma
 28-01 TODO / 07-02 WIP / 07-02 DONE / Criar validação para o cronograma antes de enviar para o back
 17-01 TODO / 07-02 WIP / 08-02 DONE / Inserir animação slider menu hamburguer
+08-02 TODO / 09-02 WIP / 09-02 DONE / Investigar erro no mobile
+09-02 TODO / 09-02 WIP / 09-02 DONE / Corrigir titulo na imagem
 
+08-02 TODO / Criar componente de error que exibe mensagem
 23-01 TODO / Estilizar transição menu user logado-nao logado
 04-02 TODO / Animar transição de botoes senha
 07-02 TODO / Investigar necessidade da soma de 3 hora no dia selecionado

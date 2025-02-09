@@ -87,7 +87,7 @@ function AppContent() {
     <div className="App">
       <header>
         <Menu />
-        <h3>Roteiro de Culto</h3>
+        <h3 id="AppName">Roteiro de Culto</h3>
         <ActionsButton downloadPlanner={downloadPlanner} />
       </header>
       <div className="main">

@@ -1,10 +1,9 @@
-/* eslint-disable */
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { UserContext } from '../../../Context/UserContext';
 
-import { showErrorMessage, showPassword } from '../../../helpers';
+import { showErrorMessage } from '../../../helpers';
 import { requestRegisterUser } from '../../../service';
 
 import ShowPassSVG from '../../../assets/eye-show-svgrepo-com.svg';
@@ -24,7 +23,7 @@ const userDefault = {
   password: '',
   checkPassword: '',
   church: 'Selecione a igreja',
-}
+};
 
 function Register({
   className,
@@ -38,7 +37,7 @@ function Register({
   const handleUserChange = (event) => {
     const { name, value } = event.target;
     setUserLocal({ ...userLocal, [name]: value });
-  }
+  };
 
   const handleRegister = async (event) => {
     event.preventDefault();
@@ -51,7 +50,7 @@ function Register({
 
     if (userLocal.password !== checkPassword) return showErrorMessage(errorTagId, 'As senhas não coincidem');
     if (userLocal.church === 'Selecione a igreja') return showErrorMessage(errorTagId, 'Selecione uma igreja');
-    
+
     const response = await requestRegisterUser(userWithoutCheckPassword);
     if (response.errorMsg) {
       showErrorMessage(errorTagId, response.errorMsg);
@@ -59,7 +58,7 @@ function Register({
       const { message } = response.data;
       logIn(message);
     }
-    setIsRegistering(false);
+    return setIsRegistering(false);
   };
 
   return (
@@ -84,27 +83,27 @@ function Register({
           name="email"
           onChange={handleUserChange}
           value={userLocal.email}
-          required 
+          required
         />
       </label>
       <label id="RegisterPassword" htmlFor="register-password">
         <span>Senha:</span>
         <input
-          type={ showPass ? "text" : "password"}
+          type={showPass ? 'text' : 'password'}
           id="register-password"
           name="password"
           minLength={8}
           onChange={handleUserChange}
           value={userLocal.password}
-          required 
+          required
         />
-      <button type="button" onClick={() => setShowPass(!showPass)}>
-        <img
-          src={showPass ? HidePassSVG : ShowPassSVG}
-          className={`password-icon-button ${showPass ? 'hide' : 'show'}`}
-          alt="Ocultar senha"
-        />
-      </button>
+        <button type="button" onClick={() => setShowPass(!showPass)}>
+          <img
+            src={showPass ? HidePassSVG : ShowPassSVG}
+            className={`password-icon-button ${showPass ? 'hide' : 'show'}`}
+            alt="Ocultar senha"
+          />
+        </button>
       </label>
       <label id="RegisterCheckPassword" htmlFor="register-check-password">
         <span className="register-check-password-span">
@@ -112,21 +111,21 @@ function Register({
           Senha:
         </span>
         <input
-          type={ showCheckPass ? "text" : "password"}
+          type={showCheckPass ? 'text' : 'password'}
           id="register-check-password"
           name="checkPassword"
           minLength={8}
           onChange={handleUserChange}
           value={userLocal.checkPassword}
-          required 
+          required
         />
-      <button type="button" onClick={() => setShowCheckPass(!showCheckPass)}>
-        <img
-          src={showCheckPass ? HidePassSVG : ShowPassSVG}
-          className={`password-icon-button ${showCheckPass ? 'hide' : 'show'}`}
-          alt="Ocultar senha"
-        />
-      </button>
+        <button type="button" onClick={() => setShowCheckPass(!showCheckPass)}>
+          <img
+            src={showCheckPass ? HidePassSVG : ShowPassSVG}
+            className={`password-icon-button ${showCheckPass ? 'hide' : 'show'}`}
+            alt="Ocultar senha"
+          />
+        </button>
       </label>
       <label id="RegisterChurch" htmlFor="register-church">
         <span>Igreja:</span>
@@ -144,10 +143,10 @@ function Register({
         </select>
       </label>
       <button id="RegisterSubmit" type="submit">
-        { isRegistering ? 
-          <span className="loader"></span>
-          :
-          <span>Cadastrar</span>
+        {
+          isRegistering
+            ? <span className="loader" />
+            : <span>Cadastrar</span>
         }
       </button>
       <p id="RegisterErrorMessage" />
@@ -157,6 +156,6 @@ function Register({
 
 Register.propTypes = {
   className: PropTypes.string,
-};
+}.isRequired;
 
 export default Register;

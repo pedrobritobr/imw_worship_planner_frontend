@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -61,7 +60,7 @@ function Planner() {
     });
 
     const newEntrie = activitiesUpdatedByHour || newEntries;
-    setPlanner({...planner, activities: newEntrie})
+    setPlanner({ ...planner, activities: newEntrie });
   };
 
   const addNewActivity = (actualActivity) => {
@@ -78,7 +77,7 @@ function Planner() {
 
     const activitiesCp = [...activities];
     activitiesCp.splice(actualActivityIndex + 1, 0, newActivity);
-    setPlanner({...planner, activities: activitiesCp})
+    setPlanner({ ...planner, activities: activitiesCp });
   };
 
   const removeActivity = (activity) => {
@@ -87,7 +86,7 @@ function Planner() {
       return;
     }
     const newActivities = activities.filter((a) => a.id !== activity.id);
-    setPlanner({...planner, activities: newActivities})
+    setPlanner({ ...planner, activities: newActivities });
   };
 
   return (

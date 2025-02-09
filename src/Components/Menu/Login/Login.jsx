@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 
@@ -62,7 +61,7 @@ function Login({
       <label id="LoginPassword" htmlFor="login-password">
         <span>Senha:</span>
         <input
-          type={ showPass ? "text" : "password"}
+          type={showPass ? 'text' : 'password'}
           id="login-password"
           name="password"
           minLength={8}
@@ -79,10 +78,10 @@ function Login({
         </button>
       </label>
       <button id="LoginSubmit" type="submit">
-        { isLogin ? 
-          <span className="loader"></span>
-          :
-          <span>Entrar</span>
+        {
+          isLogin
+            ? <span className="loader" />
+            : <span>Entrar</span>
         }
       </button>
       <p id="LoginErrorMessage" />

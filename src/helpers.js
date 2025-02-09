@@ -70,11 +70,6 @@ const showErrorMessage = (element, message) => {
   errorMessage.textContent = message;
 };
 
-const showPassword = (elementId) => {
-  const passwordInput = document.getElementById(elementId);
-  passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
-};
-
 const scrollToTop = () => {
   window.scrollTo(0, 0);
 };
@@ -94,7 +89,6 @@ export {
   setHourForActivity,
   formatMinutes,
   showErrorMessage,
-  showPassword,
   scrollToTop,
   formatSelectedDateToUTC,
   columnsHeader,

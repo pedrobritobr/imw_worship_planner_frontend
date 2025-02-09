@@ -1,7 +1,6 @@
-/* eslint-disable */
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import _ from "lodash";
+import _ from 'lodash';
 
 import { UserContext } from '../../../Context/UserContext';
 import { PlannerContext, defaultPlanner } from '../../../Context/PlannerContext';
@@ -21,7 +20,12 @@ import './UserInfo.css';
 
 function UserInfo({ menuOpen }) {
   const { user, logOut } = useContext(UserContext);
-  const { planner, setPlanner, downloadedPlanner, setDownloadedPlanner } = useContext(PlannerContext);
+  const {
+    planner,
+    setPlanner,
+    downloadedPlanner,
+    setDownloadedPlanner,
+  } = useContext(PlannerContext);
   const [showInfo, setShowInfo] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
@@ -39,22 +43,24 @@ function UserInfo({ menuOpen }) {
       activities: 'Atividades',
       ministerSelected: 'Ministro',
       worshipTitle: 'Título do Culto',
-      churchName: 'Nome da Igreja'
+      churchName: 'Nome da Igreja',
     };
-  
+
     const missingFields = Object.entries(translatedFields)
       .filter(([field]) => _.isEqual(planner[field], defaultPlanner[field]))
       .map(([, label]) => label);
-  
-    if (missingFields.length) 
+
+    if (missingFields.length) {
       return `Os seguintes campos não foram preenchidos:\n- ${missingFields.join('\n- ')}`;
-  
-    if (_.isEqual(planner, downloadedPlanner)) 
+    }
+
+    if (_.isEqual(planner, downloadedPlanner)) {
       return 'Não houve mudanças entre o cronograma baixado/enviado e o cronograma atual';
+    }
 
     return null;
   };
-  
+
   const uploadPlanner = async () => {
     const { alert } = window;
     const isValidPlanner = validatePlanner();
@@ -68,18 +74,26 @@ function UserInfo({ menuOpen }) {
 
     setIsUploading(false);
     setDownloadedPlanner(planner);
+    return null;
   };
 
   const getPlanner = async () => {
     setIsDownloading(true);
 
-    const planner = await downloadPlannerFromCloud(user.token);
-    planner.selectedDate = formatSelectedDateToUTC(planner.selectedDate);
+    const plannerFromCloud = await downloadPlannerFromCloud(user.token);
+    plannerFromCloud.selectedDate = formatSelectedDateToUTC(plannerFromCloud.selectedDate);
 
     setIsDownloading(false);
-    setPlanner(planner);
-    setDownloadedPlanner(planner);
+    setPlanner(plannerFromCloud);
+    setDownloadedPlanner(plannerFromCloud);
   };
+
+  const loaderContainer = (loaderSVG, altText) => (
+    <div className="loader-container">
+      <img src={loaderSVG} alt={altText} className="loader-bg" />
+      <span className="loader" />
+    </div>
+  );
 
   return (
     <div className="UserInfo">
@@ -92,21 +106,17 @@ function UserInfo({ menuOpen }) {
           }
         </button>
         <button type="button" className="cloud-button" onClick={uploadPlanner}>
-          { isUploading
-            ? <div className="loader-container">
-                <img src={UploadBackgroundSVG} alt="Enviar os dados para nuvem" className="loader-bg" />
-                <span className="loader"></span>
-              </div>
-            : <img src={UploadSVG} alt="Enviar os dados para nuvem" />
+          {
+            isUploading
+              ? loaderContainer(UploadBackgroundSVG, 'Enviar os dados para nuvem')
+              : <img src={UploadSVG} alt="Enviar os dados para nuvem" />
           }
         </button>
         <button type="button" className="cloud-button" onClick={getPlanner}>
-          { isDownloading
-            ? <div className="loader-container">
-                <img src={DownloadBackgroundSVG} alt="Baixar os dados da nuvem" className="loader-bg" />
-                <span className="loader"></span>
-              </div>
-            : <img src={DownloadSVG} alt="Baixar os dados da nuvem" />
+          {
+            isDownloading
+              ? loaderContainer(DownloadBackgroundSVG, 'Baixar os dados para nuvem')
+              : <img src={DownloadSVG} alt="Baixar os dados da nuvem" />
           }
         </button>
       </div>

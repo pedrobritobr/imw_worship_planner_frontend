@@ -1,4 +1,3 @@
-/* eslint-disable */
 import axios from 'axios';
 
 export async function sendLocationToAnalytics(pageTitle, location) {
@@ -16,8 +15,7 @@ export async function sendLocationToAnalytics(pageTitle, location) {
   } catch (error) {
     console.error(error);
   }
-};
-
+}
 
 export async function requestLogin(user) {
   try {
@@ -28,7 +26,7 @@ export async function requestLogin(user) {
     const response = await axios.post(url, user, { headers });
     return response;
   } catch (error) {
-    const errorMsg = error?.response?.data?.error || "Ocorreu um erro inesperado. Tente novamente mais tarde.";
+    const errorMsg = error?.response?.data?.error || 'Ocorreu um erro inesperado. Tente novamente mais tarde.';
     return { errorMsg };
   }
 }
@@ -52,7 +50,7 @@ export async function requestRegisterUser(user) {
     const response = await axios.post(url, user, { headers });
     return response;
   } catch (error) {
-    const errorMsg = error?.response?.data?.error || "Ocorreu um erro inesperado. Tente novamente mais tarde.";
+    const errorMsg = error?.response?.data?.error || 'Ocorreu um erro inesperado. Tente novamente mais tarde.';
     return { errorMsg };
   }
 }
@@ -70,11 +68,12 @@ export async function uploadPlannerToCloud(planner, token) {
       alert('Não há cronograma para ser enviado.');
     }
 
-    return axios.post(url, {data: planner}, { headers });
+    return axios.post(url, { data: planner }, { headers });
   } catch (error) {
     console.error(error);
+    return null;
   }
-};
+}
 
 export async function downloadPlannerFromCloud(token) {
   try {
@@ -84,10 +83,11 @@ export async function downloadPlannerFromCloud(token) {
     };
     const url = `${import.meta.env.VITE_PLANNER_URL}/planner/`;
 
-    const response = await axios.get(url, {headers});
+    const response = await axios.get(url, { headers });
 
     return response.data;
   } catch (error) {
     console.error(error);
+    return null;
   }
-};
+}

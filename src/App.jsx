@@ -1,6 +1,4 @@
-/* eslint-disable */
-
-import React, { useEffect, useRef, useState, useContext } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 
 import { exportComponentAsPNG } from 'react-component-export-image';
 
@@ -12,7 +10,7 @@ import Menu from './Components/Menu';
 import { UserProvider, UserContext } from './Context/UserContext';
 import { PlannerProvider, PlannerContext } from './Context/PlannerContext';
 
-import { sendLocationToAnalytics } from './service'
+import { sendLocationToAnalytics } from './service';
 
 import {
   getWeekDay,
@@ -30,7 +28,7 @@ function AppContent() {
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
-    
+
     if (!user.email && storedUser) {
       const userData = JSON.parse(storedUser);
       logIn(userData.token);
@@ -42,7 +40,7 @@ function AppContent() {
 
     if (!storedPlanner?.activities?.length) return;
 
-    const storedActivityId  = storedPlanner?.activities[1]?.id;
+    const storedActivityId = storedPlanner?.activities[1]?.id;
     const currentActivityId = planner?.activities[1]?.id;
 
     if (storedActivityId !== currentActivityId) {
@@ -52,13 +50,13 @@ function AppContent() {
   }, [planner, setPlanner]);
 
   useEffect(() => {
-    // sendLocationToAnalytics(document.title, window.location.href);
+    sendLocationToAnalytics(document.title, window.location.href);
   }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setPlanner({ ...planner, [name]: value });
-  }
+  };
 
   const handleDateChange = (event) => {
     const newDate = new Date(event.target.value);
@@ -73,7 +71,7 @@ function AppContent() {
     const { churchName, selectedDate } = planner;
     exportComponentAsPNG(ref, {
       fileName: screenshotFilename(churchName, selectedDate),
-      ...pngConfigs
+      ...pngConfigs,
     });
   };
 
@@ -85,7 +83,8 @@ function AppContent() {
         <ActionsButton downloadPlanner={downloadPlanner} />
       </header>
       <div className="main">
-        <label htmlFor="worshipTitleInput" id="worship-title-container">
+        <label htmlFor="churchNameInput" id="worship-title-container">
+          <h4> Igreja:</h4>
           <input
             type="text"
             id="churchNameInput"
@@ -94,6 +93,9 @@ function AppContent() {
             onChange={handleInputChange}
             placeholder="Nome da igreja"
           />
+        </label>
+        <label htmlFor="worshipTitleInput" id="worship-title-container">
+          <h4> Título do culto:</h4>
           <input
             type="text"
             id="worshipTitleInput"

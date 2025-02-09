@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState, useEffect, useContext } from 'react';
 import './Menu.css';
 
@@ -28,10 +27,9 @@ function Menu() {
   };
 
   useEffect(() => {
-    const isUserLogged = !!user.email && !!user.church;
-    setIsUserValid(isUserLogged);
-  }
-  , [user]);
+    const userLogged = !!user.email && !!user.church;
+    setIsUserValid(userLogged);
+  }, [user]);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -52,7 +50,7 @@ function Menu() {
             </filter>
           </defs>
         </svg>
-        <div id="hamburger" className="plate plate5" onClick={toggleMenu}>
+        <button type="button" id="hamburger" className="plate plate5" onClick={toggleMenu} aria-label="Abrir/Fechar menu">
           <svg className="burger" version="1.1" height="45" width="45" viewBox="0 0 100 100">
             <path className="line line1" d="M 30,35 H 70 " />
             <path className="line line2" d="M 50,50 H 30 L 34,32" />
@@ -63,7 +61,7 @@ function Menu() {
             <path className="line" d="M 34,32 L 66,68" />
             <path className="line" d="M 66,32 L 34,68" />
           </svg>
-        </div>
+        </button>
       </div>
       <div className={`menu-container ${menuOpen ? 'open' : 'close'}`}>
         {!isUserLogged ? (
@@ -72,7 +70,7 @@ function Menu() {
             <Register className="menu-item" />
           </div>
         ) : (
-          <UserInfo menuOpen={menuOpen}/>
+          <UserInfo menuOpen={menuOpen} />
         )}
       </div>
     </div>

@@ -1,4 +1,9 @@
-import React, { useEffect, useRef, useContext } from 'react';
+import React, {
+  useEffect,
+  useRef,
+  useContext,
+  useState,
+} from 'react';
 
 import { exportComponentAsPNG } from 'react-component-export-image';
 
@@ -24,15 +29,24 @@ import './App.css';
 function AppContent() {
   const { user, logIn } = useContext(UserContext);
   const { planner, setPlanner } = useContext(PlannerContext);
+  const [showTextOnPage, setShowTextOnPage] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
 
-    if (!user.email && storedUser) {
-      const userData = JSON.parse(storedUser);
-      logIn(userData.token);
-    }
+    const x = {
+      user,
+      '!user.email': !user.email,
+      storedUser,
+    };
+
+    setShowTextOnPage(JSON.stringify(x, null, 2));
+
+    // if (!user.email && storedUser) {
+    //   const userData = JSON.parse(storedUser);
+    //   logIn(userData.token);
+    // }
   }, [user, logIn]);
 
   useEffect(() => {
@@ -77,6 +91,7 @@ function AppContent() {
 
   return (
     <div className="App">
+      <textarea value={showTextOnPage} readOnly style={{ color: 'black' }} />
       <header>
         <Menu />
         <h3>Roteiro de Culto</h3>

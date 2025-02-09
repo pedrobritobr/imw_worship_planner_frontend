@@ -33,20 +33,24 @@ function AppContent() {
   const ref = useRef(null);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
+    try {
+      const storedUser = localStorage.getItem('user');
 
-    const x = {
-      user,
-      '!user.email': !user.email,
-      storedUser,
-    };
+      const x = {
+        user,
+        '!user.email': !user.email,
+        storedUser,
+      };
 
-    setShowTextOnPage(JSON.stringify(x, null, 2));
+      setShowTextOnPage(JSON.stringify(x, null, 2));
 
-    // if (!user.email && storedUser) {
-    //   const userData = JSON.parse(storedUser);
-    //   logIn(userData.token);
-    // }
+      if (!user.email && storedUser) {
+        const userData = JSON.parse(storedUser);
+        logIn(userData.token);
+      }
+    } catch (error) {
+      localStorage.removeItem('user');
+    }
   }, [user, logIn]);
 
   useEffect(() => {

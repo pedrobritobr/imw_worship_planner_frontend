@@ -68,10 +68,11 @@ export async function uploadPlannerToCloud(planner, token) {
       alert('Não há cronograma para ser enviado.');
     }
 
-    return axios.post(url, { data: planner }, { headers });
+    const respone = await axios.post(url, { data: planner }, { headers });
+    return respone;
   } catch (error) {
     console.error(error);
-    return null;
+    return false;
   }
 }
 

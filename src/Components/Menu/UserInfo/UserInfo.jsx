@@ -69,8 +69,12 @@ function UserInfo({ menuOpen }) {
     setIsUploading(true);
 
     const { creator, ...plannerWithoutCreator } = planner;
-    await uploadPlannerToCloud(plannerWithoutCreator, user.token);
-    alert('Cronograma enviado com sucesso!');
+
+    const response = await uploadPlannerToCloud(plannerWithoutCreator, user.token);
+
+    const sucessMsg = 'Cronograma enviado com sucesso!';
+    const errorMsg = 'Erro ao salvar o cronograma. Tente novamente mais tarde.';
+    alert(response ? sucessMsg : errorMsg);
 
     setIsUploading(false);
     setDownloadedPlanner(planner);
@@ -81,6 +85,14 @@ function UserInfo({ menuOpen }) {
     setIsDownloading(true);
 
     const plannerFromCloud = await downloadPlannerFromCloud(user.token);
+
+    if (!plannerFromCloud) {
+      setIsDownloading(false);
+      const { alert } = window;
+      alert('Erro ao baixar o cronograma. Tente novamente mais tarde.');
+      return;
+    }
+
     plannerFromCloud.selectedDate = formatSelectedDateToUTC(plannerFromCloud.selectedDate);
 
     setIsDownloading(false);
@@ -105,14 +117,14 @@ function UserInfo({ menuOpen }) {
               : <img src={ShowUserSVG} alt="Exibir informações do usuário" />
           }
         </button>
-        <button type="button" className="cloud-button" onClick={uploadPlanner}>
+        <button type="button" className="cloud-button" onClick={uploadPlanner} disabled={isUploading}>
           {
             isUploading
               ? loaderContainer(UploadBackgroundSVG, 'Enviar os dados para nuvem')
               : <img src={UploadSVG} alt="Enviar os dados para nuvem" />
           }
         </button>
-        <button type="button" className="cloud-button" onClick={getPlanner}>
+        <button type="button" className="cloud-button" onClick={getPlanner} disabled={isDownloading}>
           {
             isDownloading
               ? loaderContainer(DownloadBackgroundSVG, 'Baixar os dados para nuvem')

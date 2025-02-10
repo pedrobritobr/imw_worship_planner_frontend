@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
@@ -103,7 +104,6 @@ function UserInfo({ menuOpen }) {
   const loaderContainer = (loaderSVG, altText) => (
     <div className="loader-container">
       <img src={loaderSVG} alt={altText} className="loader-bg" />
-      <span className="loader" />
     </div>
   );
 
@@ -120,16 +120,18 @@ function UserInfo({ menuOpen }) {
         <button type="button" className="cloud-button" onClick={uploadPlanner} disabled={isUploading}>
           {
             isUploading
-              ? loaderContainer(UploadBackgroundSVG, 'Enviar os dados para nuvem')
-              : <img src={UploadSVG} alt="Enviar os dados para nuvem" />
+              ? <span className="loader" />
+              : <img className="cloud-image" src={UploadSVG} alt="Enviar os dados para nuvem" />
           }
+          <img src={UploadBackgroundSVG} alt={'Enviar os dados para nuvem'} className="loader-bg" />
         </button>
         <button type="button" className="cloud-button" onClick={getPlanner} disabled={isDownloading}>
           {
             isDownloading
-              ? loaderContainer(DownloadBackgroundSVG, 'Baixar os dados para nuvem')
-              : <img src={DownloadSVG} alt="Baixar os dados da nuvem" />
+              ? <span className="loader" />
+              : <img className="cloud-image" src={DownloadSVG} alt="Baixar os dados da nuvem" />
           }
+          <img src={DownloadBackgroundSVG} alt={'Baixar os dados para nuvem'} className="loader-bg" />
         </button>
       </div>
 

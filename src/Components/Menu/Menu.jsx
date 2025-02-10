@@ -22,7 +22,7 @@ function Menu() {
     const userActionsElement = document.querySelector('.Menu');
     if (userActionsElement && !userActionsElement.contains(event.target)) {
       setMenuOpen(false);
-      document.querySelector('#hamburger').classList.remove('active');
+      document.querySelector('#hamburger-button').classList.remove('active');
     }
   };
 

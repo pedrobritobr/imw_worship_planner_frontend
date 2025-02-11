@@ -32,11 +32,14 @@ function Menu() {
   }, [user]);
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+    if (!isUserLogged) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+    return () => {};
+  }, [isUserLogged]);
 
   return (
     <div className="Menu">

@@ -67,14 +67,16 @@ function Menu() {
         </button>
       </div>
       <div className={`menu-container ${menuOpen ? 'open' : 'close'}`}>
-        {!isUserLogged ? (
-          <div className="user-not-logged">
-            <Login className="menu-item" />
-            <Register className="menu-item" />
-          </div>
-        ) : (
-          <UserInfo menuOpen={menuOpen} />
-        )}
+        {
+          !isUserLogged
+            ? (
+              <div className="user-not-logged">
+                <Login className="menu-item" />
+                <Register className="menu-item" />
+              </div>
+            )
+            : <UserInfo menuOpen={menuOpen} />
+        }
       </div>
     </div>
   );

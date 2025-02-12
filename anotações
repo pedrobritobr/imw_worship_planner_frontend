@@ -16,8 +16,10 @@
 10-02 TODO / 10-02 WIP / 10-02 DONE / Remover bug botao menu hamburger
 10-02 TODO / 10-02 WIP / 10-02 DONE / remover menu auto close quando user logado
 04-02 TODO / 11-02 WIP / 11-02 DONE / Animar transição de botoes senha
+12-02 TODO / 11-02 WIP / 11-02 DONE / Corrigir margin left botao hamburguer
 
+23-01 TODO / 11-02 WIP / ?-? DONE / Estilizar transição menu user logado-nao logado
+12-02 TODO / ?-? WIP / ?-? DONE / Refatorar form igreja/culto
 11-02 TODO / ?-? WIP / ?-? DONE / Renderizar tela de login e cadastro em 100%
-23-01 TODO / Estilizar transição menu user logado-nao logado
 08-02 TODO / Criar componente de error que exibe mensagem
 07-02 TODO / Investigar necessidade da soma de 3 hora no dia selecionado

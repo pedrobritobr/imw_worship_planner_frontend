@@ -176,3 +176,15 @@
 .Menu .active.plate5 .x {
   transition: transform 400ms 50ms;
 }
+
+.password-icon-button {
+  transition: filter 0.3s ease;
+}
+
+.password-icon-button.show {
+  filter: brightness(1);
+}
+
+.password-icon-button.hide {
+  filter: brightness(0.5);
+}

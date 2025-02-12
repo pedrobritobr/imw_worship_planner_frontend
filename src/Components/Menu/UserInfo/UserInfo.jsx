@@ -73,11 +73,12 @@ function UserInfo({ menuOpen }) {
 
     const response = await uploadPlannerToCloud(plannerWithoutCreator, user.token);
 
+    setIsUploading(false);
+
     const sucessMsg = 'Cronograma enviado com sucesso!';
     const errorMsg = 'Erro ao salvar o cronograma. Tente novamente mais tarde.';
     alert(response ? sucessMsg : errorMsg);
 
-    setIsUploading(false);
     setDownloadedPlanner(planner);
     return null;
   };
@@ -86,6 +87,8 @@ function UserInfo({ menuOpen }) {
     setIsDownloading(true);
 
     const plannerFromCloud = await downloadPlannerFromCloud(user.token);
+
+    setIsDownloading(false);
 
     if (!plannerFromCloud) {
       setIsDownloading(false);
@@ -96,7 +99,6 @@ function UserInfo({ menuOpen }) {
 
     plannerFromCloud.selectedDate = formatSelectedDateToUTC(plannerFromCloud.selectedDate);
 
-    setIsDownloading(false);
     setPlanner(plannerFromCloud);
     setDownloadedPlanner(plannerFromCloud);
   };

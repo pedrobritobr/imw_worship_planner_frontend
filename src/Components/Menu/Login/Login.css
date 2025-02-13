@@ -1,8 +1,4 @@
 .Login {
-  max-width: 100%;
-  padding: 15px;
-  margin: 0;
-
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: repeat(3, 1fr) 0.1fr;

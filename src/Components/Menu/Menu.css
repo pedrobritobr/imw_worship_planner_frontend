@@ -37,6 +37,7 @@
 }
 
 .Menu .menu-container {
+  position: relative;
   width: 70vw;
   height: -webkit-fill-available;
   opacity: 0;
@@ -60,23 +61,24 @@
 
 .Menu .menu-item {
   cursor: pointer;
-  border-bottom: 1px solid #ddd;
-}
-
-.Menu .menu-item:last-child {
-  border-bottom: none;
-}
-
-.Menu .menu-item:hover {
-  background-color: #f0f0f00d;
+  background-color: #090e2736;
+  max-width: 100%;
+  padding: 15px;
+  margin: 15px 30px;
   border-radius: 5px;
+  box-shadow: 0px 0px 11px 1px #2d2d2d40;
 }
 
 .Menu .user-not-logged {
-  width: inherit;
-  background-color: #091d2df5;
+  position: absolute;
+  top: 100%;
+  width: 100vw;
+  left: calc(80px * -0.8);
+  height: calc(100vh - 45px);
   box-shadow: 0 4px 6px #0000001f;
   border-radius: 5px;
+  backdrop-filter: blur(3px);
+  background: linear-gradient(310deg, #020118df 0%, #042339f1 90%); /* Fundo */
 }
 
 .Menu .menu-item h4 {

@@ -1,8 +1,4 @@
 .Register {
-  max-width: 100%;
-  padding: 15px;
-  margin: 0;
-
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: repeat(6, 1fr) 0.1fr;
@@ -98,7 +94,7 @@
 .Register #RegisterChurch #RegisterChurchSelect {
   margin: 0;
   padding: 3px;
-  background-color: #091d2dfa;
+  background-color: #061222;
   border: none;
   border-radius: 5px;
   width: 100%;

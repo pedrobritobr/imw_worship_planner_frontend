@@ -85,44 +85,6 @@ button:hover {
   z-index: -999999;
 }
 
-.main label {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 10px;
-  gap: 8px;
-  width: 30vw;
-  justify-content: space-evenly;
-}
-
-.main label input{
-  flex-grow: 1;
-  font-size: 16px;
-  background-color: #3252a719;
-}
-
-label > h4 {
-  margin: 0;
-}
-
-#churchNameInput {
-  font-size: 18px;
-  width: 100%;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-#worship-title-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-}
-
-#worship-title-container input {
-  text-align: center;
-}
-
 .loader {
   width: 18px;
   height: 18px;
@@ -140,15 +102,5 @@ label > h4 {
   }
   100% {
     transform: rotate(360deg);
-  }
-}
-
-@media (max-width: 768px) {
-  .main label {
-    width: 80vw;
-  }
-
-  .main label input {
-    flex-grow: 0;
   }
 }

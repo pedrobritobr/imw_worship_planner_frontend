@@ -1,0 +1,59 @@
+.WorshipForm {
+  width: 90lvw;
+  display: grid;
+  align-items: center;
+  justify-items: start;
+  background-color: #04040d18;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 11px 1px #54545440;
+  grid-template-areas:
+    "WorshipFormChurchName WorshipFormChurchName"
+    "WorshipFormWorshipTitle WorshipFormWorshipTitle"
+    "WorshipFormDate WorshipFormMinister"
+}
+
+.WorshipForm #WorshipFormChurchName {
+  grid-area: WorshipFormChurchName;
+}
+
+.WorshipForm #WorshipFormWorshipTitle {
+  grid-area: WorshipFormWorshipTitle;
+}
+
+.WorshipForm #WorshipFormDate {
+  width: 40%;
+  grid-area: WorshipFormDate;
+}
+
+.WorshipForm #WorshipFormMinister {
+  width: 40%;
+  grid-area: WorshipFormMinister;
+}
+
+.WorshipForm label {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 90%;
+  height: 100%;
+}
+
+.WorshipForm label input{
+  flex-grow: 1;
+  font-size: 16px;
+  background-color: #ffffff00;
+}
+
+.WorshipForm label > h4 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.WorshipForm #churchNameInput {
+  font-size: 18px;
+  font-weight: bold;
+}
+

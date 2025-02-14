@@ -3,8 +3,9 @@
   display: grid;
   align-items: center;
   justify-items: start;
+  row-gap: 5px;
   background-color: #04040d18;
-  padding: 15px;
+  padding: 10px 15px;
   border-radius: 5px;
   box-shadow: 0px 0px 9px 0px #54545440;
   grid-template-areas:
@@ -36,6 +37,7 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
+  align-items: center;
   gap: 8px;
   width: 100%;
   max-width: 90vw;

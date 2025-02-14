@@ -24,3 +24,4 @@
 23-01 TODO / 11-02 WIP / ?-? DONE / Estilizar transição menu user logado-nao logado
 08-02 TODO / Criar componente de error que exibe mensagem
 07-02 TODO / Investigar necessidade da soma de 3 hora no dia selecionado
+verificar altura no safari (o background não pega a pág toda no scroll

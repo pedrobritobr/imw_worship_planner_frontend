@@ -12,6 +12,8 @@
 
   min-height: 100lvh;
   width: 100svw;
+  overflow-x: hidden;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

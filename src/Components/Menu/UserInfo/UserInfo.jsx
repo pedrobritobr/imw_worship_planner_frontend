@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
@@ -19,7 +18,7 @@ import LogOutSVG from '../../../assets/logout-svgrepo-com.svg';
 
 import './UserInfo.css';
 
-function UserInfo({ menuOpen }) {
+function UserInfo({ className, menuOpen, toggleMenu }) {
   const { user, logOut } = useContext(UserContext);
   const {
     planner,
@@ -109,8 +108,41 @@ function UserInfo({ menuOpen }) {
     </div>
   );
 
+  const logOutUser = () => {
+    setShowInfo(false);
+    logOut();
+    toggleMenu();
+  };
+
+  if (!user) {
+    return (
+      <div className={`UserInfo ${className}`}>
+        <div className="user-buttons">
+          <button className="show-user-info" type="button" onClick={() => {}} disabled={true}>
+            {
+              showInfo
+                ? <img src={HideUserSVG} alt="Ocultar informações do usuário" />
+                : <img src={ShowUserSVG} alt="Exibir informações do usuário" />
+            }
+          </button>
+          <button type="button" className="cloud-button" onClick={() => {}} disabled={true}>
+            <img className="cloud-image" src={UploadSVG} alt="Enviar os dados para nuvem" />
+          </button>
+          <button type="button" className="cloud-button" onClick={() => {}} disabled={true}>
+            <img className="cloud-image" src={DownloadSVG} alt="Baixar os dados da nuvem" />
+          </button>
+        </div>
+        <div className={`user-info ${showInfo ? 'show' : 'hide'}`}>
+          <button type="button" className="logOut" onClick={() => {}} disabled={true}>
+            <img src={LogOutSVG} alt="Encerra sessão" />
+          </button>
+        </div>
+      </div>
+    )
+  };
+
   return (
-    <div className="UserInfo">
+    <div className={`UserInfo ${className}`}>
       <div className="user-buttons">
         <button className="show-user-info" type="button" onClick={handleButtonClick}>
           {
@@ -138,12 +170,12 @@ function UserInfo({ menuOpen }) {
       </div>
 
       <div className={`user-info ${showInfo ? 'show' : 'hide'}`}>
-        <button type="button" className="logOut" onClick={logOut}>
+        <button type="button" className="logOut" onClick={logOutUser}>
           <img src={LogOutSVG} alt="Encerra sessão" />
         </button>
-        <p className="user_name">{user.name}</p>
-        <p className="user_email">{user.email}</p>
-        <p className="user_church">{user.church}</p>
+        <p className="user_name">{user ? user.name : ''}</p>
+        <p className="user_email">{user ? user.email : ''}</p>
+        <p className="user_church">{user ? user.church : ''}</p>
       </div>
     </div>
   );
@@ -151,6 +183,8 @@ function UserInfo({ menuOpen }) {
 
 UserInfo.propTypes = {
   menuOpen: PropTypes.bool,
+  className: PropTypes.string,
+  toggleMenu: PropTypes.func,
 }.isRequired;
 
 export default UserInfo;

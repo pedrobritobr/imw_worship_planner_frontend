@@ -47,6 +47,17 @@
   z-index: 1;
 }
 
+.Menu .menu-container .hidden {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -999999;
+}
+
+.Menu .menu-container .show {
+  opacity: 1;
+  z-index: 999999;
+}
+
 .Menu .menu-container.open {
   opacity: 1;
   transform: translateX(0);

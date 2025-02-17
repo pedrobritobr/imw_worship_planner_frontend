@@ -79,7 +79,7 @@ button:hover {
   z-index: -1;
 }
 
-.hidden {
+.hide-screenshot-table-container {
   position: absolute;
   top: 10px;
   opacity: 0%;

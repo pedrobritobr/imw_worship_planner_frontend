@@ -84,7 +84,7 @@ function AppContent() {
       <button type="button" className="download-button" onClick={downloadPlanner}>
         Baixar Cronograma
       </button>
-      <div className="hidden">
+      <div className="hide-screenshot-table-container">
         <div className="screenshot-table-container" ref={ref}>
           <ScreenshotTable />
         </div>

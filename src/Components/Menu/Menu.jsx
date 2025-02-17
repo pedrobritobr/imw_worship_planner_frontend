@@ -9,12 +9,14 @@ import UserInfo from './UserInfo';
 
 function Menu() {
   const { user } = useContext(UserContext);
-  const [isUserLogged, setIsUserValid] = useState(false);
 
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = (e) => {
-    e.currentTarget.classList.toggle('active');
+  const toggleMenu = () => {
+    const hamburgerButton = document.querySelector('#hamburger-button');
+    if (hamburgerButton) {
+      hamburgerButton.classList.toggle('active');
+    }
     setMenuOpen(!menuOpen);
   };
 
@@ -27,19 +29,14 @@ function Menu() {
   };
 
   useEffect(() => {
-    const userLogged = !!user.email && !!user.church;
-    setIsUserValid(userLogged);
-  }, [user]);
-
-  useEffect(() => {
-    if (!isUserLogged) {
+    if (!user) {
       document.addEventListener('mousedown', handleClickOutside);
       return () => {
         document.removeEventListener('mousedown', handleClickOutside);
       };
     }
     return () => {};
-  }, [isUserLogged]);
+  }, [user]);
 
   return (
     <div className="Menu">
@@ -67,16 +64,11 @@ function Menu() {
         </button>
       </div>
       <div className={`menu-container ${menuOpen ? 'open' : 'close'}`}>
-        {
-          !isUserLogged
-            ? (
-              <div className="user-not-logged">
-                <Login className="menu-item" />
-                <Register className="menu-item" />
-              </div>
-            )
-            : <UserInfo menuOpen={menuOpen} />
-        }
+        <UserInfo className={user ? 'show' : 'hidden'} menuOpen={menuOpen} toggleMenu={toggleMenu} />
+        <div className={`user-not-logged ${user ? 'hidden' : 'show'}`}>
+          <Login className="menu-item" />
+          <Register className="menu-item" />
+        </div>
       </div>
     </div>
   );

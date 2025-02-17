@@ -22,8 +22,7 @@
 14-02 TODO / 14-02 WIP / 14-02 DONE / investigar falha no header no firefox (a tela de login está cortando header e o botão hamburger) | era o height que estava setado para o webkit
 14-02 TODO / 14-02 WIP / 14-02 DONE / verificar altura no safari (o background não pega a pág toda no scroll
 14-02 TODO / 14-02 WIP / 14-02 DONE / Titulo do app se movendo no mobile
-
-23-01 TODO / 11-02 WIP / ?-? DONE / Estilizar transição menu user logado-nao logado
+23-01 TODO / 11-02 WIP / 17-02 DONE / Estilizar transição menu user logado-nao logado
 
 08-02 TODO / Criar componente de error que exibe mensagem
 07-02 TODO / Investigar necessidade da soma de 3 hora no dia selecionado

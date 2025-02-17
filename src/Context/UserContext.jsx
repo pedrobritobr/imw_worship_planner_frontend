@@ -12,11 +12,11 @@ export const userDefault = {
 export const UserContext = createContext();
 
 export function UserProvider({ children }) {
-  const [user, setUser] = useState(userDefault);
+  const [user, setUser] = useState(null);
 
   const logOut = () => {
     localStorage.removeItem('user');
-    setUser(userDefault);
+    setUser(null);
   };
 
   const logIn = (token) => {

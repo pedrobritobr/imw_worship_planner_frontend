@@ -102,12 +102,6 @@ function UserInfo({ className, menuOpen, toggleMenu }) {
     setDownloadedPlanner(plannerFromCloud);
   };
 
-  const loaderContainer = (loaderSVG, altText) => (
-    <div className="loader-container">
-      <img src={loaderSVG} alt={altText} className="loader-bg" />
-    </div>
-  );
-
   const logOutUser = () => {
     setShowInfo(false);
     logOut();
@@ -118,28 +112,28 @@ function UserInfo({ className, menuOpen, toggleMenu }) {
     return (
       <div className={`UserInfo ${className}`}>
         <div className="user-buttons">
-          <button className="show-user-info" type="button" onClick={() => {}} disabled={true}>
+          <button className="show-user-info" type="button" onClick={() => {}} disabled>
             {
               showInfo
                 ? <img src={HideUserSVG} alt="Ocultar informações do usuário" />
                 : <img src={ShowUserSVG} alt="Exibir informações do usuário" />
             }
           </button>
-          <button type="button" className="cloud-button" onClick={() => {}} disabled={true}>
+          <button type="button" className="cloud-button" onClick={() => {}} disabled>
             <img className="cloud-image" src={UploadSVG} alt="Enviar os dados para nuvem" />
           </button>
-          <button type="button" className="cloud-button" onClick={() => {}} disabled={true}>
+          <button type="button" className="cloud-button" onClick={() => {}} disabled>
             <img className="cloud-image" src={DownloadSVG} alt="Baixar os dados da nuvem" />
           </button>
         </div>
         <div className={`user-info ${showInfo ? 'show' : 'hide'}`}>
-          <button type="button" className="logOut" onClick={() => {}} disabled={true}>
+          <button type="button" className="logOut" onClick={() => {}} disabled>
             <img src={LogOutSVG} alt="Encerra sessão" />
           </button>
         </div>
       </div>
-    )
-  };
+    );
+  }
 
   return (
     <div className={`UserInfo ${className}`}>
@@ -157,7 +151,7 @@ function UserInfo({ className, menuOpen, toggleMenu }) {
               ? <span className="loader" />
               : <img className="cloud-image" src={UploadSVG} alt="Enviar os dados para nuvem" />
           }
-          <img src={UploadBackgroundSVG} alt={'Enviar os dados para nuvem'} className="loader-bg" />
+          <img src={UploadBackgroundSVG} alt="Enviar os dados para nuvem" className="loader-bg" />
         </button>
         <button type="button" className="cloud-button" onClick={getPlanner} disabled={isDownloading}>
           {
@@ -165,7 +159,7 @@ function UserInfo({ className, menuOpen, toggleMenu }) {
               ? <span className="loader" />
               : <img className="cloud-image" src={DownloadSVG} alt="Baixar os dados da nuvem" />
           }
-          <img src={DownloadBackgroundSVG} alt={'Baixar os dados para nuvem'} className="loader-bg" />
+          <img src={DownloadBackgroundSVG} alt="Baixar os dados para nuvem" className="loader-bg" />
         </button>
       </div>
 

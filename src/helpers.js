@@ -27,13 +27,12 @@ const getWeekDay = (day) => {
 };
 
 const screenshotFilename = (churchName, selectedDate) => {
-  console.log('churchName>> ', churchName);
-  console.log('selectedDate>> ', selectedDate);
-
   const today = selectedDate.toLocaleDateString('pt-BR').split('T')[0];
   const todayFormatted = today.replaceAll('/', '_');
   const churchNameFormatted = churchName.replace(/ /g, '_').toLowerCase();
-  return `roteiro_${churchNameFormatted}_${todayFormatted}`;
+  const randomString = Math.floor(1000 + Math.random() * 9000).toString();
+
+  return `cronograma_${churchNameFormatted}_${todayFormatted}_${randomString}`;
 };
 
 const setHourForActivity = (horaBase, minutosASomar) => {

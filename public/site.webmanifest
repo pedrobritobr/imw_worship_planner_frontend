@@ -1,6 +1,6 @@
 {
-  "name": "Wesleyana Roteiro de Culto",
-  "short_name": "Roteiro",
+  "name": "Wesleyana Cronograma de Culto",
+  "short_name": "Cronograma",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

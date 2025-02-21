@@ -1,20 +1,18 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { UserContext } from '../../../Context/UserContext';
 
 import { showErrorMessage } from '../../../helpers';
-import { requestRegisterUser } from '../../../service';
+import { getChurches, requestRegisterUser } from '../../../service';
 
 import ShowPassSVG from '../../../assets/eye-show-svgrepo-com.svg';
 import HidePassSVG from '../../../assets/eye-hide-svgrepo-com.svg';
 
 import './Register.css';
 
-const churchAllowed = [
-  'Selecione a igreja',
-  'Wesleyana São Cristovão',
-  'Wesleyana Três Rios',
+const churchDefault = [
+  'Wesleyana São Cristóvão',
 ];
 
 const userDefault = {
@@ -22,7 +20,7 @@ const userDefault = {
   email: '',
   password: '',
   checkPassword: '',
-  church: 'Selecione a igreja',
+  church: '',
 };
 
 function Register({
@@ -33,6 +31,11 @@ function Register({
   const [showPass, setShowPass] = useState(false);
   const [showCheckPass, setShowCheckPass] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
+  const [churchList, setChurchList] = useState(churchDefault);
+
+  useEffect(() => {
+    getChurches().then(setChurchList).catch(console.error);
+  }, []);
 
   const handleUserChange = (event) => {
     const { name, value } = event.target;
@@ -127,20 +130,22 @@ function Register({
           />
         </button>
       </label>
-      <label id="RegisterChurch" htmlFor="register-church">
+      <label id="RegisterChurch" htmlFor="RegisterChurchSelect">
         <span>Igreja:</span>
-        <select
+        <input
           id="RegisterChurchSelect"
           name="church"
           onChange={handleUserChange}
           value={userLocal.church}
-        >
-          {churchAllowed.map((church) => (
-            <option className="register-church-option" key={church} value={church}>
-              {church}
-            </option>
+          placeholder="Selecione a igreja"
+          list="churches"
+          type="text"
+        />
+        <datalist id="churches">
+          {churchList.map((church) => (
+            <option key={church} value={church}>{church}</option>
           ))}
-        </select>
+        </datalist>
       </label>
       <button id="RegisterSubmit" type="submit">
         {

@@ -92,3 +92,19 @@ export async function downloadPlannerFromCloud(token) {
     return null;
   }
 }
+
+export async function getChurches() {
+  try {
+    const headers = {
+      keyword: import.meta.env.VITE_PLANNER_KEYWORD,
+    };
+    const url = `${import.meta.env.VITE_PLANNER_URL}/church/`;
+
+    const response = await axios.get(url, { headers });
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}

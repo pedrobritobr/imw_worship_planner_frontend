@@ -105,6 +105,6 @@ export async function getChurches() {
     return response.data;
   } catch (error) {
     console.error(error);
-    return null;
+    throw new Error(error);
   }
 }

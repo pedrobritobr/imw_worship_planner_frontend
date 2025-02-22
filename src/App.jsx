@@ -77,6 +77,9 @@ function AppContent() {
       <button type="button" className="download-button" onClick={downloadPlanner}>
         Baixar Cronograma
       </button>
+      <button type="button" className="download-button" onClick={() => { throw new Error('Erro ao baixar o cronograma'); }}>
+        testar erro
+      </button>
     </div>
   );
 }

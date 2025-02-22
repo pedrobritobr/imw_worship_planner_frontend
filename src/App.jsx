@@ -6,6 +6,7 @@ import React, {
 
 import { exportComponentAsPNG } from 'react-component-export-image';
 
+import ErrorWrapper from './Components/ErrorWrapper';
 import Planner from './Components/Planner';
 import ScreenshotTable from './Components/ScreenshotTable';
 import ActionsButton from './Components/ActionsButton';
@@ -95,11 +96,13 @@ function AppContent() {
 
 function App() {
   return (
-    <UserProvider>
-      <PlannerProvider>
-        <AppContent />
-      </PlannerProvider>
-    </UserProvider>
+    <ErrorWrapper>
+      <UserProvider>
+        <PlannerProvider>
+          <AppContent />
+        </PlannerProvider>
+      </UserProvider>
+    </ErrorWrapper>
   );
 }
 

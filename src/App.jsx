@@ -1,17 +1,11 @@
-import React, {
-  useEffect,
-  useRef,
-  useContext,
-} from 'react';
-
+import React, { useEffect, useContext } from 'react';
 import { exportComponentAsPNG } from 'react-component-export-image';
 
 import ErrorWrapper from './Components/ErrorWrapper';
-import Planner from './Components/Planner';
-import ScreenshotTable from './Components/ScreenshotTable';
-import ActionsButton from './Components/ActionsButton';
+
 import Menu from './Components/Menu';
-import WorshipForm from './Components/WorshipForm';
+import ActionsButton from './Components/ActionsButton';
+import Main from './Components/Main';
 
 import { UserProvider, UserContext } from './Context/UserContext';
 import { PlannerProvider, PlannerContext } from './Context/PlannerContext';
@@ -28,8 +22,7 @@ import './App.css';
 
 function AppContent() {
   const { user, logIn } = useContext(UserContext);
-  const { planner, setPlanner } = useContext(PlannerContext);
-  const ref = useRef(null);
+  const { planner, setPlanner, ref } = useContext(PlannerContext);
 
   useEffect(() => {
     try {
@@ -63,6 +56,8 @@ function AppContent() {
   }, []);
 
   const downloadPlanner = () => {
+    // throw new Error("Erro ao baixar o cronograma");
+
     scrollToTop();
     const { churchName, selectedDate } = planner;
     exportComponentAsPNG(ref, {
@@ -78,31 +73,23 @@ function AppContent() {
         <h3 id="AppName">Cronograma de Culto</h3>
         <ActionsButton downloadPlanner={downloadPlanner} />
       </header>
-      <div className="main">
-        <WorshipForm />
-        <Planner />
-      </div>
+      <Main />
       <button type="button" className="download-button" onClick={downloadPlanner}>
         Baixar Cronograma
       </button>
-      <div className="hide-screenshot-table-container">
-        <div className="screenshot-table-container" ref={ref}>
-          <ScreenshotTable />
-        </div>
-      </div>
     </div>
   );
 }
 
 function App() {
   return (
-    <ErrorWrapper>
-      <UserProvider>
-        <PlannerProvider>
+    <UserProvider>
+      <PlannerProvider>
+        <ErrorWrapper>
           <AppContent />
-        </PlannerProvider>
-      </UserProvider>
-    </ErrorWrapper>
+        </ErrorWrapper>
+      </PlannerProvider>
+    </UserProvider>
   );
 }
 

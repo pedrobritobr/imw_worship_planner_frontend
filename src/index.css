@@ -8,6 +8,7 @@ body {
   line-height: 1.5;
   font-weight: 400;
 
+  color-scheme: dark;
   color: #f6fcff;
   background: linear-gradient(310deg, #020118 0%, #042339 90%); /* Fundo */
 

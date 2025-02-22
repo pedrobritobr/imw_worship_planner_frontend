@@ -6,7 +6,8 @@
   overflow-x: hidden;
 }
 
-.App {
+.App,
+.MinimalApp {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,6 +42,10 @@
 
 .ActionsButton {
   margin-right: 10px;
+}
+
+.MinimalApp .main .hide-screenshot-table-container {
+  transform: scale(1.5) translateY(25%);
 }
 
 .main {
@@ -79,7 +84,7 @@ button:hover {
   z-index: -1;
 }
 
-.hide-screenshot-table-container {
+.App .hide-screenshot-table-container {
   position: absolute;
   top: 10px;
   opacity: 0%;

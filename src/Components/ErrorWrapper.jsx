@@ -1,6 +1,22 @@
 import React, { Component, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import Main from './Main';
+
+function MinimalApp() {
+  const { alert } = window;
+
+  useEffect(() => {
+    alert('Ocorreu um erro!\n\nVocê pode continuar editando o cronograma e capturar a tela.');
+  }, []);
+
+  return (
+    <div className="MinimalApp">
+      <Main />
+    </div>
+  );
+}
+
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
@@ -18,9 +34,8 @@ class ErrorBoundary extends Component {
   render() {
     const { hasError } = this.state;
     const { children } = this.props;
-    if (hasError) {
-      return <h2>Algo deu errado no React!</h2>;
-    }
+
+    if (hasError) return <MinimalApp />;
     return children;
   }
 }
@@ -43,10 +58,7 @@ function ErrorWrapper({ children }) {
     };
   }, []);
 
-  if (globalError) {
-    return <h2>Algo deu errado globalmente!</h2>;
-  }
-
+  if (globalError) return <MinimalApp />;
   return <ErrorBoundary>{children}</ErrorBoundary>;
 }
 

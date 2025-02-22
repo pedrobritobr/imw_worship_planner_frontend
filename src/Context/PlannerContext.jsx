@@ -1,4 +1,9 @@
-import React, { createContext, useState, useMemo } from 'react';
+import React, {
+  createContext,
+  useState,
+  useMemo,
+  createRef,
+} from 'react';
 import PropTypes from 'prop-types';
 
 import { userDefault } from './UserContext';
@@ -30,6 +35,7 @@ export const defaultPlanner = {
 export const PlannerContext = createContext();
 
 export function PlannerProvider({ children }) {
+  const ref = createRef();
   const [planner, setPlanner] = useState(defaultPlanner);
   const [downloadedPlanner, setDownloadedPlanner] = useState(defaultPlanner);
 
@@ -51,6 +57,7 @@ export function PlannerProvider({ children }) {
     setPlanner: storePlanner,
     downloadedPlanner,
     setDownloadedPlanner: storeDownloadedPlanner,
+    ref,
   };
 
   const value = useMemo(() => (variables), Object.values(variables));

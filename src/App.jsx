@@ -56,8 +56,6 @@ function AppContent() {
   }, []);
 
   const downloadPlanner = () => {
-    // throw new Error("Erro ao baixar o cronograma");
-
     scrollToTop();
     const { churchName, selectedDate } = planner;
     exportComponentAsPNG(ref, {
@@ -76,9 +74,6 @@ function AppContent() {
       <Main />
       <button type="button" className="download-button" onClick={downloadPlanner}>
         Baixar Cronograma
-      </button>
-      <button type="button" className="download-button" onClick={() => { throw new Error('Erro ao baixar o cronograma'); }}>
-        testar erro
       </button>
     </div>
   );

@@ -61,7 +61,10 @@ function Register({
       const { message } = response.data;
       logIn(message);
     }
-    return setIsRegistering(false);
+    setIsRegistering(false);
+    setShowPass(false);
+    setShowCheckPass(false);
+    return setUserLocal(userDefault);
   };
 
   return (

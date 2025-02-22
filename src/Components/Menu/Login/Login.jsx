@@ -42,6 +42,8 @@ function Login({
       logIn(message);
     }
     setIsLogin(false);
+    setShowPass(false);
+    setUserLocal(userDefault);
   };
 
   return (

@@ -1,28 +1,32 @@
-17-01 / DONE / Ao user logado, nao exibir login e cadastro 
-17-01 / DONE / Ao user logado, exibir botoes de nuvem e limpar no menu
-20-01 / DONE / 22-01 / Estilizar menu user logado
-23-01 TODO / 23-01 WIP / 31-01 DONE / Adicionar cronograma como estado global do app
-02-02 TODO / 02-02 WIP / 02-02 DONE / Corrigir download cronograma
-02-02 TODO / 02-02 WIP / 02-02 DONE / Auto login pelo localstorage
-02-02 TODO / 03-02 WIP / 03-02 DONE / Carregar cronograma do localstorage
-21-01 TODO / 03-02 WIP / 03-02 DONE / Estilizar botao mostrar senha
-22-01 TODO / 02-02 WIP / 03-02 DONE / refatorar css login/register | mudar para grid | login/register com ENTER
-27-01 TODO / 06-02 WIP / 06-02 DONE / Animar tempo de espera
-07-02 TODO / 07-02 WIP / 07-02 DONE / Corrigir bug de timezone quando baixa cronograma
-28-01 TODO / 07-02 WIP / 07-02 DONE / Criar validação para o cronograma antes de enviar para o back
-17-01 TODO / 07-02 WIP / 08-02 DONE / Inserir animação slider menu hamburguer
-08-02 TODO / 09-02 WIP / 09-02 DONE / Investigar erro no mobile
-09-02 TODO / 09-02 WIP / 09-02 DONE / Corrigir titulo na imagem
-10-02 TODO / 10-02 WIP / 10-02 DONE / Remover bug botao menu hamburger
-10-02 TODO / 10-02 WIP / 10-02 DONE / remover menu auto close quando user logado
-04-02 TODO / 11-02 WIP / 11-02 DONE / Animar transição de botoes senha
-12-02 TODO / 11-02 WIP / 11-02 DONE / Corrigir margin left botao hamburguer
-11-02 TODO / 12-02 WIP / 12-02 DONE / Renderizar tela de login e cadastro em 100%
-12-02 TODO / 14-02 WIP / 14-02 DONE / Refatorar form igreja/culto
-14-02 TODO / 14-02 WIP / 14-02 DONE / investigar falha no header no firefox (a tela de login está cortando header e o botão hamburger) | era o height que estava setado para o webkit
-14-02 TODO / 14-02 WIP / 14-02 DONE / verificar altura no safari (o background não pega a pág toda no scroll
-14-02 TODO / 14-02 WIP / 14-02 DONE / Titulo do app se movendo no mobile
-23-01 TODO / 11-02 WIP / 17-02 DONE / Estilizar transição menu user logado-nao logado
+ TODO |  WIP  |  DONE | DESCRIPTION
+17-01 |       |       | Ao user logado, nao exibir login e cadastro 
+17-01 |       |       | Ao user logado, exibir botoes de nuvem e limpar no menu
+20-01 |       |       | Estilizar menu user logado
+23-01 | 23-01 | 31-01 | Adicionar cronograma como estado global do app
+02-02 | 02-02 | 02-02 | Corrigir download cronograma
+02-02 | 02-02 | 02-02 | Auto login pelo localstorage
+02-02 | 03-02 | 03-02 | Carregar cronograma do localstorage
+21-01 | 03-02 | 03-02 | Estilizar botao mostrar senha
+22-01 | 02-02 | 03-02 | refatorar css login|register | mudar para grid | login|register com ENTER
+27-01 | 06-02 | 06-02 | Animar tempo de espera
+07-02 | 07-02 | 07-02 | Corrigir bug de timezone quando baixa cronograma
+28-01 | 07-02 | 07-02 | Criar validação para o cronograma antes de enviar para o back
+17-01 | 07-02 | 08-02 | Inserir animação slider menu hamburguer
+08-02 | 09-02 | 09-02 | Investigar erro no mobile
+09-02 | 09-02 | 09-02 | Corrigir titulo na imagem
+10-02 | 10-02 | 10-02 | Remover bug botao menu hamburger
+10-02 | 10-02 | 10-02 | remover menu auto close quando user logado
+04-02 | 11-02 | 11-02 | Animar transição de botoes senha
+12-02 | 11-02 | 11-02 | Corrigir margin left botao hamburguer
+11-02 | 12-02 | 12-02 | Renderizar tela de login e cadastro em 100%
+12-02 | 14-02 | 14-02 | Refatorar form igreja|culto
+14-02 | 14-02 | 14-02 | investigar falha no header no firefox (a tela de login está cortando header e o botão hamburger) | era o height que estava setado para o webkit
+14-02 | 14-02 | 14-02 | verificar altura no safari (o background não pega a pág toda no scroll
+14-02 | 14-02 | 14-02 | Titulo do app se movendo no mobile
+23-01 | 11-02 | 17-02 | Estilizar transição menu user logado-nao logado
+21-02 | 22-02 | 22-02 | Limpar forms depois do submit
 
-08-02 TODO / Criar componente de error que exibe mensagem
-07-02 TODO / Investigar necessidade da soma de 3 hora no dia selecionado
+
+22-02 | 22-02 | 22-02 | Corrigir zindex do main
+08-02 | Criar componente de error que exibe mensagem
+07-02 | Investigar necessidade da soma de 3 hora no dia selecionado

@@ -29,6 +29,7 @@
 08-02 | 22-02 | 22-02 | Criar componente de error que exibe mensagem
 22-02 | 22-02 | 22-02 | Componente deve renderizar o basico do app
 
+22-02 ||| Investigar se erro no React vai resetar os estados
 22-02 ||| Componente envia para o dev msg de erro
 07-02 | Investigar necessidade da soma de 3 hora no dia selecionado
 22-02 ||| Criar testes end2end

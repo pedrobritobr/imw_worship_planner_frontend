@@ -1,12 +1,25 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, {
+  Component,
+  useState,
+  useEffect,
+  useContext,
+} from 'react';
+
 import PropTypes from 'prop-types';
 
 import Main from './Main';
 
+import { PlannerContext } from '../Context/PlannerContext';
+import { UserContext } from '../Context/UserContext';
+
 function MinimalApp() {
+  const { logOut } = useContext(UserContext);
+  const { setPlanner } = useContext(PlannerContext);
   const { alert } = window;
 
   useEffect(() => {
+    logOut();
+    setPlanner([]);
     alert('Ocorreu um erro!\n\nVocê pode continuar editando o cronograma e capturar a tela.');
   }, []);
 
@@ -41,12 +54,17 @@ class ErrorBoundary extends Component {
 }
 
 function ErrorWrapper({ children }) {
+  const { logOut } = useContext(UserContext);
+  const { setPlanner } = useContext(PlannerContext);
+
   const [globalError, setGlobalError] = useState(null);
 
   useEffect(() => {
     const errorHandler = (event) => {
       console.error('Erro global detectado:', event.error);
       setGlobalError(true);
+      logOut();
+      setPlanner([]);
     };
 
     window.addEventListener('error', errorHandler);

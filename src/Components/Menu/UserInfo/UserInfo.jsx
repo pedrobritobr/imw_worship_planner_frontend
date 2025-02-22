@@ -96,6 +96,12 @@ function UserInfo({ className, menuOpen, toggleMenu }) {
       return;
     }
 
+    if (plannerFromCloud.length === 0) {
+      const { alert } = window;
+      alert('Nenhum cronograma foi encontrado.');
+      return;
+    }
+
     plannerFromCloud.selectedDate = formatSelectedDateToUTC(plannerFromCloud.selectedDate);
 
     setPlanner(plannerFromCloud);

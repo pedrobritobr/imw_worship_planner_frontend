@@ -88,6 +88,8 @@ export async function downloadPlannerFromCloud(token) {
 
     return response.data;
   } catch (error) {
+    if (error?.response?.status === 404) return [];
+
     console.error(error);
     return null;
   }

@@ -34,7 +34,7 @@ function AppContent() {
     try {
       const storedUser = localStorage.getItem('user');
 
-      if (!user.email && storedUser) {
+      if (!user && storedUser) {
         const userData = JSON.parse(storedUser);
         logIn(userData.token);
       }

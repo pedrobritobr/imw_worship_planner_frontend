@@ -1,3 +1,5 @@
+import { v4 as generateId } from 'uuid';
+
 const capitalizeFirstLetter = (str) => {
   const capitalized = (word) => {
     if (word.length > 3) {
@@ -90,6 +92,7 @@ export {
   showErrorMessage,
   scrollToTop,
   formatSelectedDateToUTC,
+  generateId,
   columnsHeader,
   pngConfigs,
 };

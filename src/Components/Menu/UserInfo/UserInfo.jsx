@@ -47,7 +47,7 @@ function UserInfo({ className, menuOpen, toggleMenu }) {
     };
 
     const missingFields = Object.entries(translatedFields)
-      .filter(([field]) => _.isEqual(planner[field], defaultPlanner[field]))
+      .filter(([field]) => _.isEqual(planner[field], defaultPlanner()[field]))
       .map(([, label]) => label);
 
     if (missingFields.length) {

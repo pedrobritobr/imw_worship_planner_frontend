@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 
 import { userDefault } from './UserContext';
 
+import { generateId } from '../helpers';
+
 const firstActivity = {
   id: 'firstActivity',
   hour: '19:00',
@@ -23,23 +25,24 @@ const lastActivity = {
   responsible: '--',
 };
 
-export const defaultPlanner = {
+export const defaultPlanner = () => ({
+  id: generateId(),
   activities: [firstActivity, lastActivity],
   selectedDate: new Date(),
   ministerSelected: '',
   worshipTitle: '',
   churchName: '',
   creator: userDefault,
-};
+});
 
 export const PlannerContext = createContext();
 
 export function PlannerProvider({ children }) {
   const ref = createRef();
-  const [planner, setPlanner] = useState(defaultPlanner);
-  const [downloadedPlanner, setDownloadedPlanner] = useState(defaultPlanner);
+  const [planner, setPlanner] = useState(defaultPlanner());
+  const [downloadedPlanner, setDownloadedPlanner] = useState(defaultPlanner());
 
-  const getPlanner = (p) => (Object.keys(p).length === 0 ? defaultPlanner : p);
+  const getPlanner = (p) => (Object.keys(p).length === 0 ? defaultPlanner() : p);
 
   const storePlanner = (newPlanner) => {
     const updatedPlanner = getPlanner(newPlanner);

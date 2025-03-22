@@ -1,11 +1,15 @@
 import React, { useContext } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 import './Planner.css';
 
 import { PlannerContext } from '../../Context/PlannerContext';
 
-import { setHourForActivity as setHourForNewActivity, columnsHeader, formatMinutes } from '../../helpers';
+import {
+  setHourForActivity as setHourForNewActivity,
+  columnsHeader,
+  formatMinutes,
+  generateId,
+} from '../../helpers';
 import { updateHourFromActivity, getMinutesBetweenActivities, calculateDurationRemain } from './helpers';
 
 import Activity from './Activity';
@@ -70,7 +74,7 @@ function Planner() {
 
     const newActivity = {
       ...emptyActivity,
-      id: uuidv4(),
+      id: generateId(),
       hour: setHourForNewActivity(actualActivity.hour, actualActivity.duration),
       duration: shouldCalculateDuration ? calculateDurationRemain(activities, true) : 0,
     };

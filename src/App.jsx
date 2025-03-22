@@ -49,6 +49,10 @@ function AppContent() {
       storedPlanner.selectedDate = new Date(storedPlanner.selectedDate);
       setPlanner(storedPlanner);
     }
+
+    if (storedPlanner.id) {
+      window.history.pushState({}, '', `/${storedPlanner.id}`);
+    }
   }, [planner, setPlanner]);
 
   useEffect(() => {

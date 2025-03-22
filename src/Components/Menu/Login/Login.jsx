@@ -40,10 +40,10 @@ function Login({
     } else {
       const { message } = response.data;
       logIn(message);
+      setUserLocal(userDefault);
+      setShowPass(false);
     }
     setIsLogin(false);
-    setShowPass(false);
-    setUserLocal(userDefault);
   };
 
   return (

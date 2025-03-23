@@ -55,7 +55,7 @@ function UserInfo({ className, menuOpen, toggleMenu }) {
     }
 
     if (_.isEqual(planner, downloadedPlanner)) {
-      return 'Não houve mudanças entre o cronograma baixado/enviado e o cronograma atual';
+      return 'Não houve mudanças entre o cronograma baixado/salvo e o cronograma atual';
     }
 
     return null;
@@ -74,7 +74,7 @@ function UserInfo({ className, menuOpen, toggleMenu }) {
 
     setIsUploading(false);
 
-    const sucessMsg = 'Cronograma enviado com sucesso!';
+    const sucessMsg = 'Cronograma salvo com sucesso!';
     const errorMsg = 'Erro ao salvar o cronograma. Tente novamente mais tarde.';
     alert(response ? sucessMsg : errorMsg);
 

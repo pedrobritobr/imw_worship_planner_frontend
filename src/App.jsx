@@ -1,4 +1,6 @@
-import React, { useEffect, useContext } from 'react';
+// http://localhost:5173/1a5504a6-f7a4-4003-ac20-cd1875c1f4be
+
+import React, { useEffect, useContext, useState } from 'react';
 import { exportComponentAsPNG } from 'react-component-export-image';
 
 import ErrorWrapper from './Components/ErrorWrapper';
@@ -10,12 +12,13 @@ import Main from './Components/Main';
 import { UserProvider, UserContext } from './Context/UserContext';
 import { PlannerProvider, PlannerContext } from './Context/PlannerContext';
 
-import { sendLocationToAnalytics } from './service';
+import { sendLocationToAnalytics, getPlannerById } from './service';
 
 import {
   screenshotFilename,
   pngConfigs,
   scrollToTop,
+  validateUUID,
 } from './helpers';
 
 import './App.css';
@@ -23,8 +26,67 @@ import './App.css';
 function AppContent() {
   const { user, logIn } = useContext(UserContext);
   const { planner, setPlanner, ref } = useContext(PlannerContext);
+  const [initialSetupComplete, setInitialSetupComplete] = useState(false);
 
   useEffect(() => {
+    const getPlanner = async () => {
+      try {
+        const urlParts = window.location.pathname.split('/');
+        const plannerIdUrl = urlParts[1];
+
+        if (!plannerIdUrl) {
+          setInitialSetupComplete(true);
+          return;
+        }
+
+        validateUUID(plannerIdUrl);
+
+        const plannerFromLocalStorage = JSON.parse(localStorage.getItem('planner'));
+
+        if (plannerFromLocalStorage?.id === plannerIdUrl) {
+          setInitialSetupComplete(true);
+          return;
+        }
+
+        const fetchedPlanner = await getPlannerById(plannerIdUrl);
+        fetchedPlanner.selectedDate = new Date(fetchedPlanner.selectedDate);
+
+        setPlanner(fetchedPlanner);
+        localStorage.setItem('planner', JSON.stringify(fetchedPlanner));
+        window.history.pushState({}, '', `/${plannerIdUrl}`);
+      } catch (error) {
+        const { alert } = window;
+        alert(error.message);
+
+        if (error.message === 'Nenhum cronograma encontrado.') {
+          setInitialSetupComplete(true);
+          return;
+        }
+
+        if (error.name !== 'UserNotLogged') {
+          window.history.pushState({}, '', '/');
+        }
+      } finally {
+        setInitialSetupComplete(true);
+      }
+    };
+
+    getPlanner();
+  }, []);
+
+  useEffect(() => {
+    if (!initialSetupComplete) return;
+
+    const storedPlanner = JSON.parse(localStorage.getItem('planner'));
+
+    if (!storedPlanner?.activities?.length) {
+      setPlanner({});
+    }
+  }, [initialSetupComplete, setPlanner]);
+
+  useEffect(() => {
+    if (!initialSetupComplete) return;
+
     try {
       const storedUser = localStorage.getItem('user');
 
@@ -35,9 +97,11 @@ function AppContent() {
     } catch (error) {
       localStorage.removeItem('user');
     }
-  }, [user, logIn]);
+  }, [user, logIn, initialSetupComplete]);
 
   useEffect(() => {
+    if (!initialSetupComplete) return;
+
     const storedPlanner = JSON.parse(localStorage.getItem('planner'));
 
     if (!storedPlanner?.activities?.length) return;
@@ -53,7 +117,7 @@ function AppContent() {
     if (storedPlanner.id) {
       window.history.pushState({}, '', `/${storedPlanner.id}`);
     }
-  }, [planner, setPlanner]);
+  }, [planner, setPlanner, initialSetupComplete]);
 
   useEffect(() => {
     sendLocationToAnalytics(document.title, window.location.href);

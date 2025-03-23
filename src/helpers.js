@@ -1,4 +1,4 @@
-import { v4 as generateId } from 'uuid';
+import { v4 as generateId, version as uuidVersion, validate as uuidValidate } from 'uuid';
 
 const capitalizeFirstLetter = (str) => {
   const capitalized = (word) => {
@@ -82,6 +82,12 @@ const formatSelectedDateToUTC = (selectedDate) => {
   return selectedDateUTC;
 };
 
+const validateUUID = (uuid) => {
+  const isValidUUID = uuidValidate(uuid);
+  const isValidVersion = uuidVersion(uuid) === 4;
+  if (!(isValidUUID && isValidVersion)) throw new Error('Invalid UUID');
+};
+
 export {
   screenshotFilename,
   capitalizeFirstLetter,
@@ -93,6 +99,7 @@ export {
   scrollToTop,
   formatSelectedDateToUTC,
   generateId,
+  validateUUID,
   columnsHeader,
   pngConfigs,
 };

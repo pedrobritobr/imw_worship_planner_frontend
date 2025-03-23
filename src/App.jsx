@@ -58,7 +58,7 @@ function AppContent() {
         const { alert } = window;
         alert(error.message);
 
-        if (error.message === 'Nenhum cronograma encontrado.') {
+        if (error.message === 'Nenhum cronograma encontrado.' || error.name === 'UserNotLogged') {
           setInitialSetupComplete(true);
           return;
         }
@@ -75,12 +75,24 @@ function AppContent() {
   }, []);
 
   useEffect(() => {
-    if (!initialSetupComplete) return;
+    try {
+      if (!initialSetupComplete) return;
 
-    const storedPlanner = JSON.parse(localStorage.getItem('planner'));
+      const urlParts = window.location.pathname.split('/');
+      const plannerIdUrl = urlParts[1];
 
-    if (!storedPlanner?.activities?.length) {
-      setPlanner({});
+      if (plannerIdUrl) {
+        validateUUID(plannerIdUrl);
+        return;
+      }
+
+      const storedPlanner = JSON.parse(localStorage.getItem('planner'));
+
+      if (!storedPlanner?.activities?.length) {
+        setPlanner({});
+      }
+    } catch (error) {
+      console.error(error);
     }
   }, [initialSetupComplete, setPlanner]);
 

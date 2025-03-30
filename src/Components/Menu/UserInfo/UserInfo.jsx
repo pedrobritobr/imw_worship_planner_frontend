@@ -15,6 +15,7 @@ import UploadSVG from '../../../assets/cloud-upload-svgrepo-com.svg';
 import UploadBackgroundSVG from '../../../assets/cloud-upload-background-svgrepo-com.svg';
 import DownloadBackgroundSVG from '../../../assets/cloud-download-background-svgrepo-com.svg';
 import LogOutSVG from '../../../assets/logout-svgrepo-com.svg';
+import shareBtnSVG from '../../../assets/share-svgrepo-com.svg';
 
 import './UserInfo.css';
 
@@ -29,6 +30,7 @@ function UserInfo({ className, menuOpen, toggleMenu }) {
   const [showInfo, setShowInfo] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isSharing, setIsSharing] = useState(false);
 
   useEffect(() => {
     if (!menuOpen) setShowInfo(false);
@@ -70,7 +72,7 @@ function UserInfo({ className, menuOpen, toggleMenu }) {
 
     const { creator, ...plannerWithoutCreator } = planner;
 
-    const response = await uploadPlannerToCloud(plannerWithoutCreator, user.token);
+    const response = await uploadPlannerToCloud(plannerWithoutCreator);
 
     setIsUploading(false);
 
@@ -108,6 +110,41 @@ function UserInfo({ className, menuOpen, toggleMenu }) {
     setDownloadedPlanner(plannerFromCloud);
   };
 
+  const sharePlanner = async () => {
+    const { creator, ...plannerWithoutCreator } = planner;
+
+    const { alert } = window;
+    try {
+      setIsSharing(true);
+      const response = await uploadPlannerToCloud(plannerWithoutCreator);
+
+      const errorMsg = 'Erro ao salvar o cronograma. Tente novamente mais tarde.';
+      if (!response) {
+        alert(errorMsg);
+        return;
+      }
+    } catch (error) {
+      console.error('Erro ao compartilhar:', error);
+      alert('Erro ao salvar o cronograma. Tente novamente mais tarde.');
+    } finally {
+      setIsSharing(false);
+    }
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'IMW Cronograma de culto',
+          text: 'Confira o cronograma de culto!',
+          url: window.location.href,
+        });
+      } catch (error) {
+        console.error('Erro ao compartilhar:', error);
+      }
+    } else {
+      alert('Compartilhamento não suportado neste dispositivo.');
+    }
+  };
+
   const logOutUser = () => {
     setShowInfo(false);
     logOut();
@@ -130,6 +167,9 @@ function UserInfo({ className, menuOpen, toggleMenu }) {
           </button>
           <button type="button" className="cloud-button" onClick={() => {}} disabled>
             <img className="cloud-image" src={DownloadSVG} alt="Baixar os dados da nuvem" />
+          </button>
+          <button type="button" className="cloud-button" onClick={() => {}} disabled>
+            <img className="cloud-image" src={shareBtnSVG} alt="Compartilhar Cronograma" />
           </button>
         </div>
         <div className={`user-info ${showInfo ? 'show' : 'hide'}`}>
@@ -166,6 +206,14 @@ function UserInfo({ className, menuOpen, toggleMenu }) {
               : <img className="cloud-image" src={DownloadSVG} alt="Baixar os dados da nuvem" />
           }
           <img src={DownloadBackgroundSVG} alt="Baixar os dados para nuvem" className="loader-bg" />
+        </button>
+        <button type="button" className="cloud-button" onClick={sharePlanner} disabled={isSharing}>
+          {
+            isSharing
+              ? <span className="loader" />
+              : <img className="cloud-image" src={shareBtnSVG} alt="Compartilhar Cronograma" />
+          }
+          <img src={DownloadBackgroundSVG} alt="Enviar os dados para nuvem" className="loader-bg" />
         </button>
       </div>
 

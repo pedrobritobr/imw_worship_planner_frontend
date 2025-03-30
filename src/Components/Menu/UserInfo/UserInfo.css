@@ -23,15 +23,6 @@
   padding: 0;
 }
 
-.UserInfo .cloud-button {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 32px;
-  height: 32px;
-}
-
 .UserInfo img {
   width: 32px;
 }
@@ -96,17 +87,4 @@
   grid-area: user_church;
   margin: 0;
   padding: 0;
-}
-
-.UserInfo .loader-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-}
-
-.UserInfo .cloud-image,
-.UserInfo .loader {
-  position: relative;
-  z-index: 1;
 }

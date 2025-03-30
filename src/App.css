@@ -103,6 +103,28 @@ button:hover {
   animation: rotation 1s linear infinite;
 }
 
+.cloud-button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+}
+
+.loader-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.cloud-image,
+.loader {
+  position: relative;
+  z-index: 1;
+}
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);

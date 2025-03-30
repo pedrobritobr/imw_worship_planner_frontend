@@ -10,7 +10,7 @@ import Main from './Components/Main';
 import { UserProvider, UserContext } from './Context/UserContext';
 import { PlannerProvider, PlannerContext } from './Context/PlannerContext';
 
-import { sendLocationToAnalytics, getPlannerById } from './service';
+import { sendLocationToAnalytics, getPlannerById, uploadPlannerToCloud } from './service';
 
 import {
   screenshotFilename,
@@ -26,6 +26,7 @@ function AppContent() {
   const { planner, setPlanner, ref } = useContext(PlannerContext);
   const [initialSetupComplete, setInitialSetupComplete] = useState(false);
   const [keepPlannerId, setKeepPlannerId] = useState(false);
+  const [fetchingPlanner, setFetchingPlanner] = useState(false);
 
   useEffect(() => {
     try {
@@ -57,13 +58,16 @@ function AppContent() {
 
         if (plannerFromLocalStorage?.id === plannerIdUrl) return;
 
+        setFetchingPlanner(true);
         const fetchedPlanner = await getPlannerById(plannerIdUrl);
         fetchedPlanner.selectedDate = new Date(fetchedPlanner.selectedDate);
+        setFetchingPlanner(false);
 
         setPlanner(fetchedPlanner);
         localStorage.setItem('planner', JSON.stringify(fetchedPlanner));
         window.history.pushState({}, '', `/${plannerIdUrl}`);
       } catch (error) {
+        setFetchingPlanner(false);
         const { alert } = window;
         alert(error.message);
 
@@ -89,7 +93,6 @@ function AppContent() {
     loadPlannerFromId();
   }, [user, setPlanner]);
 
-
   useEffect(() => {
     if (!initialSetupComplete || keepPlannerId) return;
 
@@ -97,8 +100,8 @@ function AppContent() {
 
     if (!storedPlanner?.activities?.length) {
       setPlanner({});
-      return
-    };
+      return;
+    }
 
     const storedActivityId = storedPlanner?.activities[1]?.id;
     const currentActivityId = planner?.activities[1]?.id;
@@ -124,6 +127,13 @@ function AppContent() {
       fileName: screenshotFilename(churchName, selectedDate),
       ...pngConfigs,
     });
+
+    try {
+      const { creator, ...plannerWithoutCreator } = planner;
+      uploadPlannerToCloud(plannerWithoutCreator);
+    } catch (error) {
+      console.error('Erro ao salvar cronograma no backend:', error);
+    }
   };
 
   return (
@@ -131,12 +141,24 @@ function AppContent() {
       <header>
         <Menu />
         <h3 id="AppName">Cronograma de Culto</h3>
-        <ActionsButton downloadPlanner={downloadPlanner} />
+        {!fetchingPlanner && <ActionsButton downloadPlanner={downloadPlanner} />}
       </header>
-      <Main />
-      <button type="button" className="download-button" onClick={downloadPlanner}>
-        Baixar Cronograma
-      </button>
+      {
+        fetchingPlanner
+          ? (
+            <div className="loader-container">
+              <p>Carregando cronograma...</p>
+              <div className="loader" />
+            </div>
+          )
+          : <Main />
+      }
+      {!fetchingPlanner
+        && (
+          <button type="button" className="download-button" onClick={downloadPlanner}>
+            Baixar Cronograma
+          </button>
+        )}
     </div>
   );
 }

@@ -13,10 +13,12 @@ async function makeRequest(method, url, data = null, headers = {}) {
       method,
       url,
       headers,
+      data: data || {},
     };
 
-    if (data) {
-      config.data = data;
+    if (Object.values(config).some((value) => value === null || value === undefined)) {
+      console.error('Requisição não realizada: Configuração inválida (URL, método ou outros valores ausentes).');
+      return { success: false, errorMsg: 'Configuração inválida para a requisição.' };
     }
 
     const response = await axios(config);

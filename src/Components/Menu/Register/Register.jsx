@@ -26,7 +26,7 @@ const userDefault = {
 function Register({
   className,
 }) {
-  const { logIn } = useContext(UserContext);
+  const { logIn, user } = useContext(UserContext);
   const [userLocal, setUserLocal] = useState(userDefault);
   const [showPass, setShowPass] = useState(false);
   const [showCheckPass, setShowCheckPass] = useState(false);
@@ -34,8 +34,10 @@ function Register({
   const [churchList, setChurchList] = useState(churchDefault);
 
   useEffect(() => {
-    getChurches().then(setChurchList).catch(console.error);
-  }, []);
+    if (user === null) {
+      getChurches().then(setChurchList).catch(console.error);
+    }
+  }, [user]);
 
   const handleUserChange = (event) => {
     const { name, value } = event.target;

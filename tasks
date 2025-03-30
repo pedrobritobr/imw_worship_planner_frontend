@@ -28,8 +28,14 @@
 22-02 | 22-02 | 22-02 | Corrigir zindex do main
 08-02 | 22-02 | 22-02 | Criar componente de error que exibe mensagem
 22-02 | 22-02 | 22-02 | Componente deve renderizar o basico do app
+22-03 | 22-03 | 22-03 | Add id para planner
+22-03 | 22-03 | 29-03 | Leitura de planner do back pelo id
+29-03 | 29-03 | 30-03 | Add botão de compartilhamento
 
+29-03 | | | Renderizar loading enquanto faz leitura do planner
 22-02 ||| Investigar se erro no React vai resetar os estados
 22-02 ||| Componente envia para o dev msg de erro
 07-02 | Investigar necessidade da soma de 3 hora no dia selecionado
 22-02 ||| Criar testes end2end
+29-03 | | | Permitir personalização print
+29-03 | | | Renderizar preview do print

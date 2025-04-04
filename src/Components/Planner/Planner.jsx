@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 
 import './Planner.css';
 
-import { PlannerContext } from '../../Context/PlannerContext';
+import { PlannerContext } from '@/Context/PlannerContext';
 
 import {
   setHourForActivity as setHourForNewActivity,
   columnsHeader,
   formatMinutes,
   generateId,
-} from '../../helpers';
+} from '@/helpers';
 import { updateHourFromActivity, getMinutesBetweenActivities, calculateDurationRemain } from './helpers';
 
 import Activity from './Activity';

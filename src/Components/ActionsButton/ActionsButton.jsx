@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import saveImageBtnSvg from '../../assets/image-svgrepo-com.svg';
-import addBtnSvg from '../../assets/add-square-svgrepo-com.svg';
+import saveImageBtnSvg from '@/assets/image-svgrepo-com.svg';
+import addBtnSvg from '@/assets/add-square-svgrepo-com.svg';
 
-import { PlannerContext } from '../../Context/PlannerContext';
+import { PlannerContext } from '@/Context/PlannerContext';
 
 import './ActionsButton.css';
 

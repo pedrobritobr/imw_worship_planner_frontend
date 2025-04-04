@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 
-import { PlannerContext } from '../../Context/PlannerContext';
+import { PlannerContext } from '@/Context/PlannerContext';
 
-import { getLongDateString, columnsHeader } from '../../helpers';
+import { getLongDateString, columnsHeader } from '@/helpers';
 
 import './ScreenshotTable.css';
 

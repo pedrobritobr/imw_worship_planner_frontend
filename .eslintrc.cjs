@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   env: {
     browser: true,
@@ -22,10 +24,26 @@ module.exports = {
     sourceType: 'module',
   },
   ignorePatterns: [
-    "vite.config.js",
-    "src/main.jsx"
+    'vite.config.js',
+    'src/main.jsx',
   ],
   rules: {
-    'react/no-array-index-key': 'off'
+    'react/no-array-index-key': 'off',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+      },
+    ],
+  },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [['@', path.resolve(__dirname, 'src')]],
+        extensions: ['.js', '.jsx'],
+      },
+    },
   },
 };

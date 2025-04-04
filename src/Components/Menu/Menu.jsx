@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Menu.css';
 
-import { UserContext } from '../../Context/UserContext';
+import Login from '@/Components/Login';
+import Register from '@/Components/Register';
+import UserInfo from '@/Components/UserInfo';
 
-import Login from './Login';
-import Register from './Register';
-import UserInfo from './UserInfo';
+import { UserContext } from '@/Context/UserContext';
 
 function Menu() {
   const { user } = useContext(UserContext);

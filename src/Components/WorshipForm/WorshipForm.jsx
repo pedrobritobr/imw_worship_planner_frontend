@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { PlannerContext } from '../../Context/PlannerContext';
+import { PlannerContext } from '@/Context/PlannerContext';
 
 import {
   getWeekDay,
-} from '../../helpers';
+} from '@/helpers';
 
 import './WorshipForm.css';
 

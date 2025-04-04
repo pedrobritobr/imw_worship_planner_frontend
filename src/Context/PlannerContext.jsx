@@ -6,9 +6,9 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 
-import { userDefault } from './UserContext';
+import { generateId } from '@/helpers';
 
-import { generateId } from '../helpers';
+import { userDefault } from './UserContext';
 
 const firstActivity = {
   id: 'firstActivity',

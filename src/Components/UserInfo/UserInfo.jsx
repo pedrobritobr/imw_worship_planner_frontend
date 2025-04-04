@@ -2,20 +2,20 @@ import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-import { UserContext } from '../../../Context/UserContext';
-import { PlannerContext, defaultPlanner } from '../../../Context/PlannerContext';
+import { UserContext } from '@/Context/UserContext';
+import { PlannerContext, defaultPlanner } from '@/Context/PlannerContext';
 
-import { uploadPlannerToCloud, downloadPlannerFromCloud } from '../../../service';
-import { formatSelectedDateToUTC } from '../../../helpers';
+import { uploadPlannerToCloud, downloadPlannerFromCloud } from '@/service';
+import { formatSelectedDateToUTC } from '@/helpers';
 
-import HideUserSVG from '../../../assets/hide-user-svgrepo-com.svg';
-import ShowUserSVG from '../../../assets/show-user-svgrepo-com.svg';
-import DownloadSVG from '../../../assets/cloud-download-svgrepo-com.svg';
-import UploadSVG from '../../../assets/cloud-upload-svgrepo-com.svg';
-import UploadBackgroundSVG from '../../../assets/cloud-upload-background-svgrepo-com.svg';
-import DownloadBackgroundSVG from '../../../assets/cloud-download-background-svgrepo-com.svg';
-import LogOutSVG from '../../../assets/logout-svgrepo-com.svg';
-import shareBtnSVG from '../../../assets/share-svgrepo-com.svg';
+import HideUserSVG from '@/assets/hide-user-svgrepo-com.svg';
+import ShowUserSVG from '@/assets/show-user-svgrepo-com.svg';
+import DownloadSVG from '@/assets/cloud-download-svgrepo-com.svg';
+import UploadSVG from '@/assets/cloud-upload-svgrepo-com.svg';
+import UploadBackgroundSVG from '@/assets/cloud-upload-background-svgrepo-com.svg';
+import DownloadBackgroundSVG from '@/assets/cloud-download-background-svgrepo-com.svg';
+import LogOutSVG from '@/assets/logout-svgrepo-com.svg';
+import shareBtnSVG from '@/assets/share-svgrepo-com.svg';
 
 import './UserInfo.css';
 

@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { UserContext } from '../../../Context/UserContext';
+import { UserContext } from '@/Context/UserContext';
 
-import { requestLogin } from '../../../service';
-import { showErrorMessage } from '../../../helpers';
+import { requestLogin } from '@/service';
+import { showErrorMessage } from '@/helpers';
 
-import ShowPassSVG from '../../../assets/eye-show-svgrepo-com.svg';
-import HidePassSVG from '../../../assets/eye-hide-svgrepo-com.svg';
+import ShowPassSVG from '@/assets/eye-show-svgrepo-com.svg';
+import HidePassSVG from '@/assets/eye-hide-svgrepo-com.svg';
 
 import './Login.css';
 

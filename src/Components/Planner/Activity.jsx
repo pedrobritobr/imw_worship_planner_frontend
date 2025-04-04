@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import addBtnSvg from '../../assets/add-square-svgrepo-com.svg';
-import minusBtnSvg from '../../assets/minus-square-svgrepo-com.svg';
+import addBtnSvg from '@/assets/add-square-svgrepo-com.svg';
+import minusBtnSvg from '@/assets/minus-square-svgrepo-com.svg';
 
-import { formatMinutes } from '../../helpers';
+import { formatMinutes } from '@/helpers';
 
 function Activity({
   activity,

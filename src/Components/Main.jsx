@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 
+import { PlannerContext } from '@/Context/PlannerContext';
+
 import Planner from './Planner';
 import ScreenshotTable from './ScreenshotTable';
 import WorshipForm from './WorshipForm';
-
-import { PlannerContext } from '../Context/PlannerContext';
 
 function Main() {
   const { ref } = useContext(PlannerContext);

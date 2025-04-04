@@ -7,10 +7,10 @@ import React, {
 
 import PropTypes from 'prop-types';
 
-import Main from './Main';
+import { PlannerContext } from '@/Context/PlannerContext';
+import { UserContext } from '@/Context/UserContext';
 
-import { PlannerContext } from '../Context/PlannerContext';
-import { UserContext } from '../Context/UserContext';
+import Main from './Main';
 
 function MinimalApp() {
   const { logOut } = useContext(UserContext);

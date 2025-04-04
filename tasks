@@ -1,44 +1,42 @@
- TODO |  WIP  |  DONE | DESCRIPTION
-17-01 |       |       | Ao user logado, nao exibir login e cadastro 
-17-01 |       |       | Ao user logado, exibir botoes de nuvem e limpar no menu
-20-01 |       |       | Estilizar menu user logado
-23-01 | 23-01 | 31-01 | Adicionar cronograma como estado global do app
-02-02 | 02-02 | 02-02 | Corrigir download cronograma
-02-02 | 02-02 | 02-02 | Auto login pelo localstorage
-02-02 | 03-02 | 03-02 | Carregar cronograma do localstorage
-21-01 | 03-02 | 03-02 | Estilizar botao mostrar senha
-22-01 | 02-02 | 03-02 | refatorar css login|register | mudar para grid | login|register com ENTER
-27-01 | 06-02 | 06-02 | Animar tempo de espera
-07-02 | 07-02 | 07-02 | Corrigir bug de timezone quando baixa cronograma
-28-01 | 07-02 | 07-02 | Criar validação para o cronograma antes de enviar para o back
-17-01 | 07-02 | 08-02 | Inserir animação slider menu hamburguer
-08-02 | 09-02 | 09-02 | Investigar erro no mobile
-09-02 | 09-02 | 09-02 | Corrigir titulo na imagem
-10-02 | 10-02 | 10-02 | Remover bug botao menu hamburger
-10-02 | 10-02 | 10-02 | remover menu auto close quando user logado
-04-02 | 11-02 | 11-02 | Animar transição de botoes senha
-12-02 | 11-02 | 11-02 | Corrigir margin left botao hamburguer
-11-02 | 12-02 | 12-02 | Renderizar tela de login e cadastro em 100%
-12-02 | 14-02 | 14-02 | Refatorar form igreja|culto
+TODO |  WIP  |  DONE | DESCRIPTION
+30-03 ||| Componente feedback
+29-03 ||| Permitir personalização print
+29-03 ||| Renderizar preview do print
+22-02 ||| Componente envia para o dev msg de erro
+22-02 ||| Criar testes end2end
+22-02 ||| Investigar se erro no React vai resetar os estados
+07-02 ||| Investigar necessidade da soma de 3 hora no dia selecionado
+
+29-03 | 29-03 | 30-03 | Add botão de compartilhamento
+22-03 | 22-03 | 29-03 | Leitura de planner do back pelo id
+29-03 | 29-03 | 29-03 | Salvar cronograma ao baixar imagem
+29-03 | 29-03 | 29-03 | Renderizar loading enquanto faz leitura do planner
+22-03 | 22-03 | 22-03 | Add id para planner
+22-02 | 22-02 | 22-02 | Componente deve renderizar o basico do app
+22-02 | 22-02 | 22-02 | Corrigir zindex do main
+08-02 | 22-02 | 22-02 | Criar componente de error que exibe mensagem
+23-01 | 11-02 | 17-02 | Estilizar transição menu user logado-nao logado
 14-02 | 14-02 | 14-02 | investigar falha no header no firefox (a tela de login está cortando header e o botão hamburger) | era o height que estava setado para o webkit
 14-02 | 14-02 | 14-02 | verificar altura no safari (o background não pega a pág toda no scroll
 14-02 | 14-02 | 14-02 | Titulo do app se movendo no mobile
-23-01 | 11-02 | 17-02 | Estilizar transição menu user logado-nao logado
-21-02 | 22-02 | 22-02 | Limpar forms depois do submit
-22-02 | 22-02 | 22-02 | Corrigir zindex do main
-08-02 | 22-02 | 22-02 | Criar componente de error que exibe mensagem
-22-02 | 22-02 | 22-02 | Componente deve renderizar o basico do app
-22-03 | 22-03 | 22-03 | Add id para planner
-22-03 | 22-03 | 29-03 | Leitura de planner do back pelo id
-29-03 | 29-03 | 30-03 | Add botão de compartilhamento
-29-03 | 29-03 | 29-03 | Renderizar loading enquanto faz leitura do planner
-
-29-03 | 29-03 | 29-03 | Salvar cronograma ao baixar imagem
-
-30-03 ||| Componente feedback
-22-02 ||| Componente envia para o dev msg de erro
-07-02 | Investigar necessidade da soma de 3 hora no dia selecionado
-22-02 ||| Investigar se erro no React vai resetar os estados
-22-02 ||| Criar testes end2end
-29-03 | | | Permitir personalização print
-29-03 | | | Renderizar preview do print
+12-02 | 14-02 | 14-02 | Refatorar form igreja|culto
+11-02 | 12-02 | 12-02 | Renderizar tela de login e cadastro em 100%
+12-02 | 11-02 | 11-02 | Corrigir margin left botao hamburguer
+04-02 | 11-02 | 11-02 | Animar transição de botoes senha
+10-02 | 10-02 | 10-02 | Remover bug botao menu hamburger
+10-02 | 10-02 | 10-02 | remover menu auto close quando user logado
+09-02 | 09-02 | 09-02 | Corrigir titulo na imagem
+08-02 | 09-02 | 09-02 | Investigar erro no mobile
+17-01 | 07-02 | 08-02 | Inserir animação slider menu hamburguer
+28-01 | 07-02 | 07-02 | Criar validação para o cronograma antes de enviar para o back
+07-02 | 07-02 | 07-02 | Corrigir bug de timezone quando baixa cronograma
+27-01 | 06-02 | 06-02 | Animar tempo de espera
+22-01 | 02-02 | 03-02 | refatorar css login|register | mudar para grid | login|register com ENTER
+21-01 | 03-02 | 03-02 | Estilizar botao mostrar senha
+02-02 | 03-02 | 03-02 | Carregar cronograma do localstorage
+23-01 | 23-01 | 31-01 | Adicionar cronograma como estado global do app
+02-02 | 02-02 | 02-02 | Auto login pelo localstorage
+02-02 | 02-02 | 02-02 | Corrigir download cronograma
+20-01 | 20-01 | 20-01 | Estilizar menu user logado
+17-01 | 17-01 | 17-01 | Ao user logado, exibir botoes de nuvem e limpar no menu
+17-01 | 17-01 | 17-01 | Ao user logado, nao exibir login e cadastro 

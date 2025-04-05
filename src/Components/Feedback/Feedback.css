@@ -6,7 +6,12 @@
   backdrop-filter: blur(3px);
   background: linear-gradient(310deg, #020118df 0%, #042339f1 90%); /* Fundo */
   padding: 20px;
-  border: 1px solid #03001f
+  border: 1px solid #03001f;
+  width: 70vw;
+  position: absolute;
+  top: 50px;
+  left: -54%;
+  transform: translateX(50%);
 }
 
 .Feedback h2 {
@@ -14,15 +19,21 @@
 }
 
 .Feedback .feedback-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.1fr, 0.1fr, 0.1fr;
+  gap: 10px 10%;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "FeedbackTextarea FeedbackTextarea"
+    "FeedbackFileLabel FeedbackSubmit"
+    "FeedbackImages FeedbackImages";
   width: 100%;
 }
 
 .Feedback .feedback-textarea {
-  width: 100%;
+  grid-area: FeedbackTextarea;
+  width: 95%;
   height: 100px;
   border-radius: 5px;
   padding: 10px;
@@ -32,13 +43,53 @@
   resize: vertical;
 }
 
-.Feedback .feedback-button {
+.Feedback .feedback-submit,
+.Feedback .feedback-file-label {
   background: linear-gradient(128deg, #365387bd 0%, #1d3a5a 50%);
-  border-radius: 7px;
+  border-radius: 5px;
   border: none;
   cursor: pointer;
   transition: filter 0.2s ease;
 
-  font-size: 16px;
+  font-size: 14px;
   padding: 7px 15px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Feedback .feedback-file-input {
+  display: none;
+}
+
+.Feedback .feedback-file-label {
+  grid-area: FeedbackFileLabel;
+}
+
+.Feedback .feedback-submit {
+  grid-area: FeedbackSubmit;
+}
+
+.Feedback .feedback-file-label:hover {
+  filter: brightness(1.2);
+}
+
+.Feedback .feedback-images-container {
+  grid-area: FeedbackImages;
+}
+
+.Feedback .feedback-images {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.Feedback .feedback-images img {
+  width: 20%;
+  border-radius: 5px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }

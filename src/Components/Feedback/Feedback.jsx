@@ -45,18 +45,21 @@ function Feedback() {
           onChange={(e) => setFeedbackText(e.target.value)}
           className="feedback-textarea"
         />
-        <input type="file" multiple accept="image/*" onChange={handleImageUpload} />
+        <label htmlFor="file-upload" className="feedback-file-label">
+          Selecionar arquivo
+          <input type="file" id="file-upload" className="feedback-file-input" multiple accept="image/*" onChange={handleImageUpload} />
+        </label>
+        <button className="feedback-submit" type="button" onClick={handleSubmit}>Enviar Feedback</button>
         {images.length > 0 && (
-          <div style={{ marginBottom: '10px' }}>
-            <h4>Imagens enviadas:</h4>
-            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+          <div className="feedback-images-container">
+            <p>Imagens selecionadas:</p>
+            <div className="feedback-images">
               {images.map((image, index) => (
-                <img key={index} src={image} alt={`Uploaded ${index}`} style={{ maxWidth: '100px' }} />
+                <img key={index} src={image} alt={`Uploaded ${index}`} />
               ))}
             </div>
           </div>
         )}
-        <button className="feedback-button" type="button" onClick={handleSubmit}>Enviar Feedback</button>
       </div>
     </div>
   );

@@ -5,6 +5,8 @@ import _ from 'lodash';
 import { UserContext } from '@/Context/UserContext';
 import { PlannerContext, defaultPlanner } from '@/Context/PlannerContext';
 
+import Feedback from '@/Components/Feedback';
+
 import { uploadPlannerToCloud, downloadPlannerFromCloud } from '@/service';
 import { formatSelectedDateToUTC } from '@/helpers';
 
@@ -216,6 +218,8 @@ function UserInfo({ className, menuOpen, toggleMenu }) {
           <img src={DownloadBackgroundSVG} alt="Enviar os dados para nuvem" className="loader-bg" />
         </button>
       </div>
+
+      <Feedback />
 
       <div className={`user-info ${showInfo ? 'show' : 'hide'}`}>
         <button type="button" className="logOut" onClick={logOutUser}>

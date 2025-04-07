@@ -18,6 +18,7 @@ function MinimalApp() {
   const { alert } = window;
 
   useEffect(() => {
+    localStorage.clear();
     logOut();
     setPlanner([]);
     alert('Ocorreu um erro!\n\nVocê pode continuar editando o cronograma e capturar a tela.');

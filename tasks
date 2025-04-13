@@ -1,6 +1,5 @@
 TODO |  WIP  |  DONE | DESCRIPTION
-30-03 ||| Componente feedback
-04-04 ||| Estilizar botão feedback
+13-04 ||| Add loading feedback
 04-04 ||| Criar versão desktop
 29-03 ||| Permitir personalização print
 29-03 ||| Renderizar preview do print
@@ -9,6 +8,8 @@ TODO |  WIP  |  DONE | DESCRIPTION
 22-02 ||| Investigar se erro no React vai resetar os estados
 07-02 ||| Investigar necessidade da soma de 3 hora no dia selecionado
 
+04-04 | 04-04 | 13-04 | Estilizar botão feedback
+30-03 | 04-04 | 13-04 | Componente feedback
 29-03 | 29-03 | 30-03 | Add botão de compartilhamento
 22-03 | 22-03 | 29-03 | Leitura de planner do back pelo id
 29-03 | 29-03 | 29-03 | Salvar cronograma ao baixar imagem

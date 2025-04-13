@@ -151,3 +151,26 @@ export async function getChurches() {
 
   return result.data;
 }
+
+export async function postFeedback(formData) {
+  const url = `${import.meta.env.VITE_PLANNER_URL}/feedback/`;
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  if (!user) {
+    throw new UserNotLogged('Para enviar um feedback é necessário estar autenticado.\nFaça o login ou cadastro.');
+  }
+
+  const headers = {
+    keyword: import.meta.env.VITE_PLANNER_KEYWORD,
+    Authorization: user.token,
+    'Content-Type': 'multipart/form-data',
+  };
+
+  const result = await makeRequest('POST', url, formData, headers);
+
+  if (!result.success) {
+    throw new Error(result.errorMsg);
+  }
+
+  return result.data;
+}

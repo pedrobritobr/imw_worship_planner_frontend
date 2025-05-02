@@ -1,5 +1,5 @@
 TODO |  WIP  |  DONE | DESCRIPTION
-13-04 ||| Add loading feedback
+02-05 ||| Reestilizar menu | o novo menu deve ser do estilo hamburguer com uma lista das ações e cada ação selecionada deve ser renderizada na pag toda 
 04-04 ||| Criar versão desktop
 29-03 ||| Permitir personalização print
 29-03 ||| Renderizar preview do print
@@ -8,6 +8,7 @@ TODO |  WIP  |  DONE | DESCRIPTION
 22-02 ||| Investigar se erro no React vai resetar os estados
 07-02 ||| Investigar necessidade da soma de 3 hora no dia selecionado
 
+13-04 | 02-05 | 02-05 | Add loading feedback
 04-04 | 04-04 | 13-04 | Estilizar botão feedback
 30-03 | 04-04 | 13-04 | Componente feedback
 29-03 | 29-03 | 30-03 | Add botão de compartilhamento

@@ -10,6 +10,7 @@ function Feedback() {
   const [feedbackText, setFeedbackText] = useState('');
   const [images, setImages] = useState([]);
   const [imageFiles, setImageFiles] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleImageUpload = (event) => {
     const files = Array.from(event.target.files);
@@ -29,6 +30,13 @@ function Feedback() {
 
   const handleSubmit = async () => {
     try {
+      setIsLoading(true);
+
+      if (!feedbackText) {
+        alert('Por favor, preencha o campo de feedback.');
+        return;
+      }
+
       const screenshotBlob = await toBlob(document.body, {
         filter: (node) => !(
           node.classList
@@ -67,6 +75,8 @@ function Feedback() {
     } catch (error) {
       console.error('Erro ao enviar feedback:', error);
       alert('Erro ao enviar feedback.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -91,8 +101,12 @@ function Feedback() {
             onChange={handleImageUpload}
           />
         </label>
-        <button className="feedback-submit" type="button" onClick={handleSubmit}>
-          Enviar Feedback
+        <button className="feedback-submit" type="button" onClick={handleSubmit} disabled={isLoading}>
+          {
+            isLoading
+              ? <span className="loader" />
+              : 'Enviar Feedback'
+          }
         </button>
         {images.length > 0 && (
           <div className="feedback-images-container">

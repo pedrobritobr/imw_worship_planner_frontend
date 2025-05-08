@@ -8,11 +8,9 @@ import { PlannerContext } from '@/Context/PlannerContext';
 
 import './ActionsButton.css';
 
-function ActionsButton({ downloadPlanner }) {
-  const { setPlanner } = useContext(PlannerContext);
+function ActionsButton() {
+  const { downloadPlanner, deletePlanner } = useContext(PlannerContext);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-
-  const deletePlanner = () => setPlanner({});
 
   return (
     <div className="ActionsButton">

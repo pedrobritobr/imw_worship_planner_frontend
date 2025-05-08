@@ -7,7 +7,16 @@ import ScreenshotTable from './ScreenshotTable';
 import WorshipForm from './WorshipForm';
 
 function Main() {
-  const { ref } = useContext(PlannerContext);
+  const { ref, isFetchingPlanner, downloadPlanner } = useContext(PlannerContext);
+
+  if (isFetchingPlanner) {
+    return (
+      <div className="loader-container">
+        <p>Carregando cronograma...</p>
+        <div className="loader" />
+      </div>
+    );
+  }
 
   return (
     <div className="main">
@@ -18,6 +27,12 @@ function Main() {
           <ScreenshotTable />
         </div>
       </div>
+      {!isFetchingPlanner
+        && (
+          <button type="button" className="download-button" onClick={downloadPlanner}>
+            Baixar Cronograma
+          </button>
+        )}
     </div>
   );
 }

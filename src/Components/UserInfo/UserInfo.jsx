@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import { UserContext } from '@/Context/UserContext';
-import { PlannerContext, defaultPlanner } from '@/Context/PlannerContext';
+import { PlannerContext, getDefaultPlanner } from '@/Context/PlannerContext';
 
 import Feedback from '@/Components/Feedback';
 
@@ -51,7 +51,7 @@ function UserInfo({ className, menuOpen, toggleMenu }) {
     };
 
     const missingFields = Object.entries(translatedFields)
-      .filter(([field]) => _.isEqual(planner[field], defaultPlanner()[field]))
+      .filter(([field]) => _.isEqual(planner[field], getDefaultPlanner()[field]))
       .map(([, label]) => label);
 
     if (missingFields.length) {

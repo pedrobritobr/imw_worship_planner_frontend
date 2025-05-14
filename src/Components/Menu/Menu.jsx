@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Menu.css';
 
-import Login from '@/Components/Login';
-import Register from '@/Components/Register';
-import UserInfo from '@/Components/UserInfo';
-
 import { UserContext } from '@/Context/UserContext';
+import { PageContext } from '@/Context/PageContext';
 
 function Menu() {
   const { user } = useContext(UserContext);
+  const { getPages, setCurrentPage } = useContext(PageContext);
 
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -22,21 +20,24 @@ function Menu() {
 
   const handleClickOutside = (event) => {
     const userActionsElement = document.querySelector('.Menu');
+    console.log(userActionsElement);
+    console.log(menuOpen);
+
     if (userActionsElement && !userActionsElement.contains(event.target)) {
+      console.log(menuOpen);
       setMenuOpen(false);
-      document.querySelector('#hamburger-button').classList.remove('active');
+      console.log(menuOpen);
+
+      const h = document.querySelector('#hamburger-button');
+      console.log(h);
+      h.classList.remove('active');
     }
+    console.log('else');
   };
 
   useEffect(() => {
-    if (!user) {
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      };
-    }
-    return () => {};
-  }, [user]);
+    document.addEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <div className="Menu">
@@ -64,11 +65,21 @@ function Menu() {
         </button>
       </div>
       <div className={`menu-container ${menuOpen ? 'open' : 'close'}`}>
-        <UserInfo className={user ? 'show' : 'hidden'} menuOpen={menuOpen} toggleMenu={toggleMenu} />
-        <div className={`user-not-logged ${user ? 'hidden' : 'show'}`}>
-          <Login className="menu-item" />
-          <Register className="menu-item" />
-        </div>
+        {
+          Object.values(getPages(user)).map(({ title, icon }) => (
+            <button
+              type="button"
+              key={title}
+              className="menu-item"
+              onClick={() => {
+                setCurrentPage(title);
+                toggleMenu();
+              }}
+            >
+              {`${icon} ${title}`}
+            </button>
+          ))
+        }
       </div>
     </div>
   );

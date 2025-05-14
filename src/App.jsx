@@ -4,10 +4,10 @@ import ErrorWrapper from './Components/ErrorWrapper';
 
 import Menu from './Components/Menu';
 import ActionsButton from './Components/ActionsButton';
-import Main from './Components/Main';
 
 import { UserProvider, UserContext } from './Context/UserContext';
 import { PlannerProvider, PlannerContext } from './Context/PlannerContext';
+import { PageProvider, PageContext } from './Context/PageContext';
 
 import { sendLocationToAnalytics, getPlannerById } from './service';
 
@@ -17,6 +17,7 @@ import './App.css';
 
 function AppContent() {
   const { user, logIn } = useContext(UserContext);
+  const { currentPage } = useContext(PageContext);
   const {
     planner,
     setPlanner,
@@ -125,20 +126,22 @@ function AppContent() {
         <h3 id="AppName">Cronograma de Culto</h3>
         {!isFetchingPlanner && <ActionsButton />}
       </header>
-      <Main />
+      { currentPage.render() }
     </div>
   );
 }
 
 function App() {
   return (
-    <UserProvider>
-      <PlannerProvider>
-        <ErrorWrapper>
-          <AppContent />
-        </ErrorWrapper>
-      </PlannerProvider>
-    </UserProvider>
+    <PageProvider>
+      <UserProvider>
+        <PlannerProvider>
+          <ErrorWrapper>
+            <AppContent />
+          </ErrorWrapper>
+        </PlannerProvider>
+      </UserProvider>
+    </PageProvider>
   );
 }
 

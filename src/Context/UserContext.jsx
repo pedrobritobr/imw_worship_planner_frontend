@@ -1,7 +1,13 @@
-import React, { createContext, useState, useMemo } from 'react';
+import React, {
+  createContext,
+  useState,
+  useMemo,
+  useContext,
+} from 'react';
 import { jwtDecode } from 'jwt-decode';
-
 import PropTypes from 'prop-types';
+
+import { PageContext } from '@/Context/PageContext';
 
 export const userDefault = {
   name: '',
@@ -13,6 +19,7 @@ export const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(null);
+  const { setCurrentPage } = useContext(PageContext);
 
   const logOut = () => {
     localStorage.removeItem('user');
@@ -26,6 +33,7 @@ export function UserProvider({ children }) {
     const userData = { ...data, token };
     localStorage.setItem('user', JSON.stringify(userData));
     setUser(userData);
+    setCurrentPage('Home');
   };
 
   const variables = {

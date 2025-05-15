@@ -2,12 +2,9 @@ import React, {
   createContext,
   useState,
   useMemo,
-  useContext,
 } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import PropTypes from 'prop-types';
-
-import { PageContext } from '@/Context/PageContext';
 
 export const userDefault = {
   name: '',
@@ -17,9 +14,8 @@ export const userDefault = {
 
 export const UserContext = createContext();
 
-export function UserProvider({ children }) {
+export function UserProvider({ children, setCurrentPage }) {
   const [user, setUser] = useState(null);
-  const { setCurrentPage } = useContext(PageContext);
 
   const logOut = () => {
     localStorage.removeItem('user');
@@ -53,4 +49,5 @@ export function UserProvider({ children }) {
 
 UserProvider.propTypes = {
   children: PropTypes.node.isRequired,
+  setCurrentPage: PropTypes.func.isRequired,
 };

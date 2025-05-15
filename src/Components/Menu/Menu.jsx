@@ -20,19 +20,11 @@ function Menu() {
 
   const handleClickOutside = (event) => {
     const userActionsElement = document.querySelector('.Menu');
-    console.log(userActionsElement);
-    console.log(menuOpen);
 
     if (userActionsElement && !userActionsElement.contains(event.target)) {
-      console.log(menuOpen);
       setMenuOpen(false);
-      console.log(menuOpen);
-
-      const h = document.querySelector('#hamburger-button');
-      console.log(h);
-      h.classList.remove('active');
+      document.querySelector('#hamburger-button').classList.remove('active');
     }
-    console.log('else');
   };
 
   useEffect(() => {

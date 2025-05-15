@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { createContext, useState, useMemo } from 'react';
 
 import PropTypes from 'prop-types';
@@ -35,7 +34,7 @@ export function PageProvider({ children }) {
     // Profile: () => <div>Profile</div>,
     // Settings: () => <div>Settings</div>,
     // Logout: () => <div>Logout</div>,
-  }
+  };
 
   const [currentPage, setCurrentPage] = useState(pages.Home);
 

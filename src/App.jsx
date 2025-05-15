@@ -134,13 +134,17 @@ function AppContent() {
 function App() {
   return (
     <PageProvider>
-      <UserProvider>
-        <PlannerProvider>
-          <ErrorWrapper>
-            <AppContent />
-          </ErrorWrapper>
-        </PlannerProvider>
-      </UserProvider>
+      <PageContext.Consumer>
+        {({ setCurrentPage }) => (
+          <UserProvider setCurrentPage={setCurrentPage}>
+            <PlannerProvider>
+              <ErrorWrapper>
+                <AppContent />
+              </ErrorWrapper>
+            </PlannerProvider>
+          </UserProvider>
+        )}
+      </PageContext.Consumer>
     </PageProvider>
   );
 }

@@ -16,6 +16,7 @@ export const UserContext = createContext();
 
 export function UserProvider({ children, setCurrentPage }) {
   const [user, setUser] = useState(null);
+  const [userNotLoggedCount, setUserNotLoggedCount] = useState(0);
 
   const logOut = () => {
     localStorage.removeItem('user');
@@ -30,12 +31,15 @@ export function UserProvider({ children, setCurrentPage }) {
     localStorage.setItem('user', JSON.stringify(userData));
     setUser(userData);
     setCurrentPage('Home');
+    setUserNotLoggedCount(0);
   };
 
   const variables = {
     user,
     logOut,
     logIn,
+    userNotLoggedCount,
+    setUserNotLoggedCount,
   };
 
   const value = useMemo(() => (variables), Object.values(variables));

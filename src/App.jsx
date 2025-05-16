@@ -1,3 +1,5 @@
+/* eslint-disable */
+// http://localhost:5173/2326df9c-beec-4382-80b9-776fa5faf4e9?shared=true
 import React, { useEffect, useContext, useState } from 'react';
 
 import ErrorWrapper from './Components/ErrorWrapper';
@@ -16,8 +18,15 @@ import { validateUUID } from './helpers';
 import './App.css';
 
 function AppContent() {
-  const { user, logIn } = useContext(UserContext);
+  const {
+    user,
+    logIn,
+    userNotLoggedCount,
+    setUserNotLoggedCount,
+  } = useContext(UserContext);
+
   const { currentPage, setCurrentPage } = useContext(PageContext);
+
   const {
     planner,
     setPlanner,
@@ -27,7 +36,6 @@ function AppContent() {
 
   const [initialSetupComplete, setInitialSetupComplete] = useState(false);
   const [keepPlannerId, setKeepPlannerId] = useState(false);
-  const [userNotLoggedCount, setUserNotLoggedCount] = useState(0);
 
   useEffect(() => {
     try {
@@ -45,10 +53,12 @@ function AppContent() {
   useEffect(() => {
     const loadPlannerFromId = async () => {
       try {
-        const queryParams = new URLSearchParams(window.location.search);
-        const sharedParam = queryParams.get("shared");
+        const currentUrl = window.location.pathname + window.location.search;
 
-        if (sharedParam !== "true") return;
+        const queryParams = new URLSearchParams(window.location.search);
+        const sharedParam = queryParams.get('shared');
+
+        if (sharedParam !== 'true') return;
 
         const urlParts = window.location.pathname.split('/');
         const plannerIdUrl = urlParts[1];
@@ -66,7 +76,7 @@ function AppContent() {
 
         setPlanner(fetchedPlanner);
         localStorage.setItem('planner', JSON.stringify(fetchedPlanner));
-        window.history.pushState({}, '', `/${currentUrl}`);
+        window.history.pushState({}, '', `${currentUrl}`);
       } catch (error) {
         setIsFetchingPlanner(false);
         const { alert } = window;
@@ -74,7 +84,7 @@ function AppContent() {
 
         if (error.name === 'UserNotLogged') {
           setKeepPlannerId(true);
-          setUserNotLoggedCount(prevCount => prevCount + 1);
+          setUserNotLoggedCount((prevCount) => prevCount + 1);
           setCurrentPage('Login');
           return;
         }
@@ -92,10 +102,9 @@ function AppContent() {
       }
     };
 
-    if (userNotLoggedCount === 0) { 
+    if (userNotLoggedCount === 0) {
       loadPlannerFromId();
-    };
-
+    }
   }, [user, setPlanner]);
 
   useEffect(() => {
@@ -130,7 +139,7 @@ function AppContent() {
       <header>
         <Menu />
         <h3 id="AppName">Cronograma de Culto</h3>
-        {!isFetchingPlanner && currentPage === 'Home' && <ActionsButton />}
+        {!isFetchingPlanner && currentPage.title === 'Home' && <ActionsButton />}
       </header>
       { currentPage.render() }
     </div>

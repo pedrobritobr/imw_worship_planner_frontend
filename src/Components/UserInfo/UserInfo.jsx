@@ -137,7 +137,7 @@ function UserInfo({ className, menuOpen, toggleMenu }) {
         await navigator.share({
           title: 'IMW Cronograma de culto',
           text: 'Confira o cronograma de culto!',
-          url: window.location.href,
+          url: `${window.location.href}?shared=true`,
         });
       } catch (error) {
         console.error('Erro ao compartilhar:', error);

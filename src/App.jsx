@@ -17,15 +17,17 @@ import './App.css';
 
 function AppContent() {
   const { user, logIn } = useContext(UserContext);
-  const { currentPage } = useContext(PageContext);
+  const { currentPage, setCurrentPage } = useContext(PageContext);
   const {
     planner,
     setPlanner,
     isFetchingPlanner,
     setIsFetchingPlanner,
   } = useContext(PlannerContext);
+
   const [initialSetupComplete, setInitialSetupComplete] = useState(false);
   const [keepPlannerId, setKeepPlannerId] = useState(false);
+  const [userNotLoggedCount, setUserNotLoggedCount] = useState(0);
 
   useEffect(() => {
     try {
@@ -43,18 +45,18 @@ function AppContent() {
   useEffect(() => {
     const loadPlannerFromId = async () => {
       try {
+        const queryParams = new URLSearchParams(window.location.search);
+        const sharedParam = queryParams.get("shared");
+
+        if (sharedParam !== "true") return;
+
         const urlParts = window.location.pathname.split('/');
         const plannerIdUrl = urlParts[1];
-
-        if (!plannerIdUrl) {
-          setInitialSetupComplete(true);
-          return;
-        }
+        if (!plannerIdUrl) return;
 
         validateUUID(plannerIdUrl);
 
         const plannerFromLocalStorage = JSON.parse(localStorage.getItem('planner') || '{}');
-
         if (plannerFromLocalStorage?.id === plannerIdUrl) return;
 
         setIsFetchingPlanner(true);
@@ -64,7 +66,7 @@ function AppContent() {
 
         setPlanner(fetchedPlanner);
         localStorage.setItem('planner', JSON.stringify(fetchedPlanner));
-        window.history.pushState({}, '', `/${plannerIdUrl}`);
+        window.history.pushState({}, '', `/${currentUrl}`);
       } catch (error) {
         setIsFetchingPlanner(false);
         const { alert } = window;
@@ -72,24 +74,28 @@ function AppContent() {
 
         if (error.name === 'UserNotLogged') {
           setKeepPlannerId(true);
-        }
-
-        if (error.message === 'Nenhum cronograma encontrado.') {
-          setInitialSetupComplete(true);
-          setKeepPlannerId(false);
+          setUserNotLoggedCount(prevCount => prevCount + 1);
+          setCurrentPage('Login');
           return;
         }
 
+        setKeepPlannerId(false);
+
+        if (error.message === 'Nenhum cronograma encontrado.') return;
+
         if (error.name !== 'UserNotLogged') {
-          setKeepPlannerId(false);
           window.history.pushState({}, '', '/');
+          return;
         }
       } finally {
         setInitialSetupComplete(true);
       }
     };
 
-    loadPlannerFromId();
+    if (userNotLoggedCount === 0) { 
+      loadPlannerFromId();
+    };
+
   }, [user, setPlanner]);
 
   useEffect(() => {

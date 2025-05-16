@@ -120,7 +120,7 @@ export async function getPlannerById(plannerId) {
   const user = JSON.parse(localStorage.getItem('user'));
 
   if (!user) {
-    throw new UserNotLogged('Para realizar a consulta do roteiro é necessário estar autenticado.\nFaça o login ou cadastro.');
+    throw new UserNotLogged('Para consultar um roteiro é necessário estar autenticado.\nFaça o login ou cadastro.');
   }
 
   const headers = {

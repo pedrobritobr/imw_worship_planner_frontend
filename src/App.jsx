@@ -124,7 +124,7 @@ function AppContent() {
       <header>
         <Menu />
         <h3 id="AppName">Cronograma de Culto</h3>
-        {!isFetchingPlanner && <ActionsButton />}
+        {!isFetchingPlanner && currentPage === 'Home' && <ActionsButton />}
       </header>
       { currentPage.render() }
     </div>

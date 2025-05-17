@@ -1,4 +1,3 @@
-/* eslint-disable */
 // http://localhost:5173/2326df9c-beec-4382-80b9-776fa5faf4e9?shared=true
 import React, { useEffect, useContext, useState } from 'react';
 
@@ -25,7 +24,7 @@ function AppContent() {
     setUserNotLoggedCount,
   } = useContext(UserContext);
 
-  const { currentPage, setCurrentPage } = useContext(PageContext);
+  const { currentPage, setCurrentPage, pages } = useContext(PageContext);
 
   const {
     planner,
@@ -85,7 +84,7 @@ function AppContent() {
         if (error.name === 'UserNotLogged') {
           setKeepPlannerId(true);
           setUserNotLoggedCount((prevCount) => prevCount + 1);
-          setCurrentPage('Login');
+          setCurrentPage(pages.Login);
           return;
         }
 
@@ -139,7 +138,7 @@ function AppContent() {
       <header>
         <Menu />
         <h3 id="AppName">Cronograma de Culto</h3>
-        {!isFetchingPlanner && currentPage.title === 'Home' && <ActionsButton />}
+        {!isFetchingPlanner && currentPage.title === pages.Home.title && <ActionsButton />}
       </header>
       { currentPage.render() }
     </div>
@@ -150,8 +149,8 @@ function App() {
   return (
     <PageProvider>
       <PageContext.Consumer>
-        {({ setCurrentPage }) => (
-          <UserProvider setCurrentPage={setCurrentPage}>
+        {({ setCurrentPage, pages }) => (
+          <UserProvider setCurrentPage={setCurrentPage} pages={pages}>
             <PlannerProvider>
               <ErrorWrapper>
                 <AppContent />

@@ -6,9 +6,14 @@ import { PageContext } from '@/Context/PageContext';
 
 function Menu() {
   const { user } = useContext(UserContext);
-  const { getPages, setCurrentPage } = useContext(PageContext);
+  const { getUserPages, setCurrentPage, pages } = useContext(PageContext);
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [userPages, setUserPages] = useState(getUserPages(user));
+
+  useEffect(() => {
+    setUserPages(getUserPages(user));
+  }, [user]);
 
   const toggleMenu = () => {
     const hamburgerButton = document.querySelector('#hamburger-button');
@@ -58,13 +63,13 @@ function Menu() {
       </div>
       <div className={`menu-container ${menuOpen ? 'open' : 'close'}`}>
         {
-          Object.values(getPages(user)).map(({ title, icon }) => (
+          Object.entries(userPages).map(([key, { title, icon }]) => (
             <button
               type="button"
-              key={title}
+              key={key}
               className="menu-item"
               onClick={() => {
-                setCurrentPage(title);
+                setCurrentPage(pages[key]);
                 toggleMenu();
               }}
             >

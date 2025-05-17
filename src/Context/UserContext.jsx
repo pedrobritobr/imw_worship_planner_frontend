@@ -14,7 +14,7 @@ export const userDefault = {
 
 export const UserContext = createContext();
 
-export function UserProvider({ children, setCurrentPage }) {
+export function UserProvider({ children, setCurrentPage, pages }) {
   const [user, setUser] = useState(null);
   const [userNotLoggedCount, setUserNotLoggedCount] = useState(0);
 
@@ -30,7 +30,7 @@ export function UserProvider({ children, setCurrentPage }) {
     const userData = { ...data, token };
     localStorage.setItem('user', JSON.stringify(userData));
     setUser(userData);
-    setCurrentPage('Home');
+    setCurrentPage(pages.Home);
     setUserNotLoggedCount(0);
   };
 
@@ -54,4 +54,9 @@ export function UserProvider({ children, setCurrentPage }) {
 UserProvider.propTypes = {
   children: PropTypes.node.isRequired,
   setCurrentPage: PropTypes.func.isRequired,
+  pages: PropTypes.objectOf(PropTypes.shape({
+    title: PropTypes.string,
+    render: PropTypes.func,
+    icon: PropTypes.string,
+  })).isRequired,
 };

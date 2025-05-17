@@ -21,17 +21,17 @@ export function PageProvider({ children }) {
       icon: 'iconPath',
     },
     Login: {
-      title: 'Login',
+      title: 'Entrar',
       render: () => <Login />,
       icon: 'iconPath',
     },
     Register: {
-      title: 'Register',
+      title: 'Cadastrar',
       render: () => <Register />,
       icon: 'iconPath',
     },
     UserInfo: {
-      title: 'UserInfo',
+      title: 'Usuário',
       render: () => <UserInfo className="UserInfo" />,
       icon: 'iconPath',
     },
@@ -41,17 +41,17 @@ export function PageProvider({ children }) {
       icon: 'iconPath',
     },
     SharePlanner: {
-      title: 'SharePlanner',
+      title: 'Compartilhar Cronograma',
       render: () => <SharePlanner />,
       icon: 'iconPath',
     },
     FetchPlanner: {
-      title: 'FetchPlanner',
+      title: 'Buscar Cronograma',
       render: () => <FetchPlanner />,
       icon: 'iconPath',
     },
     UploadPlanner: {
-      title: 'UploadPlanner',
+      title: 'Enviar Cronograma',
       render: () => <UploadPlanner />,
       icon: 'iconPath',
     },
@@ -59,7 +59,7 @@ export function PageProvider({ children }) {
 
   const [currentPage, setCurrentPage] = useState(pages.Home);
 
-  const getPages = (user) => {
+  const getUserPages = (user) => {
     const alwaysVisible = ['Home'];
     const guestOnly = ['Login', 'Register'];
 
@@ -75,9 +75,10 @@ export function PageProvider({ children }) {
   };
 
   const variables = {
-    getPages,
+    pages,
+    getUserPages,
     currentPage,
-    setCurrentPage: (newPage) => setCurrentPage(pages[newPage]),
+    setCurrentPage,
   };
 
   const value = useMemo(() => (variables), Object.values(variables));

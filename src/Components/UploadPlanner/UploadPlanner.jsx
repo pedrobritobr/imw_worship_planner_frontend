@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
-import _ from 'lodash';
 
-import { PlannerContext, getDefaultPlanner } from '@/Context/PlannerContext';
+import { PlannerContext } from '@/Context/PlannerContext';
 
 import { uploadPlannerToCloud } from '@/service';
+import { validatePlanner } from '@/helpers';
 
 import UploadSVG from '@/assets/cloud-upload-svgrepo-com.svg';
 import UploadBackgroundSVG from '@/assets/cloud-upload-background-svgrepo-com.svg';
@@ -16,32 +16,10 @@ function UploadPlanner() {
   } = useContext(PlannerContext);
   const [isUploading, setIsUploading] = useState(false);
 
-  const validatePlanner = () => {
-    const translatedFields = {
-      activities: 'Atividades',
-      ministerSelected: 'Ministro',
-      worshipTitle: 'Título do Culto',
-      churchName: 'Nome da Igreja',
-    };
-
-    const missingFields = Object.entries(translatedFields)
-      .filter(([field]) => _.isEqual(planner[field], getDefaultPlanner()[field]))
-      .map(([, label]) => label);
-
-    if (missingFields.length) {
-      return `Os seguintes campos não foram preenchidos:\n- ${missingFields.join('\n- ')}`;
-    }
-
-    if (_.isEqual(planner, downloadedPlanner)) {
-      return 'Não houve mudanças entre o cronograma baixado/salvo e o cronograma atual';
-    }
-
-    return null;
-  };
-
   const uploadPlanner = async () => {
     const { alert } = window;
-    const isValidPlanner = validatePlanner();
+
+    const isValidPlanner = validatePlanner(planner, downloadedPlanner);
     if (isValidPlanner) return alert(isValidPlanner);
 
     setIsUploading(true);

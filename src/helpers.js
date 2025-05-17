@@ -1,4 +1,7 @@
+import _ from 'lodash';
 import { v4 as generateId, version as uuidVersion, validate as uuidValidate } from 'uuid';
+
+import { getDefaultPlanner } from '@/Context/PlannerContext';
 
 const capitalizeFirstLetter = (str) => {
   const capitalized = (word) => {
@@ -88,6 +91,29 @@ const validateUUID = (uuid) => {
   if (!(isValidUUID && isValidVersion)) throw new Error('Invalid UUID');
 };
 
+const validatePlanner = (planner, downloadedPlanner) => {
+  const translatedFields = {
+    activities: 'Atividades',
+    ministerSelected: 'Ministro',
+    worshipTitle: 'Título do Culto',
+    churchName: 'Nome da Igreja',
+  };
+
+  const missingFields = Object.entries(translatedFields)
+    .filter(([field]) => _.isEqual(planner[field], getDefaultPlanner()[field]))
+    .map(([, label]) => label);
+
+  if (missingFields.length) {
+    return `Os seguintes campos não foram preenchidos:\n- ${missingFields.join('\n- ')}`;
+  }
+
+  if (_.isEqual(planner, downloadedPlanner)) {
+    return 'Não houve mudanças entre o cronograma baixado/salvo e o cronograma atual';
+  }
+
+  return null;
+};
+
 export {
   screenshotFilename,
   capitalizeFirstLetter,
@@ -100,6 +126,7 @@ export {
   formatSelectedDateToUTC,
   generateId,
   validateUUID,
+  validatePlanner,
   columnsHeader,
   pngConfigs,
 };

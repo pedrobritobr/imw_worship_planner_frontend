@@ -1,6 +1,6 @@
  TODO |  WIP  |  DONE | DESCRIPTION
-16-05 ||| Extrair validatePlaner do UploadPlanner - add em helpers
 02-05 | 13-05 || Reestilizar menu | o novo menu deve ser do estilo hamburguer com uma lista das ações e cada ação selecionada deve ser renderizada na pag toda 
+17-05 ||| Nao exibir pag/menu atual
 04-04 ||| Criar versão desktop
 29-03 ||| Permitir personalização print
 29-03 ||| Renderizar preview do print
@@ -9,6 +9,7 @@
 22-02 ||| Investigar se erro no React vai resetar os estados
 07-02 ||| Investigar necessidade da soma de 3 hora no dia selecionado
 
+16-05 | 16-05 | 16-05 | Extrair validatePlaner do UploadPlanner - add em helpers
 16-05 | 16-05 | 16-05 | App não consultando cronograma compartilhado depois de logar
 16-05 | 16-05 | 16-05 | Após fazer consulta e não encontrar cronograma, se usuário voltar para home, deve atualizar id do cronograma na url
 13-05 | 16-05 | 16-05 | Investigar msg de carregamento do cronograma

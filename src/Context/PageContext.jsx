@@ -6,6 +6,10 @@ import Main from '@/Components/Main';
 import Login from '@/Components/Login';
 import Register from '@/Components/Register';
 import UserInfo from '@/Components/UserInfo';
+import Feedback from '@/Components/Feedback';
+import SharePlanner from '@/Components/SharePlanner';
+import FetchPlanner from '@/Components/FetchPlanner';
+import UploadPlanner from '@/Components/UploadPlanner';
 
 export const PageContext = createContext();
 
@@ -31,9 +35,26 @@ export function PageProvider({ children }) {
       render: () => <UserInfo className="UserInfo" />,
       icon: 'iconPath',
     },
-    // Profile: () => <div>Profile</div>,
-    // Settings: () => <div>Settings</div>,
-    // Logout: () => <div>Logout</div>,
+    Feedback: {
+      title: 'Feedback',
+      render: () => <Feedback />,
+      icon: 'iconPath',
+    },
+    SharePlanner: {
+      title: 'SharePlanner',
+      render: () => <SharePlanner />,
+      icon: 'iconPath',
+    },
+    FetchPlanner: {
+      title: 'FetchPlanner',
+      render: () => <FetchPlanner />,
+      icon: 'iconPath',
+    },
+    UploadPlanner: {
+      title: 'UploadPlanner',
+      render: () => <UploadPlanner />,
+      icon: 'iconPath',
+    },
   };
 
   const [currentPage, setCurrentPage] = useState(pages.Home);

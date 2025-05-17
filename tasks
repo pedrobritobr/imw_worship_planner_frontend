@@ -1,4 +1,5 @@
  TODO |  WIP  |  DONE | DESCRIPTION
+16-05 ||| Extrair validatePlaner do UploadPlanner - add em helpers
 02-05 | 13-05 || Reestilizar menu | o novo menu deve ser do estilo hamburguer com uma lista das ações e cada ação selecionada deve ser renderizada na pag toda 
 04-04 ||| Criar versão desktop
 29-03 ||| Permitir personalização print

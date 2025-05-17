@@ -39,18 +39,18 @@ export function PageProvider({ children }) {
   const [currentPage, setCurrentPage] = useState(pages.Home);
 
   const getPages = (user) => {
+    const alwaysVisible = ['Home'];
+    const guestOnly = ['Login', 'Register'];
+
     if (!user) {
-      return {
-        Home: pages.Home,
-        Login: pages.Login,
-        Register: pages.Register,
-      };
+      const visibleKeys = [...alwaysVisible, ...guestOnly];
+      return Object.fromEntries(visibleKeys.map((key) => [key, pages[key]]));
     }
 
-    return {
-      Home: pages.Home,
-      UserInfo: pages.UserInfo,
-    };
+    return Object.fromEntries(
+      Object.entries(pages)
+        .filter(([key]) => !guestOnly.includes(key) || alwaysVisible.includes(key)),
+    );
   };
 
   const variables = {

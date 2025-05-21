@@ -8,39 +8,12 @@ import { exportComponentAsPNG } from 'react-component-export-image';
 import PropTypes from 'prop-types';
 
 import {
-  generateId,
   screenshotFilename,
   pngConfigs,
   scrollToTop,
+  getDefaultPlanner,
 } from '@/helpers';
 import { uploadPlannerToCloud } from '@/service';
-
-import { userDefault } from './UserContext';
-
-const firstActivity = {
-  id: 'firstActivity',
-  hour: '19:00',
-  activityTitle: 'Cronômetro',
-  duration: '5',
-  responsible: 'Rede Connect',
-};
-const lastActivity = {
-  id: 'lastActivity',
-  hour: '21:00',
-  activityTitle: 'Encerramento',
-  duration: '0',
-  responsible: '--',
-};
-
-export const getDefaultPlanner = () => ({
-  id: generateId(),
-  activities: [firstActivity, lastActivity],
-  selectedDate: new Date(),
-  ministerSelected: '',
-  worshipTitle: '',
-  churchName: '',
-  creator: userDefault,
-});
 
 export const PlannerContext = createContext();
 

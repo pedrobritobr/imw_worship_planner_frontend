@@ -10,6 +10,7 @@ import Feedback from '@/Components/Feedback';
 import SharePlanner from '@/Components/SharePlanner';
 import FetchPlanner from '@/Components/FetchPlanner';
 import UploadPlanner from '@/Components/UploadPlanner';
+import Logout from '@/Components/Logout';
 
 export const PageContext = createContext();
 
@@ -32,7 +33,7 @@ export function PageProvider({ children }) {
     },
     UserInfo: {
       title: 'Usuário',
-      render: () => <UserInfo className="UserInfo" />,
+      render: () => <UserInfo />,
       icon: 'iconPath',
     },
     Feedback: {
@@ -53,6 +54,11 @@ export function PageProvider({ children }) {
     UploadPlanner: {
       title: 'Enviar Cronograma',
       render: () => <UploadPlanner />,
+      icon: 'iconPath',
+    },
+    LogOut: {
+      title: 'Sair',
+      render: () => <Logout />,
       icon: 'iconPath',
     },
   };

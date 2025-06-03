@@ -6,14 +6,19 @@ import { PageContext } from '@/Context/PageContext';
 
 function Menu() {
   const { user } = useContext(UserContext);
-  const { getUserPages, setCurrentPage, pages } = useContext(PageContext);
+  const {
+    getUserPages,
+    setCurrentPage,
+    pages,
+    currentPage,
+  } = useContext(PageContext);
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [userPages, setUserPages] = useState(getUserPages(user));
 
   useEffect(() => {
     setUserPages(getUserPages(user));
-  }, [user]);
+  }, [user, currentPage]);
 
   const toggleMenu = () => {
     const hamburgerButton = document.querySelector('#hamburger-button');

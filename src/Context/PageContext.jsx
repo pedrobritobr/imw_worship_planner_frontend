@@ -17,46 +17,55 @@ export const PageContext = createContext();
 export function PageProvider({ children }) {
   const pages = {
     Home: {
+      id: 'Home',
       title: 'Home',
       render: () => <Main />,
       icon: 'iconPath',
     },
     Login: {
+      id: 'Login',
       title: 'Entrar',
       render: () => <Login />,
       icon: 'iconPath',
     },
     Register: {
+      id: 'Register',
       title: 'Cadastrar',
       render: () => <Register />,
       icon: 'iconPath',
     },
     UserInfo: {
+      id: 'UserInfo',
       title: 'Usuário',
       render: () => <UserInfo />,
       icon: 'iconPath',
     },
     Feedback: {
+      id: 'Feedback',
       title: 'Feedback',
       render: () => <Feedback />,
       icon: 'iconPath',
     },
     SharePlanner: {
+      id: 'SharePlanner',
       title: 'Compartilhar Cronograma',
       render: () => <SharePlanner />,
       icon: 'iconPath',
     },
     FetchPlanner: {
+      id: 'FetchPlanner',
       title: 'Buscar Cronograma',
       render: () => <FetchPlanner />,
       icon: 'iconPath',
     },
     UploadPlanner: {
+      id: 'UploadPlanner',
       title: 'Enviar Cronograma',
       render: () => <UploadPlanner />,
       icon: 'iconPath',
     },
     LogOut: {
+      id: 'LogOut',
       title: 'Sair',
       render: () => <Logout />,
       icon: 'iconPath',
@@ -69,15 +78,21 @@ export function PageProvider({ children }) {
     const alwaysVisible = ['Home'];
     const guestOnly = ['Login', 'Register'];
 
+    const excludeCurrent = (obj) => Object.fromEntries(
+      Object.entries(obj).filter(([key]) => key !== currentPage.id),
+    );
+
     if (!user) {
       const visibleKeys = [...alwaysVisible, ...guestOnly];
-      return Object.fromEntries(visibleKeys.map((key) => [key, pages[key]]));
+      const guestPages = Object.fromEntries(visibleKeys.map((key) => [key, pages[key]]));
+      return excludeCurrent(guestPages);
     }
 
-    return Object.fromEntries(
+    const userPages = Object.fromEntries(
       Object.entries(pages)
         .filter(([key]) => !guestOnly.includes(key) || alwaysVisible.includes(key)),
     );
+    return excludeCurrent(userPages);
   };
 
   const variables = {

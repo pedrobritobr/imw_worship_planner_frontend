@@ -1,7 +1,4 @@
  TODO |  WIP  |  DONE | DESCRIPTION
-17-05 | 03-06 | 03-06 | Nao exibir pag/menu atual
-03-06 ||| adicionar sombra no menu
-03-06 ||| arredondar botoes do menu
 03-06 ||| adicionar icones dos botoes
 03-06 ||| corrigir layout das pags quando user logado
 03-06 ||| ao clicar na pag de compartilhar, nao renderizar
@@ -9,7 +6,7 @@
 03-06 ||| ao clicar na pag de baixas, nao renderizar
 03-06 ||| ao clicar na pag de sair, nao renderizar, sair do app
 03-06 ||| botao de logout deve ser vermelho
-
+03-06 ||| adicionar transição entre paginas
 04-04 ||| Criar versão desktop
 22-02 ||| Criar testes end2end
 29-03 ||| Permitir personalização print
@@ -18,6 +15,9 @@
 22-02 ||| Investigar se erro no React vai resetar os estados
 07-02 ||| Investigar necessidade da soma de 3 hora no dia selecionado
 
+03-06 | 03-06 | 03-06 | arredondar menu
+03-06 | 03-06 | 03-06 | adicionar sombra no menu
+17-05 | 03-06 | 03-06 | Nao exibir pag/menu atual
 02-05 | 13-05 | 21-05 | Reestilizar menu | o novo menu deve ser do estilo hamburguer com uma lista das ações e cada ação selecionada deve ser renderizada na pag toda 
 16-05 | 16-05 | 16-05 | Extrair validatePlaner do UploadPlanner - add em helpers
 16-05 | 16-05 | 16-05 | App não consultando cronograma compartilhado depois de logar

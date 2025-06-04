@@ -16,9 +16,7 @@ const userDefault = {
   password: '',
 };
 
-function Login({
-  className,
-}) {
+function Login() {
   const { logIn } = useContext(UserContext);
   const [userLocal, setUserLocal] = useState(userDefault);
   const [showPass, setShowPass] = useState(false);
@@ -47,8 +45,8 @@ function Login({
   };
 
   return (
-    <form className={`${className} Login`} onSubmit={handleLogin}>
-      <h4 id="LoginTitle">Login</h4>
+    <form className="Login" onSubmit={handleLogin}>
+      <h4 id="LoginTitle">Entrar</h4>
       <label id="LoginEmail" htmlFor="login-email">
         <span>Email:</span>
         <input

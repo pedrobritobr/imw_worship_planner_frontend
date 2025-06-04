@@ -23,9 +23,7 @@ const userDefault = {
   church: '',
 };
 
-function Register({
-  className,
-}) {
+function Register() {
   const { logIn, user } = useContext(UserContext);
   const [userLocal, setUserLocal] = useState(userDefault);
   const [showPass, setShowPass] = useState(false);
@@ -70,8 +68,8 @@ function Register({
   };
 
   return (
-    <form className={`${className} Register`} onSubmit={handleRegister}>
-      <h4>Cadastro</h4>
+    <form className="Register" onSubmit={handleRegister}>
+      <h4>Cadastrar</h4>
       <label id="RegisterName" htmlFor="register-name">
         <span>Nome:</span>
         <input

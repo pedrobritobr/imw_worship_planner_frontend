@@ -1,7 +1,8 @@
 .Register {
+  width: 90%;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-template-rows: repeat(6, 1fr) 0.1fr;
+  grid-template-rows: repeat(6, 0.7fr) 0.1fr;
   gap: 0px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -45,7 +46,8 @@
   margin: 0;
   font-size: 12px;
   padding: 5px 15px;
-  height: 70%;
+  height: 57%;
+  align-self: center;
 }
 
 .Register #RegisterErrorMessage {
@@ -69,13 +71,12 @@
 
 .Register label span {
   font-size: 12px;
-  margin: 0 2px;
+  margin: 0 15px;
 }
 
 .Register #RegisterCheckPassword .register-check-password-span {
   display: flex;
   flex-direction: column;
-  margin: 0 3px;
 }
 
 .Register #RegisterCheckPassword .register-check-password-span .small-text {

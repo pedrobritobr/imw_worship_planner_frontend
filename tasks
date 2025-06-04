@@ -2,10 +2,8 @@
 03-06 ||| ao clicar na pag de compartilhar, nao renderizar
 03-06 ||| ao clicar na pag de salvar, nao renderizar
 03-06 ||| ao clicar na pag de baixas, nao renderizar
-03-06 ||| ao clicar na pag de sair, nao renderizar, sair do app
 03-06 ||| corrigir layout das pags
-17-05 ||| Destacar pag/menu atual
-03-06 ||| botao de logout deve ser vermelho
+03-06 ||| Destacar pag/menu atual
 03-06 ||| adicionar transição entre paginas
 04-04 ||| Criar versão desktop
 22-02 ||| Criar testes end2end
@@ -15,6 +13,8 @@
 22-02 ||| Investigar se erro no React vai resetar os estados
 07-02 ||| Investigar necessidade da soma de 3 hora no dia selecionado
 
+03-06 | 03-06 | 03-06 | botao de logout deve ser vermelho
+03-06 | 03-06 | 03-06 | ao clicar na pag de sair, nao renderizar, sair do app
 03-06 | 03-06 | 03-06 | corrigir layout login
 03-06 | 03-06 | 03-06 | corrigir layout register
 17-05 | 03-06 | 03-06 | Reexibir pag/menu atual

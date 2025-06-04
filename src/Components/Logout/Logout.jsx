@@ -1,22 +1,18 @@
-import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext, useEffect } from 'react';
 
 import { UserContext } from '@/Context/UserContext';
-
-import LogOutSVG from '@/assets/logout-svgrepo-com.svg';
+import { PageContext } from '@/Context/PageContext';
 
 function Logout() {
   const { logOut } = useContext(UserContext);
+  const { setCurrentPage, pages } = useContext(PageContext);
 
-  return (
-    <button type="button" className="logOut" onClick={logOut}>
-      <img src={LogOutSVG} alt="Encerra sessão" />
-    </button>
-  );
+  useEffect(() => {
+    logOut();
+    setCurrentPage(pages.Home);
+  }, [logOut]);
+
+  return (<div />);
 }
-
-Logout.propTypes = {
-  toggleMenu: PropTypes.func,
-}.isRequired;
 
 export default Logout;

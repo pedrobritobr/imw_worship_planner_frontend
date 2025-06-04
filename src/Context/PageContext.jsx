@@ -44,6 +44,24 @@ export function PageProvider({ children }) {
       render: () => <Register />,
       icon: SignUp,
     },
+    SharePlanner: {
+      id: 'SharePlanner',
+      title: 'Compartilhar Cronograma',
+      render: () => <SharePlanner />,
+      icon: SharePlannerIcon,
+    },
+    FetchPlanner: {
+      id: 'FetchPlanner',
+      title: 'Carregar Último Cronograma',
+      render: () => <FetchPlanner />,
+      icon: DownloadIcon,
+    },
+    UploadPlanner: {
+      id: 'UploadPlanner',
+      title: 'Salvar Cronograma',
+      render: () => <UploadPlanner />,
+      icon: UploadIcon,
+    },
     UserInfo: {
       id: 'UserInfo',
       title: 'Usuário',
@@ -55,24 +73,6 @@ export function PageProvider({ children }) {
       title: 'Feedback',
       render: () => <Feedback />,
       icon: FeedbackIcon,
-    },
-    SharePlanner: {
-      id: 'SharePlanner',
-      title: 'Compartilhar Cronograma',
-      render: () => <SharePlanner />,
-      icon: SharePlannerIcon,
-    },
-    FetchPlanner: {
-      id: 'FetchPlanner',
-      title: 'Buscar Cronograma',
-      render: () => <FetchPlanner />,
-      icon: DownloadIcon,
-    },
-    UploadPlanner: {
-      id: 'UploadPlanner',
-      title: 'Enviar Cronograma',
-      render: () => <UploadPlanner />,
-      icon: UploadIcon,
     },
     LogOut: {
       id: 'LogOut',

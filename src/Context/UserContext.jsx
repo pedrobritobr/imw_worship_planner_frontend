@@ -21,6 +21,7 @@ export function UserProvider({ children, setCurrentPage, pages }) {
   const logOut = () => {
     localStorage.removeItem('user');
     setUser(null);
+    setCurrentPage(pages.Home);
   };
 
   const logIn = (token) => {

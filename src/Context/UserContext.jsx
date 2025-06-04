@@ -7,9 +7,9 @@ import { jwtDecode } from 'jwt-decode';
 import PropTypes from 'prop-types';
 
 export const userDefault = {
-  name: '',
-  email: '',
-  church: '',
+  name: 'Pedro Brito',
+  email: 'me@pedrobrito.dev',
+  church: 'Wesleyana São Cristóvão',
 };
 
 export const UserContext = createContext();

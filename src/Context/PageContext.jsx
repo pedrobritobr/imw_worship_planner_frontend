@@ -12,63 +12,73 @@ import FetchPlanner from '@/Components/FetchPlanner';
 import UploadPlanner from '@/Components/UploadPlanner';
 import Logout from '@/Components/Logout';
 
+import HomeIcon from '@/assets/icons/home.svg';
+import SignIn from '@/assets/icons/signin.svg';
+import SignUp from '@/assets/icons/signup.svg';
+import FeedbackIcon from '@/assets/icons/feedback.svg';
+import SharePlannerIcon from '@/assets/icons/share.svg';
+import LogOutIcon from '@/assets/icons/logout.svg';
+import UserIcon from '@/assets/icons/user.svg';
+import UploadIcon from '@/assets/icons/upload.svg';
+import DownloadIcon from '@/assets/icons/download.svg';
+
 export const PageContext = createContext();
 
 export function PageProvider({ children }) {
   const pages = {
     Home: {
       id: 'Home',
-      title: 'Home',
+      title: 'Início',
       render: () => <Main />,
-      icon: 'iconPath',
+      icon: HomeIcon,
     },
     Login: {
       id: 'Login',
       title: 'Entrar',
       render: () => <Login />,
-      icon: 'iconPath',
+      icon: SignIn,
     },
     Register: {
       id: 'Register',
       title: 'Cadastrar',
       render: () => <Register />,
-      icon: 'iconPath',
+      icon: SignUp,
     },
     UserInfo: {
       id: 'UserInfo',
       title: 'Usuário',
       render: () => <UserInfo />,
-      icon: 'iconPath',
+      icon: UserIcon,
     },
     Feedback: {
       id: 'Feedback',
       title: 'Feedback',
       render: () => <Feedback />,
-      icon: 'iconPath',
+      icon: FeedbackIcon,
     },
     SharePlanner: {
       id: 'SharePlanner',
       title: 'Compartilhar Cronograma',
       render: () => <SharePlanner />,
-      icon: 'iconPath',
+      icon: SharePlannerIcon,
     },
     FetchPlanner: {
       id: 'FetchPlanner',
       title: 'Buscar Cronograma',
       render: () => <FetchPlanner />,
-      icon: 'iconPath',
+      icon: DownloadIcon,
     },
     UploadPlanner: {
       id: 'UploadPlanner',
       title: 'Enviar Cronograma',
       render: () => <UploadPlanner />,
-      icon: 'iconPath',
+      icon: UploadIcon,
     },
     LogOut: {
       id: 'LogOut',
       title: 'Sair',
       render: () => <Logout />,
-      icon: 'iconPath',
+      icon: LogOutIcon,
     },
   };
 
@@ -78,21 +88,16 @@ export function PageProvider({ children }) {
     const alwaysVisible = ['Home'];
     const guestOnly = ['Login', 'Register'];
 
-    const excludeCurrent = (obj) => Object.fromEntries(
-      Object.entries(obj).filter(([key]) => key !== currentPage.id),
-    );
-
     if (!user) {
       const visibleKeys = [...alwaysVisible, ...guestOnly];
-      const guestPages = Object.fromEntries(visibleKeys.map((key) => [key, pages[key]]));
-      return excludeCurrent(guestPages);
+      return Object.fromEntries(visibleKeys.map((key) => [key, pages[key]]));
     }
 
     const userPages = Object.fromEntries(
       Object.entries(pages)
         .filter(([key]) => !guestOnly.includes(key) || alwaysVisible.includes(key)),
     );
-    return excludeCurrent(userPages);
+    return userPages;
   };
 
   const variables = {

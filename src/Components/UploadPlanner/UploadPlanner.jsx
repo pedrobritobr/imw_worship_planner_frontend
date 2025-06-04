@@ -1,14 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import { PlannerContext } from '@/Context/PlannerContext';
+import { UserContext } from '@/Context/UserContext';
 
 import { uploadPlannerToCloud } from '@/service';
 import { validatePlanner } from '@/helpers';
 
-import UploadSVG from '@/assets/cloud-upload-svgrepo-com.svg';
-import UploadBackgroundSVG from '@/assets/cloud-upload-background-svgrepo-com.svg';
-
 function UploadPlanner() {
+  const { setCurrentPage, pages } = useContext(UserContext);
   const {
     planner,
     downloadedPlanner,
@@ -16,38 +15,36 @@ function UploadPlanner() {
   } = useContext(PlannerContext);
   const [isUploading, setIsUploading] = useState(false);
 
-  const uploadPlanner = async () => {
-    const { alert } = window;
+  useEffect(() => {
+    const uploadPlanner = async () => {
+      const { alert } = window;
 
-    const isValidPlanner = validatePlanner(planner, downloadedPlanner);
-    if (isValidPlanner) return alert(isValidPlanner);
+      const isValidPlanner = validatePlanner(planner, downloadedPlanner);
+      if (isValidPlanner) return alert(isValidPlanner);
 
-    setIsUploading(true);
+      setIsUploading(true);
 
-    const { creator, ...plannerWithoutCreator } = planner;
+      const { creator, ...plannerWithoutCreator } = planner;
 
-    const response = await uploadPlannerToCloud(plannerWithoutCreator);
+      const response = await uploadPlannerToCloud(plannerWithoutCreator);
 
-    setIsUploading(false);
+      setIsUploading(false);
 
-    const sucessMsg = 'Cronograma salvo com sucesso!';
-    const errorMsg = 'Erro ao salvar o cronograma. Tente novamente mais tarde.';
-    alert(response ? sucessMsg : errorMsg);
+      const sucessMsg = 'Cronograma salvo com sucesso!';
+      const errorMsg = 'Erro ao salvar o cronograma. Tente novamente mais tarde.';
+      alert(response ? sucessMsg : errorMsg);
 
-    setDownloadedPlanner(planner);
-    return null;
-  };
+      setDownloadedPlanner(planner);
+      return null;
+    };
 
-  return (
-    <button type="button" className="UploadPlanner cloud-button" onClick={uploadPlanner} disabled={isUploading}>
-      {
-        isUploading
-          ? <span className="loader" />
-          : <img className="cloud-image" src={UploadSVG} alt="Enviar os dados para nuvem" />
-      }
-      <img src={UploadBackgroundSVG} alt="Enviar os dados para nuvem" className="loader-bg" />
-    </button>
-  );
+    uploadPlanner();
+    setCurrentPage(pages.Home);
+  }, []);
+
+  if (isUploading) return <span className="loader" />;
+
+  return (<div />);
 }
 
 export default UploadPlanner;

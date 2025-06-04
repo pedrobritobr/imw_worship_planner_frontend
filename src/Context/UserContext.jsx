@@ -41,6 +41,8 @@ export function UserProvider({ children, setCurrentPage, pages }) {
     logIn,
     userNotLoggedCount,
     setUserNotLoggedCount,
+    setCurrentPage,
+    pages,
   };
 
   const value = useMemo(() => (variables), Object.values(variables));

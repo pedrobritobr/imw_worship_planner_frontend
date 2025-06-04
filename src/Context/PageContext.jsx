@@ -50,17 +50,17 @@ export function PageProvider({ children }) {
       render: () => <SharePlanner />,
       icon: SharePlannerIcon,
     },
-    FetchPlanner: {
-      id: 'FetchPlanner',
-      title: 'Carregar Último Cronograma',
-      render: () => <FetchPlanner />,
-      icon: DownloadIcon,
-    },
     UploadPlanner: {
       id: 'UploadPlanner',
       title: 'Salvar Cronograma',
       render: () => <UploadPlanner />,
       icon: UploadIcon,
+    },
+    FetchPlanner: {
+      id: 'FetchPlanner',
+      title: 'Carregar Último Cronograma',
+      render: () => <FetchPlanner />,
+      icon: DownloadIcon,
     },
     UserInfo: {
       id: 'UserInfo',

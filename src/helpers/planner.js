@@ -4,24 +4,34 @@ import { v4 as generateId } from 'uuid';
 import { userDefault } from '@/Context/UserContext';
 
 export const getDefaultPlanner = () => {
-  const firstActivity = {
-    id: 'firstActivity',
-    hour: '19:00',
-    activityTitle: 'Cronômetro',
-    duration: '5',
-    responsible: 'Rede Connect',
-  };
-  const lastActivity = {
-    id: 'lastActivity',
-    hour: '21:00',
-    activityTitle: 'Encerramento',
-    duration: '0',
-    responsible: '--',
-  };
+  const stored = localStorage.getItem('planner');
+  if (stored) {
+    const parsed = JSON.parse(stored);
+    parsed.selectedDate = new Date(parsed.selectedDate);
+
+    return parsed;
+  }
+
+  const activities = [
+    {
+      id: 'firstActivity',
+      hour: '19:00',
+      activityTitle: 'Cronômetro',
+      duration: '5',
+      responsible: 'Rede Connect',
+    },
+    {
+      id: 'lastActivity',
+      hour: '21:00',
+      activityTitle: 'Encerramento',
+      duration: '0',
+      responsible: '--',
+    },
+  ];
 
   return {
     id: generateId(),
-    activities: [firstActivity, lastActivity],
+    activities,
     selectedDate: new Date(),
     ministerSelected: '',
     worshipTitle: '',

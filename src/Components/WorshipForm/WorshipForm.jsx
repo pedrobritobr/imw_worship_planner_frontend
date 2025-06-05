@@ -3,6 +3,7 @@ import { PlannerContext } from '@/Context/PlannerContext';
 
 import {
   getWeekDay,
+  parseDateToString,
 } from '@/helpers';
 
 import './WorshipForm.css';
@@ -20,8 +21,6 @@ export default function WorshipForm() {
     newDate.setHours(newDate.getHours() + 3);
     setPlanner({ ...planner, selectedDate: newDate });
   };
-
-  const formatDate = (date) => date.toISOString().split('T')[0];
 
   return (
     <form className="WorshipForm">
@@ -53,7 +52,7 @@ export default function WorshipForm() {
           type="date"
           id="worshipDate"
           name="selectedDate"
-          value={formatDate(planner.selectedDate)}
+          value={parseDateToString(planner.selectedDate)}
           onChange={handleDateChange}
         />
       </label>

@@ -1,17 +1,8 @@
 import { version as uuidVersion, validate as uuidValidate } from 'uuid';
+import capitalizeFirstLetter from './stringUtils';
 
 export * from '@/helpers/planner';
-
-const capitalizeFirstLetter = (str) => {
-  const capitalized = (word) => {
-    if (word.length > 3) {
-      return word[0].toUpperCase() + word.substr(1);
-    }
-    return word;
-  };
-  const strArray = str.split(' ');
-  return strArray.map(capitalized).join(' ');
-};
+export * from '@/helpers/formPlanner';
 
 const getLongDateString = (selectedDate) => {
   const optionsDef = {
@@ -21,13 +12,6 @@ const getLongDateString = (selectedDate) => {
     day: 'numeric',
   };
   return capitalizeFirstLetter(selectedDate.toLocaleDateString('pt-BR', optionsDef));
-};
-
-const getWeekDay = (day) => {
-  const optionsDef = {
-    weekday: 'long',
-  };
-  return capitalizeFirstLetter(day.toLocaleDateString('pt-BR', optionsDef));
 };
 
 const screenshotFilename = (churchName, selectedDate) => {
@@ -92,9 +76,7 @@ const validateUUID = (uuid) => {
 
 export {
   screenshotFilename,
-  capitalizeFirstLetter,
   getLongDateString,
-  getWeekDay,
   setHourForActivity,
   formatMinutes,
   showErrorMessage,

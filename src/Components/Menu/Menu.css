@@ -87,6 +87,11 @@
   background: #ffffff06;
 }
 
+.Menu .menu-item.highlight {
+  background: #1a1a7b46;
+  border-radius: 0;
+}
+
 .Menu .menu-item img {
   width: 30px;
   height: 30px;

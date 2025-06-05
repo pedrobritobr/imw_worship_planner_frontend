@@ -1,5 +1,4 @@
  TODO |  WIP  |  DONE | DESCRIPTION
-03-06 ||| Destacar pag/menu atual
 03-06 ||| adicionar transição entre paginas
 04-04 ||| Criar versão desktop
 22-02 ||| Criar testes end2end
@@ -9,6 +8,7 @@
 22-02 ||| Investigar se erro no React vai resetar os estados
 07-02 ||| Investigar necessidade da soma de 3 hora no dia selecionado
 
+03-06 | 04-06 | 04-06 | Destacar pag/menu atual
 04-06 | 04-06 | 04-06 | BUG exibindo terça-feira para a data 04/06/2026
 03-06 | 03-06 | 03-06 | corrigir layout feedback
 03-06 | 03-06 | 03-06 | ao clicar na pag de compartilhar, nao renderizar

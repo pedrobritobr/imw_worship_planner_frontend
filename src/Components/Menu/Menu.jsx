@@ -6,7 +6,12 @@ import { PageContext } from '@/Context/PageContext';
 
 function Menu() {
   const { user } = useContext(UserContext);
-  const { getUserPages, setCurrentPage, pages } = useContext(PageContext);
+  const {
+    getUserPages,
+    setCurrentPage,
+    pages,
+    currentPage,
+  } = useContext(PageContext);
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [userPages, setUserPages] = useState(getUserPages(user));
@@ -67,7 +72,7 @@ function Menu() {
             <button
               type="button"
               key={key}
-              className="menu-item"
+              className={`menu-item${title === currentPage.title ? ' highlight' : ''}`}
               onClick={() => {
                 setCurrentPage(pages[key]);
                 toggleMenu();

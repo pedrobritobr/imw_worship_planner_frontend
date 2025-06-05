@@ -1,5 +1,6 @@
 // http://localhost:5173/2326df9c-beec-4382-80b9-776fa5faf4e9?shared=true
 import React, { useEffect, useContext, useState } from 'react';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 import ErrorWrapper from './Components/ErrorWrapper';
 
@@ -140,7 +141,15 @@ function AppContent() {
         <h3 id="AppName">Cronograma de Culto</h3>
         {!isFetchingPlanner && currentPage.title === pages.Home.title && <ActionsButton />}
       </header>
-      { currentPage.render() }
+      <SwitchTransition>
+        <CSSTransition
+          key={currentPage.id}
+          timeout={100}
+          classNames="page-fade"
+        >
+          {currentPage.render()}
+        </CSSTransition>
+      </SwitchTransition>
     </div>
   );
 }

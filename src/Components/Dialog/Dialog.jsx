@@ -41,11 +41,9 @@ function Dialog({
                 {confirmText}
               </button>
             )}
-            {!autoCloseTimeout && (
-              <button type="button" className="cancel-button" onClick={onCancel}>
-                {type === 'confirm' ? cancelText : 'Fechar'}
-              </button>
-            )}
+            <button type="button" className="cancel-button" onClick={onCancel}>
+              {type === 'confirm' ? cancelText : 'Fechar'}
+            </button>
           </div>
         </div>
       </div>

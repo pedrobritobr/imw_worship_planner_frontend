@@ -3,16 +3,9 @@ import { v4 as generateId } from 'uuid';
 
 import { userDefault } from '@/Context/UserContext';
 
-export const getDefaultPlanner = () => {
-  const stored = localStorage.getItem('planner');
-  if (stored) {
-    const parsed = JSON.parse(stored);
-    parsed.selectedDate = new Date(parsed.selectedDate);
-
-    return parsed;
-  }
-
-  const activities = [
+const emptyPlanner = () => ({
+  id: generateId(),
+  activities: [
     {
       id: 'firstActivity',
       hour: '19:00',
@@ -27,17 +20,24 @@ export const getDefaultPlanner = () => {
       duration: '0',
       responsible: '--',
     },
-  ];
+  ],
+  selectedDate: new Date(),
+  ministerSelected: '',
+  worshipTitle: '',
+  churchName: '',
+  creator: userDefault,
+});
 
-  return {
-    id: generateId(),
-    activities,
-    selectedDate: new Date(),
-    ministerSelected: '',
-    worshipTitle: '',
-    churchName: '',
-    creator: userDefault,
-  };
+export const getDefaultPlanner = () => {
+  const stored = localStorage.getItem('planner');
+  if (stored) {
+    const parsed = JSON.parse(stored);
+    parsed.selectedDate = new Date(parsed.selectedDate);
+
+    return parsed;
+  }
+
+  return emptyPlanner();
 };
 
 export const validatePlanner = (planner, downloadedPlanner) => {
@@ -49,7 +49,7 @@ export const validatePlanner = (planner, downloadedPlanner) => {
   };
 
   const missingFields = Object.entries(translatedFields)
-    .filter(([field]) => _.isEqual(planner[field], getDefaultPlanner()[field]))
+    .filter(([field]) => _.isEqual(planner[field], emptyPlanner()[field]))
     .map(([, label]) => label);
 
   if (missingFields.length) {

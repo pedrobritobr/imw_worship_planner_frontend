@@ -61,6 +61,7 @@ Dialog.propTypes = {
   onCancel: PropTypes.func,
   confirmText: PropTypes.string,
   cancelText: PropTypes.string,
+  autoClose: PropTypes.bool,
   autoCloseTimeout: PropTypes.number,
 };
 
@@ -72,6 +73,7 @@ Dialog.defaultProps = {
   onCancel: undefined,
   confirmText: 'Confirmar',
   cancelText: 'Cancelar',
+  autoClose: false,
   autoCloseTimeout: undefined,
 };
 

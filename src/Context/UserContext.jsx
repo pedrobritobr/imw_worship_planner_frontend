@@ -6,6 +6,7 @@ import React, {
 import { jwtDecode } from 'jwt-decode';
 import PropTypes from 'prop-types';
 
+// TODO Remover dados de usuário padrão
 export const userDefault = {
   name: 'Pedro Brito',
   email: 'me@pedrobrito.dev',

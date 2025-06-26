@@ -5,6 +5,7 @@ import React, {
   useCallback,
 } from 'react';
 import PropTypes from 'prop-types';
+
 import Dialog from '@/Components/Dialog';
 
 const DialogContext = createContext();
@@ -47,6 +48,7 @@ export function DialogProvider({ children }) {
         onConfirm={dialogProps?.onConfirm ? handleConfirm : undefined}
         confirmText={dialogProps?.confirmText}
         cancelText={dialogProps?.cancelText}
+        autoClose={dialogProps?.autoClose}
         autoCloseTimeout={dialogProps?.autoCloseTimeout}
       />
     </DialogContext.Provider>

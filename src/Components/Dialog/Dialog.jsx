@@ -12,7 +12,8 @@ function Dialog({
   onCancel,
   confirmText = 'Confirmar',
   cancelText = 'Cancelar',
-  autoCloseTimeout,
+  autoClose = false,
+  autoCloseTimeout = 5, // in seconds
 }) {
   useEffect(() => {
     if (show && autoCloseTimeout) {
@@ -36,7 +37,7 @@ function Dialog({
           {title && <h3>{title}</h3>}
           {message && <p>{message}</p>}
           <div className="modal-actions">
-            {type === 'confirm' && !autoCloseTimeout && (
+            {type === 'confirm' && !autoClose && (
               <button type="button" className="confirm-button" onClick={onConfirm}>
                 {confirmText}
               </button>

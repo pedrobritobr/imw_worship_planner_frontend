@@ -2,18 +2,19 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
-import ErrorWrapper from './Components/ErrorWrapper';
+import { UserProvider, UserContext } from '@/Context/UserContext';
+import { PlannerProvider, PlannerContext } from '@/Context/PlannerContext';
+import { PageProvider, PageContext } from '@/Context/PageContext';
+import { DialogProvider } from '@/Context/DialogContext';
 
-import Menu from './Components/Menu';
-import ActionsButton from './Components/ActionsButton';
+import ErrorWrapper from '@/Components/ErrorWrapper';
 
-import { UserProvider, UserContext } from './Context/UserContext';
-import { PlannerProvider, PlannerContext } from './Context/PlannerContext';
-import { PageProvider, PageContext } from './Context/PageContext';
+import Menu from '@/Components/Menu';
+import ActionsButton from '@/Components/ActionsButton';
 
-import { sendLocationToAnalytics, getPlannerById } from './service';
+import { sendLocationToAnalytics, getPlannerById } from '@/service';
 
-import { validateUUID } from './helpers';
+import { validateUUID } from '@/helpers';
 
 import './App.css';
 
@@ -156,19 +157,21 @@ function AppContent() {
 
 function App() {
   return (
-    <PageProvider>
-      <PageContext.Consumer>
-        {({ setCurrentPage, pages }) => (
-          <UserProvider setCurrentPage={setCurrentPage} pages={pages}>
-            <PlannerProvider>
-              <ErrorWrapper>
-                <AppContent />
-              </ErrorWrapper>
-            </PlannerProvider>
-          </UserProvider>
-        )}
-      </PageContext.Consumer>
-    </PageProvider>
+    <DialogProvider>
+      <PageProvider>
+        <PageContext.Consumer>
+          {({ setCurrentPage, pages }) => (
+            <UserProvider setCurrentPage={setCurrentPage} pages={pages}>
+              <PlannerProvider>
+                <ErrorWrapper>
+                  <AppContent />
+                </ErrorWrapper>
+              </PlannerProvider>
+            </UserProvider>
+          )}
+        </PageContext.Consumer>
+      </PageProvider>
+    </DialogProvider>
   );
 }
 

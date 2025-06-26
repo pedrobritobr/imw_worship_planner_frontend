@@ -1,5 +1,4 @@
 import React, { createContext, useState, useMemo } from 'react';
-
 import PropTypes from 'prop-types';
 
 import Main from '@/Components/Main';
@@ -7,7 +6,6 @@ import Login from '@/Components/Login';
 import Register from '@/Components/Register';
 import UserInfo from '@/Components/UserInfo';
 import Feedback from '@/Components/Feedback';
-import SharePlanner from '@/Components/SharePlanner';
 import FetchPlanner from '@/Components/FetchPlanner';
 import UploadPlanner from '@/Components/UploadPlanner';
 import Logout from '@/Components/Logout';
@@ -47,7 +45,6 @@ export function PageProvider({ children }) {
     SharePlanner: {
       id: 'SharePlanner',
       title: 'Compartilhar Cronograma',
-      render: () => <SharePlanner />,
       icon: SharePlannerIcon,
     },
     UploadPlanner: {

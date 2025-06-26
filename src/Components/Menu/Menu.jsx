@@ -3,6 +3,7 @@ import './Menu.css';
 
 import { UserContext } from '@/Context/UserContext';
 import { PageContext } from '@/Context/PageContext';
+import useSharePlanner from '@/Components/SharePlanner';
 
 function Menu() {
   const { user } = useContext(UserContext);
@@ -15,6 +16,12 @@ function Menu() {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [userPages, setUserPages] = useState(getUserPages(user));
+
+  const sharePlanner = useSharePlanner();
+
+  const actions = {
+    SharePlanner: sharePlanner,
+  };
 
   useEffect(() => {
     setUserPages(getUserPages(user));
@@ -74,7 +81,11 @@ function Menu() {
               key={key}
               className={`menu-item${title === currentPage.title ? ' highlight' : ''}`}
               onClick={() => {
-                setCurrentPage(pages[key]);
+                if (actions[key]) {
+                  actions[key]();
+                } else {
+                  setCurrentPage(pages[key]);
+                }
                 toggleMenu();
               }}
             >

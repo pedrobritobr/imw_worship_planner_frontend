@@ -11,7 +11,7 @@ import {
   screenshotFilename,
   pngConfigs,
   scrollToTop,
-  getDefaultPlanner,
+  emptyPlanner,
 } from '@/helpers';
 import { uploadPlannerToCloud } from '@/service';
 
@@ -19,11 +19,11 @@ export const PlannerContext = createContext();
 
 export function PlannerProvider({ children }) {
   const ref = createRef();
-  const [planner, setPlanner] = useState(getDefaultPlanner());
-  const [downloadedPlanner, setDownloadedPlanner] = useState(getDefaultPlanner());
+  const [planner, setPlanner] = useState(emptyPlanner());
+  const [downloadedPlanner, setDownloadedPlanner] = useState(emptyPlanner());
   const [isFetchingPlanner, setIsFetchingPlanner] = useState(false);
 
-  const getPlanner = (p) => (Object.keys(p).length === 0 ? getDefaultPlanner() : p);
+  const getPlanner = (p) => (Object.keys(p).length === 0 ? emptyPlanner() : p);
 
   const storePlanner = (newPlanner) => {
     const updatedPlanner = getPlanner(newPlanner);
@@ -32,7 +32,7 @@ export function PlannerProvider({ children }) {
   };
 
   const deletePlanner = () => {
-    const defaultPlanner = getDefaultPlanner();
+    const defaultPlanner = emptyPlanner();
     window.history.pushState({}, '', '/');
     localStorage.setItem('planner', JSON.stringify(defaultPlanner));
     setPlanner(defaultPlanner);

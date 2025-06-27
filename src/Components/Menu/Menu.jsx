@@ -16,11 +16,17 @@ function Menu() {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [userPages, setUserPages] = useState(getUserPages(user));
+  const [loadingActions, setLoadingActions] = useState({});
 
-  const sharePlanner = useSharePlanner();
+  const [shouldShare, share] = useSharePlanner();
 
   const actions = {
-    SharePlanner: sharePlanner,
+    SharePlanner: async () => {
+      setLoadingActions((prev) => ({ ...prev, SharePlanner: true }));
+      const ok = await shouldShare();
+      if (ok) share();
+      setLoadingActions((prev) => ({ ...prev, SharePlanner: false }));
+    },
   };
 
   useEffect(() => {
@@ -80,17 +86,21 @@ function Menu() {
               type="button"
               key={key}
               className={`menu-item${title === currentPage.title ? ' highlight' : ''}`}
-              onClick={() => {
+              onClick={async () => {
                 if (actions[key]) {
-                  actions[key]();
+                  await actions[key]();
                 } else {
                   setCurrentPage(pages[key]);
                 }
                 toggleMenu();
               }}
+              disabled={!!loadingActions[key]}
             >
               <img src={icon} alt={title} />
-              <span>{title}</span>
+              <span className="menu-item-title">
+                {title}
+                {loadingActions[key] && <span className="loader" />}
+              </span>
             </button>
           ))
         }

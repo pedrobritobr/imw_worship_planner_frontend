@@ -1,7 +1,5 @@
  TODO |  WIP  |  DONE | DESCRIPTION
-25-06 ||| Verificar novo hook de compartilhar
 25-06 ||| Converter componentes não redezivel em hook
-25-06 ||| Verificar falha ao baixar planner
 23-06 | 23-06 || Trocar window alert por componente de msg
 23-06 ||| Add barra de progresso no autoclose do dialog
 23-06 ||| Add guia para novas funcionalidades
@@ -13,6 +11,8 @@
 22-02 ||| Investigar se erro no React vai resetar os estados
 07-02 ||| Investigar necessidade da soma de 3 hora no dia selecionado
 
+25-06 | 26-06 | 26-06 | Verificar novo hook de compartilhar
+25-06 | 26-06 | 26-06 | Add loader ao compartilhar
 23-06 | 23-06 | 25-06 | Add botao de fechar dialog
 03-06 | 04-06 | 04-06 | adicionar transição entre paginas
 03-06 | 04-06 | 04-06 | Destacar pag/menu atual

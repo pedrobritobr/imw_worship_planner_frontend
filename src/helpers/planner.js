@@ -3,7 +3,7 @@ import { v4 as generateId } from 'uuid';
 
 import { userDefault } from '@/Context/UserContext';
 
-const emptyPlanner = () => ({
+export const emptyPlanner = () => ({
   id: generateId(),
   activities: [
     {

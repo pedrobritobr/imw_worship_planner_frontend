@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useCallback } from 'react';
 import { PlannerContext } from '@/Context/PlannerContext';
 import { UserContext } from '@/Context/UserContext';
 import { uploadPlannerToCloud } from '@/service';
@@ -10,26 +10,24 @@ function useSharePlanner() {
   const { planner } = useContext(PlannerContext);
   const { showDialog } = useDialog();
 
-  const sharePlanner = async () => {
+  const shouldShare = useCallback(async () => {
     const { creator, ...plannerWithoutCreator } = planner;
     const errorMsg = 'Erro ao salvar o cronograma. Tente novamente mais tarde.';
+
     try {
       const isValidPlanner = validatePlanner(plannerWithoutCreator);
-
       if (isValidPlanner) {
         showDialog({
           type: 'alert',
           title: 'Não é possivel compartilhar o cronograma.',
           message: `${isValidPlanner}`,
           autoClose: true,
-          autoCloseTimeout: 30,
           onCancel: () => setCurrentPage(pages.Home),
         });
-        return;
+        return false;
       }
 
       const response = await uploadPlannerToCloud(plannerWithoutCreator);
-
       if (!response) {
         showDialog({
           type: 'alert',
@@ -38,8 +36,10 @@ function useSharePlanner() {
           autoClose: true,
           onCancel: () => setCurrentPage(pages.Home),
         });
-        return;
+        return false;
       }
+
+      return true;
     } catch (error) {
       console.error('Erro ao compartilhar:', error);
       showDialog({
@@ -49,18 +49,26 @@ function useSharePlanner() {
         autoClose: true,
         onCancel: () => setCurrentPage(pages.Home),
       });
-      return;
+      return false;
     }
+  }, [planner, showDialog, setCurrentPage, pages]);
+
+  const share = useCallback(() => {
     if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'IMW Cronograma de culto',
-          text: 'Confira o cronograma de culto!',
-          url: `${window.location.href}?shared=true`,
-        });
-      } catch (error) {
+      navigator.share({
+        title: 'IMW Cronograma de culto',
+        text: 'Confira o cronograma de culto!',
+        url: `${window.location.href}?shared=true`,
+      }).catch((error) => {
         console.error('Erro ao compartilhar:', error);
-      }
+        showDialog({
+          type: 'alert',
+          title: 'Não é possivel compartilhar o cronograma.',
+          message: 'Use a página de Feedback para relatar o erro aos desenvolvedores.',
+          autoClose: true,
+          onCancel: () => setCurrentPage(pages.Home),
+        });
+      });
     } else {
       showDialog({
         type: 'alert',
@@ -70,9 +78,9 @@ function useSharePlanner() {
         onCancel: () => setCurrentPage(pages.Home),
       });
     }
-  };
+  }, [showDialog, setCurrentPage, pages]);
 
-  return sharePlanner;
+  return [shouldShare, share];
 }
 
 export default useSharePlanner;

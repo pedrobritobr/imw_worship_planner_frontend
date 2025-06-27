@@ -104,6 +104,15 @@
   text-align: left;
 }
 
+.Menu .menu-item-title {
+    display: flex;
+    align-items: center;
+}
+
+.Menu .menu-item-title .loader {
+  margin-left: 15px;
+}
+
 .Menu svg {
   height: 80px;
   position: absolute;

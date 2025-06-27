@@ -13,10 +13,10 @@ function Dialog({
   confirmText = 'Confirmar',
   cancelText = 'Cancelar',
   autoClose = false,
-  autoCloseTimeout = 5, // in seconds
+  autoCloseTimeout = 5,
 }) {
   useEffect(() => {
-    if (show && autoCloseTimeout) {
+    if (show && autoClose) {
       const timer = setTimeout(() => {
         if (onCancel) onCancel();
       }, autoCloseTimeout * 1000);

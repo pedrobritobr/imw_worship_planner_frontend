@@ -35,7 +35,11 @@ function Dialog({
       <div className={`confirmation-modal modal-${type}`}>
         <div className="modal-content">
           {title && <h3>{title}</h3>}
-          {message && <p>{message}</p>}
+          {message && (
+            <p
+              dangerouslySetInnerHTML={{ __html: message }}
+            />
+          )}
           <div className="modal-actions">
             {type === 'confirm' && !autoClose && (
               <button type="button" className="confirm-button" onClick={onConfirm}>

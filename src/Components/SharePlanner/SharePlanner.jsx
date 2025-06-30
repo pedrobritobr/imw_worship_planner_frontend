@@ -10,6 +10,16 @@ function useSharePlanner() {
   const { planner } = useContext(PlannerContext);
   const { showDialog } = useDialog();
 
+  const showErrorDialog = useCallback((message, title = 'Não é possivel compartilhar o cronograma.') => {
+    showDialog({
+      type: 'alert',
+      title,
+      message,
+      autoClose: true,
+      onCancel: () => setCurrentPage(pages.Home),
+    });
+  }, [showDialog, setCurrentPage, pages]);
+
   const shouldShare = useCallback(async () => {
     const { creator, ...plannerWithoutCreator } = planner;
     const errorMsg = 'Erro ao salvar o cronograma. Tente novamente mais tarde.';
@@ -17,41 +27,23 @@ function useSharePlanner() {
     try {
       const isValidPlanner = validatePlanner(plannerWithoutCreator);
       if (isValidPlanner) {
-        showDialog({
-          type: 'alert',
-          title: 'Não é possivel compartilhar o cronograma.',
-          message: `${isValidPlanner}`,
-          autoClose: true,
-          onCancel: () => setCurrentPage(pages.Home),
-        });
+        showErrorDialog(isValidPlanner);
         return false;
       }
 
       const response = await uploadPlannerToCloud(plannerWithoutCreator);
       if (!response) {
-        showDialog({
-          type: 'alert',
-          title: 'Atenção',
-          message: errorMsg,
-          autoClose: true,
-          onCancel: () => setCurrentPage(pages.Home),
-        });
+        showErrorDialog(errorMsg, 'Atenção');
         return false;
       }
 
       return true;
     } catch (error) {
       console.error('Erro ao compartilhar:', error);
-      showDialog({
-        type: 'alert',
-        title: 'Não é possivel compartilhar o cronograma.',
-        message: errorMsg,
-        autoClose: true,
-        onCancel: () => setCurrentPage(pages.Home),
-      });
+      showErrorDialog(errorMsg);
       return false;
     }
-  }, [planner, showDialog, setCurrentPage, pages]);
+  }, [planner, showErrorDialog]);
 
   const share = useCallback(() => {
     if (navigator.share) {
@@ -61,24 +53,12 @@ function useSharePlanner() {
         url: `${window.location.href}?shared=true`,
       }).catch((error) => {
         console.error('Erro ao compartilhar:', error);
-        showDialog({
-          type: 'alert',
-          title: 'Não é possivel compartilhar o cronograma.',
-          message: 'Use a página de Feedback para relatar o erro aos desenvolvedores.',
-          autoClose: true,
-          onCancel: () => setCurrentPage(pages.Home),
-        });
+        showErrorDialog('Use a página de Feedback para relatar o erro aos desenvolvedores.');
       });
     } else {
-      showDialog({
-        type: 'alert',
-        title: 'Não é possivel compartilhar o cronograma.',
-        message: 'Compartilhamento não suportado neste dispositivo.',
-        autoClose: true,
-        onCancel: () => setCurrentPage(pages.Home),
-      });
+      showErrorDialog('Compartilhamento não suportado neste dispositivo.');
     }
-  }, [showDialog, setCurrentPage, pages]);
+  }, [showErrorDialog, setCurrentPage, pages]);
 
   return [shouldShare, share];
 }

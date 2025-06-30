@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 import './Dialog.css';
@@ -13,17 +13,37 @@ function Dialog({
   confirmText = 'Confirmar',
   cancelText = 'Cancelar',
   autoClose = false,
-  autoCloseTimeout = 5,
+  autoCloseTimeout = 300,
 }) {
+  const [progress, setProgress] = useState(100);
+
   useEffect(() => {
     if (show && autoClose) {
-      const timer = setTimeout(() => {
-        if (onCancel) onCancel();
-      }, autoCloseTimeout * 1000);
-      return () => clearTimeout(timer);
+      setProgress(100);
+    }
+  }, [show, autoClose]);
+
+  useEffect(() => {
+    if (show && autoClose) {
+      const start = Date.now();
+      const duration = autoCloseTimeout * 1000;
+
+      const interval = setInterval(() => {
+        const elapsed = Date.now() - start;
+        const percentage = 100 - (elapsed / duration) * 100;
+        setProgress(Math.max(percentage, 0));
+        if (elapsed >= duration) {
+          clearInterval(interval);
+          onCancel();
+        }
+      }, 100);
+
+      return () => {
+        clearInterval(interval);
+      };
     }
     return undefined;
-  }, [show, autoCloseTimeout, onCancel]);
+  }, [show, autoClose, autoCloseTimeout, onCancel]);
 
   return (
     <CSSTransition
@@ -32,7 +52,7 @@ function Dialog({
       classNames="modal-fade"
       unmountOnExit
     >
-      <div className={`confirmation-modal modal-${type}`}>
+      <div className="Dialog">
         <div className="modal-content">
           {title && <h3>{title}</h3>}
           {message && (
@@ -50,6 +70,12 @@ function Dialog({
               {type === 'confirm' ? cancelText : 'Fechar'}
             </button>
           </div>
+        </div>
+        <div className="progress-bar">
+          <div
+            className="progress"
+            style={{ width: `${progress}%` }}
+          />
         </div>
       </div>
     </CSSTransition>

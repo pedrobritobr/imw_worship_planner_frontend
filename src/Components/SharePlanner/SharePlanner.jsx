@@ -25,7 +25,7 @@ function useSharePlanner() {
 
     try {
       const isValidPlanner = validatePlanner(plannerWithoutCreator);
-      if (isValidPlanner) {
+      if (true) {
         showErrorDialog(isValidPlanner);
         return false;
       }

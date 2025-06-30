@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import './Planner.css';
 
 import { PlannerContext } from '@/Context/PlannerContext';
+import { useDialog } from '@/Context/DialogContext';
 
 import {
   setHourForActivity as setHourForNewActivity,
@@ -17,6 +18,7 @@ import Activity from './Activity';
 function Planner() {
   const { planner, setPlanner } = useContext(PlannerContext);
   const { activities } = planner;
+  const { showDialog } = useDialog();
 
   const emptyActivity = {
     hour: '',
@@ -86,7 +88,12 @@ function Planner() {
 
   const removeActivity = (activity) => {
     if (activity.id === 'firstActivity' || activity.id === 'lastActivity') {
-      window.alert('Não é possível remover a primeira e última atividade');
+      showDialog({
+        title: 'Atenção!',
+        message: 'Não é possível remover a primeira e última atividade',
+        autoClose: true,
+      });
+
       return;
     }
     const newActivities = activities.filter((a) => a.id !== activity.id);

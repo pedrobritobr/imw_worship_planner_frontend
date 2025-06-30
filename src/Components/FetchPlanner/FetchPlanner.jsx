@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 
 import { UserContext } from '@/Context/UserContext';
 import { PlannerContext } from '@/Context/PlannerContext';
+import { useDialog } from '@/Context/DialogContext';
 
 import { downloadPlannerFromCloud } from '@/service';
 import { formatSelectedDateToUTC } from '@/helpers';
@@ -11,6 +12,8 @@ function FetchPlanner() {
   const { setPlanner, setDownloadedPlanner } = useContext(PlannerContext);
   const [isDownloading, setIsDownloading] = useState(false);
 
+  const { showDialog } = useDialog();
+
   useEffect(() => {
     const getPlanner = async () => {
       setIsDownloading(true);
@@ -19,14 +22,21 @@ function FetchPlanner() {
       setIsDownloading(false);
 
       if (!plannerFromCloud) {
-        const { alert } = window;
-        alert('Erro ao baixar o cronograma. Tente novamente mais tarde.');
+        showDialog({
+          title: 'Ocorreu um erro ao baixar o cronograma.',
+          message: 'Por favor, tente novamente mais tarde.',
+          autoClose: true,
+        });
+
         return;
       }
 
       if (plannerFromCloud.length === 0) {
-        const { alert } = window;
-        alert('Nenhum cronograma foi encontrado.');
+        showDialog({
+          title: 'Nenhum cronograma foi encontrado.',
+          message: 'Por favor, tente novamente mais tarde.',
+          autoClose: true,
+        });
         return;
       }
 

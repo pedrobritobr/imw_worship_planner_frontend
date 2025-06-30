@@ -12,7 +12,6 @@ function useSharePlanner() {
 
   const showErrorDialog = useCallback((message, title = 'Não é possivel compartilhar o cronograma.') => {
     showDialog({
-      type: 'alert',
       title,
       message,
       autoClose: true,

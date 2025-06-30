@@ -1,4 +1,4 @@
-import { formatMinutes } from '../../helpers';
+import { formatMinutes } from '@/helpers';
 
 const getMinutesBetweenActivities = (activityHourMajor, activityHourMinor) => {
   const [prevHour, prevMinute] = activityHourMajor.split(':').map(Number);

@@ -83,8 +83,10 @@ export async function requestRegisterUser(user) {
 
 export async function uploadPlannerToCloud(planner) {
   if (!planner) {
-    window.alert('Não há cronograma para ser salvo.');
-    return { success: false };
+    return {
+      success: false,
+      errorMsg: 'Não há cronograma para ser salvo.',
+    };
   }
 
   const url = `${import.meta.env.VITE_PLANNER_URL}/planner/`;

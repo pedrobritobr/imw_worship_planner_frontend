@@ -7,7 +7,7 @@ function Dialog({
   show,
   title,
   message,
-  type = 'confirm',
+  type = 'alert',
   onConfirm,
   onCancel,
   confirmText = 'Confirmar',

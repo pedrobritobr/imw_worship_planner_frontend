@@ -5,7 +5,7 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { UserProvider, UserContext } from '@/Context/UserContext';
 import { PlannerProvider, PlannerContext } from '@/Context/PlannerContext';
 import { PageProvider, PageContext } from '@/Context/PageContext';
-import { DialogProvider } from '@/Context/DialogContext';
+import { DialogProvider, useDialog } from '@/Context/DialogContext';
 
 import ErrorWrapper from '@/Components/ErrorWrapper';
 
@@ -37,6 +37,8 @@ function AppContent() {
 
   const [initialSetupComplete, setInitialSetupComplete] = useState(false);
   const [keepPlannerId, setKeepPlannerId] = useState(false);
+
+  const { showDialog } = useDialog();
 
   useEffect(() => {
     try {
@@ -80,8 +82,13 @@ function AppContent() {
         window.history.pushState({}, '', `${currentUrl}`);
       } catch (error) {
         setIsFetchingPlanner(false);
-        const { alert } = window;
-        alert(error.message);
+
+        showDialog({
+          title: 'Erro',
+          message: error.message,
+          autoClose: true,
+          onCancel: () => setCurrentPage(pages.Home),
+        });
 
         if (error.name === 'UserNotLogged') {
           setKeepPlannerId(true);

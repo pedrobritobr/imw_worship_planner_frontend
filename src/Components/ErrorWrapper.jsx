@@ -9,19 +9,24 @@ import PropTypes from 'prop-types';
 
 import { PlannerContext } from '@/Context/PlannerContext';
 import { UserContext } from '@/Context/UserContext';
+import { useDialog } from '@/Context/DialogContext';
 
 import Main from './Main';
 
 function MinimalApp() {
   const { logOut } = useContext(UserContext);
   const { setPlanner } = useContext(PlannerContext);
-  const { alert } = window;
+  const { showDialog } = useDialog();
 
   useEffect(() => {
     localStorage.clear();
     logOut();
     setPlanner([]);
-    alert('Ocorreu um erro!\n\nVocê pode continuar editando o cronograma e capturar a tela.');
+    showDialog({
+      title: 'Erro',
+      message: 'Ocorreu um erro!<br>Você pode continuar editando o cronograma e capturar a tela.',
+      autoClose: true,
+    });
   }, []);
 
   return (

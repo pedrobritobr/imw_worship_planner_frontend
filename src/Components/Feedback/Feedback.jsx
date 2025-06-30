@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { toBlob } from 'html-to-image';
 import imageCompression from 'browser-image-compression';
 
+import { useDialog } from '@/Context/DialogContext';
+
 import { postFeedback } from '@/service';
 
 import './Feedback.css';
@@ -11,6 +13,8 @@ function Feedback() {
   const [images, setImages] = useState([]);
   const [imageFiles, setImageFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const { showDialog } = useDialog();
 
   const handleImageUpload = (event) => {
     const files = Array.from(event.target.files);
@@ -33,7 +37,11 @@ function Feedback() {
       setIsLoading(true);
 
       if (!feedbackText) {
-        alert('Por favor, preencha o campo de feedback.');
+        showDialog({
+          title: 'Campo de feedback obrigatório',
+          message: 'Por favor, preencha o campo de feedback.',
+          autoClose: true,
+        });
         return;
       }
 
@@ -68,13 +76,22 @@ function Feedback() {
 
       await postFeedback(formData);
 
-      alert('Feedback enviado com sucesso!');
+      showDialog({
+        title: 'Feedback enviado com sucesso!',
+        message: 'Obrigado por nos ajudar a melhorar!',
+        autoClose: true,
+      });
+
       setFeedbackText('');
       setImages([]);
       setImageFiles([]);
     } catch (error) {
       console.error('Erro ao enviar feedback:', error);
-      alert('Erro ao enviar feedback.');
+      showDialog({
+        title: 'Ocorreu um erro ao enviar seu feedback.',
+        message: 'Por favor, tente novamente mais tarde.',
+        autoClose: true,
+      });
     } finally {
       setIsLoading(false);
     }

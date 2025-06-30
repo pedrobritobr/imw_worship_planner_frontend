@@ -53,7 +53,7 @@ export const validatePlanner = (planner, downloadedPlanner) => {
     .map(([, label]) => label);
 
   if (missingFields.length) {
-    return `Os seguintes campos não foram preenchidos:\n- ${missingFields.join('\n- ')}`;
+    return `Os seguintes campos não foram preenchidos:<br>- ${missingFields.join('<br>- ')}`;
   }
 
   if (_.isEqual(planner, downloadedPlanner)) {

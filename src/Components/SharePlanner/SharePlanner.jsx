@@ -23,9 +23,9 @@ function useSharePlanner() {
     const errorMsg = 'Erro ao salvar o cronograma. Tente novamente mais tarde.';
 
     try {
-      const isValidPlanner = validatePlanner(plannerWithoutCreator);
-      if (true) {
-        showErrorDialog(isValidPlanner);
+      const isInvalidPlanner = validatePlanner(plannerWithoutCreator);
+      if (isInvalidPlanner) {
+        showErrorDialog(isInvalidPlanner);
         return false;
       }
 

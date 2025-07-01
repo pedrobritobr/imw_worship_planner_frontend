@@ -6,7 +6,6 @@ import Login from '@/Components/Login';
 import Register from '@/Components/Register';
 import UserInfo from '@/Components/UserInfo';
 import Feedback from '@/Components/Feedback';
-import FetchPlanner from '@/Components/FetchPlanner';
 import Logout from '@/Components/Logout';
 
 import HomeIcon from '@/assets/icons/home.svg';
@@ -54,7 +53,6 @@ export function PageProvider({ children }) {
     FetchPlanner: {
       id: 'FetchPlanner',
       title: 'Carregar Último Cronograma',
-      render: () => <FetchPlanner />,
       icon: DownloadIcon,
     },
     UserInfo: {

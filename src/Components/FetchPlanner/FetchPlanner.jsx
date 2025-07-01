@@ -1,55 +1,42 @@
-import React, { useState, useContext, useEffect } from 'react';
-
-import { UserContext } from '@/Context/UserContext';
+import { useContext, useCallback } from 'react';
 import { PlannerContext } from '@/Context/PlannerContext';
+import { UserContext } from '@/Context/UserContext';
 import { useDialog } from '@/Context/DialogContext';
-
 import { downloadPlannerFromCloud } from '@/service';
 import { formatSelectedDateToUTC } from '@/helpers';
 
-function FetchPlanner() {
+function useFetchPlanner() {
   const { user, setCurrentPage, pages } = useContext(UserContext);
   const { setPlanner, setDownloadedPlanner } = useContext(PlannerContext);
-  const [isDownloading, setIsDownloading] = useState(false);
-
   const { showDialog } = useDialog();
 
-  useEffect(() => {
-    const getPlanner = async () => {
-      setIsDownloading(true);
+  const fetchPlanner = useCallback(async () => {
+    const plannerFromCloud = await downloadPlannerFromCloud(user.token);
 
-      const plannerFromCloud = await downloadPlannerFromCloud(user.token);
-      setIsDownloading(false);
+    if (!plannerFromCloud) {
+      showDialog({
+        title: 'Ocorreu um erro ao baixar o cronograma.',
+        message: 'Por favor, tente novamente mais tarde.',
+      });
+      return false;
+    }
 
-      if (!plannerFromCloud) {
-        showDialog({
-          title: 'Ocorreu um erro ao baixar o cronograma.',
-          message: 'Por favor, tente novamente mais tarde.',
-        });
+    if (plannerFromCloud.length === 0) {
+      showDialog({
+        title: 'Nenhum cronograma foi encontrado.',
+        message: 'Por favor, tente novamente mais tarde.',
+      });
+      return false;
+    }
 
-        return;
-      }
-
-      if (plannerFromCloud.length === 0) {
-        showDialog({
-          title: 'Nenhum cronograma foi encontrado.',
-          message: 'Por favor, tente novamente mais tarde.',
-        });
-        return;
-      }
-
-      plannerFromCloud.selectedDate = formatSelectedDateToUTC(plannerFromCloud.selectedDate);
-
-      setPlanner(plannerFromCloud);
-      setDownloadedPlanner(plannerFromCloud);
-    };
-    getPlanner();
+    plannerFromCloud.selectedDate = formatSelectedDateToUTC(plannerFromCloud.selectedDate);
+    setPlanner(plannerFromCloud);
+    setDownloadedPlanner(plannerFromCloud);
     setCurrentPage(pages.Home);
-  }, []);
+    return true;
+  }, [user, setPlanner, setDownloadedPlanner, setCurrentPage, pages, showDialog]);
 
-  if (isDownloading) return <span className="loader" />;
-
-  return (<div />);
+  return [fetchPlanner];
 }
 
-export default FetchPlanner;
+export default useFetchPlanner;

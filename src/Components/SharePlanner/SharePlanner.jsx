@@ -31,7 +31,7 @@ function useSharePlanner() {
 
       const response = await uploadPlannerToCloud(plannerWithoutCreator);
       if (!response) {
-        showErrorDialog(errorMsg, 'Atenção');
+        showErrorDialog(errorMsg, 'Atenção!');
         return false;
       }
 

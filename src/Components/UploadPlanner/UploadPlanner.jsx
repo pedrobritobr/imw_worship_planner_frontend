@@ -18,7 +18,7 @@ function useUploadPlanner() {
     const isValidPlanner = validatePlanner(planner, downloadedPlanner);
     if (isValidPlanner) {
       showDialog({
-        title: 'Atenção',
+        title: 'Atenção!',
         message: isValidPlanner,
         onCancel: () => setCurrentPage(pages.Home),
       });

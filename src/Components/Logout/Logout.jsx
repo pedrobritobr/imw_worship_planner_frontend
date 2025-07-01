@@ -1,15 +1,14 @@
-import React, { useContext, useEffect } from 'react';
-
+import { useContext, useCallback } from 'react';
 import { UserContext } from '@/Context/UserContext';
 
-function Logout() {
+function useLogout() {
   const { logOut } = useContext(UserContext);
 
-  useEffect(() => {
+  const logout = useCallback(() => {
     logOut();
   }, [logOut]);
 
-  return (<div />);
+  return [logout];
 }
 
-export default Logout;
+export default useLogout;

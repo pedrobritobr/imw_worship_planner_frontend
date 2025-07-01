@@ -6,7 +6,6 @@ import Login from '@/Components/Login';
 import Register from '@/Components/Register';
 import UserInfo from '@/Components/UserInfo';
 import Feedback from '@/Components/Feedback';
-import Logout from '@/Components/Logout';
 
 import HomeIcon from '@/assets/icons/home.svg';
 import SignIn from '@/assets/icons/signin.svg';
@@ -70,7 +69,6 @@ export function PageProvider({ children }) {
     LogOut: {
       id: 'LogOut',
       title: 'Sair',
-      render: () => <Logout />,
       icon: LogOutIcon,
     },
   };

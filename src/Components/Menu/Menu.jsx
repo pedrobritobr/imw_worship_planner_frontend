@@ -6,6 +6,7 @@ import { PageContext } from '@/Context/PageContext';
 import useSharePlanner from '@/Components/SharePlanner';
 import useUploadPlanner from '@/Components/UploadPlanner';
 import useFetchPlanner from '@/Components/FetchPlanner';
+import useLogout from '@/Components/Logout';
 
 function Menu() {
   const { user } = useContext(UserContext);
@@ -23,6 +24,7 @@ function Menu() {
   const [shouldShare, share] = useSharePlanner();
   const [uploadPlanner] = useUploadPlanner();
   const [fetchPlanner] = useFetchPlanner();
+  const [logout] = useLogout();
 
   const actions = {
     SharePlanner: () => {
@@ -40,6 +42,11 @@ function Menu() {
       setLoadingActions((prev) => ({ ...prev, FetchPlanner: true }));
       await fetchPlanner();
       setLoadingActions((prev) => ({ ...prev, FetchPlanner: false }));
+    },
+    LogOut: () => {
+      setLoadingActions((prev) => ({ ...prev, LogOut: true }));
+      logout();
+      setLoadingActions((prev) => ({ ...prev, LogOut: false }));
     },
   };
 

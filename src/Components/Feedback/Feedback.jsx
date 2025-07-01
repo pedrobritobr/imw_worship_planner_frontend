@@ -40,7 +40,6 @@ function Feedback() {
         showDialog({
           title: 'Campo de feedback obrigatório',
           message: 'Por favor, preencha o campo de feedback.',
-          autoClose: true,
         });
         return;
       }
@@ -79,7 +78,6 @@ function Feedback() {
       showDialog({
         title: 'Feedback enviado com sucesso!',
         message: 'Obrigado por nos ajudar a melhorar!',
-        autoClose: true,
       });
 
       setFeedbackText('');
@@ -90,7 +88,6 @@ function Feedback() {
       showDialog({
         title: 'Ocorreu um erro ao enviar seu feedback.',
         message: 'Por favor, tente novamente mais tarde.',
-        autoClose: true,
       });
     } finally {
       setIsLoading(false);

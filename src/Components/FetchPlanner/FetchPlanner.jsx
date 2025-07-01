@@ -25,7 +25,6 @@ function FetchPlanner() {
         showDialog({
           title: 'Ocorreu um erro ao baixar o cronograma.',
           message: 'Por favor, tente novamente mais tarde.',
-          autoClose: true,
         });
 
         return;
@@ -35,7 +34,6 @@ function FetchPlanner() {
         showDialog({
           title: 'Nenhum cronograma foi encontrado.',
           message: 'Por favor, tente novamente mais tarde.',
-          autoClose: true,
         });
         return;
       }

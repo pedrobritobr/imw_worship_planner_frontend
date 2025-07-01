@@ -25,7 +25,6 @@ function MinimalApp() {
     showDialog({
       title: 'Erro',
       message: 'Ocorreu um erro!<br>Você pode continuar editando o cronograma e capturar a tela.',
-      autoClose: true,
     });
   }, []);
 

@@ -91,7 +91,6 @@ function Planner() {
       showDialog({
         title: 'Atenção!',
         message: 'Não é possível remover a primeira e última atividade',
-        autoClose: true,
       });
 
       return;

@@ -14,7 +14,6 @@ function useSharePlanner() {
     showDialog({
       title,
       message,
-      autoClose: true,
       onCancel: () => setCurrentPage(pages.Home),
     });
   }, [showDialog, setCurrentPage, pages]);

@@ -25,7 +25,6 @@ function UploadPlanner() {
         showDialog({
           title: 'Atenção',
           message: isValidPlanner,
-          autoClose: true,
           onCancel: () => setCurrentPage(pages.Home),
         });
         return null;
@@ -44,7 +43,6 @@ function UploadPlanner() {
       showDialog({
         title: response ? 'Sucesso!' : 'Erro ao salvar o cronograma.',
         message: response ? sucessMsg : errorMsg,
-        autoClose: true,
         onCancel: () => setCurrentPage(pages.Home),
       });
 

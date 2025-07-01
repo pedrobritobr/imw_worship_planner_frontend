@@ -15,15 +15,13 @@ function ActionsButton() {
 
   const handleNewPlanner = () => {
     showDialog({
-      show: true,
       type: 'confirm',
       title: 'Deseja criar um novo roteiro?',
       message: 'Essa ação excluirá todas as atividades na página e não poderá ser desfeita.',
-      confirmText: 'Confirmar',
-      cancelText: 'Cancelar',
       onConfirm: () => {
         deletePlanner();
       },
+      autoClose: false,
     });
   };
 

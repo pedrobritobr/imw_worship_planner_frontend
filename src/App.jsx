@@ -86,7 +86,6 @@ function AppContent() {
         showDialog({
           title: 'Erro',
           message: error.message,
-          autoClose: true,
           onCancel: () => setCurrentPage(pages.Home),
         });
 

@@ -12,8 +12,8 @@ function Dialog({
   onCancel,
   confirmText = 'Confirmar',
   cancelText = 'Cancelar',
-  autoClose = false,
-  autoCloseTimeout = 300,
+  autoClose = true,
+  autoCloseTimeout = 6,
 }) {
   const [progress, setProgress] = useState(100);
 
@@ -61,7 +61,7 @@ function Dialog({
             />
           )}
           <div className="modal-actions">
-            {type === 'confirm' && !autoClose && (
+            {type === 'confirm' && (
               <button type="button" className="confirm-button" onClick={onConfirm}>
                 {confirmText}
               </button>
@@ -105,8 +105,8 @@ Dialog.defaultProps = {
   onCancel: undefined,
   confirmText: 'Confirmar',
   cancelText: 'Cancelar',
-  autoClose: false,
-  autoCloseTimeout: undefined,
+  autoClose: true,
+  autoCloseTimeout: 6,
 };
 
 export default Dialog;

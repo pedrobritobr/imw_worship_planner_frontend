@@ -72,10 +72,12 @@ function Dialog({
           </div>
         </div>
         <div className="progress-bar">
-          <div
-            className="progress"
-            style={{ width: `${progress}%` }}
-          />
+          {autoClose && (
+            <div
+              className="progress"
+              style={{ width: `${progress}%` }}
+            />
+          )}
         </div>
       </div>
     </CSSTransition>

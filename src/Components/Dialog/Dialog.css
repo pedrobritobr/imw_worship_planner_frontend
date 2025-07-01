@@ -1,21 +1,5 @@
-
-.progress-bar {
-  border-radius: 0 0 8px 8px;
-  height: 5px;
-  overflow: hidden;
-  width: 80%;
-}
-
-.progress {
-  height: 100%;
-  background-color: #eee;
-  transition: width 0.1s linear;
-}
-
-.Dialog, .confirmation-modal {
+.Dialog {
   position: fixed;
-  /* top: 0; */
-  /* left: 0; */
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -23,32 +7,58 @@
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(2px);
+  background-color: #00000059;
+  backdrop-filter: blur(3px);
 }
 
-.modal-content {
+.Dialog .modal-content {
   display: flex;
   flex-direction: column;
-  align-items: center;  background: #020b1de0;
-  padding: 20px;
-  border-radius: 8px;
+  align-items: center;
+  background-color: #020b1de0;
+  border-radius: 10px 10px 0 0;
   text-align: center;
   box-shadow: 0 4px 10px #00000033;
   width: 80%;
 }
 
-.modal-content h3 {
-  margin: 0;
+.Dialog .progress-bar {
+  display: flex;
+  align-items: flex-end;
+  border-radius: 0 0 10px 10px;
+  height: 20px;
+  overflow: hidden;
+  width: 80%;
+  background-color: #020b1de0;
 }
 
-.modal-content .modal-actions {
+.Dialog .progress {
+  height: 20%;
+  width: 100%;
+  background-color: #f6fcff;
+  transition: width 0.1s linear;
+}
+
+.Dialog .modal-content h3 {
+  margin: 0;
+  margin: 20px 0;
+}
+
+.Dialog .modal-content p {
+  margin: 0 10px 20px;
+}
+
+.Dialog .modal-content .modal-actions {
   display: flex;
   justify-content: space-between;
   width: 85%;
 }
 
-.modal-content .modal-actions button {
+.Dialog .modal-content .modal-actions:has(> button:only-child) {
+  justify-content: flex-end;
+}
+
+.Dialog .modal-content .modal-actions button {
   padding: 8px 16px;
   border: none;
   border-radius: 4px;
@@ -57,35 +67,38 @@
   background: none;
 }
 
-.modal-content .modal-actions .confirm-button {
+.Dialog .modal-content .modal-actions .confirm-button {
   background-color: #325B8C;
-  color: white;
+  color: #e8e8e8;
 }
 
-.modal-content .modal-actions .cancel-button {
-  background-color: #bfbfbf;
+.Dialog .modal-content .modal-actions .cancel-button {
+  background-color: #e8e8e8;
   color: black;
 }
 
-.modal-content .modal-actions .confirm-button:hover {
+.Dialog .modal-content .modal-actions .confirm-button:hover {
   background-color: #346197;
 }
 
-.modal-content .modal-actions .cancel-button:hover {
+.Dialog .modal-content .modal-actions .cancel-button:hover {
   background-color: #d9d9d9;
 }
 
-.modal-fade-enter {
+.Dialog .modal-fade-enter {
   opacity: 0;
 }
-.modal-fade-enter-active {
+
+.Dialog .modal-fade-enter-active {
   opacity: 1;
   transition: opacity 250ms;
 }
-.modal-fade-exit {
+
+.Dialog .modal-fade-exit {
   opacity: 1;
 }
-.modal-fade-exit-active {
+
+.Dialog .modal-fade-exit-active {
   opacity: 0;
   transition: opacity 250ms;
 }

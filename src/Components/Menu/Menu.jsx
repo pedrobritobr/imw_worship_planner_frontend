@@ -20,18 +20,18 @@ function Menu() {
   const [loadingActions, setLoadingActions] = useState({});
 
   const [shouldShare, share] = useSharePlanner();
-  const [upload] = useUploadPlanner();
+  const [uploadPlanner] = useUploadPlanner();
 
   const actions = {
-    SharePlanner: async () => {
+    SharePlanner: () => {
       setLoadingActions((prev) => ({ ...prev, SharePlanner: true }));
-      const ok = await shouldShare();
-      if (ok) share();
+      shouldShare();
+      share();
       setLoadingActions((prev) => ({ ...prev, SharePlanner: false }));
     },
     UploadPlanner: async () => {
       setLoadingActions((prev) => ({ ...prev, UploadPlanner: true }));
-      await upload();
+      await uploadPlanner();
       setLoadingActions((prev) => ({ ...prev, UploadPlanner: false }));
     },
   };

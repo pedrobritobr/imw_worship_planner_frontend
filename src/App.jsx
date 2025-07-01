@@ -11,6 +11,7 @@ import ErrorWrapper from '@/Components/ErrorWrapper';
 
 import Menu from '@/Components/Menu';
 import ActionsButton from '@/Components/ActionsButton';
+import GuideTour from '@/Components/GuideTour';
 
 import { sendLocationToAnalytics, getPlannerById } from '@/service';
 
@@ -37,6 +38,7 @@ function AppContent() {
 
   const [initialSetupComplete, setInitialSetupComplete] = useState(false);
   const [keepPlannerId, setKeepPlannerId] = useState(false);
+  const [showTour, setShowTour] = useState(false);
 
   const { showDialog } = useDialog();
 
@@ -144,7 +146,7 @@ function AppContent() {
   return (
     <div className="App">
       <header>
-        <Menu />
+        <Menu onShowTour={() => setShowTour(true)} />
         <h3 id="AppName">Cronograma de Culto</h3>
         {!isFetchingPlanner && currentPage.title === pages.Home.title && <ActionsButton />}
       </header>
@@ -157,6 +159,7 @@ function AppContent() {
           {currentPage.render()}
         </CSSTransition>
       </SwitchTransition>
+      <GuideTour run={showTour} onClose={() => setShowTour(false)} />
     </div>
   );
 }

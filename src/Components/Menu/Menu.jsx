@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
+
 import './Menu.css';
 
 import { UserContext } from '@/Context/UserContext';
@@ -7,8 +9,9 @@ import useSharePlanner from '@/Components/SharePlanner';
 import useUploadPlanner from '@/Components/UploadPlanner';
 import useFetchPlanner from '@/Components/FetchPlanner';
 import useLogout from '@/Components/Logout';
+// import GuideTour from '../GuideTour';
 
-function Menu() {
+function Menu({ onShowTour }) {
   const { user } = useContext(UserContext);
   const {
     getUserPages,
@@ -42,6 +45,9 @@ function Menu() {
       setLoadingActions((prev) => ({ ...prev, FetchPlanner: true }));
       await fetchPlanner();
       setLoadingActions((prev) => ({ ...prev, FetchPlanner: false }));
+    },
+    GuideTour: () => {
+      onShowTour();
     },
     LogOut: () => {
       setLoadingActions((prev) => ({ ...prev, LogOut: true }));
@@ -129,5 +135,9 @@ function Menu() {
     </div>
   );
 }
+
+Menu.propTypes = {
+  onShowTour: PropTypes.func,
+}.isRequired;
 
 export default Menu;

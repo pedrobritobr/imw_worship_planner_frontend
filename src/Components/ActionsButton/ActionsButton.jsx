@@ -26,7 +26,7 @@ function ActionsButton() {
   };
 
   return (
-    <div className="ActionsButton">
+    <div className="ActionsButton" id="ActionsButton">
       <div className="actions-button-container">
         <button type="button" className="download-button" onClick={downloadPlanner}>
           <img src={saveImageBtnSvg} alt="Baixar Cronograma" />

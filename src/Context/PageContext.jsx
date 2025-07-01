@@ -6,11 +6,13 @@ import Login from '@/Components/Login';
 import Register from '@/Components/Register';
 import UserInfo from '@/Components/UserInfo';
 import Feedback from '@/Components/Feedback';
+// import GuideTour from '@/Components/GuideTour';
 
 import HomeIcon from '@/assets/icons/home.svg';
 import SignIn from '@/assets/icons/signin.svg';
 import SignUp from '@/assets/icons/signup.svg';
 import FeedbackIcon from '@/assets/icons/feedback.svg';
+import GuideTourIcon from '@/assets/icons/guide.svg';
 import SharePlannerIcon from '@/assets/icons/share.svg';
 import LogOutIcon from '@/assets/icons/logout.svg';
 import UserIcon from '@/assets/icons/user.svg';
@@ -65,6 +67,12 @@ export function PageProvider({ children }) {
       title: 'Feedback',
       render: () => <Feedback />,
       icon: FeedbackIcon,
+    },
+    GuideTour: {
+      id: 'GuideTour',
+      title: 'Guia',
+      render: () => <Main />,
+      icon: GuideTourIcon,
     },
     LogOut: {
       id: 'LogOut',

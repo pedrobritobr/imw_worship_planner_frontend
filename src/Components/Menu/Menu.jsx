@@ -4,6 +4,7 @@ import './Menu.css';
 import { UserContext } from '@/Context/UserContext';
 import { PageContext } from '@/Context/PageContext';
 import useSharePlanner from '@/Components/SharePlanner';
+import useUploadPlanner from '@/Components/UploadPlanner';
 
 function Menu() {
   const { user } = useContext(UserContext);
@@ -19,6 +20,7 @@ function Menu() {
   const [loadingActions, setLoadingActions] = useState({});
 
   const [shouldShare, share] = useSharePlanner();
+  const [upload] = useUploadPlanner();
 
   const actions = {
     SharePlanner: async () => {
@@ -26,6 +28,11 @@ function Menu() {
       const ok = await shouldShare();
       if (ok) share();
       setLoadingActions((prev) => ({ ...prev, SharePlanner: false }));
+    },
+    UploadPlanner: async () => {
+      setLoadingActions((prev) => ({ ...prev, UploadPlanner: true }));
+      await upload();
+      setLoadingActions((prev) => ({ ...prev, UploadPlanner: false }));
     },
   };
 

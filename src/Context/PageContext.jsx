@@ -7,7 +7,6 @@ import Register from '@/Components/Register';
 import UserInfo from '@/Components/UserInfo';
 import Feedback from '@/Components/Feedback';
 import FetchPlanner from '@/Components/FetchPlanner';
-import UploadPlanner from '@/Components/UploadPlanner';
 import Logout from '@/Components/Logout';
 
 import HomeIcon from '@/assets/icons/home.svg';
@@ -50,7 +49,6 @@ export function PageProvider({ children }) {
     UploadPlanner: {
       id: 'UploadPlanner',
       title: 'Salvar Cronograma',
-      render: () => <UploadPlanner />,
       icon: UploadIcon,
     },
     FetchPlanner: {

@@ -1,5 +1,5 @@
  TODO |  WIP  |  DONE | DESCRIPTION
-30-06 ||| Corrigr barra de progresso no dialog
+30-06 ||| Botao de confirmar exibindo ao salvar cronograma 
 25-06 ||| Converter componentes não redezivel em hook
 23-06 ||| Add guia para novas funcionalidades
 04-04 ||| Criar versão desktop
@@ -10,6 +10,7 @@
 22-02 ||| Investigar se erro no React vai resetar os estados
 07-02 ||| Investigar necessidade da soma de 3 hora no dia selecionado
 
+30-06 | 30-06 | 30-06 | Corrigr barra de progresso no dialog
 23-06 | 30-06 | 30-06 | Add barra de progresso no autoclose do dialog
 23-06 | 23-06 | 30-06 | Trocar window alert por componente de msg
 25-06 | 26-06 | 26-06 | Verificar novo hook de compartilhar

@@ -1,13 +1,11 @@
-import React, { useState, useContext, useEffect } from 'react';
-
+import { useContext, useCallback } from 'react';
 import { PlannerContext } from '@/Context/PlannerContext';
 import { UserContext } from '@/Context/UserContext';
 import { useDialog } from '@/Context/DialogContext';
-
 import { uploadPlannerToCloud } from '@/service';
 import { validatePlanner } from '@/helpers';
 
-function UploadPlanner() {
+function useUploadPlanner() {
   const { setCurrentPage, pages } = useContext(UserContext);
   const {
     planner,
@@ -16,47 +14,33 @@ function UploadPlanner() {
   } = useContext(PlannerContext);
   const { showDialog } = useDialog();
 
-  const [isUploading, setIsUploading] = useState(false);
-
-  useEffect(() => {
-    const uploadPlanner = async () => {
-      const isValidPlanner = validatePlanner(planner, downloadedPlanner);
-      if (isValidPlanner) {
-        showDialog({
-          title: 'Atenção',
-          message: isValidPlanner,
-          onCancel: () => setCurrentPage(pages.Home),
-        });
-        return null;
-      }
-
-      setIsUploading(true);
-
-      const { creator, ...plannerWithoutCreator } = planner;
-
-      const response = await uploadPlannerToCloud(plannerWithoutCreator);
-
-      setIsUploading(false);
-
-      const sucessMsg = 'Cronograma salvo com sucesso!';
-      const errorMsg = 'Por favor, tente novamente mais tarde.';
+  const upload = useCallback(async () => {
+    const isValidPlanner = validatePlanner(planner, downloadedPlanner);
+    if (isValidPlanner) {
       showDialog({
-        title: response ? 'Sucesso!' : 'Erro ao salvar o cronograma.',
-        message: response ? sucessMsg : errorMsg,
+        title: 'Atenção',
+        message: isValidPlanner,
         onCancel: () => setCurrentPage(pages.Home),
       });
+      return false;
+    }
 
-      setDownloadedPlanner(planner);
-      return null;
-    };
+    const { creator, ...plannerWithoutCreator } = planner;
+    const response = await uploadPlannerToCloud(plannerWithoutCreator);
 
-    uploadPlanner();
-    setCurrentPage(pages.Home);
-  }, []);
+    const sucessMsg = 'Cronograma salvo com sucesso!';
+    const errorMsg = 'Por favor, tente novamente mais tarde.';
+    showDialog({
+      title: response ? 'Sucesso!' : 'Erro ao salvar o cronograma.',
+      message: response ? sucessMsg : errorMsg,
+      onCancel: () => setCurrentPage(pages.Home),
+    });
 
-  if (isUploading) return <span className="loader" />;
+    setDownloadedPlanner(planner);
+    return !!response;
+  }, [planner, downloadedPlanner, showDialog, setCurrentPage, pages, setDownloadedPlanner]);
 
-  return (<div />);
+  return [upload];
 }
 
-export default UploadPlanner;
+export default useUploadPlanner;

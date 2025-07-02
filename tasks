@@ -1,5 +1,6 @@
  TODO |  WIP  |  DONE | DESCRIPTION
-23-06 ||| Add guia para novas funcionalidades
+02-07 ||| Exibir guia ao abrir o app
+02-07 ||| Não exibir guia quando já tiver sido exibido
 04-04 ||| Criar versão desktop
 22-02 ||| Criar testes end2end
 29-03 ||| Permitir personalização print
@@ -8,6 +9,8 @@
 22-02 ||| Investigar se erro no React vai resetar os estados
 07-02 ||| Investigar necessidade da soma de 3 hora no dia selecionado
 
+30-06 | 02-07 | 02-07 | Add CSS para guia
+23-06 | 30-06 | 30-06 | Add guia para novas funcionalidades
 25-06 | 30-06 | 30-06 | Converter componentes não redezivel em hook
 30-06 | 30-06 | 30-06 | Botao de confirmar exibindo ao salvar cronograma 
 30-06 | 30-06 | 30-06 | Corrigr barra de progresso no dialog

@@ -40,6 +40,17 @@ function AppContent() {
   const [keepPlannerId, setKeepPlannerId] = useState(false);
   const [showTour, setShowTour] = useState(false);
 
+  useEffect(() => {
+    if (!localStorage.getItem('guideTourSeen')) {
+      setShowTour(true);
+    }
+  }, []);
+
+  const handleCloseTour = () => {
+    setShowTour(false);
+    // localStorage.setItem('guideTourSeen', 'true');
+  };
+
   const { showDialog } = useDialog();
 
   useEffect(() => {
@@ -159,7 +170,7 @@ function AppContent() {
           {currentPage.render()}
         </CSSTransition>
       </SwitchTransition>
-      <GuideTour run={showTour} onClose={() => setShowTour(false)} />
+      <GuideTour run={showTour} onClose={handleCloseTour} />
     </div>
   );
 }

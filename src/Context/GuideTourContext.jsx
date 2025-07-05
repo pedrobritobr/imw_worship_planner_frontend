@@ -27,7 +27,7 @@ const guide = {
       `,
       title: '2/2',
     },
-  ]
+  ],
 };
 
 export const GuideTourContext = createContext();
@@ -55,5 +55,5 @@ export function GuideTourProvider({ children }) {
 }
 
 GuideTourProvider.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 }.isRequired;

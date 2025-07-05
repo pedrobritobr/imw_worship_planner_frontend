@@ -21,8 +21,12 @@ function detachClick() {
   }
 }
 
-function GuideTour({ onClose }) {
-  const { showGuideTour } = useContext(GuideTourContext);
+function GuideTour() {
+  const {
+    steps,
+    showGuideTour,
+    closeGuideTour,
+  } = useContext(GuideTourContext);
 
   useEffect(() => {
     if (!showGuideTour) return undefined;
@@ -95,11 +99,11 @@ function GuideTour({ onClose }) {
     intro.onafterchange(attachClick);
     intro.onexit(() => {
       detachClick();
-      onClose();
+      closeGuideTour();
     });
     intro.oncomplete(() => {
       detachClick();
-      onClose();
+      closeGuideTour();
     });
     intro.start();
 
@@ -107,7 +111,7 @@ function GuideTour({ onClose }) {
       intro.exit();
       detachClick();
     };
-  }, [run]);
+  }, [showGuideTour]);
 
   return null;
 }

@@ -153,7 +153,7 @@ function AppContent() {
   return (
     <div className="App">
       <header>
-        <Menu onShowTour={() => setShowTour(true)} />
+        <Menu />
         <h3 id="AppName">Cronograma de Culto</h3>
         {!isFetchingPlanner && currentPage.title === pages.Home.title && <ActionsButton />}
       </header>
@@ -166,7 +166,7 @@ function AppContent() {
           {currentPage.render()}
         </CSSTransition>
       </SwitchTransition>
-      <GuideTour run={showTour} onClose={handleCloseTour} />
+      <GuideTour />
     </div>
   );
 }

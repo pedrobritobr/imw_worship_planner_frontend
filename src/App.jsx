@@ -4,6 +4,7 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 import { UserProvider, UserContext } from '@/Context/UserContext';
 import { PlannerProvider, PlannerContext } from '@/Context/PlannerContext';
+import { GuideTourProvider, GuideTourContext } from '@/Context/GuideTourContext';
 import { PageProvider, PageContext } from '@/Context/PageContext';
 import { DialogProvider, useDialog } from '@/Context/DialogContext';
 
@@ -36,20 +37,10 @@ function AppContent() {
     setIsFetchingPlanner,
   } = useContext(PlannerContext);
 
+  const { openGuideTour } = useContext(GuideTourContext);
+
   const [initialSetupComplete, setInitialSetupComplete] = useState(false);
   const [keepPlannerId, setKeepPlannerId] = useState(false);
-  const [showTour, setShowTour] = useState(false);
-
-  useEffect(() => {
-    if (!localStorage.getItem('guideTourSeen')) {
-      setShowTour(true);
-    }
-  }, []);
-
-  const handleCloseTour = () => {
-    setShowTour(false);
-    // localStorage.setItem('guideTourSeen', 'true');
-  };
 
   const { showDialog } = useDialog();
 
@@ -151,6 +142,11 @@ function AppContent() {
   }, [planner, setPlanner, initialSetupComplete, keepPlannerId]);
 
   useEffect(() => {
+    if (!user || !openGuideTour) return;
+    openGuideTour();
+  }, [user, openGuideTour]);
+
+  useEffect(() => {
     sendLocationToAnalytics(document.title, window.location.href);
   }, []);
 
@@ -183,9 +179,11 @@ function App() {
           {({ setCurrentPage, pages }) => (
             <UserProvider setCurrentPage={setCurrentPage} pages={pages}>
               <PlannerProvider>
-                <ErrorWrapper>
-                  <AppContent />
-                </ErrorWrapper>
+                <GuideTourProvider>
+                  <ErrorWrapper>
+                    <AppContent />
+                  </ErrorWrapper>
+                </GuideTourProvider>
               </PlannerProvider>
             </UserProvider>
           )}

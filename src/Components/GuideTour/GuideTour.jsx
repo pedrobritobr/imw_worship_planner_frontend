@@ -1,32 +1,13 @@
 /* eslint-disable no-underscore-dangle */
 // TODO add versao do guia e mostrar para o usuario apenas se o guia nao for visto
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import introJs from 'intro.js';
+
 import 'intro.js/introjs.css';
 import './GuideTour.css';
 
-const steps = [
-  {
-    element: '.Menu .hamburger',
-    intro: `
-    <b>O Menu está de cara nova ✨</b>
-    <p>
-      Clique no ícone do menu para ver as novas opções.
-    </p>`,
-    title: '1/2',
-  },
-  {
-    element: '.menu-container',
-    intro: `
-    Agora é possível
-    <em>Compartilhar o cronograma</em>
-    e
-    <em>Enviar um feedback aos desenvolvedores</em>.
-    `,
-    title: '2/2',
-  },
-];
+import { GuideTourContext } from '@/Context/GuideTourContext';
 
 let lastElement = null;
 let lastHandler = null;
@@ -40,9 +21,11 @@ function detachClick() {
   }
 }
 
-function GuideTour({ run, onClose }) {
+function GuideTour({ onClose }) {
+  const { showGuideTour } = useContext(GuideTourContext);
+
   useEffect(() => {
-    if (!run) return undefined;
+    if (!showGuideTour) return undefined;
 
     const intro = introJs();
     intro.setOptions({
@@ -130,7 +113,6 @@ function GuideTour({ run, onClose }) {
 }
 
 GuideTour.propTypes = {
-  run: PropTypes.bool,
   onClose: PropTypes.func,
 }.isRequired;
 

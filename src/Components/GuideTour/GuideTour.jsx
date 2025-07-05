@@ -17,7 +17,7 @@ const steps = [
     title: '1/2',
   },
   {
-    element: '.menu-container.open',
+    element: '.menu-container',
     intro: `
     Agora é possível
     <em>Compartilhar o cronograma</em>

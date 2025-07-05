@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
 
 import './Menu.css';
 
 import { UserContext } from '@/Context/UserContext';
 import { PageContext } from '@/Context/PageContext';
+import { GuideTourContext } from '@/Context/GuideTourContext';
+
 import useSharePlanner from '@/Components/SharePlanner';
 import useUploadPlanner from '@/Components/UploadPlanner';
 import useFetchPlanner from '@/Components/FetchPlanner';
 import useLogout from '@/Components/Logout';
-// import GuideTour from '../GuideTour';
 
-function Menu({ onShowTour }) {
+function Menu() {
   const { user } = useContext(UserContext);
   const {
     getUserPages,
@@ -19,6 +19,7 @@ function Menu({ onShowTour }) {
     pages,
     currentPage,
   } = useContext(PageContext);
+  const { openGuideTour } = useContext(GuideTourContext);
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [userPages, setUserPages] = useState(getUserPages(user));
@@ -47,7 +48,7 @@ function Menu({ onShowTour }) {
       setLoadingActions((prev) => ({ ...prev, FetchPlanner: false }));
     },
     GuideTour: () => {
-      onShowTour();
+      openGuideTour();
     },
     LogOut: () => {
       setLoadingActions((prev) => ({ ...prev, LogOut: true }));
@@ -135,9 +136,5 @@ function Menu({ onShowTour }) {
     </div>
   );
 }
-
-Menu.propTypes = {
-  onShowTour: PropTypes.func,
-}.isRequired;
 
 export default Menu;

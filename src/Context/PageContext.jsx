@@ -6,7 +6,6 @@ import Login from '@/Components/Login';
 import Register from '@/Components/Register';
 import UserInfo from '@/Components/UserInfo';
 import Feedback from '@/Components/Feedback';
-// import GuideTour from '@/Components/GuideTour';
 
 import HomeIcon from '@/assets/icons/home.svg';
 import SignIn from '@/assets/icons/signin.svg';

@@ -48,7 +48,8 @@ function Menu() {
       setLoadingActions((prev) => ({ ...prev, FetchPlanner: false }));
     },
     GuideTour: () => {
-      openGuideTour();
+      const ignoreSeen = true;
+      openGuideTour(ignoreSeen);
     },
     LogOut: () => {
       setLoadingActions((prev) => ({ ...prev, LogOut: true }));

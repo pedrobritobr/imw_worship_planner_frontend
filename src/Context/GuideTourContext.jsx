@@ -6,7 +6,7 @@ import React, {
 import PropTypes from 'prop-types';
 
 const guide = {
-  version: '1.0.0',
+  version: 1,
   steps: [
     {
       element: '.Menu .hamburger',
@@ -35,8 +35,20 @@ export const GuideTourContext = createContext();
 export function GuideTourProvider({ children }) {
   const [showGuideTour, setShowGuideTour] = useState(false);
 
-  const openGuideTour = () => setShowGuideTour(true);
-  const closeGuideTour = () => setShowGuideTour(false);
+  const openGuideTour = (ignoreSeen = false) => {
+    let lastGuideSeen = localStorage.getItem('lastGuideSeen', '0');
+    lastGuideSeen = parseInt(lastGuideSeen, 10);
+
+    if (!ignoreSeen && lastGuideSeen >= guide.version) {
+      return;
+    }
+    setShowGuideTour(true);
+  };
+
+  const closeGuideTour = () => {
+    localStorage.setItem('lastGuideSeen', guide.version);
+    setShowGuideTour(false);
+  };
 
   const variables = {
     steps: guide.steps,

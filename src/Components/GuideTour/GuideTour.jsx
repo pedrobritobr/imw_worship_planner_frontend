@@ -62,13 +62,8 @@ function GuideTour() {
       skipLabel: 'Pular',
     });
 
-    function clickHandlerFactory(ignoreClick) {
+    function clickHandlerFactory() {
       return function handler(e) {
-        if (ignoreClick) {
-          e.preventDefault();
-          e.stopPropagation();
-          return;
-        }
         setTimeout(() => {}, 500);
         detachClick();
         intro.nextStep();
@@ -78,12 +73,12 @@ function GuideTour() {
     function attachClick() {
       detachClick();
       const currentStep = intro._currentStep;
-      const { element, ignoreClick = false } = steps[currentStep];
+      const { element } = steps[currentStep];
       if (!element) return;
       const el = document.querySelector(element);
       if (el) {
         el.style.cursor = 'pointer';
-        lastHandler = clickHandlerFactory(ignoreClick);
+        lastHandler = clickHandlerFactory();
         el.addEventListener('click', lastHandler);
         lastElement = el;
       }
@@ -100,7 +95,9 @@ function GuideTour() {
           const currentStep = intro._currentStep;
           if (currentStep < 1 || currentStep > steps.length) return;
 
-          const { element } = steps[currentStep - 1];
+          const { element, ignoreClick } = steps[currentStep - 1];
+
+          if (ignoreClick) return;
           if (element) {
             const el = document.querySelector(element);
             if (el.tagName === 'DIV') {
@@ -116,6 +113,7 @@ function GuideTour() {
 
     intro.onbeforechange(detachClick);
     intro.onafterchange(attachClick);
+
     intro.onexit(() => {
       detachClick();
       closeGuideTour();

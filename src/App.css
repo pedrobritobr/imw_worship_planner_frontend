@@ -44,11 +44,11 @@
   margin-right: 10px;
 }
 
-.MinimalApp .main .hide-screenshot-table-container {
+.MinimalApp .Main .hide-screenshot-table-container {
   transform: scale(1.5) translateY(25%);
 }
 
-.main {
+.Main {
   display: flex;
   flex-direction: column;
   align-items: center;

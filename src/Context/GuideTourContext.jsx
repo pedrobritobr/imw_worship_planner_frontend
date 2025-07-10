@@ -27,7 +27,6 @@ const guide = {
       `,
       title: '2/3',
       ignoreClick: true,
-      fixLeft: true,
     },
     {
       element: '.Main .download-button',

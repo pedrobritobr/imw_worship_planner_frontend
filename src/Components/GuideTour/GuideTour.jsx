@@ -32,12 +32,10 @@ function applyFixLeft() {
   if (currentLeft <= 0) {
     helperLayer.classList.add('introjs-fix-left');
     tooltipReferenceLayer.classList.add('introjs-fix-left');
-    return;
+  } else {
+    helperLayer.classList.remove('introjs-fix-left');
+    tooltipReferenceLayer.classList.remove('introjs-fix-left');
   }
-
-  helperLayer.classList.remove('introjs-fix-left');
-  tooltipReferenceLayer.classList.remove('introjs-fix-left');
-  return;
 }
 
 function GuideTour() {
@@ -63,7 +61,7 @@ function GuideTour() {
     });
 
     function clickHandlerFactory() {
-      return function handler(e) {
+      return function handler() {
         setTimeout(() => {}, 500);
         detachClick();
         intro.nextStep();
@@ -131,13 +129,10 @@ function GuideTour() {
   }, [showGuideTour]);
 
   useEffect(() => {
-    if (!showGuideTour) return;
+    if (!showGuideTour) return undefined;
 
-    const intervalId = setInterval(applyFixLeft, 100);
-
-    return () => {
-      clearInterval(intervalId);
-    };
+    const intervalId = setInterval(applyFixLeft, 250);
+    return () => clearInterval(intervalId);
   }, [showGuideTour]);
 
   return null;

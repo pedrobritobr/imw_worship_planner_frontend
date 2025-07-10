@@ -10,12 +10,9 @@
 .introjs-helperLayer {
   box-shadow: #00000078 0px 0px 0px 5000px !important;
   border-radius: 6px !important;
-  padding: 5px !important;
-  transform: translate(-5px, -5px) !important;
-  left: 0 !important;
 }
 
-.introjs-tooltipReferenceLayer {
+.introjs-fix-left {
   left: 0 !important;
 }
 

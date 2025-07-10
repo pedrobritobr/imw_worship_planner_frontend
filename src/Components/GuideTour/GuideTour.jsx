@@ -21,6 +21,25 @@ function detachClick() {
   }
 }
 
+function applyFixLeft() {
+  const helperLayer = document.querySelector('.introjs-helperLayer');
+  const tooltipReferenceLayer = document.querySelector('.introjs-tooltipReferenceLayer');
+
+  if (!helperLayer || !tooltipReferenceLayer) return;
+
+  const currentLeft = parseInt(getComputedStyle(helperLayer).left, 10);
+
+  if (currentLeft <= 0) {
+    helperLayer.classList.add('introjs-fix-left');
+    tooltipReferenceLayer.classList.add('introjs-fix-left');
+    return;
+  }
+
+  helperLayer.classList.remove('introjs-fix-left');
+  tooltipReferenceLayer.classList.remove('introjs-fix-left');
+  return;
+}
+
 function GuideTour() {
   const {
     steps,
@@ -110,6 +129,16 @@ function GuideTour() {
     return () => {
       intro.exit();
       detachClick();
+    };
+  }, [showGuideTour]);
+
+  useEffect(() => {
+    if (!showGuideTour) return;
+
+    const intervalId = setInterval(applyFixLeft, 100);
+
+    return () => {
+      clearInterval(intervalId);
     };
   }, [showGuideTour]);
 

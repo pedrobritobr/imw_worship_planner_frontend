@@ -4,14 +4,15 @@ import React, {
   useMemo,
   createRef,
 } from 'react';
-import { exportComponentAsPNG } from 'react-component-export-image';
+
+import html2canvas from 'html2canvas';
 import PropTypes from 'prop-types';
 
 import {
   screenshotFilename,
-  pngConfigs,
   scrollToTop,
   emptyPlanner,
+  share,
 } from '@/helpers';
 import { uploadPlannerToCloud } from '@/service';
 
@@ -43,20 +44,42 @@ export function PlannerProvider({ children }) {
     setDownloadedPlanner(updatedPlanner);
   };
 
-  const downloadPlanner = () => {
-    scrollToTop();
-    const { churchName, selectedDate } = planner;
-    exportComponentAsPNG(ref, {
-      fileName: screenshotFilename(churchName, selectedDate),
-      ...pngConfigs,
-    });
-
+  const downloadPlanner = async () => {
+    if (!ref.current) return null;
     try {
+      scrollToTop();
+      const { churchName, selectedDate } = planner;
+      const canvas = await html2canvas(ref.current, { scale: 7 });
+
+      const blob = await new Promise((resolve) => {
+        canvas.toBlob((b) => resolve(b), 'image/png');
+      });
+
+      const file = new File(
+        [blob],
+        screenshotFilename(churchName, selectedDate),
+        { type: blob.type },
+      );
+
+      if (file) {
+        const url = URL.createObjectURL(file);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = file.name;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        share({ files: [file] });
+      }
+
       const { creator, ...plannerWithoutCreator } = planner;
       uploadPlannerToCloud(plannerWithoutCreator);
-    } catch (error) {
-      console.error('Erro ao salvar cronograma no backend:', error);
+    } catch (e) {
+      console.error(e);
     }
+    return null;
   };
 
   const variables = {

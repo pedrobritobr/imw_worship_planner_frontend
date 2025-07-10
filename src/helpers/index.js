@@ -20,7 +20,7 @@ const screenshotFilename = (churchName, selectedDate) => {
   const churchNameFormatted = churchName.replace(/ /g, '_').toLowerCase();
   const randomString = Math.floor(1000 + Math.random() * 9000).toString();
 
-  return `cronograma_${churchNameFormatted}_${todayFormatted}_${randomString}`;
+  return `cronograma_${churchNameFormatted}_${todayFormatted}_${randomString}.png`;
 };
 
 const setHourForActivity = (horaBase, minutosASomar) => {
@@ -45,13 +45,6 @@ const columnsHeader = [
   { text: 'Responsável' },
 ];
 
-const pngConfigs = {
-  html2CanvasOptions: {
-    scale: 7,
-    backgroundColor: '#02041B',
-  },
-};
-
 const showErrorMessage = (element, message) => {
   const errorMessage = document.querySelector(element);
   errorMessage.textContent = message;
@@ -74,6 +67,25 @@ const validateUUID = (uuid) => {
   if (!(isValidUUID && isValidVersion)) throw new Error('Invalid UUID');
 };
 
+const share = (content) => {
+  const shareData = {
+    title: 'IMW Cronograma de culto',
+    text: 'Confira o cronograma de culto!',
+    ...content,
+  };
+
+  if (navigator.share) {
+    try {
+      navigator.share(shareData);
+      return '';
+    } catch (error) {
+      console.error('Erro ao compartilhar:', error);
+      return 'Use a página de Feedback para relatar o erro aos desenvolvedores.';
+    }
+  }
+  return 'Compartilhamento não suportado neste dispositivo.';
+};
+
 export {
   screenshotFilename,
   getLongDateString,
@@ -84,5 +96,5 @@ export {
   formatSelectedDateToUTC,
   validateUUID,
   columnsHeader,
-  pngConfigs,
+  share,
 };

@@ -1,8 +1,9 @@
+/* eslint-disable */
 import { useContext, useCallback } from 'react';
 import { PlannerContext } from '@/Context/PlannerContext';
 import { UserContext } from '@/Context/UserContext';
 import { uploadPlannerToCloud } from '@/service';
-import { validatePlanner } from '@/helpers';
+import { validatePlanner, share } from '@/helpers';
 import { useDialog } from '@/Context/DialogContext';
 
 function useSharePlanner() {
@@ -43,22 +44,31 @@ function useSharePlanner() {
     }
   }, [planner, showErrorDialog]);
 
-  const share = useCallback(() => {
-    if (navigator.share) {
-      navigator.share({
-        title: 'IMW Cronograma de culto',
-        text: 'Confira o cronograma de culto!',
-        url: `${window.location.href}?shared=true`,
-      }).catch((error) => {
-        console.error('Erro ao compartilhar:', error);
-        showErrorDialog('Use a página de Feedback para relatar o erro aos desenvolvedores.');
-      });
-    } else {
-      showErrorDialog('Compartilhamento não suportado neste dispositivo.');
+  const shareImage = useCallback(async (image) => {
+    try {
+      const errorMsg = await share({files: [image]});
+      if (errorMsg) {
+        showErrorDialog(errorMsg);
+      }
+    } catch (error) {
+      console.error('Erro ao gerar imagem para compartilhar:', error);
+      showErrorDialog('Não foi possível gerar a imagem do cronograma para compartilhar.');
     }
-  }, [showErrorDialog, setCurrentPage, pages]);
+  }, [showErrorDialog, share]);
 
-  return [shouldShare, share];
+  const shareLink = useCallback(async () => {
+    try {
+      const errorMsg = await share({url: `${window.location.href}?shared=true`,});
+      if (errorMsg) {
+        showErrorDialog(errorMsg);
+      }
+    } catch (error) {
+      console.error('Erro ao compartilhar link:', error);
+      showErrorDialog('Não foi possível compartilhar o link do cronograma.');
+    }
+  }, [showErrorDialog, share]);
+
+  return [shouldShare, shareLink, shareImage];
 }
 
 export default useSharePlanner;

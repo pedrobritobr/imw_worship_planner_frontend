@@ -25,7 +25,8 @@ function Menu() {
   const [userPages, setUserPages] = useState(getUserPages(user));
   const [loadingActions, setLoadingActions] = useState({});
 
-  const [shouldShare, share] = useSharePlanner();
+  const [shouldShare, shareLink] = useSharePlanner();
+
   const [uploadPlanner] = useUploadPlanner();
   const [fetchPlanner] = useFetchPlanner();
   const [logout] = useLogout();
@@ -34,7 +35,7 @@ function Menu() {
     SharePlanner: () => {
       setLoadingActions((prev) => ({ ...prev, SharePlanner: true }));
       shouldShare();
-      share();
+      shareLink();
       setLoadingActions((prev) => ({ ...prev, SharePlanner: false }));
     },
     UploadPlanner: async () => {

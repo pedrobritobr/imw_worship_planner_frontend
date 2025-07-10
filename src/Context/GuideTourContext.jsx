@@ -15,7 +15,7 @@ const guide = {
       <p>
         Clique no ícone do menu para ver as novas opções.
       </p>`,
-      title: '1/2',
+      title: '1/3',
     },
     {
       element: '.menu-container',
@@ -25,7 +25,15 @@ const guide = {
       e
       <em>Enviar um feedback aos desenvolvedores</em>.
       `,
-      title: '2/2',
+      title: '2/3',
+      ignoreClick: true,
+      fixLeft: true,
+    },
+    {
+      element: '.Main .download-button',
+      intro: 'Ao baixar a imagem do cronograma, você poderá compartilhar diretamente o cronograma para onde desejar.',
+      title: '3/3',
+      ignoreClick: true,
     },
   ],
 };
@@ -35,7 +43,7 @@ export const GuideTourContext = createContext();
 export function GuideTourProvider({ children }) {
   const [showGuideTour, setShowGuideTour] = useState(false);
 
-  const openGuideTour = (ignoreSeen = false) => {
+  const openGuideTour = (ignoreSeen = true) => {
     let lastGuideSeen = localStorage.getItem('lastGuideSeen', '0');
     lastGuideSeen = parseInt(lastGuideSeen, 10);
 

@@ -26,13 +26,11 @@ const guide = {
       <em>Enviar um feedback aos desenvolvedores</em>.
       `,
       title: '2/3',
-      ignoreClick: true,
     },
     {
       element: '.Main .download-button',
       intro: 'Ao baixar a imagem do cronograma, você poderá compartilhar diretamente o cronograma para onde desejar.',
       title: '3/3',
-      ignoreClick: true,
     },
   ],
 };

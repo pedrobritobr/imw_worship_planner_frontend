@@ -1,5 +1,4 @@
  TODO |  WIP  |  DONE | DESCRIPTION
-06-07 | 10-07 || Fix posição do guia
 05-07 ||| Não exibir guia quando já tiver sido exibido (na conta)
 04-04 ||| Criar versão desktop
 22-02 ||| Criar testes end2end
@@ -9,6 +8,8 @@
 22-02 ||| Investigar se erro no React vai resetar os estados
 07-02 ||| Investigar necessidade da soma de 3 hora no dia selecionado
 
+11-07 | 11-07 | 11-07 | Não fechar menu durante o Guide
+06-07 | 10-07 | 11-07 | Fix posição do guia
 02-07 | 05-07 | 06-07 | Ao baixar imagem do cronograma, compartilhar
 02-07 | 05-07 | 05-07 | Não exibir guia quando já tiver sido exibido (localstorage)
 05-07 | 05-07 | 05-07 | Criar um contexto para GuideTour, adicionando versão do guide e mais facil de manutenção

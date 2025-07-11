@@ -40,7 +40,7 @@ export const GuideTourContext = createContext();
 export function GuideTourProvider({ children }) {
   const [showGuideTour, setShowGuideTour] = useState(false);
 
-  const openGuideTour = (ignoreSeen = true) => {
+  const openGuideTour = (ignoreSeen = false) => {
     let lastGuideSeen = localStorage.getItem('lastGuideSeen', '0');
     lastGuideSeen = parseInt(lastGuideSeen, 10);
 

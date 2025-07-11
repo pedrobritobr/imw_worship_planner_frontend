@@ -73,6 +73,7 @@ function Menu() {
 
   const handleClickOutside = (event) => {
     const userActionsElement = document.querySelector('.Menu');
+    if (typeof event.target.className === 'string' && event.target.className.includes('introjs')) return;
 
     if (userActionsElement && !userActionsElement.contains(event.target)) {
       setMenuOpen(false);

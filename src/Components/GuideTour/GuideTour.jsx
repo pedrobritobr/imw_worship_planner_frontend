@@ -38,6 +38,18 @@ function applyFixLeft() {
   }
 }
 
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
 function GuideTour() {
   const {
     steps,
@@ -133,8 +145,38 @@ function GuideTour() {
   useEffect(() => {
     if (!showGuideTour) return undefined;
 
-    const intervalId = setInterval(applyFixLeft, 250);
-    return () => clearInterval(intervalId);
+    const debouncedApplyFixLeft = debounce(applyFixLeft, 0);
+    let observer = null;
+
+    const waitForElements = () => {
+      const helperLayer = document.querySelector('.introjs-helperLayer');
+      const tooltipReferenceLayer = document.querySelector('.introjs-tooltipReferenceLayer');
+
+      if (helperLayer && tooltipReferenceLayer) {
+        applyFixLeft();
+
+        if (window.ResizeObserver) {
+          observer = new ResizeObserver(debouncedApplyFixLeft);
+          observer.observe(helperLayer);
+          observer.observe(tooltipReferenceLayer);
+          observer.observe(document.body);
+        } else {
+          observer = setInterval(debouncedApplyFixLeft, 0);
+        }
+      } else {
+        setTimeout(waitForElements, 0);
+      }
+    };
+
+    waitForElements();
+
+    return () => {
+      if (observer instanceof ResizeObserver) {
+        observer.disconnect();
+      } else if (observer) {
+        clearInterval(observer);
+      }
+    };
   }, [showGuideTour]);
 
   return null;

@@ -21,6 +21,10 @@
   font-weight: bold !important;
 }
 
+.introjs-tooltipReferenceLayer {
+  visibility: visible !important;
+}
+
 .introjs-button,
 .introjs-skipbutton,
 .introjs-donebutton {

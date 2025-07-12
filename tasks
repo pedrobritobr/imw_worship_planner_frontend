@@ -1,7 +1,7 @@
  TODO |  WIP  |  DONE | DESCRIPTION
-11-07 ||| Imagem com barras brancas
-11-07 ||| barra de info nao exibindo IOS
-11-07 ||| Botão pular do guia nao funcionando
+11-07 ||| Add feat do user limpar tudo se erro persistir
+11-07 ||| Enviar erro do MinimalApp ao backend
+11-07 ||| Aumentar width do menu, loading está quebrando o testo
 05-07 ||| Não exibir guia quando já tiver sido exibido (na conta)
 04-04 ||| Criar versão desktop
 22-02 ||| Criar testes end2end
@@ -11,6 +11,9 @@
 22-02 ||| Investigar se erro no React vai resetar os estados
 07-02 ||| Investigar necessidade da soma de 3 hora no dia selecionado
 
+11-07 | 11-07 | 11-07 | barra de info nao exibindo IOS
+11-07 | 11-07 | 11-07 | Erro ao cancelar compartilhamento de imagem no mobile
+11-07 | 11-07 | 11-07 | Imagem com barras brancas
 11-07 | 11-07 | 11-07 | Não fechar menu durante o Guide
 06-07 | 10-07 | 11-07 | Fix posição do guia
 02-07 | 05-07 | 06-07 | Ao baixar imagem do cronograma, compartilhar

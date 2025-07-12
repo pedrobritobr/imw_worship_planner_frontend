@@ -31,6 +31,7 @@ function MinimalApp(errorMsg) {
 
   return (
     <div className="MinimalApp">
+      <p>{errorMsg}</p>
       <Main />
     </div>
   );

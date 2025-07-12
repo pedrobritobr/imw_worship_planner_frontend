@@ -67,7 +67,7 @@ const validateUUID = (uuid) => {
   if (!(isValidUUID && isValidVersion)) throw new Error('Invalid UUID');
 };
 
-const share = (content) => {
+const share = async (content) => {
   const shareData = {
     title: 'IMW Cronograma de culto',
     text: 'Confira o cronograma de culto!',
@@ -76,9 +76,10 @@ const share = (content) => {
 
   if (navigator.share) {
     try {
-      navigator.share(shareData);
+      await navigator.share(shareData);
       return '';
     } catch (error) {
+      if (error && error.name === 'AbortError') return '';
       console.error('Erro ao compartilhar:', error);
       return 'Use a página de Feedback para relatar o erro aos desenvolvedores.';
     }

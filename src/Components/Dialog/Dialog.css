@@ -72,17 +72,26 @@
   color: #e8e8e8;
 }
 
+.Dialog .modal-content .modal-actions .confirm-button:hover {
+  background-color: #346197;
+}
+
 .Dialog .modal-content .modal-actions .cancel-button {
   background-color: #e8e8e8;
   color: black;
 }
 
-.Dialog .modal-content .modal-actions .confirm-button:hover {
-  background-color: #346197;
-}
-
 .Dialog .modal-content .modal-actions .cancel-button:hover {
   background-color: #d9d9d9;
+}
+
+.Dialog .modal-content .modal-actions .error-button {
+  background-color: #8c3232;
+  color: #e8e8e8;
+}
+
+.Dialog .modal-content .modal-actions .error-button:hover {
+  background-color: #973434;
 }
 
 .Dialog .modal-fade-enter {

@@ -61,8 +61,8 @@ function Dialog({
             />
           )}
           <div className="modal-actions">
-            {type === 'confirm' && onConfirm && (
-              <button type="button" className="confirm-button" onClick={onConfirm}>
+            {type !== 'alert' && onConfirm && (
+              <button type="button" className={`${type}-button`} onClick={onConfirm}>
                 {confirmText}
               </button>
             )}
@@ -100,7 +100,7 @@ Dialog.propTypes = {
 Dialog.defaultProps = {
   title: '',
   message: '',
-  type: 'confirm',
+  type: 'alert',
   onConfirm: undefined,
   onCancel: undefined,
   confirmText: 'Confirmar',

@@ -53,9 +53,8 @@ export function PlannerProvider({ children }) {
       const canvas = await html2canvas(ref.current, {
         scale: 7,
         windowWidth: 0,
-        windowHeight: 0,
         width: screenshotContainer.offsetWidth,
-        height: screenshotContainer.offsetHeight,
+        height: screenshotContainer.offsetHeight - 1,
         allowTaint: true,
       });
 

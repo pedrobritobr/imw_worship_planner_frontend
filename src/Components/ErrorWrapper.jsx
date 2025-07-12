@@ -20,18 +20,21 @@ function MinimalApp(errorMsg) {
   const { showDialog } = useDialog();
 
   useEffect(() => {
-    localStorage.clear();
-    logOut();
-    setPlanner([]);
-    showDialog({
-      title: 'Erro',
-      message: errorMsg,
-    });
+    if (false) {
+      localStorage.clear();
+      logOut();
+      setPlanner([]);
+      showDialog({
+        title: 'Erro',
+        message: errorMsg,
+      });
+    }
   }, []);
 
   return (
     <div className="MinimalApp">
-      <p>{errorMsg}</p>
+      <h1>Ocorreu um erro inesperado</h1>
+      <p>{typeof errorMsg === 'string' ? errorMsg : JSON.stringify(errorMsg)}</p>
       <Main />
     </div>
   );
@@ -69,6 +72,7 @@ function ErrorWrapper({ children }) {
 
   useEffect(() => {
     const errorHandler = (event) => {
+      console.error('Erro global detectado:', event);
       console.error('Erro global detectado:', event.error);
       setGlobalError(event.error);
       logOut();

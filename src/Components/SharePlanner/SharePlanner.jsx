@@ -48,6 +48,7 @@ function useSharePlanner() {
     try {
       const errorMsg = await share({files: [image]});
       if (errorMsg) {
+        console.error('Erro ao compartilhar imagem:', errorMsg);
         showErrorDialog(errorMsg);
       }
     } catch (error) {

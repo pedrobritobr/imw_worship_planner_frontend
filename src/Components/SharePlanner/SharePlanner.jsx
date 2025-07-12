@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { useContext, useCallback } from 'react';
 import { PlannerContext } from '@/Context/PlannerContext';
 import { UserContext } from '@/Context/UserContext';
@@ -46,7 +45,7 @@ function useSharePlanner() {
 
   const shareImage = useCallback(async (image) => {
     try {
-      const errorMsg = await share({files: [image]});
+      const errorMsg = await share({ files: [image] });
       if (errorMsg) {
         console.error('Erro ao compartilhar imagem:', errorMsg);
         showErrorDialog(errorMsg);
@@ -59,7 +58,7 @@ function useSharePlanner() {
 
   const shareLink = useCallback(async () => {
     try {
-      const errorMsg = await share({url: `${window.location.href}?shared=true`,});
+      const errorMsg = await share({ url: `${window.location.href}?shared=true` });
       if (errorMsg) {
         showErrorDialog(errorMsg);
       }

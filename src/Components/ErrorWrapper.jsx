@@ -2,39 +2,34 @@ import React, {
   Component,
   useState,
   useEffect,
-  useContext,
+  // useContext,
 } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { PlannerContext } from '@/Context/PlannerContext';
-import { UserContext } from '@/Context/UserContext';
+// import { PlannerContext } from '@/Context/PlannerContext';
+// import { UserContext } from '@/Context/UserContext';
 import { useDialog } from '@/Context/DialogContext';
 
 import Main from './Main';
 
-// RESTAURAR MSGS
-function MinimalApp(errorMsg) {
-  const { logOut } = useContext(UserContext);
-  const { setPlanner } = useContext(PlannerContext);
+function MinimalApp() {
+  // const { logOut } = useContext(UserContext);
+  // const { setPlanner } = useContext(PlannerContext);
   const { showDialog } = useDialog();
 
   useEffect(() => {
-    if (false) {
-      localStorage.clear();
-      logOut();
-      setPlanner([]);
-      showDialog({
-        title: 'Erro',
-        message: errorMsg,
-      });
-    }
+    // localStorage.clear();
+    // logOut();
+    // setPlanner([]);
+    showDialog({
+      title: 'Erro',
+      message: 'Ocorreu um erro!<br>Você pode continuar editando o cronograma e capturar a tela.',
+    });
   }, []);
 
   return (
     <div className="MinimalApp">
-      <h1>Ocorreu um erro inesperado</h1>
-      <p>{typeof errorMsg === 'string' ? errorMsg : JSON.stringify(errorMsg)}</p>
       <Main />
     </div>
   );
@@ -51,22 +46,21 @@ class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    this.setState({ errorInfo });
     console.error('Erro capturado no ErrorBoundary:', error, errorInfo);
   }
 
   render() {
-    const { hasError, errorInfo } = this.state;
+    const { hasError } = this.state;
     const { children } = this.props;
 
-    if (hasError) return <MinimalApp errorMsg={errorInfo} />;
+    if (hasError) return <MinimalApp />;
     return children;
   }
 }
 
 function ErrorWrapper({ children }) {
-  const { logOut } = useContext(UserContext);
-  const { setPlanner } = useContext(PlannerContext);
+  // const { logOut } = useContext(UserContext);
+  // const { setPlanner } = useContext(PlannerContext);
 
   const [globalError, setGlobalError] = useState(null);
 
@@ -74,9 +68,9 @@ function ErrorWrapper({ children }) {
     const errorHandler = (event) => {
       console.error('Erro global detectado:', event);
       console.error('Erro global detectado:', event.error);
-      setGlobalError(event.error);
-      logOut();
-      setPlanner([]);
+      setGlobalError(true);
+      // logOut();
+      // setPlanner([]);
     };
 
     window.addEventListener('error', errorHandler);
@@ -88,7 +82,7 @@ function ErrorWrapper({ children }) {
     };
   }, []);
 
-  if (globalError) return <MinimalApp errorMsg={globalError} />;
+  if (globalError) return <MinimalApp />;
   return <ErrorBoundary>{children}</ErrorBoundary>;
 }
 

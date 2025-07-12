@@ -49,7 +49,7 @@ export function DialogProvider({ children }) {
         confirmText={dialogProps?.confirmText}
         cancelText={dialogProps?.cancelText}
         autoClose={dialogProps?.autoClose}
-        autoCloseTimeout={dialogProps?.autoCloseTimeout}
+        autoCloseSeconds={dialogProps?.autoCloseSeconds}
       />
     </DialogContext.Provider>
   );

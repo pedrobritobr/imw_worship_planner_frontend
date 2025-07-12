@@ -13,7 +13,7 @@ function Dialog({
   confirmText = 'Confirmar',
   cancelText = 'Cancelar',
   autoClose = true,
-  autoCloseTimeout = 6,
+  autoCloseSeconds = 6,
 }) {
   const [progress, setProgress] = useState(100);
 
@@ -26,7 +26,7 @@ function Dialog({
   useEffect(() => {
     if (show && autoClose) {
       const start = Date.now();
-      const duration = autoCloseTimeout * 1000;
+      const duration = autoCloseSeconds * 1000;
 
       const interval = setInterval(() => {
         const elapsed = Date.now() - start;
@@ -43,7 +43,7 @@ function Dialog({
       };
     }
     return undefined;
-  }, [show, autoClose, autoCloseTimeout, onCancel]);
+  }, [show, autoClose, autoCloseSeconds, onCancel]);
 
   return (
     <CSSTransition
@@ -94,7 +94,7 @@ Dialog.propTypes = {
   confirmText: PropTypes.string,
   cancelText: PropTypes.string,
   autoClose: PropTypes.bool,
-  autoCloseTimeout: PropTypes.number,
+  autoCloseSeconds: PropTypes.number,
 };
 
 Dialog.defaultProps = {
@@ -106,7 +106,7 @@ Dialog.defaultProps = {
   confirmText: 'Confirmar',
   cancelText: 'Cancelar',
   autoClose: true,
-  autoCloseTimeout: 6,
+  autoCloseSeconds: 6,
 };
 
 export default Dialog;

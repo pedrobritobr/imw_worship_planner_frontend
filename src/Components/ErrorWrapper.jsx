@@ -2,29 +2,40 @@ import React, {
   Component,
   useState,
   useEffect,
-  // useContext,
+  useContext,
 } from 'react';
 
 import PropTypes from 'prop-types';
 
-// import { PlannerContext } from '@/Context/PlannerContext';
-// import { UserContext } from '@/Context/UserContext';
+import { PlannerContext } from '@/Context/PlannerContext';
+import { UserContext } from '@/Context/UserContext';
 import { useDialog } from '@/Context/DialogContext';
 
 import Main from './Main';
 
 function MinimalApp() {
-  // const { logOut } = useContext(UserContext);
-  // const { setPlanner } = useContext(PlannerContext);
+  const { logOut } = useContext(UserContext);
+  const { setPlanner } = useContext(PlannerContext);
   const { showDialog } = useDialog();
 
+  const clearData = () => {
+    localStorage.clear();
+    logOut();
+    setPlanner([]);
+  };
+
   useEffect(() => {
-    // localStorage.clear();
-    // logOut();
-    // setPlanner([]);
     showDialog({
-      title: 'Erro',
-      message: 'Ocorreu um erro!<br>Você pode continuar editando o cronograma e capturar a tela.',
+      type: 'error',
+      title: 'Ocorreu um erro!',
+      message: `
+      Você pode continuar editando o cronograma e capturar a tela.
+      <br>
+      <br>
+      Caso o erro persista, limpe os dados ou entre em contato na área de feedback.`,
+      onConfirm: clearData,
+      confirmText: 'Limpar dados',
+      autoCloseSeconds: 10,
     });
   }, []);
 

@@ -48,6 +48,10 @@
   transform: scale(1.5) translateY(25%);
 }
 
+.MinimalApp .download-button {
+  display: none;
+}
+
 .Main {
   display: flex;
   flex-direction: column;

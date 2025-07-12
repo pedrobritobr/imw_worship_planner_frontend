@@ -13,7 +13,8 @@ import { useDialog } from '@/Context/DialogContext';
 
 import Main from './Main';
 
-function MinimalApp() {
+// RESTAURAR MSGS
+function MinimalApp(errorMsg) {
   const { logOut } = useContext(UserContext);
   const { setPlanner } = useContext(PlannerContext);
   const { showDialog } = useDialog();
@@ -24,7 +25,7 @@ function MinimalApp() {
     setPlanner([]);
     showDialog({
       title: 'Erro',
-      message: 'Ocorreu um erro!<br>Você pode continuar editando o cronograma e capturar a tela.',
+      message: errorMsg,
     });
   }, []);
 
@@ -46,14 +47,15 @@ class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, errorInfo) {
+    this.setState({ errorInfo });
     console.error('Erro capturado no ErrorBoundary:', error, errorInfo);
   }
 
   render() {
-    const { hasError } = this.state;
+    const { hasError, errorInfo } = this.state;
     const { children } = this.props;
 
-    if (hasError) return <MinimalApp />;
+    if (hasError) return <MinimalApp errorMsg={errorInfo} />;
     return children;
   }
 }
@@ -67,7 +69,7 @@ function ErrorWrapper({ children }) {
   useEffect(() => {
     const errorHandler = (event) => {
       console.error('Erro global detectado:', event.error);
-      setGlobalError(true);
+      setGlobalError(event.error);
       logOut();
       setPlanner([]);
     };
@@ -81,7 +83,7 @@ function ErrorWrapper({ children }) {
     };
   }, []);
 
-  if (globalError) return <MinimalApp />;
+  if (globalError) return <MinimalApp errorMsg={globalError} />;
   return <ErrorBoundary>{children}</ErrorBoundary>;
 }
 

@@ -47,9 +47,16 @@ export function PlannerProvider({ children }) {
   const downloadPlanner = async () => {
     if (!ref.current) return null;
     try {
+      const screenshotContainer = document.querySelector('.screenshot-table-container');
       scrollToTop();
       const { churchName, selectedDate } = planner;
-      const canvas = await html2canvas(ref.current, { scale: 7 });
+      const canvas = await html2canvas(ref.current, {
+        scale: 7,
+        windowWidth: 0,
+        width: screenshotContainer.offsetWidth,
+        height: screenshotContainer.offsetHeight,
+        allowTaint: true,
+      });
 
       const blob = await new Promise((resolve) => {
         canvas.toBlob((b) => resolve(b), 'image/png');

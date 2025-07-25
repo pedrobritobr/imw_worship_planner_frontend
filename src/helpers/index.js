@@ -54,7 +54,7 @@ const scrollToTop = () => {
   window.scrollTo(0, 0);
 };
 
-const formatSelectedDateToUTC = (selectedDate) => {
+const formatSelectedDateToUTC = (selectedDate = Date.now()) => {
   const selectedDateUTC = new Date(selectedDate);
   const minutesTimezoneOffset = selectedDateUTC.getTimezoneOffset();
   selectedDateUTC.setMinutes(selectedDateUTC.getMinutes() + minutesTimezoneOffset);

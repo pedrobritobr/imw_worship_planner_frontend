@@ -4,6 +4,7 @@ import { PlannerContext } from '@/Context/PlannerContext';
 import {
   getWeekDay,
   parseDateToString,
+  formatSelectedDateToUTC,
 } from '@/helpers';
 
 import './WorshipForm.css';
@@ -17,8 +18,8 @@ export default function WorshipForm() {
   };
 
   const handleDateChange = (event) => {
-    const newDate = new Date(event.target.value);
-    newDate.setHours(newDate.getHours() + 3);
+    const newDate = formatSelectedDateToUTC(event.target.value);
+    newDate.setMinutes(newDate.getMinutes() + newDate.getTimezoneOffset());
     setPlanner({ ...planner, selectedDate: newDate });
   };
 

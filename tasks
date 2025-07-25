@@ -7,8 +7,8 @@
 29-03 ||| Permitir personalização print
 29-03 ||| Renderizar preview do print
 22-02 ||| Componente envia para o dev msg de erro
-07-02 ||| Investigar necessidade da soma de 3 hora no dia selecionado
 
+07-02 | 24-07 | 24-07 | Investigar necessidade da soma de 3 hora no dia selecionado | Convertendo horario para fuso correto
 24-07 | 24-07 | 24-07 | Criar ID quando o item nao tiver id
 11-07 | 12-07 | 12-07 | Add feat do user limpar tudo se erro persistir
 11-07 | 12-07 | 12-07 | Aumentar width do menu, loading está quebrando o testo

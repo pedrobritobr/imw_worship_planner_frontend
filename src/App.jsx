@@ -16,7 +16,7 @@ import GuideTour from '@/Components/GuideTour';
 
 import { sendLocationToAnalytics, getPlannerById } from '@/service';
 
-import { validateUUID } from '@/helpers';
+import { validateUUID, generateId } from '@/helpers';
 
 import './App.css';
 
@@ -133,6 +133,11 @@ function AppContent() {
 
     if (storedActivityId !== currentActivityId) {
       storedPlanner.selectedDate = new Date(storedPlanner.selectedDate);
+      setPlanner(storedPlanner);
+    }
+
+    if (!storedPlanner.id) {
+      storedPlanner.id = generateId();
       setPlanner(storedPlanner);
     }
 

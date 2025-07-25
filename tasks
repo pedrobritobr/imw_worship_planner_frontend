@@ -1,4 +1,5 @@
  TODO |  WIP  |  DONE | DESCRIPTION
+24-07 ||| Atualizar id se planner tiver diferença de data e ministro
 04-04 ||| Criar versão desktop
 11-07 ||| Enviar erro do MinimalApp ao backend
 05-07 ||| Não exibir guia quando já tiver sido exibido (na conta)
@@ -8,6 +9,7 @@
 22-02 ||| Componente envia para o dev msg de erro
 07-02 ||| Investigar necessidade da soma de 3 hora no dia selecionado
 
+24-07 | 24-07 | 24-07 | Criar ID quando o item nao tiver id
 11-07 | 12-07 | 12-07 | Add feat do user limpar tudo se erro persistir
 11-07 | 12-07 | 12-07 | Aumentar width do menu, loading está quebrando o testo
 22-02 | 11-07 | 11-07 | Investigar se erro no React vai resetar os estados - sim, reseta

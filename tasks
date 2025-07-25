@@ -1,4 +1,5 @@
  TODO |  WIP  |  DONE | DESCRIPTION
+24-07 ||| Bug de alterar a hora quando reinicia a pag, o que altera a data com muitos reloads
 24-07 ||| Atualizar id se planner tiver diferença de data e ministro
 04-04 ||| Criar versão desktop
 11-07 ||| Enviar erro do MinimalApp ao backend

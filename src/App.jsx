@@ -17,7 +17,7 @@ import { sendLocationToAnalytics, getPlannerById } from '@/service';
 
 import {
   validateUUID,
-  generateId,
+  generatePlannerID,
 } from '@/helpers';
 
 import './App.css';
@@ -139,7 +139,7 @@ function AppContent() {
     }
 
     if (!storedPlanner.id) {
-      storedPlanner.id = generateId();
+      storedPlanner.id = generatePlannerID();
       setPlanner(storedPlanner);
     }
 

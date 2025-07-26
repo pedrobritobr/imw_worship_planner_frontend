@@ -13,6 +13,7 @@ import {
   scrollToTop,
   emptyPlanner,
   share,
+  updatePlannerID,
 } from '@/helpers';
 import { uploadPlannerToCloud } from '@/service';
 
@@ -28,6 +29,7 @@ export function PlannerProvider({ children }) {
 
   const storePlanner = (newPlanner) => {
     const updatedPlanner = getPlanner(newPlanner);
+    updatedPlanner.id = updatePlannerID(updatedPlanner);
     setPlanner(updatedPlanner);
     localStorage.setItem('planner', JSON.stringify(updatedPlanner));
   };

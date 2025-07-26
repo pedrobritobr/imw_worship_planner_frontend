@@ -4,7 +4,6 @@ import { PlannerContext } from '@/Context/PlannerContext';
 import {
   getWeekDay,
   parseDateToString,
-  generateId,
 } from '@/helpers';
 
 import './WorshipForm.css';
@@ -14,7 +13,7 @@ export default function WorshipForm() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setPlanner({ ...planner, [name]: value, id: generateId() });
+    setPlanner({ ...planner, [name]: value });
   };
 
   const handleDateChange = (event) => {

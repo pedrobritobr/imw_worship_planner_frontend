@@ -63,7 +63,7 @@ const formatDateToLocale = (selectedDate = Date.now()) => {
 
 const validateUUID = (uuid) => {
   const isValidUUID = uuidValidate(uuid);
-  const isValidVersion = uuidVersion(uuid) === 4;
+  const isValidVersion = uuidVersion(uuid) === 4 || uuidVersion(uuid) === 5;
   if (!(isValidUUID && isValidVersion)) throw new Error('Invalid UUID');
 };
 

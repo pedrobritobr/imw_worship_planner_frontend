@@ -27,7 +27,7 @@ const generatePlannerID = () => {
 };
 
 export const emptyPlanner = () => ({
-  id: generatePlannerID(),
+  id: updatePlannerID(),
   activities: [
     {
       id: 'firstActivity',

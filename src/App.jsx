@@ -19,6 +19,7 @@ import { sendLocationToAnalytics, getPlannerById } from '@/service';
 import {
   validateUUID,
   generatePlannerID,
+  formatDateToLocale,
 } from '@/helpers';
 
 import './App.css';
@@ -81,7 +82,7 @@ function AppContent() {
 
         setIsFetchingPlanner(true);
         const fetchedPlanner = await getPlannerById(plannerIdUrl);
-        fetchedPlanner.selectedDate = new Date(fetchedPlanner.selectedDate);
+        fetchedPlanner.selectedDate = formatDateToLocale(fetchedPlanner.selectedDate);
         setIsFetchingPlanner(false);
 
         setPlanner(fetchedPlanner);
@@ -119,7 +120,7 @@ function AppContent() {
     if (userNotLoggedCount === 0) {
       loadPlannerFromId();
     }
-  }, [user, setPlanner]);
+  }, [user]);
 
   useEffect(() => {
     if (!initialSetupComplete || keepPlannerId) return;

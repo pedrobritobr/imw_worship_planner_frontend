@@ -70,9 +70,6 @@ class ErrorBoundary extends Component {
 }
 
 function ErrorWrapper({ children }) {
-  // const { logOut } = useContext(UserContext);
-  // const { setPlanner } = useContext(PlannerContext);
-
   const [globalError, setGlobalError] = useState(null);
 
   useEffect(() => {
@@ -80,8 +77,6 @@ function ErrorWrapper({ children }) {
       console.error('Erro global detectado:', event);
       console.error('Erro global detectado:', event.error);
       setGlobalError(true);
-      // logOut();
-      // setPlanner([]);
     };
 
     window.addEventListener('error', errorHandler);

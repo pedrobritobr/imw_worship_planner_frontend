@@ -37,6 +37,7 @@ function useUploadPlanner() {
       title: response ? 'Sucesso!' : 'Erro ao salvar o cronograma.',
       message: response ? sucessMsg : errorMsg,
       onCancel: () => setCurrentPage(pages.Home),
+      autoCloseSeconds: 3,
     });
 
     setDownloadedPlanner(planner);

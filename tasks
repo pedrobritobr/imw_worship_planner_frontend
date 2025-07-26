@@ -1,6 +1,4 @@
  TODO |  WIP  |  DONE | DESCRIPTION
-24-07 ||| Bug de alterar a hora quando reinicia a pag, o que altera a data com muitos reloads
-24-07 ||| Atualizar id se planner tiver diferença de data e ministro
 04-04 ||| Criar versão desktop
 11-07 ||| Enviar erro do MinimalApp ao backend
 05-07 ||| Não exibir guia quando já tiver sido exibido (na conta)
@@ -9,6 +7,8 @@
 29-03 ||| Renderizar preview do print
 22-02 ||| Componente envia para o dev msg de erro
 
+24-07 | 24-07 | 26-07 | Atualizar id se planner tiver diferença de data e ministro
+24-07 | 26-07 | 26-07 | Bug de alterar a hora quando reinicia a pag, o que altera a data com muitos reloads
 07-02 | 24-07 | 24-07 | Investigar necessidade da soma de 3 hora no dia selecionado | Convertendo horario para fuso correto
 24-07 | 24-07 | 24-07 | Criar ID quando o item nao tiver id
 11-07 | 12-07 | 12-07 | Add feat do user limpar tudo se erro persistir

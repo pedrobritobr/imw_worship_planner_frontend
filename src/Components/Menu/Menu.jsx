@@ -128,7 +128,7 @@ function Menu() {
               disabled={!!loadingActions[key]}
             >
               <img src={icon} alt={title} />
-              <span className="menu-item-title">
+              <span className={`menu-item-title menu-item-${key}`}>
                 {title}
                 {loadingActions[key] && <span className="loader" />}
               </span>

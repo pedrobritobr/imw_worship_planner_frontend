@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 import { UserProvider, UserContext } from '@/Context/UserContext';
@@ -189,6 +190,7 @@ function App() {
                 <GuideTourProvider>
                   <ErrorWrapper>
                     <AppContent />
+                    <Analytics />
                   </ErrorWrapper>
                 </GuideTourProvider>
               </PlannerProvider>

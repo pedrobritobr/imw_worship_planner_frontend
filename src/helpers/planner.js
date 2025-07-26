@@ -3,13 +3,12 @@ import _ from 'lodash';
 import { v4, v5 } from 'uuid';
 
 import { userDefault } from '@/Context/UserContext';
-import { formatSelectedDateToUTC } from '.';
 
 const getPlannerFromLocalStorage = () => {
   const stored = localStorage.getItem('planner');
   if (stored) {
     const parsed = JSON.parse(stored);
-    parsed.selectedDate = formatSelectedDateToUTC(parsed.selectedDate);
+    parsed.selectedDate = new Date(parsed.selectedDate);
     return parsed;
   }
   return null;
@@ -56,7 +55,7 @@ export const emptyPlanner = () => ({
       responsible: '--',
     },
   ],
-  selectedDate: formatSelectedDateToUTC(),
+  selectedDate: new Date(),
   ministerSelected: '',
   worshipTitle: '',
   churchName: '',

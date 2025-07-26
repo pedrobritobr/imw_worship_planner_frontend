@@ -18,7 +18,6 @@ import { sendLocationToAnalytics, getPlannerById } from '@/service';
 import {
   validateUUID,
   generateId,
-  formatSelectedDateToUTC,
 } from '@/helpers';
 
 import './App.css';
@@ -81,7 +80,7 @@ function AppContent() {
 
         setIsFetchingPlanner(true);
         const fetchedPlanner = await getPlannerById(plannerIdUrl);
-        fetchedPlanner.selectedDate = formatSelectedDateToUTC(fetchedPlanner.selectedDate);
+        fetchedPlanner.selectedDate = new Date(fetchedPlanner.selectedDate);
         setIsFetchingPlanner(false);
 
         setPlanner(fetchedPlanner);
@@ -135,7 +134,7 @@ function AppContent() {
     const currentActivityId = planner?.activities[1]?.id;
 
     if (storedActivityId !== currentActivityId) {
-      storedPlanner.selectedDate = formatSelectedDateToUTC(storedPlanner.selectedDate);
+      storedPlanner.selectedDate = new Date(storedPlanner.selectedDate);
       setPlanner(storedPlanner);
     }
 

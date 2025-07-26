@@ -3,7 +3,7 @@ import { PlannerContext } from '@/Context/PlannerContext';
 import { UserContext } from '@/Context/UserContext';
 import { useDialog } from '@/Context/DialogContext';
 import { downloadPlannerFromCloud } from '@/service';
-import { formatSelectedDateToUTC } from '@/helpers';
+import { formatDateToLocale } from '@/helpers';
 
 function useFetchPlanner() {
   const { user, setCurrentPage, pages } = useContext(UserContext);
@@ -29,7 +29,7 @@ function useFetchPlanner() {
       return false;
     }
 
-    plannerFromCloud.selectedDate = formatSelectedDateToUTC(plannerFromCloud.selectedDate);
+    plannerFromCloud.selectedDate = formatDateToLocale(plannerFromCloud.selectedDate);
     setPlanner(plannerFromCloud);
     setDownloadedPlanner(plannerFromCloud);
     setCurrentPage(pages.Home);

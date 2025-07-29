@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { v5 } from 'uuid';
+import { v4, v5 } from 'uuid';
 
 import { userDefault } from '@/Context/UserContext';
 
@@ -82,6 +82,7 @@ export const validatePlanner = (planner, downloadedPlanner) => {
 };
 
 export {
+  v4 as generateActivityID,
   generatePlannerID,
   updatePlannerID,
 };

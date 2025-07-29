@@ -9,7 +9,7 @@ import {
   setHourForActivity as setHourForNewActivity,
   columnsHeader,
   formatMinutes,
-  generatePlannerID,
+  generateActivityID,
 } from '@/helpers';
 import { updateHourFromActivity, getMinutesBetweenActivities, calculateDurationRemain } from './helpers';
 
@@ -76,7 +76,7 @@ function Planner() {
 
     const newActivity = {
       ...emptyActivity,
-      id: generatePlannerID(),
+      id: generateActivityID(),
       hour: setHourForNewActivity(actualActivity.hour, actualActivity.duration),
       duration: shouldCalculateDuration ? calculateDurationRemain(activities, true) : 0,
     };

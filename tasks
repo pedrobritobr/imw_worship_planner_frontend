@@ -7,6 +7,7 @@
 29-03 ||| Renderizar preview do print
 22-02 ||| Componente envia para o dev msg de erro
 
+29-07 | 29-07 | 29-07 | Bug, ao criar nova atividade, ela está se duplicando
 26-07 | 26-07 | 26-07 | Bug, nao exibindo msg ao abrir shared=true
 26-07 | 26-07 | 26-07 | Bug, pesquisa infinita em cronograma compartilhado
 24-07 | 24-07 | 26-07 | Atualizar id se planner tiver diferença de data e ministro

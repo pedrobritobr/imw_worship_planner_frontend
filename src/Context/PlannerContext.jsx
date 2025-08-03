@@ -51,6 +51,10 @@ export function PlannerProvider({ children }) {
     try {
       const screenshotContainer = document.querySelector('.screenshot-table-container');
       scrollToTop();
+
+      const { creator, ...plannerWithoutCreator } = planner;
+      postPlanner(plannerWithoutCreator);
+
       const { churchName, selectedDate } = planner;
       const canvas = await html2canvas(ref.current, {
         scale: 7,
@@ -83,8 +87,6 @@ export function PlannerProvider({ children }) {
         share({ files: [file] });
       }
 
-      const { creator, ...plannerWithoutCreator } = planner;
-      postPlanner(plannerWithoutCreator);
     } catch (e) {
       console.error(e);
     }

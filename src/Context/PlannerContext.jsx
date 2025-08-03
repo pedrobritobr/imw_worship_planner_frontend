@@ -86,7 +86,6 @@ export function PlannerProvider({ children }) {
 
         share({ files: [file] });
       }
-
     } catch (e) {
       console.error(e);
     }

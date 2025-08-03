@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { UserContext } from '@/Context/UserContext';
 
 import { showErrorMessage } from '@/helpers';
-import { getChurches, requestRegisterUser } from '@/service';
+import { getChurches, postUser } from '@/service';
 
 import ShowPassSVG from '@/assets/eye-show-svgrepo-com.svg';
 import HidePassSVG from '@/assets/eye-hide-svgrepo-com.svg';
@@ -54,7 +54,7 @@ function Register() {
     if (userLocal.password !== checkPassword) return showErrorMessage(errorTagId, 'As senhas não coincidem');
     if (userLocal.church === 'Selecione a igreja') return showErrorMessage(errorTagId, 'Selecione uma igreja');
 
-    const response = await requestRegisterUser(userWithoutCheckPassword);
+    const response = await postUser(userWithoutCheckPassword);
     if (response.errorMsg) {
       showErrorMessage(errorTagId, response.errorMsg);
     } else {

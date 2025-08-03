@@ -4,7 +4,7 @@ import { PlannerContext } from '@/Context/PlannerContext';
 import { UserContext } from '@/Context/UserContext';
 import { useDialog } from '@/Context/DialogContext';
 
-import { uploadPlannerToCloud } from '@/service';
+import { postPlanner } from '@/service';
 
 import { validatePlanner } from '@/helpers';
 
@@ -29,7 +29,7 @@ function useUploadPlanner() {
     }
 
     const { creator, ...plannerWithoutCreator } = planner;
-    const response = await uploadPlannerToCloud(plannerWithoutCreator);
+    const response = await postPlanner(plannerWithoutCreator);
 
     const sucessMsg = 'Cronograma salvo com sucesso!';
     const errorMsg = 'Por favor, tente novamente mais tarde.';

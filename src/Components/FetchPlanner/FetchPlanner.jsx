@@ -2,7 +2,7 @@ import { useContext, useCallback } from 'react';
 import { PlannerContext } from '@/Context/PlannerContext';
 import { UserContext } from '@/Context/UserContext';
 import { useDialog } from '@/Context/DialogContext';
-import { downloadPlannerFromCloud } from '@/service';
+import { getPlanner } from '@/service';
 import { formatDateToLocale } from '@/helpers';
 
 function useFetchPlanner() {
@@ -11,7 +11,7 @@ function useFetchPlanner() {
   const { showDialog } = useDialog();
 
   const fetchPlanner = useCallback(async () => {
-    const plannerFromCloud = await downloadPlannerFromCloud(user.token);
+    const plannerFromCloud = await getPlanner(user.token);
 
     if (!plannerFromCloud) {
       showDialog({

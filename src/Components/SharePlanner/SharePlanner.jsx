@@ -1,7 +1,7 @@
 import { useContext, useCallback } from 'react';
 import { PlannerContext } from '@/Context/PlannerContext';
 import { UserContext } from '@/Context/UserContext';
-import { uploadPlannerToCloud } from '@/service';
+import { postPlanner } from '@/service';
 import { validatePlanner, share } from '@/helpers';
 import { useDialog } from '@/Context/DialogContext';
 
@@ -29,7 +29,7 @@ function useSharePlanner() {
         return false;
       }
 
-      const response = await uploadPlannerToCloud(plannerWithoutCreator);
+      const response = await postPlanner(plannerWithoutCreator);
       if (!response) {
         showErrorDialog(errorMsg, 'Atenção!');
         return false;

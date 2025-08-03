@@ -72,7 +72,7 @@ export function requestLogout() {
   }
 }
 
-export async function requestRegisterUser(user) {
+export async function postUser(user) {
   const url = `${import.meta.env.VITE_PLANNER_URL}/user/`;
   const headers = {
     keyword: import.meta.env.VITE_PLANNER_KEYWORD,
@@ -81,7 +81,7 @@ export async function requestRegisterUser(user) {
   return makeRequest('POST', url, user, headers);
 }
 
-export async function uploadPlannerToCloud(planner) {
+export async function postPlanner(planner) {
   if (!planner) {
     return {
       success: false,
@@ -99,7 +99,7 @@ export async function uploadPlannerToCloud(planner) {
   return makeRequest('POST', url, { data: planner }, headers);
 }
 
-export async function downloadPlannerFromCloud() {
+export async function getPlanner() {
   const url = `${import.meta.env.VITE_PLANNER_URL}/planner/`;
   const user = JSON.parse(localStorage.getItem('user') || '{}');
   const headers = {

@@ -15,7 +15,7 @@ import {
   share,
   updatePlannerID,
 } from '@/helpers';
-import { uploadPlannerToCloud } from '@/service';
+import { postPlanner } from '@/service';
 
 export const PlannerContext = createContext();
 
@@ -84,7 +84,7 @@ export function PlannerProvider({ children }) {
       }
 
       const { creator, ...plannerWithoutCreator } = planner;
-      uploadPlannerToCloud(plannerWithoutCreator);
+      postPlanner(plannerWithoutCreator);
     } catch (e) {
       console.error(e);
     }

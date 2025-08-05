@@ -15,8 +15,7 @@ export const userDefault = {
 export const UserContext = createContext();
 
 export function UserProvider({ children, setCurrentPage, pages }) {
-  const [user, setUser] = useState(null);
-  const [userNotLoggedCount, setUserNotLoggedCount] = useState(0);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user') || '{}'));
 
   const logOut = () => {
     localStorage.removeItem('user');
@@ -32,15 +31,12 @@ export function UserProvider({ children, setCurrentPage, pages }) {
     localStorage.setItem('user', JSON.stringify(userData));
     setUser(userData);
     setCurrentPage(pages.Home);
-    setUserNotLoggedCount(0);
   };
 
   const variables = {
     user,
     logOut,
     logIn,
-    userNotLoggedCount,
-    setUserNotLoggedCount,
     setCurrentPage,
     pages,
   };

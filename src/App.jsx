@@ -25,18 +25,14 @@ import {
 import './App.css';
 
 function AppContent() {
-  const {
-    user,
-    logIn,
-    userNotLoggedCount,
-    setUserNotLoggedCount,
-  } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   const { currentPage, setCurrentPage, pages } = useContext(PageContext);
 
   const {
     planner,
     setPlanner,
+    deletePlanner,
     isFetchingPlanner,
     setIsFetchingPlanner,
   } = useContext(PlannerContext);
@@ -49,45 +45,34 @@ function AppContent() {
   const { showDialog } = useDialog();
 
   useEffect(() => {
-    try {
-      const storedUser = localStorage.getItem('user');
+    const urlParts = window.location.pathname.split('/');
+    const plannerIdUrl = urlParts[1];
 
-      if (!user && storedUser) {
-        const userData = JSON.parse(storedUser);
-        logIn(userData.token);
-      }
-    } catch (error) {
-      localStorage.removeItem('user');
-    }
-  }, [user, logIn]);
+    const shouldFetchPlanner = () => {
+      const queryParams = new URLSearchParams(window.location.search);
+      const sharedParam = queryParams.get('shared');
+      const isNotShared = sharedParam !== 'true';
 
-  useEffect(() => {
+      if (isNotShared) return false;
+
+      if (!plannerIdUrl) return false;
+
+      validateUUID(plannerIdUrl);
+
+      const plannerFromLocalStorage = JSON.parse(localStorage.getItem('planner') || '{}');
+      if (plannerFromLocalStorage?.id === plannerIdUrl) return false;
+
+      return true;
+    };
+
     const loadPlannerFromId = async () => {
       try {
-        const currentUrl = window.location.pathname + window.location.search;
-
-        const queryParams = new URLSearchParams(window.location.search);
-        const sharedParam = queryParams.get('shared');
-
-        if (sharedParam !== 'true') return;
-
-        const urlParts = window.location.pathname.split('/');
-        const plannerIdUrl = urlParts[1];
-        if (!plannerIdUrl) return;
-
-        validateUUID(plannerIdUrl);
-
-        const plannerFromLocalStorage = JSON.parse(localStorage.getItem('planner') || '{}');
-        if (plannerFromLocalStorage?.id === plannerIdUrl) return;
-
         setIsFetchingPlanner(true);
         const fetchedPlanner = await getPlannerById(plannerIdUrl);
         fetchedPlanner.selectedDate = formatDateToLocale(fetchedPlanner.selectedDate);
         setIsFetchingPlanner(false);
 
         setPlanner(fetchedPlanner);
-        localStorage.setItem('planner', JSON.stringify(fetchedPlanner));
-        window.history.pushState({}, '', `${currentUrl}`);
       } catch (error) {
         setIsFetchingPlanner(false);
 
@@ -97,27 +82,28 @@ function AppContent() {
           onCancel: () => setCurrentPage(pages.Home),
         });
 
-        if (error.name === 'UserNotLogged') {
-          setKeepPlannerId(true);
-          setUserNotLoggedCount((prevCount) => prevCount + 1);
-          setCurrentPage(pages.Login);
-          return;
-        }
-
         setKeepPlannerId(false);
-
+        deletePlanner();
         if (error.message === 'Nenhum cronograma encontrado.') return;
 
-        if (error.name !== 'UserNotLogged') {
-          window.history.pushState({}, '', '/');
-          return;
-        }
+        if (error.name !== 'UserNotLogged') return;
       } finally {
         setInitialSetupComplete(true);
       }
     };
 
-    if (userNotLoggedCount === 0) {
+    const shouldFetch = shouldFetchPlanner();
+
+    if (shouldFetch && !user) {
+      showDialog({
+        title: 'Erro',
+        message: 'Para consultar o cronograma é necessário estar autenticado.\nFaça o login ou cadastro.',
+        onCancel: () => setCurrentPage(pages.Login),
+      });
+      return;
+    }
+
+    if (shouldFetch && user) {
       loadPlannerFromId();
     }
   }, [user]);
@@ -128,7 +114,7 @@ function AppContent() {
     const storedPlanner = JSON.parse(localStorage.getItem('planner'));
 
     if (!storedPlanner?.activities?.length) {
-      setPlanner({});
+      deletePlanner();
       return;
     }
 
@@ -143,10 +129,6 @@ function AppContent() {
     if (!storedPlanner.id) {
       storedPlanner.id = generatePlannerID();
       setPlanner(storedPlanner);
-    }
-
-    if (storedPlanner.id) {
-      window.history.pushState({}, '', `/${storedPlanner.id}`);
     }
   }, [planner, setPlanner, initialSetupComplete, keepPlannerId]);
 
